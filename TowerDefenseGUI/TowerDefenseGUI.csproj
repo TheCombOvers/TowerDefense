@@ -55,6 +55,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model Files\Aircraft.cs" />
+    <Compile Include="Model Files\Boss.cs" />
+    <Compile Include="Model Files\Enemy.cs" />
+    <Compile Include="Model Files\Flak.cs" />
+    <Compile Include="Model Files\GAme.cs" />
+    <Compile Include="Model Files\Infantry.cs" />
+    <Compile Include="Model Files\Laser.cs" />
+    <Compile Include="Model Files\MachineGun.cs" />
+    <Compile Include="Model Files\Map.cs" />
+    <Compile Include="Model Files\Mortar.cs" />
+    <Compile Include="Model Files\Spawner.cs" />
+    <Compile Include="Model Files\Stun.cs" />
+    <Compile Include="Model Files\Tesla.cs" />
+    <Compile Include="Model Files\Turret.cs" />
+    <Compile Include="Model Files\Vehicle.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,6 +101,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Model Files\ClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
