@@ -43,11 +43,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Boss.cs" />
+    <Compile Include="Aircraft.cs" />
+    <Compile Include="Mortar.cs" />
+    <Compile Include="Stun.cs" />
+    <Compile Include="Laser.cs" />
+    <Compile Include="Tesla.cs" />
+    <Compile Include="Flak.cs" />
+    <Compile Include="MachineGun.cs" />
+    <Compile Include="Vehicle.cs" />
+    <Compile Include="Infantry.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="Turret.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="Spawner.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

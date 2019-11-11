@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseLibrary
 {
-    class Program
+    class Aircraft : Enemy
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
