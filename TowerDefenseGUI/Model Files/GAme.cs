@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
+using System.Timers;
 using System.Threading.Tasks;
 
-namespace TowerDefenseLibrary
+namespace TowerDefenseGUI
 {
     class Game
     {
@@ -13,11 +13,11 @@ namespace TowerDefenseLibrary
         int currentWave;
         bool isWaveOver;
         int money;
-        List<Map> maps;
-        List<Timer> gameTimers;
+        public List<Map> maps;
+        public List<Timer> gameTimers;
         Timer nextWaveTimer;
 
-        static void Main(string[] args)
+        public void NewGame(int difficulty, int mapIndex)
         {
         }
 

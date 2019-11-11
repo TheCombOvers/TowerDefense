@@ -59,7 +59,7 @@
     <Compile Include="Model Files\Boss.cs" />
     <Compile Include="Model Files\Enemy.cs" />
     <Compile Include="Model Files\Flak.cs" />
-    <Compile Include="Model Files\GAme.cs" />
+    <Compile Include="Model Files\Game.cs" />
     <Compile Include="Model Files\Infantry.cs" />
     <Compile Include="Model Files\Laser.cs" />
     <Compile Include="Model Files\MachineGun.cs" />
@@ -70,7 +70,7 @@
     <Compile Include="Model Files\Tesla.cs" />
     <Compile Include="Model Files\Turret.cs" />
     <Compile Include="Model Files\Vehicle.cs" />
-    <Page Include="MainWindow.xaml">
+    <Page Include="MainMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -78,8 +78,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

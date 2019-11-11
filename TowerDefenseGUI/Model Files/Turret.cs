@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
-namespace TowerDefenseLibrary
+namespace TowerDefenseGUI
 {
     abstract class Turret
     {
-        Image image;
-        int cost;
-        double damage;
-        string type;
-        Timer fireRate;
+        public Image image;
+        public int cost;
+        public double damage;
+        public string type;
+        public Timer fireRate;
 
         public void Attack(Enemy e)
         {

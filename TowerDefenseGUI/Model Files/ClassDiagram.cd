@@ -1,122 +1,116 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="TowerDefenseLibrary.Aircraft" Collapsed="true">
+  <Class Name="TowerDefenseGUI.Aircraft" Collapsed="true">
     <Position X="12.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Aircraft.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Boss" Collapsed="true">
+  <Class Name="TowerDefenseGUI.Boss" Collapsed="true">
     <Position X="12.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Enemy">
+  <Class Name="TowerDefenseGUI.Enemy">
     <Position X="11" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAgAAAAAAAAAAAAEQCBAQAAAEAAwgACAAg=</HashCode>
       <FileName>Model Files\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Flak" Collapsed="true">
+  <Class Name="TowerDefenseGUI.Flak" Collapsed="true">
     <Position X="7.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Flak.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Game">
+  <Class Name="TowerDefenseGUI.Game">
     <Position X="7.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAgAIAAAAAAAQAAAAAAIAAAAAAAAAhAAAAARAAAEAA=</HashCode>
-      <FileName>Model Files\GAme.cs</FileName>
+      <HashCode>AIAgAIAAAAAAAQAAAAAAIAAABAAAAAhAAAAAQAAAEAA=</HashCode>
+      <FileName>Model Files\Game.cs</FileName>
+      <NewMemberFileName>Model Files\GAme.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Infantry" Collapsed="true">
+  <Class Name="TowerDefenseGUI.Infantry" Collapsed="true">
     <Position X="12.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Infantry.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Laser" Collapsed="true">
+  <Class Name="TowerDefenseGUI.Laser" Collapsed="true">
     <Position X="7.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Laser.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.MachineGun" Collapsed="true">
+  <Class Name="TowerDefenseGUI.MachineGun" Collapsed="true">
     <Position X="7.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\MachineGun.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Map">
+  <Class Name="TowerDefenseGUI.Map">
     <Position X="9.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Map.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Mortar" Collapsed="true">
+  <Class Name="TowerDefenseGUI.Mortar" Collapsed="true">
     <Position X="11" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Mortar.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Spawner">
+  <Class Name="TowerDefenseGUI.Spawner">
     <Position X="9.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAEAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Spawner.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Stun" Collapsed="true">
+  <Class Name="TowerDefenseGUI.Stun" Collapsed="true">
     <Position X="11" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Stun.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Tesla" Collapsed="true">
+  <Class Name="TowerDefenseGUI.Tesla" Collapsed="true">
     <Position X="11" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Tesla.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Turret">
+  <Class Name="TowerDefenseGUI.Turret">
     <Position X="9.25" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAgAAAAAAAAAAAEYARAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Turret.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseLibrary.Vehicle" Collapsed="true">
+  <Class Name="TowerDefenseGUI.Vehicle" Collapsed="true">
     <Position X="12.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Vehicle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseGUI.App" Collapsed="true">
-    <Position X="15" Y="4.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App.xaml.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TowerDefenseGUI.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="TowerDefenseGUI.MainMenu" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="15" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MainWindow.xaml.cs</FileName>
+      <FileName>MainMenu.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
