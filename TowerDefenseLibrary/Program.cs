@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseLibrary
 {
-    class Game
+    class Program
     {
         static void Main(string[] args)
         {

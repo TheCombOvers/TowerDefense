@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C4278F29-26B3-4C64-AFF3-1002DCA75975}</ProjectGuid>
+    <ProjectGuid>{E7DA8EAD-5BDB-4126-8AE6-3B3C0F1C89E9}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>TowerDefenseLibrary</RootNamespace>
     <AssemblyName>TowerDefenseLibrary</AssemblyName>
@@ -43,12 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
