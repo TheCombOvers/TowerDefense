@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
-    class Aircraft : Enemy
+    class Aircraft : Enemy, ISerializeEnemy
     {
-        
+        public string Serialize(string type, double x, double y, double pathProg, double hp)
+        {
+            return "";
+        }
+        public Enemy Deserialize()
+        {
+            return new Infantry();
+        }
     }
 }

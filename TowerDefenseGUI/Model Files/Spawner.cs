@@ -9,7 +9,7 @@ namespace TowerDefenseGUI
 {
     class Spawner : Game
     {
-        List<Enemy> enemies;
+        public List<Enemy> enemies;
         Timer spawnRate;
 
         public void Spawn(int wave)

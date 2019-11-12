@@ -8,13 +8,20 @@ using System.Windows.Controls;
 
 namespace TowerDefenseGUI
 {
-    abstract class Turret
+    public interface ISerializeTurret
+    {
+        string Serialize(string type, double x, double y);
+        Turret Deserialize(string info);
+    }
+    public abstract class Turret
     {
         public Image image;
         public int cost;
         public double damage;
         public string type;
         public Timer fireRate;
+        public int xPos;
+        public int yPos;
 
         public void Attack(Enemy e)
         {

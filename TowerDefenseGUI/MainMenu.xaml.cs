@@ -20,12 +20,9 @@ namespace TowerDefenseGUI
     /// </summary>
     public partial class MainMenu : Window
     {
-
         public MainMenu()
         {
             InitializeComponent();
         }
-
-
     }
 }

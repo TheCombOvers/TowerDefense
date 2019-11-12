@@ -11,6 +11,6 @@ namespace TowerDefenseGUI
     {
         Image map;
         List<int[]> Coords;
-
+        public int mapID;
     }
 }

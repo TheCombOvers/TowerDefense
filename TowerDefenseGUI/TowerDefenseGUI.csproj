@@ -55,9 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GameGUI.xaml.cs">
-      <DependentUpon>GameGUI.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model Files\Aircraft.cs" />
     <Compile Include="Model Files\Boss.cs" />
     <Compile Include="Model Files\Enemy.cs" />
@@ -71,12 +68,9 @@
     <Compile Include="Model Files\Spawner.cs" />
     <Compile Include="Model Files\Stun.cs" />
     <Compile Include="Model Files\Tesla.cs" />
+    <Compile Include="Model Files\TestModel.cs" />
     <Compile Include="Model Files\Turret.cs" />
     <Compile Include="Model Files\Vehicle.cs" />
-    <Page Include="GameGUI.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MainMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -116,6 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Model Files\SavedGame.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

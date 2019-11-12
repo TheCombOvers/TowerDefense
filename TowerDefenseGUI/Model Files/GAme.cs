@@ -9,18 +9,20 @@ namespace TowerDefenseGUI
 {
     class Game
     {
-        // number of total waves player must play through. difficulty
-        int waveTotal;
-        // wave player is currently on
-        int currentWave;
-        bool isWaveOver;
-        int money;
-        public Map selectedMap;
+        public int waveTotal; // number of waves required to win the game
+        public int currentWave;
+        public bool isWaveOver;
+        public int waveProgress;
+        public int money;
+        public int score;
+        public Map map;
         public List<Timer> gameTimers;
+        public List<Turret> currentTurrets; // list of turrets  currently on the screen
         Timer nextWaveTimer;
-
-        public void NewGame(int difficulty, int mapIndex)
+        public Spawner spawner;
+        public void NewGame(int difficulty, int mapIndex, Map selcetedMap)
         {
+
         }
 
         public void NextWave()
@@ -31,6 +33,16 @@ namespace TowerDefenseGUI
         public void Pause()
         {
 
+        }
+        // loads a game that is saved in the file named "filename" and starts that saved game
+        public static Game LoadGame(string fileName)
+        {
+            return new Game();
+        }
+        // save the current state of the game in the file "fileName" and returns a string of what we saved
+        public string SaveGame(string fileName)
+        {
+            return "";
         }
     }
 }

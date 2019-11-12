@@ -7,17 +7,24 @@ using System.Windows.Controls;
 
 namespace TowerDefenseGUI
 {
-    abstract class Enemy
+    public interface ISerializeEnemy 
+    {
+        string Serialize(string type, double x, double y, double pathProg, double hp);
+        Enemy Deserialize();
+    }
+   
+
+    public abstract class Enemy
     {
         Image image;
-        int rewardMoney;
-        int rewardScore;
-        double health;
-        double speed;
-        string type;
-        double pathProgress;
-        double posX;
-        double posY;
+        public int rewardMoney;
+        public int rewardScore;
+        public double health;
+        public double speed;
+        public string type;
+        public double pathProgress;
+        public double posX;
+        public double posY;
         Timer updatePosTimer;
 
         public void UpdatePos()
