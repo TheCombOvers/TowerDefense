@@ -15,7 +15,7 @@ namespace TowerDefenseGUI
         int currentWave;
         bool isWaveOver;
         int money;
-        public List<Map> maps;
+        public Map selectedMap;
         public List<Timer> gameTimers;
         Timer nextWaveTimer;
 

@@ -20,7 +20,6 @@ namespace TowerDefenseGUI
     /// </summary>
     public partial class MainMenu : Window
     {
-        Image background;
 
         public MainMenu()
         {
