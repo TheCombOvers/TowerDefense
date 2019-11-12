@@ -9,7 +9,9 @@ namespace TowerDefenseGUI
 {
     class Game
     {
+        // number of total waves player must play through. difficulty
         int waveTotal;
+        // wave player is currently on
         int currentWave;
         bool isWaveOver;
         int money;
