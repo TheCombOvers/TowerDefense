@@ -106,13 +106,22 @@
       <FileName>Model Files\Vehicle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TowerDefenseGUI.MainMenu" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="15" Y="5.5" Width="1.5" />
+  <Class Name="TowerDefenseGUI.GameGUI" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameGUI.xaml.cs</FileName>
+      <NewMemberFileName>MainMenu.xaml.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TowerDefenseGUI.MainMenu">
+    <Position X="14.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MainMenu.xaml.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
