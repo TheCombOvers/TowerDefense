@@ -27,6 +27,8 @@ namespace TowerDefenseGUI
         public double posY;
         Timer updatePosTimer;
 
+        public abstract void Initialize();
+
         public void UpdatePos()
         {
 

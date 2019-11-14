@@ -24,7 +24,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TowerDefenseGUI.Flak" Collapsed="true">
-    <Position X="7.5" Y="6.25" Width="1.5" />
+    <Position X="7.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Flak.cs</FileName>
@@ -34,7 +34,7 @@
   <Class Name="TowerDefenseGUI.Game">
     <Position X="7.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAgAIABAAAAAQAAAAAAIAAABAAAAAhAAAAAQAAAEAA=</HashCode>
+      <HashCode>CAAgFIAAAAAQAQAAAAAIIEAABAAAAAhAAAAAQAAAEAE=</HashCode>
       <FileName>Model Files\Game.cs</FileName>
       <NewMemberFileName>Model Files\GAme.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -48,7 +48,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TowerDefenseGUI.Laser" Collapsed="true">
-    <Position X="7.5" Y="7" Width="1.5" />
+    <Position X="7.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Laser.cs</FileName>
@@ -56,7 +56,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TowerDefenseGUI.MachineGun" Collapsed="true">
-    <Position X="7.5" Y="7.75" Width="1.5" />
+    <Position X="7.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\MachineGun.cs</FileName>
@@ -64,14 +64,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TowerDefenseGUI.Map">
-    <Position X="9.25" Y="4.25" Width="1.5" />
+    <Position X="9.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAgAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Map.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TowerDefenseGUI.Mortar" Collapsed="true">
-    <Position X="11" Y="6.25" Width="1.5" />
+    <Position X="11" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Mortar.cs</FileName>
@@ -86,7 +86,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TowerDefenseGUI.Stun" Collapsed="true">
-    <Position X="11" Y="7" Width="1.5" />
+    <Position X="11" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Stun.cs</FileName>
@@ -94,7 +94,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TowerDefenseGUI.Tesla" Collapsed="true">
-    <Position X="11" Y="7.75" Width="1.5" />
+    <Position X="11" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Tesla.cs</FileName>
@@ -102,9 +102,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TowerDefenseGUI.Turret">
-    <Position X="9.25" Y="6" Width="1.5" />
+    <Position X="9.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAgAAAAAAAAAAAEYARAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAgAAAAAAAAAAAEYARAIAAAAAAAQAAAAA=</HashCode>
       <FileName>Model Files\Turret.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -125,10 +125,17 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Interface Name="TowerDefenseGUI.ISerializeTurret" Collapsed="true">
-    <Position X="7.5" Y="5.25" Width="1.5" />
+    <Position X="9.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Turret.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TowerDefenseGUI.ISerializeEnemy" Collapsed="true">
+    <Position X="11" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model Files\Enemy.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
