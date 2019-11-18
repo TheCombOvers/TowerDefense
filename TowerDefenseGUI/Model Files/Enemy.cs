@@ -7,13 +7,6 @@ using System.Windows.Controls;
 
 namespace TowerDefenseGUI
 {
-    public interface ISerializeEnemy 
-    {
-        string Serialize(string type, double x, double y, double pathProg, double hp);
-        Enemy Deserialize();
-    }
-   
-
     public abstract class Enemy
     {
         Image image;

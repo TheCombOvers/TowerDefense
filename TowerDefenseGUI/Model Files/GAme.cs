@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
+    public interface ISerializeObject
+    {
+        string Serialize();
+        object Deserialize(string info);
+    }
     class Game
     {
         public int waveTotal; // number of waves required to win the game

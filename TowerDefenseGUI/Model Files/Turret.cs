@@ -8,11 +8,6 @@ using System.Windows.Controls;
 
 namespace TowerDefenseGUI
 {
-    public interface ISerializeTurret
-    {
-        string Serialize(string type, double x, double y);
-        Turret Deserialize(string info);
-    }
     public abstract class Turret
     {
         public Image image;

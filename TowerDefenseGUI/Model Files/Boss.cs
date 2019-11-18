@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
-    class Boss : Enemy, ISerializeEnemy
+    class Boss : Enemy, ISerializeObject
     {
-        public string Serialize(string type, double x, double y, double pathProg, double hp)
+        public string Serialize()
         {
             return "";
         }
-        public Enemy Deserialize()
+        public object Deserialize(string info)
         {
-            return new Infantry();
+            return new Boss();
         }
 
         public override void Initialize()
