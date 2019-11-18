@@ -25,7 +25,7 @@ namespace TowerDefenseGUI
         public double pathProgress;
         public double posX;
         public double posY;
-        Timer updatePosTimer;
+        public double updatePosRate;
 
         public abstract void Initialize();
 

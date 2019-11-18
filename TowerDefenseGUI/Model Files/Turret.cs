@@ -19,7 +19,7 @@ namespace TowerDefenseGUI
         public int cost;
         public double damage;
         public string type;
-        public Timer fireRate;
+        public double fireRate;
         public int xPos;
         public int yPos;
 
