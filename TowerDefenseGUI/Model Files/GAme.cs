@@ -16,7 +16,7 @@ namespace TowerDefenseGUI
         public int money;
         public int score;
         public Map map;
-        public List<Timer> gameTimers;
+        public Timer gameTimer;
         public List<Turret> currentTurrets; // list of turrets  currently on the screen
         Timer nextWaveTimer;
         public Spawner spawner;
@@ -32,7 +32,7 @@ namespace TowerDefenseGUI
         
         public void Pause()
         {
-
+            
         }
         // loads a game that is saved in the file named "filename" and starts that saved game
         public static Game LoadGame(string fileName)
