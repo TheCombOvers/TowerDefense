@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
-    class Flak : Turret, ISerializeTurret
+    class Flak : Turret, ISerializeObject
     {
-        // params may not even be nessacary considering all the information needed is accessable within the method
-        public string Serialize(string type, double x, double y)
+        public string Serialize()
         {
             return "";
         }
-        public Turret Deserialize(string info)
+        public object Deserialize(string info)
         {
-            return new Tesla();
+            return new Flak();
         }
     }
 }

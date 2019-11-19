@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
-    class Vehicle : Enemy, ISerializeEnemy
+    class Vehicle : Enemy, ISerializeObject
     {
-        public string Serialize(string type, double x, double y, double pathProg, double hp)
+        public string Serialize()
         {
             return "";
         }
-        public Enemy Deserialize()
+        public object Deserialize(string info)
         {
             return new Vehicle();
         }
