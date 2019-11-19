@@ -3,7 +3,7 @@
   <Class Name="TowerDefenseGUI.Aircraft" Collapsed="true">
     <Position X="12.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Aircraft.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -11,7 +11,7 @@
   <Class Name="TowerDefenseGUI.Boss" Collapsed="true">
     <Position X="12.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Boss.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -19,7 +19,7 @@
   <Class Name="TowerDefenseGUI.Enemy">
     <Position X="11" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAgAAAAAAAAAAAAEQCBAQAAAEAAwgACAAg=</HashCode>
+      <HashCode>AgAgAAAAAAAgAQAAAAAAAAAAEQCBAQAAAEAAwAACAAg=</HashCode>
       <FileName>Model Files\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -34,7 +34,7 @@
   <Class Name="TowerDefenseGUI.Game">
     <Position X="7.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAgFIAAAAAQAQAAAAAIIEAABAAAAAhAAAAAQAAAEAE=</HashCode>
+      <HashCode>CAAgFIAAAAAQAQgAAAAIIEAABAAAAAgAAAAAQAAAEAE=</HashCode>
       <FileName>Model Files\Game.cs</FileName>
       <NewMemberFileName>Model Files\GAme.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -42,7 +42,7 @@
   <Class Name="TowerDefenseGUI.Infantry" Collapsed="true">
     <Position X="12.75" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Infantry.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -50,7 +50,7 @@
   <Class Name="TowerDefenseGUI.Laser" Collapsed="true">
     <Position X="7.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Laser.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -58,7 +58,7 @@
   <Class Name="TowerDefenseGUI.MachineGun" Collapsed="true">
     <Position X="7.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\MachineGun.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -73,7 +73,7 @@
   <Class Name="TowerDefenseGUI.Mortar" Collapsed="true">
     <Position X="11" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Mortar.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -88,7 +88,7 @@
   <Class Name="TowerDefenseGUI.Stun" Collapsed="true">
     <Position X="11" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Stun.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -96,7 +96,7 @@
   <Class Name="TowerDefenseGUI.Tesla" Collapsed="true">
     <Position X="11" Y="8.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Tesla.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -104,14 +104,14 @@
   <Class Name="TowerDefenseGUI.Turret">
     <Position X="9.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAgAAAAAAAAAAAEYARAIAAAAAAAQAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAgQAAAAAAAAAAEYARAIAAAAAAAQAAAAA=</HashCode>
       <FileName>Model Files\Turret.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TowerDefenseGUI.Vehicle" Collapsed="true">
     <Position X="12.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model Files\Vehicle.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -124,13 +124,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Interface Name="TowerDefenseGUI.ISerializeTurret" Collapsed="true">
-    <Position X="9.25" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model Files\Turret.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="TowerDefenseGUI.ISerializeEnemy" Collapsed="true">
     <Position X="11" Y="6" Width="1.5" />
     <TypeIdentifier>
