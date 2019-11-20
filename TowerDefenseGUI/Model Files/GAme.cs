@@ -20,7 +20,7 @@ namespace TowerDefenseGUI
         public int waveProgress;
         public int money;
         public int score;
-        public Map map;
+        public static Map map;
         public Timer gameTimer;
         public List<Turret> currentTurrets; // list of turrets  currently on the screen
         Timer nextWaveTimer;
