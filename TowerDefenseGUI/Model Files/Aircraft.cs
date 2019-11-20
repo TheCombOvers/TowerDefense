@@ -16,5 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Aircraft();
         }
+        public static Aircraft MakeAircraft()
+        {
+            Aircraft a = new Aircraft();
+
+            return a;
+        }
     }
 }

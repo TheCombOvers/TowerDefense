@@ -16,5 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Vehicle();
         }
+        public static Vehicle MakeVehicle()
+        {
+            Vehicle v = new Vehicle();
+
+            return v;
+        }
     }
 }

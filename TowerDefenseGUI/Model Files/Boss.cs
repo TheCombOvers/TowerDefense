@@ -17,9 +17,11 @@ namespace TowerDefenseGUI
             return new Boss();
         }
 
-        public override void Initialize()
+        public static Boss MakeBoss()
         {
-            throw new NotImplementedException();
+            Boss b = new Boss();
+           
+            return b;
         }
     }
 }

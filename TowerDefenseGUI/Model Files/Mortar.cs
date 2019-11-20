@@ -16,5 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Mortar();
         }
+        public static Mortar MakeMortar()
+        {
+            Mortar mo = new Mortar();
+
+            return mo;
+        }
     }
 }

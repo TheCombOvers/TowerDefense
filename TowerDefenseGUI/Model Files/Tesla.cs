@@ -16,5 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Vehicle();
         }
+        public static Tesla MakeTesla()
+        {
+            Tesla t = new Tesla();
+
+            return t;
+        }
     }
 }

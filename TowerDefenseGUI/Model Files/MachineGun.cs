@@ -16,5 +16,11 @@ namespace TowerDefenseGUI
         {
             return new MachineGun();
         }
+        public static MachineGun MakeMachineGun()
+        {
+            MachineGun m = new MachineGun();
+
+            return m;
+        }
     }
 }

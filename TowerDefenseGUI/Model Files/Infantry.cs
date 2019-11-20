@@ -16,5 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Infantry();
         }
+        public static Infantry MakeInfantry()
+        {
+            Infantry i = new Infantry();
+
+            return i;
+        }
     }
 }

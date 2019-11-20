@@ -16,5 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Vehicle();
         }
+        public static Stun MakeStun()
+        {
+            Stun s = new Stun();
+
+            return s;
+        }
     }
 }

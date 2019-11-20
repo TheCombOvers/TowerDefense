@@ -17,9 +17,11 @@ namespace TowerDefenseGUI
             return new Laser();
         }
 
-        public override void Initialize()
+        public static Laser MakeLaser()
         {
-            throw new NotImplementedException();
+            Laser l = new Laser();
+
+            return l;
         }
     }
 }
