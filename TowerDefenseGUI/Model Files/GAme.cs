@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
 
 namespace TowerDefenseGUI
 {
@@ -22,7 +24,8 @@ namespace TowerDefenseGUI
         public int score;
         public static Map map;
         public Timer gameTimer;
-        public List<Turret> currentTurrets; // list of turrets  currently on the screen
+        public List<Turret> currentTurrets = new List<Turret>(); // list of turrets  currently on the screen
+        public List<Enemy> currentEnemies = new List<Enemy>();
         Timer nextWaveTimer;
         public Spawner spawner;
         public void NewGame(int difficulty, int mapIndex, Map selcetedMap)
@@ -42,7 +45,119 @@ namespace TowerDefenseGUI
         // loads a game that is saved in the file named "filename" and starts that saved game
         public static Game LoadGame(string fileName)
         {
-            return new Game();
+
+
+            // close to done just need a to change the way we get the map set
+
+
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
+                if (begin == "NG")
+                {
+                    // switch case here calling the different factory methods depending on which types we run into
+                    // you gotta make the factory methods also ask schuab about this and how it relates to the intereface
+                    string[] gameInfo = reader.ReadLine().Split(',');   // grab the game state information
+
+                    Game newGame = new Game();
+                    map = new Map(/*Convert.ToInt32(gameInfo[0])*/);    // create a new map based on the mapid
+                    newGame.currentWave = Convert.ToInt32(gameInfo[1]);
+                    newGame.waveProgress = Convert.ToInt32(gameInfo[2]);
+                    newGame.score = Convert.ToInt32(gameInfo[3]);
+                    newGame.money = Convert.ToInt32(gameInfo[4]);
+                    newGame.waveTotal = Convert.ToInt32(gameInfo[5]);       // need to change/fix this so that it is a difficulty instead of a int
+                    newGame.isWaveOver = true ? gameInfo[6] == "false" : false;
+
+                    while (true)
+                    {
+                        string section = reader.ReadLine(); // read the section header
+                        if (section.Trim() == "END") { break; }    // if its END we're done
+
+                        if (section.Trim() == "ENEMIES")
+                        {
+
+                            while (true)
+                            {
+                                string line = reader.ReadLine(); // read a line
+                                if (line.Trim() == "ENDENEMIES") { break; } // see if we're at the end yet break if we are
+                                string[] ele = line.Split(',');
+                                switch (ele[0])                 // grab the type and call methods based on it
+                                {
+                                    case "boss":
+                                        Boss b = Boss.MakeBoss();
+                                        b.Deserialize(line);
+                                        newGame.currentEnemies.Add(b);
+                                        break;
+                                    case "aircraft":
+                                        Aircraft a = Aircraft.MakeAircraft();
+                                        a.Deserialize(line);
+                                        newGame.currentEnemies.Add(a);
+                                        break;
+                                    case "infantry":
+                                        Infantry i = Infantry.MakeInfantry();
+                                        i.Deserialize(line);
+                                        newGame.currentEnemies.Add(i);
+                                        break;
+                                    case "vehicle":
+                                        Vehicle v = Vehicle.MakeVehicle();
+                                        v.Deserialize(line);
+                                        newGame.currentEnemies.Add(v);
+                                        break;
+                                    default:
+                                        Debug.WriteLine("The enemy type was not correct.");
+                                        break;
+                                }
+                            }
+                        }
+                        else if (section.Trim() == "TURRETS")
+                        {
+                            while (true)
+                            {
+                                string lineT = reader.ReadLine(); // read a line
+                                if (lineT.Trim() == "ENDENEMIES") { break; } // see if we're at the end yet break if we are
+                                string[] eleT = lineT.Split(',');
+                                switch (eleT[0])                 // grab the type and call methods based on it
+                                {
+                                    case "flak":
+                                        Flak f = Flak.MakeFlak();
+                                        f.Deserialize(lineT);
+                                        newGame.currentTurrets.Add(f);
+                                        break;
+                                    case "laser":
+                                        Laser l = Laser.MakeLaser();
+                                        l.Deserialize(lineT);
+                                        newGame.currentTurrets.Add(l);
+                                        break;
+                                    case "machinegun":
+                                        MachineGun m = MachineGun.MakeMachineGun();
+                                        m.Deserialize(lineT);
+                                        newGame.currentTurrets.Add(m);
+                                        break;
+                                    case "morter":
+                                        Mortar mo = Mortar.MakeMortar();
+                                        mo.Deserialize(lineT);
+                                        newGame.currentTurrets.Add(mo);
+                                        break;
+                                    case "stun":
+                                        Stun s = Stun.MakeStun();
+                                        s.Deserialize(lineT);
+                                        newGame.currentTurrets.Add(s);
+                                        break;
+                                    case "tesla":
+                                        Tesla t = Tesla.MakeTesla();
+                                        t.Deserialize(lineT);
+                                        newGame.currentTurrets.Add(t);
+                                        break;
+                                    default:
+                                        Debug.WriteLine("The turret type was not correct.");
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+                return new Game();
+            }
         }
         // save the current state of the game in the file "fileName" and returns a string of what we saved
         public string SaveGame(string fileName)
