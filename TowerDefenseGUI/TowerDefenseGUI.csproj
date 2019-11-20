@@ -121,6 +121,9 @@
   <ItemGroup>
     <Resource Include="Model Files\SavedGame.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Model Files\path1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
