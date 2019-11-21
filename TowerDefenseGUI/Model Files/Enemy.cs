@@ -24,12 +24,12 @@ namespace TowerDefenseGUI
 
         public void UpdatePos()
         {
-            string direction = CheckCoords(Map.coords);
-            if (direction.Equals("x"))
+            var intersection = CheckCoords(Map.coords);
+            if (intersection.direction == Map.Direction.RIGHT || intersection.direction == Map.Direction.LEFT)
             {
                 posX += speed;
             }
-            if (direction.Equals("y"))
+            if (intersection.direction == Map.Direction.DOWN || intersection.direction == Map.Direction.UP)
             {
                 posY += speed;
             }
@@ -40,40 +40,24 @@ namespace TowerDefenseGUI
         // when the enemy position is close to the path change, it sets the speed to + or - and 
         // returns a string that says x or y. For example, if speed is negative and it returns 'x',
         // then the sprite will move to the left.
-        public string CheckCoords(List<Intersection> path)
+        public Intersection CheckCoords(List<Intersection> path)
         {
-            string direction = null;
             int x = path[pathProgress].x;
             int y = path[pathProgress].y;
-            if(x == posX && y == posY) {
+            if (x == posX && y == posY)
+            {
                 pathProgress++;
-                x = path[pathProgress].x;
-                y = path[pathProgress].y;
             }
-            if(x == posX)
+            var dir = path[pathProgress].direction;
+            if (dir == Map.Direction.RIGHT || dir == Map.Direction.DOWN)
             {
-                direction = "y";
-                if(y < posY)
-                {
-                    speed *= -1;
-                }
-                else
-                {
-                    Math.Abs(speed);
-                }
-            }else if (y == posY)
-            {
-                direction = "x";
-                if (x < posX)
-                {
-                    speed *= -1;
-                }
-                else
-                {
-                    Math.Abs(speed);
-                }
+                Math.Abs(speed);
             }
-            return direction;
+            else if (dir == Map.Direction.LEFT || dir == Map.Direction.UP)
+            {
+                speed *= -1;
+            }
+            return path[pathProgress];
         }
 
         public void TakeDamage(double amount)
