@@ -20,8 +20,7 @@ namespace TowerDefenseGUI
             g.money = 200;
             g.score = 700;
             g.isWaveOver = false;
-            Game.map = new Map();
-            Game.map.mapID = 1;
+            Game.map = new Map(0);
             Mortar m1 = new Mortar();
             m1.xPos = 2;
             m1.yPos = 3;
@@ -58,7 +57,7 @@ namespace TowerDefenseGUI
             g.money = 200;
             g.score = 700;
             g.isWaveOver = false;
-            Game.map = new Map();
+            Game.map = new Map(0);
             Game.map.mapID = 1;
             Mortar m1 = new Mortar();
             m1.xPos = 2;
