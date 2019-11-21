@@ -16,5 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Flak();
         }
+        public static  Flak MakeFlak()
+        {
+            Flak f = new Flak();
+            
+            return f;
+        }
     }
 }

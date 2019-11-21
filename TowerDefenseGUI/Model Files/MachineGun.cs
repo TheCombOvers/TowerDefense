@@ -16,10 +16,11 @@ namespace TowerDefenseGUI
         {
             return new MachineGun();
         }
-
-        public override void Initialize()
+        public static MachineGun MakeMachineGun()
         {
-            throw new NotImplementedException();
+            MachineGun m = new MachineGun();
+
+            return m;
         }
     }
 }

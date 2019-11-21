@@ -16,10 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Aircraft();
         }
-
-        public override void Initialize()
+        public static Aircraft MakeAircraft()
         {
-            throw new NotImplementedException();
+            Aircraft a = new Aircraft();
+
+            return a;
         }
     }
 }

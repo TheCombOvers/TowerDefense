@@ -20,8 +20,6 @@ namespace TowerDefenseGUI
         public double posY;
         public double updatePosRate;
 
-        public abstract void Initialize();
-
         public void UpdatePos()
         {
             var intersection = CheckCoords(Map.coords);

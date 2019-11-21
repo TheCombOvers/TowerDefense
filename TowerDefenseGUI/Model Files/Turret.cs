@@ -17,8 +17,6 @@ namespace TowerDefenseGUI
         public double fireRate;
         public int xPos;
         public int yPos;
-
-        public abstract void Initialize();
        
         public void Attack(Enemy e)
         {

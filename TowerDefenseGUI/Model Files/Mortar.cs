@@ -16,10 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Mortar();
         }
-
-        public override void Initialize()
+        public static Mortar MakeMortar()
         {
-            throw new NotImplementedException();
+            Mortar mo = new Mortar();
+
+            return mo;
         }
     }
 }

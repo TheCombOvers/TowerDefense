@@ -16,10 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Vehicle();
         }
-
-        public override void Initialize()
+        public static Stun MakeStun()
         {
-            throw new NotImplementedException();
+            Stun s = new Stun();
+
+            return s;
         }
     }
 }

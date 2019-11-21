@@ -16,10 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Infantry();
         }
-
-        public override void Initialize()
+        public static Infantry MakeInfantry()
         {
-            throw new NotImplementedException();
+            Infantry i = new Infantry();
+
+            return i;
         }
     }
 }

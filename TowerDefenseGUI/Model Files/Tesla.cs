@@ -16,10 +16,11 @@ namespace TowerDefenseGUI
         {
             return new Vehicle();
         }
-
-        public override void Initialize()
+        public static Tesla MakeTesla()
         {
-            throw new NotImplementedException();
+            Tesla t = new Tesla();
+
+            return t;
         }
     }
 }
