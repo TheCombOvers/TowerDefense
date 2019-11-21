@@ -18,7 +18,6 @@ namespace TowerDefenseGUI
         public int pathProgress;
         public double posX;
         public double posY;
-        public double updatePosRate;
 
         public void UpdatePos()
         {
