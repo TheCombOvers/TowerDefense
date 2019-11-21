@@ -10,16 +10,30 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            return "";
+            string infantry = string.Format("{0},{1},{2},{3},{4}", "infantry", posX, posY, health, pathProgress);
+            return infantry;
         }
         public override object Deserialize(string info)
         {
-            return new Infantry();
+            string[] aInfo = info.Split(',');
+            Infantry i = MakeInfantry();
+            i.posX = Convert.ToDouble(aInfo[1]);
+            i.posY = Convert.ToDouble(aInfo[2]);
+            i.health = Convert.ToDouble(aInfo[3]);
+            i.pathProgress = Convert.ToInt32(aInfo[4]);
+            return i;
         }
         public static Infantry MakeInfantry()
         {
             Infantry i = new Infantry();
-
+            i.health = 20;
+            i.rewardMoney = 5;
+            i.speed = 50 / 60;
+            i.posX = Map.coords[0].x;
+            i.posY = Map.coords[0].y;
+            i.pathProgress = 0;
+            i.rewardScore = 2;
+            i.type = "infantry";
             return i;
         }
     }
