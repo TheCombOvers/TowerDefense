@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
-        Title="MainMenu" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainMenu" Height="900" Width="1440" Background="Gray">
+    <Grid Background="#20572f">
+        <Border CornerRadius="50" BorderBrush="Gray" BorderThickness="20"/>
+        <Button Margin="550,610,550,144" Click="PlayButton_Click" x:Name="PlayButton" Content="Play" FontSize="50" Background="#77917e"/>
     </Grid>
 </Window>

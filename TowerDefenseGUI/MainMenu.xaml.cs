@@ -24,5 +24,13 @@ namespace TowerDefenseGUI
         {
             InitializeComponent();
         }
+
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Run code to open difficulty selection and map selection window
+            // If page closes without finishing, return;
+            // else:
+            // Start Game with current variables and selections
+        }
     }
 }
