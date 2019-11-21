@@ -35,6 +35,8 @@ namespace TowerDefenseGUI
             path.Add(new Intersection(500, 900, Direction.DOWN));
             pathways.Add(path);
             mapID = id;
+            map = maps[mapID];
+            coords = pathways[mapID];
         }
     }
 
