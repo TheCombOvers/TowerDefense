@@ -32,5 +32,17 @@ namespace TowerDefenseGUI
             // else:
             // Start Game with current variables and selections
         }
+
+        private void HighScoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Bring up the High Score screen if no High Score screen is up
+        }
+
+        private void HelpButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Bring up the Help Menu if no Help Menu is up
+            var newMenu = new HelpWindow();
+            newMenu.ShowDialog();
+        }
     }
 }

@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
-        Title="MainMenu" Height="900" Width="1440" Background="Gray">
+        Title="Tower Defense" Height="900" Width="1440" Background="Gray" ResizeMode="CanMinimize">
     <Grid Background="#20572f">
         <Border CornerRadius="50" BorderBrush="Gray" BorderThickness="20"/>
-        <Button Margin="550,610,550,144" Click="PlayButton_Click" x:Name="PlayButton" Content="Play" FontSize="50" Background="#77917e"/>
+        <Border BorderBrush="Gray" BorderThickness="20"/>
+        <Label Margin="49,150,10,431" FontSize="200">Tower Defense</Label>
+        <Label Margin="90,380,90,291">
+            <!-- <Image Source=""/> -->
+        </Label>
+        <Button Margin="550,630,550,144" Click="PlayButton_Click" x:Name="PlayButton" Content="Play" FontSize="50" Background="#77917e"/>
+        <Button Margin="550,730,720,90" Click="HighScoreButton_Click" x:Name="HighScoreButton" Content="High Scores" FontSize="26" Background="#77917e"/>
+        <Button Margin="720,730,550,90" Click="HelpButton_Click" x:Name="HelpButton" Content="Help" FontSize="26" Background="#77917e"/>
     </Grid>
 </Window>
