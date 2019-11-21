@@ -14,8 +14,20 @@ namespace TowerDefenseGUI
 
         public void Spawn(int wave)
         {
-
+            DetermineWave(wave);
+            
         }
 
+        private void DetermineWave(int wave)
+        {
+            if(wave % 3 == 0)
+            {
+                enemies.Add(new Vehicle());
+            }
+            else
+            {
+                enemies.Add(new Infantry());
+            }
+        }
     }
 }
