@@ -60,7 +60,7 @@ namespace TowerDefenseGUI
                     // you gotta make the factory methods also ask schuab about this and how it relates to the intereface
                     string[] gameInfo = reader.ReadLine().Split(',');   // grab the game state information
                     
-                    map = new Map(/*Convert.ToInt32(gameInfo[0])*/);    // create a new map based on the mapid
+                    map = new Map(Convert.ToInt32(gameInfo[0]));    // create a new map based on the mapid
                     newGame.currentWave = Convert.ToInt32(gameInfo[1]);
                     newGame.waveProgress = Convert.ToInt32(gameInfo[2]);
                     newGame.score = Convert.ToInt32(gameInfo[3]);
