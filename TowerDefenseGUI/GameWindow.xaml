@@ -1,0 +1,44 @@
+﻿<Window x:Class="TowerDefenseGUI.Model_Files.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TowerDefenseGUI.Model_Files"
+        mc:Ignorable="d"
+        Title="Window1" Height="900" Width="1400">
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="870" Margin="966,0,-0.4,0" Stroke="Black" VerticalAlignment="Top" Width="428"/>
+        <Image x:Name="TurretImage" HorizontalAlignment="Left" Source="Resources\turret tower.PNG" Height="126" Margin="1025,113,0,0" VerticalAlignment="Top" Width="127"/>
+        <TextBlock x:Name="txtTurretName" HorizontalAlignment="Left" Height="27" Margin="1183,124,0,0" TextWrapping="Wrap" Text="Turret Tower" FontSize="20" VerticalAlignment="Top" Width="114"/>
+        <TextBlock x:Name="txtTurretType" HorizontalAlignment="Left" Height="16" Margin="1183,156,0,0" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="90"/>
+        <TextBlock x:Name="txtTurretDmg" HorizontalAlignment="Left" Height="16" Margin="1183,172,0,0" TextWrapping="Wrap" Text="Damage: 4/s" VerticalAlignment="Top" Width="90"/>
+        <TextBlock x:Name="txtTurretRange" HorizontalAlignment="Left" Height="16" Margin="1183,188,0,0" TextWrapping="Wrap" Text="Range: 150" VerticalAlignment="Top" Width="90"/>
+        <TextBlock x:Name="txtTurretCost" HorizontalAlignment="Left" Height="16" Margin="1183,204,0,0" TextWrapping="Wrap" Text="Cost: $25" VerticalAlignment="Top" Width="90"/>
+        <Button Content="Basic" FontSize="30" HorizontalAlignment="Left" Height="66" Margin="982,0,0,0" VerticalAlignment="Top" Width="190" IsEnabled="False"/>
+        <Button Content="Advanced" FontSize="30" HorizontalAlignment="Left" Height="66" Margin="1194,0,0,0" VerticalAlignment="Top" Width="190" IsEnabled="False"/>
+        <Image x:Name="MortarImage" HorizontalAlignment="Left" Source="Resources\mortar tower.PNG" Height="126" Margin="1025,471,0,0" VerticalAlignment="Top" Width="127"/>
+        <Button x:Name="btnTurretBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" Margin="1298,172,0,0" VerticalAlignment="Top" Width="54"/>
+        <TextBlock x:Name="txtMortarName" HorizontalAlignment="Left" Height="27" Margin="1183,488,0,0" TextWrapping="Wrap" Text="Mortar Tower" FontSize="20" VerticalAlignment="Top" Width="127"/>
+        <TextBlock x:Name="txtMortarType" HorizontalAlignment="Left" Height="16" Margin="1183,520,0,0" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="90"/>
+        <TextBlock x:Name="txtMortarDmg" HorizontalAlignment="Left" Height="16" Margin="1183,536,0,0" TextWrapping="Wrap" Text="Damage: 50/5s" VerticalAlignment="Top" Width="90"/>
+        <TextBlock x:Name="txtMortarRange" HorizontalAlignment="Left" Height="16" Margin="1183,552,0,0" TextWrapping="Wrap" Text="Range: 500" VerticalAlignment="Top" Width="90"/>
+        <TextBlock x:Name="txtMortarCost" HorizontalAlignment="Left" Height="16" Margin="1183,568,0,0" TextWrapping="Wrap" Text="Cost: $200" VerticalAlignment="Top" Width="90"/>
+        <Button x:Name="btnMortarBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" Margin="1298,536,0,0" VerticalAlignment="Top" Width="54" IsEnabled="False"/>
+        <Image x:Name="FlakImage" HorizontalAlignment="Left" Source="Resources\flak tower.PNG" Height="126" Margin="1025,289,0,0" VerticalAlignment="Top" Width="127"/>
+        <TextBlock x:Name="txtFlakName" HorizontalAlignment="Left" Height="27" Margin="1183,306,0,0" TextWrapping="Wrap" Text="Flak Tower" FontSize="20" VerticalAlignment="Top" Width="102"/>
+        <TextBlock x:Name="txtFlakType" HorizontalAlignment="Left" Height="16" Margin="1183,338,0,0" TextWrapping="Wrap" Text="Target: Air" VerticalAlignment="Top" Width="58"/>
+        <TextBlock x:Name="txtFlakDmg" HorizontalAlignment="Left" Height="16" Margin="1183,354,0,0" TextWrapping="Wrap" Text="Damage: 2/s" VerticalAlignment="Top" Width="72"/>
+        <TextBlock x:Name="txtFlakRange" HorizontalAlignment="Left" Height="16" Margin="1183,370,0,0" TextWrapping="Wrap" Text="Range: 250" VerticalAlignment="Top" Width="90"/>
+        <TextBlock x:Name="txtFlakCost" HorizontalAlignment="Left" Height="16" Margin="1183,386,0,0" TextWrapping="Wrap" Text="Cost: $75" VerticalAlignment="Top" Width="90"/>
+        <Button x:Name="btnFlakBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" Margin="1298,352,0,0" VerticalAlignment="Top" Width="54" IsEnabled="False"/>
+        <Rectangle Fill="#FFF4F4F5" Height="3" Margin="966,680,-0.4,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="428"/>
+        <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="68" Margin="982,694,0,0" VerticalAlignment="Top" Width="105" IsEnabled="False"/>
+        <Image x:Name="MapImage" Source="path1.png" HorizontalAlignment="Left" Height="870" VerticalAlignment="Top" Width="966"/>
+        <TextBlock x:Name="txtLives" HorizontalAlignment="Left" Height="41" Margin="1223,819,0,0" TextWrapping="Wrap" Text="Lives: 10" FontSize="25" VerticalAlignment="Top" Width="99"/>
+        <Rectangle Fill="#FFF4F4F5" Height="187" Margin="1214,683,0,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="4"/>
+        <TextBlock x:Name="txtMoney" HorizontalAlignment="Left" Height="35" Margin="1223,760,0,0" TextWrapping="Wrap" Text="$100" FontSize="25" VerticalAlignment="Top" Width="161"/>
+        <Rectangle Fill="#FFF4F4F5" Height="3" Margin="1217,739,-0.4,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"/>
+        <Rectangle Fill="#FFF4F4F5" Height="3" Margin="1217,811,-0.4,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"/>
+        <TextBlock x:Name="txtMoney_Copy" HorizontalAlignment="Left" Height="35" Margin="1223,693,0,0" TextWrapping="Wrap" Text="Points: 0" FontSize="25" VerticalAlignment="Top" Width="161"/>
+    </Grid>
+</Window>
