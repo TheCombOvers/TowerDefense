@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace TowerDefenseGUI
 {
-    public abstract class Turret
+    public abstract class Turret: ISerializeObject
     {
         public Image image;
         public int cost;
@@ -29,5 +29,7 @@ namespace TowerDefenseGUI
 
             return e;
         }
+        public abstract string Serialize();
+        public abstract object Deserialize(string info);
     }
 }

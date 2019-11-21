@@ -25,7 +25,7 @@ namespace TowerDefenseGUI
         public static Map map;
         public Timer gameTimer;
         public List<Turret> currentTurrets = new List<Turret>(); // list of turrets  currently on the screen
-        public List<Enemy> currentEnemies = new List<Enemy>();
+        public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
         Timer nextWaveTimer;
         public Spawner spawner;
         public void NewGame(int difficulty, int mapIndex, Map selcetedMap)
@@ -53,13 +53,13 @@ namespace TowerDefenseGUI
             using (StreamReader reader = new StreamReader(fileName))
             {
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
+                Game newGame = new Game();
                 if (begin == "NG")
                 {
                     // switch case here calling the different factory methods depending on which types we run into
                     // you gotta make the factory methods also ask schuab about this and how it relates to the intereface
                     string[] gameInfo = reader.ReadLine().Split(',');   // grab the game state information
-
-                    Game newGame = new Game();
+                    
                     map = new Map(/*Convert.ToInt32(gameInfo[0])*/);    // create a new map based on the mapid
                     newGame.currentWave = Convert.ToInt32(gameInfo[1]);
                     newGame.waveProgress = Convert.ToInt32(gameInfo[2]);
@@ -156,13 +156,38 @@ namespace TowerDefenseGUI
                         }
                     }
                 }
-                return new Game();
+                return newGame;
             }
         }
         // save the current state of the game in the file "fileName" and returns a string of what we saved
-        public string SaveGame(string fileName)
+        public void SaveGame(string fileName)
         {
-            return "";
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                writer.WriteLine("NG");                
+                string waveOver = isWaveOver == true ? "false": "true";
+                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6}", map.mapID, currentWave, waveProgress, score, money, waveTotal, waveOver);
+                writer.WriteLine(gameState);
+                if (currentEnemies.Count != 0)
+                {
+                    writer.WriteLine("ENEMIES");
+                    for (int i = 0; i < currentEnemies.Count; ++i)
+                    {
+                        string line = currentEnemies[i].Serialize();
+                    }
+                    writer.WriteLine("ENDENEMIES");
+                }
+               
+                if (currentTurrets.Count != 0)
+                {
+                    writer.WriteLine("TURRETS");
+                    for (int i = 0; i < currentTurrets.Count; ++i)
+                    {
+                        string line = currentTurrets[i].Serialize();
+                    }
+                    writer.WriteLine("ENDTURRETS");
+                }                
+            }
         }
     }
 }

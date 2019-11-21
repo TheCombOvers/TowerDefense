@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace TowerDefenseGUI
 {
-    public abstract class Enemy
+    public abstract class Enemy: ISerializeObject
     {
         Image image;
         public int rewardMoney;
@@ -78,5 +78,7 @@ namespace TowerDefenseGUI
         {
 
         }
+        public abstract string Serialize();
+        public abstract object Deserialize(string info);    
     }
 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
-    class Aircraft : Enemy, ISerializeObject
+    class Aircraft : Enemy
     {
-        public string Serialize()
+        public override string Serialize()
         {
             return "";
         }
-        public object Deserialize(string info)
+        public override object Deserialize(string info)
         {
             return new Aircraft();
         }

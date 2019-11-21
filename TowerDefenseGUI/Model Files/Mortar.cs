@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
-    class Mortar : Turret, ISerializeObject
+    class Mortar : Turret
     {
-        public string Serialize()
+        public override string Serialize()
         {
             return "";
         }
-        public object Deserialize(string info)
+        public override object Deserialize(string info)
         {
             return new Mortar();
         }

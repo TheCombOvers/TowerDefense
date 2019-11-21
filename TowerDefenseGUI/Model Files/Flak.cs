@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
-    class Flak : Turret, ISerializeObject
+    class Flak : Turret
     {
-        public string Serialize()
+        public override string Serialize()
         {
             return "";
         }
-        public object Deserialize(string info)
+        public override object Deserialize(string info)
         {
             return new Flak();
         }
-        public static  Flak MakeFlak()
+        public static Flak MakeFlak()
         {
             Flak f = new Flak();
             

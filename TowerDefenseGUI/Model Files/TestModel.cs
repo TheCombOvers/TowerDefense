@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace TowerDefenseGUI
 {
     [TestFixture]
@@ -20,8 +20,8 @@ namespace TowerDefenseGUI
             g.money = 200;
             g.score = 700;
             g.isWaveOver = false;
-            g.map = new Map();
-            g.map.mapID = 1;
+            Game.map = new Map();
+            Game.map.mapID = 1;
             Mortar m1 = new Mortar();
             m1.xPos = 2;
             m1.yPos = 3;
@@ -58,8 +58,8 @@ namespace TowerDefenseGUI
             g.money = 200;
             g.score = 700;
             g.isWaveOver = false;
-            g.map = new Map();
-            g.map.mapID = 1;
+            Game.map = new Map();
+            Game.map.mapID = 1;
             Mortar m1 = new Mortar();
             m1.xPos = 2;
             m1.yPos = 3;
@@ -84,8 +84,11 @@ namespace TowerDefenseGUI
             v1.health = 10;
             g.spawner.enemies.Add(i1);
             g.spawner.enemies.Add(v1);
-            string SerializedGame = g.SaveGame("SavedGame1.txt");
+            g.SaveGame("SavedGame1.txt");
+            StreamReader reader = new StreamReader("SavedGame1.txt");
+            string SerializedGame = reader.ReadToEnd();
             Assert.AreEqual(SerializedGame, "NG\n1,5,3,700,200,20,false\nENEMIES\ninfantry,2,4,13\nvehicle,6,2,13\nTURRETS\nmortar,2,3\nstun,7,5\ntesla,3,5\nEND");
+            reader.Close();
         }
     }
 }
