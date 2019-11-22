@@ -11,11 +11,17 @@ namespace TowerDefenseGUI
     {
         public List<Enemy> enemies = new List<Enemy>();
 
-        public void Spawn(int wave)
+        public void Spawn(int wave, Action<Enemy> AddEnemy)
         {
-            enemies.Add(Infantry.MakeInfantry());
+            Enemy e = Infantry.MakeInfantry();
+            enemies.Add(e);
+            AddEnemy(e);
             //int count = DetermineWave(wave);
             //GenerateWave(wave, count);
+            //foreach(Enemy en in enemies)
+            //{
+            //    AddEnemy(en);
+            //}
         }
 
         private void GenerateWave(int wave, int count)

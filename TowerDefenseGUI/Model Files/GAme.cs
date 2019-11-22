@@ -26,6 +26,7 @@ namespace TowerDefenseGUI
         public List<Turret> currentTurrets = new List<Turret>(); // list of turrets  currently on the screen
         public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
         public Spawner spawner;
+        public Action<Enemy> addEnemy;
 
         public Game(int mapID)
         {
@@ -45,7 +46,7 @@ namespace TowerDefenseGUI
         public void NextWave()
         {
             waveProgress++;
-            spawner.Spawn(waveProgress);
+            spawner.Spawn(waveProgress, addEnemy);
         }
 
         public void UpdateModel()
