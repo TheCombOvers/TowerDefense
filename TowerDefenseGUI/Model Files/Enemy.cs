@@ -42,8 +42,7 @@ namespace TowerDefenseGUI
             if (pathProgress > path.Count)
             {
                 Game.TakeLife();
-                Spawner.Remove(this);
-                
+                Spawner.Remove(this);                
                 return new Intersection();
             }
             else
@@ -75,7 +74,14 @@ namespace TowerDefenseGUI
 
         public void TakeDamage(double amount)
         {
-
+            if (health > 0)
+            {
+                health -= amount;
+            }
+            else
+            {
+                Spawner.Remove(this);
+            }
         }
 
         public abstract string Serialize();

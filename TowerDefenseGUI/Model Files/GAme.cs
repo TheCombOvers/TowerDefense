@@ -36,13 +36,14 @@ namespace TowerDefenseGUI
             waveProgress = 0;
             money = 200;
             score = 0;
+            lives = 10;
             map = new Map(mapID);
             spawner = new Spawner();
             addEnemy = e;
         }
         public void NewGame(int difficulty, int mapIndex, Map selcetedMap)
         {
-            
+
         }
 
         public void NextWave()
@@ -54,7 +55,7 @@ namespace TowerDefenseGUI
         public void UpdateModel()
         {
             currentEnemies = Spawner.enemies;
-            foreach(Enemy e in currentEnemies)
+            foreach (Enemy e in currentEnemies)
             {
                 e.UpdatePos();
             }
@@ -66,7 +67,10 @@ namespace TowerDefenseGUI
 
         public static void TakeLife()
         {
-            lives--;
+            if (lives > 0)
+            {
+                lives--;
+            }
         }
 
 
@@ -82,7 +86,7 @@ namespace TowerDefenseGUI
                     // switch case here calling the different factory methods depending on which types we run into
                     // you gotta make the factory methods also ask schuab about this and how it relates to the intereface
                     string[] gameInfo = reader.ReadLine().Split(',');   // grab the game state information
-                    
+
                     map = new Map(Convert.ToInt32(gameInfo[0]));    // create a new map based on the mapid
                     newGame.currentWave = Convert.ToInt32(gameInfo[1]);
                     newGame.waveProgress = Convert.ToInt32(gameInfo[2]);
@@ -187,8 +191,8 @@ namespace TowerDefenseGUI
         {
             using (StreamWriter writer = new StreamWriter(fileName))
             {
-                writer.WriteLine("NG");                
-                string waveOver = isWaveOver == true ? "false": "true";
+                writer.WriteLine("NG");
+                string waveOver = isWaveOver == true ? "false" : "true";
                 string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6}", map.mapID, currentWave, waveProgress, score, money, waveTotal, waveOver);
                 writer.WriteLine(gameState);
                 if (currentEnemies.Count != 0)
@@ -200,7 +204,7 @@ namespace TowerDefenseGUI
                     }
                     writer.WriteLine("ENDENEMIES");
                 }
-               
+
                 if (currentTurrets.Count != 0)
                 {
                     writer.WriteLine("TURRETS");
