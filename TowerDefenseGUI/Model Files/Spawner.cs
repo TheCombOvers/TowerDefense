@@ -7,7 +7,7 @@ using System.Timers;
 
 namespace TowerDefenseGUI
 {
-    class Spawner : Game
+    class Spawner
     {
         public List<Enemy> enemies = new List<Enemy>();
 
