@@ -47,6 +47,11 @@ namespace TowerDefenseGUI
             waveProgress++;
             spawner.Spawn(waveProgress);
         }
+
+        public void UpdateModel()
+        {
+
+        }
         
         
         // loads a game that is saved in the file named "filename" and starts that saved game
