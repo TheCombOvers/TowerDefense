@@ -51,5 +51,9 @@ namespace TowerDefenseGUI
         {
             game.NextWave();
         }
+        public void Pause()
+        {
+            gameTimer.Stop();
+        }
     }
 }
