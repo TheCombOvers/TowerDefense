@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,11 +19,17 @@ namespace TowerDefenseGUI
     /// </summary>
     public partial class GameWindow : Window
     {
-        int money;
-        int waves;
+        Game game;
+        Timer gameTimer;
+
         public GameWindow()
         {
             InitializeComponent();
+            game = new Game();
+            gameTimer = new Timer(16.666666667);
+            //add update gui event
+            //add update model events
+            gameTimer.Start();
         }
 
         //difficulty is based on number: 0-easy, 1-medium, 2-hard
@@ -32,16 +38,16 @@ namespace TowerDefenseGUI
             switch (difficulty)
             {
                 case 0:
-                    money = 200;
-                    waves = 10;
+                    game.money = 200;
+                    game.waveTotal = 10;
                     break;
                 case 1:
-                    money = 150;
-                    waves = 20;
+                    game.money = 150;
+                    game.waveTotal = 20;
                     break;
                 case 2:
-                    money = 100;
-                    waves = 30;
+                    game.money = 100;
+                    game.waveTotal = 30;
                     break;
             }
         }
@@ -62,9 +68,7 @@ namespace TowerDefenseGUI
 
         private void btnNextWave_Click(object sender, RoutedEventArgs e)
         {
-
-            // TODO: Hook function for creating wave / enemy
-
+            game.NextWave();
         }
     }
 }
