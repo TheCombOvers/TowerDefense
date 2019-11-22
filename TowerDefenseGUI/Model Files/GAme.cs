@@ -48,9 +48,13 @@ namespace TowerDefenseGUI
             spawner.Spawn(waveProgress);
         }
 
-        public void UpdateModel()
+        public void UpdateModel(object sender, object v)
         {
-
+            currentEnemies = spawner.enemies;
+            foreach(Enemy e in currentEnemies)
+            {
+                e.UpdatePos();
+            }
         }
         
         

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Timers;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace TowerDefenseGUI
 {
@@ -20,18 +21,17 @@ namespace TowerDefenseGUI
     public partial class GameWindow : Window
     {
         Game game;
-        Timer gameTimer;
+        DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
 
         public GameWindow()
         {
             InitializeComponent();
             game = new Game(0);
-            gameTimer = new Timer(16.666666667);
-            //add update gui event
-            //gameTimer += UpdateGUI(allTheThings);
+            gameTimer = new DispatcherTimer();
+            gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
-            //gameTimer += UpdateModel();
+            gameTimer.Tick += game.UpdateModel;
             gameTimer.Start();
         }
 
@@ -43,7 +43,12 @@ namespace TowerDefenseGUI
         }
         public void UpdateGame(object sender, object e)
         {
-
+            // access the game properties
+            // draw objects based off the properties
+            foreach(Enemy en in game.currentEnemies)
+            {
+                Image i = en.image;
+            }
         }
 
         public int SnapToGridY(int y)

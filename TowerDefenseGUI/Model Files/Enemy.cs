@@ -9,7 +9,7 @@ namespace TowerDefenseGUI
 {
     public abstract class Enemy: ISerializeObject
     {
-        Image image;
+        public Image image;
         public int rewardMoney;
         public int rewardScore;
         public double health;
