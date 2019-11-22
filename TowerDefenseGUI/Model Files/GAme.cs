@@ -55,6 +55,10 @@ namespace TowerDefenseGUI
             {
                 e.UpdatePos();
             }
+            //foreach(Turret t in currentTurrets)
+            //{
+            //    t.Attack(DetectEnemy(currentEnemies));
+            //}
         }
         
         
