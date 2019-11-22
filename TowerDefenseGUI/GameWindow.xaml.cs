@@ -32,26 +32,6 @@ namespace TowerDefenseGUI
             gameTimer.Start();
         }
 
-        //difficulty is based on number: 0-easy, 1-medium, 2-hard
-        public void SetMoneyAmount(int difficulty)
-        {
-            switch (difficulty)
-            {
-                case 0:
-                    game.money = 200;
-                    game.waveTotal = 10;
-                    break;
-                case 1:
-                    game.money = 150;
-                    game.waveTotal = 20;
-                    break;
-                case 2:
-                    game.money = 100;
-                    game.waveTotal = 30;
-                    break;
-            }
-        }
-
         public int SnapToGridX(int x)
         {
             int tempx = x % 50;
