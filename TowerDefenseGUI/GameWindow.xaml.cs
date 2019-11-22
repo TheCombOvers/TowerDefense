@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Drawing;
 
 namespace TowerDefenseGUI
 {
@@ -36,7 +35,7 @@ namespace TowerDefenseGUI
             //add update model events
             gameTimer.Tick += UpdateGame;
             gameTimer.Start();
-            
+
         }
         // main method that updates the entire game... yikes
         public void UpdateGame(object sender, object e)
@@ -62,26 +61,19 @@ namespace TowerDefenseGUI
             // access the game properties
             // draw objects based off the properties
             int counter = 0;
-            if (enemies!= null)
+            if (enemies != null)
             {
                 foreach (Image en in enemies)
                 {
                     en.Margin = new Thickness(game.currentEnemies[counter].posX, game.currentEnemies[counter].posY, 0, 0);
                     ++counter;
                 }
-            }       
-        }
-        public void AddEnemy() 
-        {
-            enemies.Clear(); // later on this implementation might cause a lot of lag...
-            int index = 0;
-            foreach (Enemy en in game.currentEnemies)   
-            {
-                en.image.Margin = new Thickness(en.posX, en.posY, 0, 0);
-                enemies.Add(en.image);
-                GameWindowGrid.Children.Add(enemies[index]);
-                index++;
             }
+        }
+        public void AddEnemy(Enemy e)
+        {
+            enemies.Add(e.image);
+            GameWindowGrid.Children.Add(e.image);            
         }
         public int SnapToGridY(int y)
         {
@@ -105,7 +97,7 @@ namespace TowerDefenseGUI
         //machine gun image
         private void btnTurretBuy_Click(object sender, RoutedEventArgs e)
         {
-            Bitmap bmp = new Bitmap(Properties.Resources.turret_tower);
+            BitmapImage bmp = new BitmapImage(new Uri("Properties.Resources.turret_tower"));
             System.Drawing.Point p = System.Windows.Forms.Cursor.Position;
 
 
@@ -129,3 +121,5 @@ namespace TowerDefenseGUI
             //});
         }
     }
+}
+
