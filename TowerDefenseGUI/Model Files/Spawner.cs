@@ -25,28 +25,28 @@ namespace TowerDefenseGUI
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(new Infantry());
+                    enemies.Add(Infantry.MakeInfantry());
                 }
             }
             if (wave == 3)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(new Vehicle());
+                    enemies.Add(Vehicle.MakeVehicle());
                 }
             }
             if (wave == 5)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(new Boss());
+                    enemies.Add(Boss.MakeBoss());
                 }
             }
             if (wave == 7)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(new Aircraft());
+                    enemies.Add(Aircraft.MakeAircraft());
                 }
             }
         }
