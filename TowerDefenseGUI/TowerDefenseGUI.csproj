@@ -61,8 +61,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameWindow.xaml.cs">
+      <DependentUpon>GameWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HighScoresWindow.xaml.cs">
+      <DependentUpon>HighScoresWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="mainwindow.xaml.cs">
       <DependentUpon>mainwindow.xaml</DependentUpon>
@@ -83,7 +89,15 @@
     <Compile Include="Model Files\TestModel.cs" />
     <Compile Include="Model Files\Turret.cs" />
     <Compile Include="Model Files\Vehicle.cs" />
+    <Page Include="GameWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HighScoresWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,6 +151,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\path1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Basic Unit.png" />
+    <Resource Include="Resources\turret tower place.png" />
+    <Resource Include="Resources\turret tower select.png" />
+    <Resource Include="Resources\turret tower.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flak tower.png" />
+    <Resource Include="Resources\mortar tower.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

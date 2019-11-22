@@ -31,16 +31,22 @@ namespace TowerDefenseGUI
             // If page closes without finishing, return;
             // else:
             // Start Game with current variables and selections
+
+            // For Alpha, just launch Game Window
+
+            GameWindow gameWindow = new GameWindow();
         }
 
         private void HighScoreButton_Click(object sender, RoutedEventArgs e)
         {
-            // Bring up the High Score screen if no High Score screen is up
+            // Bring up the High Score screen
+            var newMenu = new HighScoresWindow();
+            newMenu.ShowDialog();
         }
 
         private void HelpButton_Click(object sender, RoutedEventArgs e)
         {
-            // Bring up the Help Menu if no Help Menu is up
+            // Bring up the Help Menu
             var newMenu = new HelpWindow();
             newMenu.ShowDialog();
         }

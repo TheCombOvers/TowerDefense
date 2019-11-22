@@ -1,13 +1,14 @@
-﻿<Window x:Class="TowerDefenseGUI.HelpWindow"
+﻿<Window x:Class="TowerDefenseGUI.HighScoresWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
-        Title="HelpWindow" Height="600" Width="300" ResizeMode="NoResize">
+        Title="HighScoresWindow" Height="600" Width="300" ResizeMode="NoResize">
     <Grid Background="#20572f">
         <Border CornerRadius="25" BorderBrush="Gray" BorderThickness="10"/>
         <Border BorderBrush="Gray" BorderThickness="10"/>
+        <ListBox Margin="25,25,24,26" Background="Transparent"/>
     </Grid>
 </Window>
