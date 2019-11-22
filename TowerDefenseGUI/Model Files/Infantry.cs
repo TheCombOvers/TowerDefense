@@ -30,9 +30,12 @@ namespace TowerDefenseGUI
             Infantry i = new Infantry();
             i.image = new Image();
             i.image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Basic Unit.png"));
+            i.image.Width = 50;
+            i.image.Height = 50;
+            
             i.health = 20;
             i.rewardMoney = 5;
-            i.speed = 50 / 60;
+            i.speed = 5 / 60;
             i.posX = Map.coords[0].x;
             i.posY = Map.coords[0].y;
             i.pathProgress = 0;
