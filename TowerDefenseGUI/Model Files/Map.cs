@@ -21,7 +21,7 @@ namespace TowerDefenseGUI
         public Map(int id)
         {
             var img = new Image();
-            img.Source = new BitmapImage(new Uri("path1.png"));
+            img.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path1.png"));
             maps.Add(img);
             var path = new List<Intersection>();
             path.Add(new Intersection(0, 350, Direction.RIGHT));
