@@ -7,16 +7,14 @@ using System.Timers;
 
 namespace TowerDefenseGUI
 {
-    class Spawner
+    class Spawner : Game
     {
-        public List<Enemy> enemies;
-        Timer spawnRate;
+        public List<Enemy> enemies = new List<Enemy>();
 
         public void Spawn(int wave)
         {
-            enemies.Add(Infantry.MakeInfantry());
-//            int count = DetermineWave(ref wave);
-//            GenerateWave(wave, count);
+            int count = DetermineWave(wave);
+            GenerateWave(wave, count);
         }
 
         private void GenerateWave(int wave, int count)
@@ -51,38 +49,72 @@ namespace TowerDefenseGUI
             }
         }
 
-        private int DetermineWave(ref int wave)
+        private int DetermineWave(int wave)
         {
             int count = 0;
             if (wave % 9 == 0)
             {
                 count = wave / 9;
-                wave = 9;
+                if(count > 1)
+                {
+                    count = (count - 1) * 2;
+                }
+                else
+                {
+                    count = 1;
+                }
             }
             else if (wave % 7 == 0)
             {
                 count = wave / 7;
-                wave = 7;
+                if (count > 1)
+                {
+                    count = (count - 1) * 2;
+                }
+                else
+                {
+                    count = 1;
+                }
             }
             else if (wave % 5 == 0)
             {
                 count = wave / 5;
-                wave = 5;
+                if (count > 1)
+                {
+                    count = (count - 1) * 2;
+                }
+                else
+                {
+                    count = 1;
+                }
             }
             else if (wave % 3 == 0)
             {
                 count = wave / 3;
-                wave = 3;
+                if (count > 1)
+                {
+                    count = (count - 1) * 2;
+                }
+                else
+                {
+                    count = 1;
+                }
             }
             else if (wave % 2 == 0)
             {
                 count = wave / 2;
-                wave = 2;
+                if (count > 1)
+                {
+                    count = (count - 1) * 2;
+                }
+                else
+                {
+                    count = 1;
+                }
             }
             else
             {
                 count = wave;
-                wave = 1;
             }
             return count;
         }
