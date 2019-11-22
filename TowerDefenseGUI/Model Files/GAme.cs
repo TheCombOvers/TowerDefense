@@ -19,23 +19,23 @@ namespace TowerDefenseGUI
         public int waveTotal; // number of waves required to win the game
         public int currentWave;
         public bool isWaveOver;
-        public int waveProgress;
+        public int waveProgress = 0;
         public int money;
         public int score;
         public static Map map;
-        public Timer gameTimer;
         public List<Turret> currentTurrets = new List<Turret>(); // list of turrets  currently on the screen
         public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
         Timer nextWaveTimer;
         public Spawner spawner;
         public void NewGame(int difficulty, int mapIndex, Map selcetedMap)
         {
-
+            
         }
 
         public void NextWave()
         {
-
+            waveProgress++;
+            spawner.Spawn(waveProgress);
         }
         
         public void Pause()
