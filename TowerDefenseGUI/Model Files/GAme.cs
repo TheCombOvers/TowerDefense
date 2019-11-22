@@ -45,11 +45,6 @@ namespace TowerDefenseGUI
         // loads a game that is saved in the file named "filename" and starts that saved game
         public static Game LoadGame(string fileName)
         {
-
-
-            // close to done just need a to change the way we get the map set
-
-
             using (StreamReader reader = new StreamReader(fileName))
             {
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
@@ -186,7 +181,8 @@ namespace TowerDefenseGUI
                         string line = currentTurrets[i].Serialize();
                     }
                     writer.WriteLine("ENDTURRETS");
-                }                
+                }
+                writer.WriteLine("END");
             }
         }
     }

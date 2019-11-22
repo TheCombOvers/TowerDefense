@@ -39,13 +39,15 @@ namespace TowerDefenseGUI
             i1.posX = 2;
             i1.posY = 4;
             i1.health = 13;
+            i1.pathProgress = 3;
             Vehicle v1 = new Vehicle();
             v1.posX = 6;
             v1.posY = 2;
             v1.health = 10;
+            v1.pathProgress = 2;
             g.spawner.enemies.Add(i1);
             g.spawner.enemies.Add(v1);
-            Assert.AreEqual(Game.LoadGame("SavedGame2.txt"),g);
+            Assert.AreEqual(Game.LoadGame("SavedGame.txt"), g);
         }
         [Test]
         public void SaveGame_ValidInput_ValidString()
@@ -77,14 +79,16 @@ namespace TowerDefenseGUI
             i1.posX = 2;
             i1.posY = 4;
             i1.health = 13;
+            i1.pathProgress = 3;
             Vehicle v1 = new Vehicle();
             v1.posX = 6;
             v1.posY = 2;
             v1.health = 10;
+            v1.pathProgress = 2;
             g.spawner.enemies.Add(i1);
             g.spawner.enemies.Add(v1);
-            g.SaveGame("SavedGame1.txt");
-            StreamReader reader = new StreamReader("SavedGame1.txt");
+            g.SaveGame("SavedGame.txt");
+            StreamReader reader = new StreamReader("SavedGame.txt");
             string SerializedGame = reader.ReadToEnd();
             Assert.AreEqual(SerializedGame, "NG\n1,5,3,700,200,20,false\nENEMIES\ninfantry,2,4,13\nvehicle,6,2,13\nTURRETS\nmortar,2,3\nstun,7,5\ntesla,3,5\nEND");
             reader.Close();
