@@ -9,7 +9,7 @@
     <Grid Background="#20572f">
         <Border CornerRadius="50" BorderBrush="Gray" BorderThickness="20"/>
         <Border BorderBrush="Gray" BorderThickness="20"/>
-        <Label Margin="49,150,10,431" FontSize="200">Tower Defense</Label>
+        <Label Margin="49,150,10,431" MinHeight="350" FontSize="200">Tower Defense</Label>
         <Label Margin="90,380,90,291">
             <!-- <Image Source=""/> -->
         </Label>
