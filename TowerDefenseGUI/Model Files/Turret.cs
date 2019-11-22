@@ -24,7 +24,7 @@ namespace TowerDefenseGUI
             e.health -= damage;
         }
 
-        public void DetectEnemy(List<Enemy> enemies)
+        public Enemy DetectEnemy(List<Enemy> enemies)
         {
             Enemy target = null;
             foreach (Enemy e in enemies)
@@ -32,17 +32,13 @@ namespace TowerDefenseGUI
                 double dist = CalculateDistance(xPos, yPos, e.posX, e.posY);
                 if (range >= dist)
                 {
-                    //if (target != null)
-                    //{
-                    //    Attack(target);
-                    //}
-                    //else
-                    //{
-                    //    target = e;
-                    //    Attack(target);
-                    //}
+                    if (target == null)
+                    {
+                        return target;
+                    }
                 }
             }
+            return target;
         }
 
         private double CalculateDistance(int xPos, int yPos, double posX, double posY)

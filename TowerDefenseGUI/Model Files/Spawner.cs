@@ -14,8 +14,9 @@ namespace TowerDefenseGUI
 
         public void Spawn(int wave)
         {
-            int count = DetermineWave(wave);
-            GenerateWave(wave, count);
+            enemies.Add(Infantry.MakeInfantry());
+            //int count = DetermineWave(wave);
+            //GenerateWave(wave, count);
         }
 
         private void GenerateWave(int wave, int count)
