@@ -39,6 +39,10 @@ namespace TowerDefenseGUI
             int newx = (tempx * 50) + 25;
             return newx;
         }
+        public void UpdateGame(object sender, object e)
+        {
+
+        }
 
         public int SnapToGridY(int y)
         {
