@@ -47,7 +47,6 @@ namespace TowerDefenseGUI
             //Dispatcher.Invoke(() =>  UpdateView());
             //});    
             game.UpdateModel();
-            AddEnemy();
             UpdateView();
         }
         public int SnapToGridX(int x)
