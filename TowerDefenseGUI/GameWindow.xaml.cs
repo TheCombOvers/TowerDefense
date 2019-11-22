@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TowerDefenseGUI.Model_Files
+namespace TowerDefenseGUI
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
@@ -58,6 +58,13 @@ namespace TowerDefenseGUI.Model_Files
             int tempy = y % 50;
             int newy = (tempy * 50) + 25;
             return newy;
+        }
+
+        private void btnNextWave_Click(object sender, RoutedEventArgs e)
+        {
+
+            // TODO: Hook function for creating wave / enemy
+
         }
     }
 }
