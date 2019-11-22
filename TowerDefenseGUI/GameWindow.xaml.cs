@@ -29,7 +29,9 @@ namespace TowerDefenseGUI
             game = new Game(0);
             gameTimer = new Timer(16.666666667);
             //add update gui event
+            //gameTimer += UpdateGUI(allTheThings);
             //add update model events
+            //gameTimer += UpdateModel();
             gameTimer.Start();
         }
 
@@ -54,6 +56,10 @@ namespace TowerDefenseGUI
         private void btnNextWave_Click(object sender, RoutedEventArgs e)
         {
             game.NextWave();
+        }
+        public void Pause()
+        {
+            gameTimer.Stop();
         }
     }
 }
