@@ -9,7 +9,7 @@
     <Grid Background="#20572f">
         <Border CornerRadius="25" BorderBrush="Gray" BorderThickness="10"/>
         <Border BorderBrush="Gray" BorderThickness="10"/>
-        <TextBlock Margin="14,25,14,14" TextWrapping="Wrap" FontSize="16" TextAlignment="Center">
+        <TextBlock Margin="14,25,14,14" TextWrapping="Wrap" FontSize="15" TextAlignment="Center" Foreground="LightGray">
             At the start of the game, the player will have 10 lives and an amount of money based off the difficulty.
 After the player is satisfied with their placement they can start the first wave of enemies.
 The player will earn points and cash upon destroying enemies.
