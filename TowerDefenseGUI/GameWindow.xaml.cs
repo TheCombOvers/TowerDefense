@@ -59,5 +59,12 @@ namespace TowerDefenseGUI
             int newy = (tempy * 50) + 25;
             return newy;
         }
+
+        private void btnNextWave_Click(object sender, RoutedEventArgs e)
+        {
+
+            // TODO: Hook function for creating wave / enemy
+
+        }
     }
 }
