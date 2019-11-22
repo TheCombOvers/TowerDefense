@@ -47,11 +47,21 @@ namespace TowerDefenseGUI
             waveProgress++;
             spawner.Spawn(waveProgress);
         }
-        
-        public void Pause()
+
+        public void UpdateModel(object sender, object v)
         {
-            
+            currentEnemies = spawner.enemies;
+            foreach(Enemy e in currentEnemies)
+            {
+                e.UpdatePos();
+            }
+            //foreach(Turret t in currentTurrets)
+            //{
+            //    t.Attack(DetectEnemy(currentEnemies));
+            //}
         }
+        
+        
         // loads a game that is saved in the file named "filename" and starts that saved game
         public static Game LoadGame(string fileName)
         {

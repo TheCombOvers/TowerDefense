@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Timers;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Drawing;
-using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace TowerDefenseGUI
 {
@@ -22,29 +21,54 @@ namespace TowerDefenseGUI
     public partial class GameWindow : Window
     {
         Game game;
-        System.Timers.Timer gameTimer;
-        System.Timers.Timer nextWaveTimer; // for auto starting next wave
-
+        DispatcherTimer gameTimer;
+        Timer nextWaveTimer; // for auto starting next wave
+        List<Image> enemies = new List<Image>();
         public GameWindow()
         {
             InitializeComponent();
             game = new Game(0);
-            gameTimer = new System.Timers.Timer(16.666666667);
-            //add update gui event
+            gameTimer = new DispatcherTimer();
+            gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
+            gameTimer.Tick += UpdateGame;
             gameTimer.Start();
         }
-
-        public int SnapToGridX(double x)
+        // main method that 
+        public void UpdateGame(object sender, object e)
         {
-            int tempx = (int)x % 50;
+            // call all methods need to update the game
+
+        }
+        public int SnapToGridX(int x)
+        {
+            int tempx = x % 50;
             int newx = (tempx * 50) + 25;
             return newx;
         }
-
-        public int SnapToGridY(double y)
+        public void UpdateView(object sender, object e)
         {
-            int tempy = (int)y % 50;
+            // access the game properties
+            // draw objects based off the properties
+            int counter = 0;
+            foreach(Image en in enemies)
+            {
+                en.Margin = new Thickness(game.currentEnemies[counter].posX, game.currentEnemies[counter].posY, 0, 0);
+                ++counter;
+            }
+        }
+        public void AddEnemy() 
+        {
+            enemies = null; // later on this implementation might cause a lot of lag...
+            foreach (Enemy en in game.currentEnemies)   
+            {
+                en.image.Margin = new Thickness(en.posX, en.posY, 0, 0);
+                enemies.Add(en.image);
+            }
+        }
+        public int SnapToGridY(int y)
+        {
+            int tempy = y % 50;
             int newy = (tempy * 50) + 25;
             return newy;
         }
@@ -53,35 +77,9 @@ namespace TowerDefenseGUI
         {
             game.NextWave();
         }
-
-        //Creates a new bitmap everytime the buy button is clicked
-        //and loads the machine gun place image into it
-        //then it takes the Current cursor and changes it with the 
-        //machine gun image
-        private void btnTurretBuy_Click(object sender, RoutedEventArgs e)
+        public void Pause()
         {
-            Bitmap bmp = new Bitmap(Properties.Resources.turret_tower);
-            System.Drawing.Point p = System.Windows.Forms.Cursor.Position;
-            
-            
-            
-            //bool place = true;
-            //Task.Run(() =>
-            //{
-            //    while (place == true)
-            //    {
-            //        Dispatcher.Invoke(() =>
-            //        {
-            //            System.Windows.Point pointtoWindow = System.Windows.Input.Mouse.GetPosition(this);
-            //            System.Windows.Point pointtoScreen = PointToScreen(pointtoWindow);
-            //            double positionX = pointtoScreen.X;
-            //            double positionY = pointtoScreen.Y;
-            //            int newX = SnapToGridX(positionX);
-            //            int newY = SnapToGridY(positionY);
-            //            System.Windows.Forms.Cursor.Position = new System.Drawing.Point(newX, newY);
-            //        });
-            //    }
-            //});
+            gameTimer.Stop();
         }
     }
 }

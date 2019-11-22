@@ -13,38 +13,39 @@ namespace TowerDefenseGUI
 
         public void Spawn(int wave)
         {
-            int count = DetermineWave(wave);
-            GenerateWave(wave, count);
+            enemies.Add(Infantry.MakeInfantry());
+            //int count = DetermineWave(wave);
+            //GenerateWave(wave, count);
         }
 
         private void GenerateWave(int wave, int count)
         {
-            if (wave == 1)
+            if (wave == 2)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(new Infantry());
+                    enemies.Add(Infantry.MakeInfantry());
                 }
             }
             if (wave == 3)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(new Vehicle());
+                    enemies.Add(Vehicle.MakeVehicle());
                 }
             }
             if (wave == 5)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(new Boss());
+                    enemies.Add(Boss.MakeBoss());
                 }
             }
             if (wave == 7)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(new Aircraft());
+                    enemies.Add(Aircraft.MakeAircraft());
                 }
             }
         }
