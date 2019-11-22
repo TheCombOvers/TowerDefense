@@ -54,6 +54,7 @@ namespace TowerDefenseGUI
         }
         public void AddEnemy() 
         {
+            enemies = null;
             foreach (Enemy en in game.currentEnemies)
             {
                 en.image.Margin = new Thickness(en.posX, en.posY, 0, 0);

@@ -10,6 +10,7 @@ namespace TowerDefenseGUI
     class Spawner
     {
         public List<Enemy> enemies = new List<Enemy>();
+        public Delegate addEnemy;
 
         public void Spawn(int wave)
         {
@@ -19,7 +20,7 @@ namespace TowerDefenseGUI
 
         private void GenerateWave(int wave, int count)
         {
-            if (wave == 1)
+            if (wave == 2)
             {
                 for (int i = 0; i < count; i++)
                 {
