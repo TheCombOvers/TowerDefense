@@ -10,7 +10,6 @@ namespace TowerDefenseGUI
     class Spawner
     {
         public List<Enemy> enemies = new List<Enemy>();
-        public Delegate addEnemy;
 
         public void Spawn(int wave)
         {
