@@ -29,7 +29,7 @@ namespace TowerDefenseGUI
         {
             InitializeComponent();
             enemies = new List<Image>();
-            game = new Game(0);
+            game = new Game(0, AddEnemy);
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
@@ -47,7 +47,6 @@ namespace TowerDefenseGUI
             //Dispatcher.Invoke(() =>  UpdateView());
             //});    
             game.UpdateModel();
-            AddEnemy();
             UpdateView();
         }
         public int SnapToGridX(int x)

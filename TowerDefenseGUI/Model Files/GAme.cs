@@ -28,7 +28,7 @@ namespace TowerDefenseGUI
         public Spawner spawner;
         public Action<Enemy> addEnemy;
 
-        public Game(int mapID)
+        public Game(int mapID, Action<Enemy> e)
         {
             currentWave = 0;
             isWaveOver = true;
@@ -36,7 +36,8 @@ namespace TowerDefenseGUI
             money = 200;
             score = 0;
             map = new Map(mapID);
-            spawner = new Spawner();           
+            spawner = new Spawner();
+            addEnemy = e;
         }
         public void NewGame(int difficulty, int mapIndex, Map selcetedMap)
         {
@@ -64,12 +65,12 @@ namespace TowerDefenseGUI
         
         
         // loads a game that is saved in the file named "filename" and starts that saved game
-        public static Game LoadGame(string fileName)
+        public static Game LoadGame(string fileName, Action<Enemy> e)
         {
             using (StreamReader reader = new StreamReader(fileName))
             {
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
-                Game newGame = new Game(0); // needs changed later 0 = map idex
+                Game newGame = new Game(0, e); // needs changed later 0 = map idex
                 if (begin == "NG")
                 {
                     // switch case here calling the different factory methods depending on which types we run into
