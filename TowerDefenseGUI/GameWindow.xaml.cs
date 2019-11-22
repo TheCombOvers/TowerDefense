@@ -73,11 +73,13 @@ namespace TowerDefenseGUI
         public void AddEnemy() 
         {
             enemies.Clear(); // later on this implementation might cause a lot of lag...
+            int index = 0;
             foreach (Enemy en in game.currentEnemies)   
             {
                 en.image.Margin = new Thickness(en.posX, en.posY, 0, 0);
                 enemies.Add(en.image);
-                
+                GameWindowGrid.Children.Add(enemies[index]);
+                index++;
             }
         }
         public int SnapToGridY(int y)
