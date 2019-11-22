@@ -48,11 +48,17 @@ namespace TowerDefenseGUI
             var dir = path[pathProgress].direction;
             if (dir == Map.Direction.RIGHT || dir == Map.Direction.DOWN)
             {
-                Math.Abs(speed);
+                if (speed < 0)
+                {
+                    speed *= -1;
+                }            
             }
             else if (dir == Map.Direction.LEFT || dir == Map.Direction.UP)
             {
-                speed *= -1;
+                if (speed > 0)
+                {
+                    speed *= -1;
+                }
             }
             return path[pathProgress];
         }
