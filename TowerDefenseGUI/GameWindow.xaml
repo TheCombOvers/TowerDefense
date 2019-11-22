@@ -32,7 +32,7 @@
         <TextBlock x:Name="txtFlakCost" HorizontalAlignment="Left" Height="16" Margin="1183,386,0,0" TextWrapping="Wrap" Text="Cost: $75" VerticalAlignment="Top" Width="90"/>
         <Button x:Name="btnFlakBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" Margin="1298,352,0,0" VerticalAlignment="Top" Width="54" IsEnabled="False"/>
         <Rectangle Fill="#FFF4F4F5" Height="3" Margin="966,680,-0.4,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="428"/>
-        <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="68" Margin="982,694,0,0" VerticalAlignment="Top" Width="105" IsEnabled="False"/>
+        <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="68" Margin="982,694,0,0" VerticalAlignment="Top" Width="105" IsEnabled="True"/>
         <Image x:Name="MapImage" Source="path1.png" HorizontalAlignment="Left" Height="870" VerticalAlignment="Top" Width="966"/>
         <TextBlock x:Name="txtLives" HorizontalAlignment="Left" Height="41" Margin="1223,819,0,0" TextWrapping="Wrap" Text="Lives: 10" FontSize="25" VerticalAlignment="Top" Width="99"/>
         <Rectangle Fill="#FFF4F4F5" Height="187" Margin="1214,683,0,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="4"/>
