@@ -13,6 +13,7 @@ namespace TowerDefenseGUI
 
         public void Spawn(int wave, Action<Enemy> AddEnemy)
         {
+
             Enemy e = Infantry.MakeInfantry();
             enemies.Add(e);
             AddEnemy(e);

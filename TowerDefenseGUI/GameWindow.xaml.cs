@@ -72,7 +72,8 @@ namespace TowerDefenseGUI
         public void AddEnemy(Enemy e)
         {
             enemies.Add(e.image);
-            GameWindowGrid.Children.Add(e.image);            
+            GameWindowGrid.Children.Add(e.image);
+            e.image.Margin = new Thickness(Map.coords[0].x, Map.coords[0].y, 0, 0);
         }
         public int SnapToGridY(int y)
         {

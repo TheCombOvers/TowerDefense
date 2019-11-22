@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows;
 namespace TowerDefenseGUI
 {
     class Infantry : Enemy
@@ -32,7 +33,6 @@ namespace TowerDefenseGUI
             i.image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Basic Unit.png"));
             i.image.Width = 50;
             i.image.Height = 50;
-            
             i.health = 20;
             i.rewardMoney = 5;
             i.speed = 5 / 60;
