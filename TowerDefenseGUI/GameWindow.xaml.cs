@@ -32,6 +32,7 @@ namespace TowerDefenseGUI
             //gameTimer += UpdateGUI(allTheThings);
             //add update model events
             //gameTimer += UpdateModel();
+
             gameTimer.Start();
         }
 
