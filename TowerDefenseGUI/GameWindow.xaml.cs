@@ -96,8 +96,18 @@ namespace TowerDefenseGUI
         //machine gun image
         private void btnTurretBuy_Click(object sender, RoutedEventArgs e)
         {
-            BitmapImage bmp = new BitmapImage(new Uri("Properties.Resources.turret_tower"));
-            System.Drawing.Point p = System.Windows.Forms.Cursor.Position;
+            imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
+            bool loop = true;
+            System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
+            imageturretplace.Margin = new Thickness(p1.X - 10, p1.Y - 10, 0, 0);
+            Task.Run(() =>
+            {
+                while (loop == true)
+                {
+                    System.Drawing.Point p = System.Windows.Forms.Cursor.Position;
+                    Dispatcher.Invoke(() => imageturretplace.Margin = new Thickness(p.X - 52, p.Y - 52, 0, 0));
+                }
+            });
 
 
 
