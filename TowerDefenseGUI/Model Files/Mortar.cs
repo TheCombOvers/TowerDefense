@@ -10,17 +10,25 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            return "";
+            string mortar = string.Format("{0},{1},{2}", "mortar", xPos, yPos);
+            return mortar;
         }
         public override object Deserialize(string info)
         {
-            return new Mortar();
+            string[] finfo = info.Split(',');
+            Mortar m = MakeMortar();
+            m.xPos = Convert.ToInt32(finfo[1]);
+            m.yPos = Convert.ToInt32(finfo[2]);
+            return m;
         }
         public static Mortar MakeMortar()
         {
-            Mortar mo = new Mortar();
-
-            return mo;
+            Mortar m = new Mortar();
+            m.cost = 150;
+            m.damage = 50;
+            m.range = 375;
+            m.type = "mortar";
+            return m;
         }
     }
 }

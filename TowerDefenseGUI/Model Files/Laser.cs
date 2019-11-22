@@ -10,17 +10,26 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            return "";
+            string laser = string.Format("{0},{1},{2}", "laser", xPos, yPos);
+            return laser;
         }
         public override object Deserialize(string info)
         {
-            return new Laser();
+            string[] finfo = info.Split(',');
+            Laser l = MakeLaser();
+            l.xPos = Convert.ToInt32(finfo[1]);
+            l.yPos = Convert.ToInt32(finfo[2]);
+            l.type = "laser";
+            return l;
         }
 
         public static Laser MakeLaser()
         {
             Laser l = new Laser();
-
+            l.cost = 125;
+            l.damage = 10;
+            l.range = 175;
+            l.type = "laser";
             return l;
         }
     }
