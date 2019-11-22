@@ -72,7 +72,7 @@ namespace TowerDefenseGUI
         public void AddEnemy(Enemy e)
         {
             enemies.Add(e.image);
-            GameWindowGrid.Children.Add(e.image);            
+            GameWindowCanvas.Children.Add(e.image);            
         }
         public int SnapToGridY(int y)
         {
