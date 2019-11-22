@@ -95,5 +95,34 @@ namespace TowerDefenseGUI
         {
             gameTimer.Stop();
         }
+
+        //Creates a new bitmap everytime the buy button is clicked
+        //and loads the machine gun place image into it
+        //then it takes the Current cursor and changes it with the 
+        //machine gun image
+        private void btnTurretBuy_Click(object sender, RoutedEventArgs e)
+        {
+            Bitmap bmp = new Bitmap(Properties.Resources.turret_tower);
+            System.Drawing.Point p = System.Windows.Forms.Cursor.Position;
+
+
+
+            //bool place = true;
+            //Task.Run(() =>
+            //{
+            //    while (place == true)
+            //    {
+            //        Dispatcher.Invoke(() =>
+            //        {
+            //            System.Windows.Point pointtoWindow = System.Windows.Input.Mouse.GetPosition(this);
+            //            System.Windows.Point pointtoScreen = PointToScreen(pointtoWindow);
+            //            double positionX = pointtoScreen.X;
+            //            double positionY = pointtoScreen.Y;
+            //            int newX = SnapToGridX(positionX);
+            //            int newY = SnapToGridY(positionY);
+            //            System.Windows.Forms.Cursor.Position = new System.Drawing.Point(newX, newY);
+            //        });
+            //    }
+            //});
+        }
     }
-}
