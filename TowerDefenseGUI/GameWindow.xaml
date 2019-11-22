@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
         Title="Window1" Height="900" Width="1400">
-    <Grid>
+    <Grid x:Name="GameWindowGrid">
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="870" Margin="966,0,-0.4,0" Stroke="Black" VerticalAlignment="Top" Width="428"/>
         <Image x:Name="TurretImage" HorizontalAlignment="Left" Source="Resources\turret tower.PNG" Height="126" Margin="1025,113,0,0" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <TextBlock x:Name="txtTurretName" HorizontalAlignment="Left" Height="27" Margin="1183,124,0,0" TextWrapping="Wrap" Text="Turret Tower" FontSize="20" VerticalAlignment="Top" Width="114"/>
