@@ -31,17 +31,22 @@ namespace TowerDefenseGUI
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
-            gameTimer.Tick += game.UpdateModel;
+            gameTimer.Tick += UpdateGame;
             gameTimer.Start();
         }
+        // main method that 
+        public void UpdateGame(object sender, object e)
+        {
+            // call all methods need to update the game
 
+        }
         public int SnapToGridX(int x)
         {
             int tempx = x % 50;
             int newx = (tempx * 50) + 25;
             return newx;
         }
-        public void UpdateGame(object sender, object e)
+        public void UpdateView(object sender, object e)
         {
             // access the game properties
             // draw objects based off the properties
@@ -54,7 +59,8 @@ namespace TowerDefenseGUI
         }
         public void AddEnemy() 
         {
-            foreach (Enemy en in game.currentEnemies)
+            enemies = null; // later on this implementation might cause a lot of lag...
+            foreach (Enemy en in game.currentEnemies)   
             {
                 en.image.Margin = new Thickness(en.posX, en.posY, 0, 0);
                 enemies.Add(en.image);
