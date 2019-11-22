@@ -23,7 +23,7 @@ namespace TowerDefenseGUI
         Game game;
         DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
-
+        List<Image> enemies = new List<Image>();
         public GameWindow()
         {
             InitializeComponent();
@@ -45,12 +45,21 @@ namespace TowerDefenseGUI
         {
             // access the game properties
             // draw objects based off the properties
-            foreach(Enemy en in game.currentEnemies)
+            int counter = 0;
+            foreach(Image en in enemies)
             {
-                Image i = en.image;
+                en.Margin = new Thickness(game.currentEnemies[counter].posX, game.currentEnemies[counter].posY, 0, 0);
+                ++counter;
             }
         }
-
+        public void AddEnemy() 
+        {
+            foreach (Enemy en in game.currentEnemies)
+            {
+                en.image.Margin = new Thickness(en.posX, en.posY, 0, 0);
+                enemies.Add(en.image);
+            }
+        }
         public int SnapToGridY(int y)
         {
             int tempy = y % 50;

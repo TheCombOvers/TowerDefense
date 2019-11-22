@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Media;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 namespace TowerDefenseGUI
 {
     class Infantry : Enemy
@@ -26,6 +28,7 @@ namespace TowerDefenseGUI
         public static Infantry MakeInfantry()
         {
             Infantry i = new Infantry();
+            i.image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Basic Unit.png"));
             i.health = 20;
             i.rewardMoney = 5;
             i.speed = 50 / 60;
