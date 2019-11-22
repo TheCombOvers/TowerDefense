@@ -21,11 +21,12 @@ namespace TowerDefenseGUI
     {
         Game game;
         Timer gameTimer;
+        Timer nextWaveTimer; // for auto starting next wave
 
         public GameWindow()
         {
             InitializeComponent();
-            game = new Game();
+            game = new Game(0);
             gameTimer = new Timer(16.666666667);
             //add update gui event
             //add update model events

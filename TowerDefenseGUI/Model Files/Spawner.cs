@@ -7,14 +7,14 @@ using System.Timers;
 
 namespace TowerDefenseGUI
 {
-    class Spawner : Game
+    class Spawner
     {
         public List<Enemy> enemies;
         Timer spawnRate;
 
         public void Spawn(int wave)
         {
-            enemies.Add(new Infantry());
+            enemies.Add(Infantry.MakeInfantry());
 //            int count = DetermineWave(ref wave);
 //            GenerateWave(wave, count);
         }

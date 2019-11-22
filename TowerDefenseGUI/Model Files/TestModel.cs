@@ -13,7 +13,7 @@ namespace TowerDefenseGUI
         [Test]
         public void LoadGame_ValidInput_ValidClass()
         {
-            Game g = new Game();
+            Game g = new Game(0);
             g.currentWave = 5;
             g.waveTotal = 20;
             g.waveProgress = 3;
@@ -52,7 +52,7 @@ namespace TowerDefenseGUI
         [Test]
         public void SaveGame_ValidInput_ValidString()
         {
-            Game g = new Game();
+            Game g = new Game(0);
             g.currentWave = 5;
             g.waveTotal = 20;
             g.waveProgress = 3;

@@ -19,14 +19,24 @@ namespace TowerDefenseGUI
         public int waveTotal; // number of waves required to win the game
         public int currentWave;
         public bool isWaveOver;
-        public int waveProgress = 0;
+        public int waveProgress;
         public int money;
         public int score;
         public static Map map;
         public List<Turret> currentTurrets = new List<Turret>(); // list of turrets  currently on the screen
         public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
-        Timer nextWaveTimer;
         public Spawner spawner;
+
+        public Game(int mapID)
+        {
+            currentWave = 0;
+            isWaveOver = true;
+            waveProgress = 0;
+            money = 200;
+            score = 0;
+            map = new Map(mapID);
+            spawner = new Spawner();           
+        }
         public void NewGame(int difficulty, int mapIndex, Map selcetedMap)
         {
             
@@ -48,7 +58,7 @@ namespace TowerDefenseGUI
             using (StreamReader reader = new StreamReader(fileName))
             {
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
-                Game newGame = new Game();
+                Game newGame = new Game(0); // needs changed later 0 = map idex
                 if (begin == "NG")
                 {
                     // switch case here calling the different factory methods depending on which types we run into

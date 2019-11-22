@@ -162,6 +162,9 @@
     <Resource Include="Resources\flak tower.png" />
     <Resource Include="Resources\mortar tower.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Model Files\SavedGame1.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
