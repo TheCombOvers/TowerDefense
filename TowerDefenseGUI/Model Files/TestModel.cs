@@ -45,8 +45,8 @@ namespace TowerDefenseGUI
             v1.posY = 2;
             v1.health = 10;
             v1.pathProgress = 2;
-            g.spawner.enemies.Add(i1);
-            g.spawner.enemies.Add(v1);
+            Spawner.enemies.Add(i1);
+            Spawner.enemies.Add(v1);
             Assert.AreEqual(Game.LoadGame("SavedGame.txt", null), g);
         }
         [Test]
@@ -85,8 +85,8 @@ namespace TowerDefenseGUI
             v1.posY = 2;
             v1.health = 10;
             v1.pathProgress = 2;
-            g.spawner.enemies.Add(i1);
-            g.spawner.enemies.Add(v1);
+            Spawner.enemies.Add(i1);
+            Spawner.enemies.Add(v1);
             g.SaveGame("SavedGame.txt");
             StreamReader reader = new StreamReader("SavedGame.txt");
             string SerializedGame = reader.ReadToEnd();

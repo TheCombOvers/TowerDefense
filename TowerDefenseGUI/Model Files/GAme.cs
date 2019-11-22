@@ -22,6 +22,7 @@ namespace TowerDefenseGUI
         public int waveProgress;
         public int money;
         public int score;
+        public static int lives;
         public static Map map;
         public List<Turret> currentTurrets = new List<Turret>(); // list of turrets  currently on the screen
         public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
@@ -52,7 +53,7 @@ namespace TowerDefenseGUI
 
         public void UpdateModel()
         {
-            currentEnemies = spawner.enemies;
+            currentEnemies = Spawner.enemies;
             foreach(Enemy e in currentEnemies)
             {
                 e.UpdatePos();
@@ -62,8 +63,13 @@ namespace TowerDefenseGUI
             //    t.Attack(DetectEnemy(currentEnemies));
             //}
         }
-        
-        
+
+        public static void TakeLife()
+        {
+            lives--;
+        }
+
+
         // loads a game that is saved in the file named "filename" and starts that saved game
         public static Game LoadGame(string fileName, Action<Enemy> e)
         {

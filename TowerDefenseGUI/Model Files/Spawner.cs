@@ -9,7 +9,7 @@ namespace TowerDefenseGUI
 {
     class Spawner
     {
-        public List<Enemy> enemies = new List<Enemy>();
+        public static List<Enemy> enemies = new List<Enemy>();
 
         public void Spawn(int wave, Action<Enemy> AddEnemy)
         {
@@ -124,6 +124,11 @@ namespace TowerDefenseGUI
                 count = wave;
             }
             return count;
+        }
+
+        public static void Remove(Enemy enemy)
+        {
+            enemies.Remove(enemy);
         }
     }
 }

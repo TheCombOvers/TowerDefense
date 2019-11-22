@@ -39,28 +39,45 @@ namespace TowerDefenseGUI
         // then the sprite will move to the left.
         public Intersection CheckCoords(List<Intersection> path)
         {
-            int x = path[pathProgress].x;
-            int y = path[pathProgress].y;
-            if (x == posX && y == posY)
+            if (pathProgress > path.Count)
             {
-                pathProgress++;
+                Game.TakeLife();
+                Spawner.Remove(this);
+                
+                return new Intersection();
             }
-            var dir = path[pathProgress].direction;
-            if (dir == Map.Direction.RIGHT || dir == Map.Direction.DOWN)
+            else
             {
-                Math.Abs(speed);
+                int x = path[pathProgress].x;
+                int y = path[pathProgress].y;
+                if (x == posX && y == posY)
+                {
+                    pathProgress++;
+                }
+                var dir = path[pathProgress].direction;
+                if (dir == Map.Direction.RIGHT || dir == Map.Direction.DOWN)
+                {
+                    if (speed < 0)
+                    {
+                        speed *= -1;
+                    }
+                }
+                else if (dir == Map.Direction.LEFT || dir == Map.Direction.UP)
+                {
+                    if (speed > 0)
+                    {
+                        speed *= -1;
+                    }
+                }
+                return path[pathProgress];
             }
-            else if (dir == Map.Direction.LEFT || dir == Map.Direction.UP)
-            {
-                speed *= -1;
-            }
-            return path[pathProgress];
         }
 
         public void TakeDamage(double amount)
         {
 
         }
+
         public abstract string Serialize();
         public abstract object Deserialize(string info);    
     }
