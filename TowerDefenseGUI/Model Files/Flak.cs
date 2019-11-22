@@ -18,7 +18,7 @@ namespace TowerDefenseGUI
             string[] finfo = info.Split(',');
             Flak f = MakeFlak();
             f.xPos = Convert.ToInt32(finfo[1]);
-            f.yPos = Convert.ToInt32(finfo[2];
+            f.yPos = Convert.ToInt32(finfo[2]);
             f.type = "flak";           
             return f;
         }
