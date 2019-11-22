@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,22 +24,31 @@ namespace TowerDefenseGUI
         Game game;
         DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
-        List<Image> enemies = new List<Image>();
+        List<Image> enemies;
         public GameWindow()
         {
             InitializeComponent();
+            enemies = new List<Image>();
             game = new Game(0);
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
             gameTimer.Tick += UpdateGame;
             gameTimer.Start();
+            
         }
-        // main method that 
+        // main method that updates the entire game... yikes
         public void UpdateGame(object sender, object e)
         {
             // call all methods need to update the game
-
+            //Task.Run(() => {
+            //game.UpdateModel();
+            //AddEnemy();
+            //Dispatcher.Invoke(() =>  UpdateView());
+            //});    
+            game.UpdateModel();
+            AddEnemy();
+            UpdateView();
         }
         public int SnapToGridX(int x)
         {
@@ -46,24 +56,28 @@ namespace TowerDefenseGUI
             int newx = (tempx * 50) + 25;
             return newx;
         }
-        public void UpdateView(object sender, object e)
+        public void UpdateView()
         {
             // access the game properties
             // draw objects based off the properties
             int counter = 0;
-            foreach(Image en in enemies)
+            if (enemies!= null)
             {
-                en.Margin = new Thickness(game.currentEnemies[counter].posX, game.currentEnemies[counter].posY, 0, 0);
-                ++counter;
-            }
+                foreach (Image en in enemies)
+                {
+                    en.Margin = new Thickness(game.currentEnemies[counter].posX, game.currentEnemies[counter].posY, 0, 0);
+                    ++counter;
+                }
+            }       
         }
         public void AddEnemy() 
         {
-            enemies = null; // later on this implementation might cause a lot of lag...
+            enemies.Clear(); // later on this implementation might cause a lot of lag...
             foreach (Enemy en in game.currentEnemies)   
             {
                 en.image.Margin = new Thickness(en.posX, en.posY, 0, 0);
                 enemies.Add(en.image);
+                
             }
         }
         public int SnapToGridY(int y)

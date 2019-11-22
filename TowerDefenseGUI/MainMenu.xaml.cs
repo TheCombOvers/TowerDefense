@@ -35,7 +35,7 @@ namespace TowerDefenseGUI
             // For Alpha, just launch Game Window
 
             var gameWindow = new GameWindow();
-            gameWindow.ShowDialog();
+            gameWindow.Show();
         }
 
         private void HighScoreButton_Click(object sender, RoutedEventArgs e)

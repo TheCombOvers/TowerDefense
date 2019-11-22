@@ -156,7 +156,9 @@
     <Resource Include="Resources\path1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Basic Unit.png" />
+    <Resource Include="Resources\Basic Unit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\turret tower place.png" />
     <Resource Include="Resources\turret tower select.png" />
     <Resource Include="Resources\turret tower.PNG" />
