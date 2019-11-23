@@ -18,16 +18,16 @@ After the player has won they may continue playing in an endless mode, earning m
 
 ## Work Completed
 
-| Feature | Status | Type |
+| Feature | Status | Type |  Team Member |
 |---|---|---|
-| Main Menu | Finished | Required |
-| Help Screen | Finished | Required |
-| About Screen | Finished | Required |
-| Currency | Finished  | Required |
-| Enemies (initial) | Finished | Required |
-| Placing Turrets | Finsihed| Required |
-| Create Sprites | Finished | Required |
-| Load/Save | Finished | Required |
+| Main Menu | Finished | Required | Micah |
+| Help Screen | Finished | Required | Micah |
+| About Screen | Finished | Required | Micah |
+| Currency | Finished  | Required | Kevin |
+| Enemies (initial) | Finished | Required | Alex & Levi|
+| Placing Turrets | Finsihed| Required | Kevin |
+| Create Sprites | Finished | Required | Kevin |
+| Load/Save | Finished | Required | Levi |
 <br>
 note the Load Unit test is not working complety yet.
 And to let the save unit test pass, lines 23-25,37 in Map.cs and lines 32-36 in Infantry.cs will need to be commented out. 
