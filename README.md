@@ -30,6 +30,7 @@ After the player has won they may continue playing in an endless mode, earning m
 | Load/Save | Finished | Required |
 <br>
 note the Load Unit test is not working complety yet.
+And to let them pass lines 23-25,37 in Map.cs and lines 32-36 in Infantry.cs will need to be commented out. 
 
 ## Recording
 
@@ -41,4 +42,4 @@ note the Load Unit test is not working complety yet.
 |Levi|27hr, 48min|32hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
 |Alexander|16hr, 0min|44hr, 0min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
 |Kevin|26hr, 25min|33hr, 35min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
-|Micah|21hr, 0min|39hr, 0min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
+|Micah|19hr, 40min|40hr, 20min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
