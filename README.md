@@ -25,7 +25,7 @@ After the player has won they may continue playing in an endless mode, earning m
 | About Screen | Finished | Required |
 | Currency | Finished  | Required |
 | Enemies (initial) | Finished | Required |
-| Placing Turrets | In Progress | Required |
+| Placing Turrets | Finsihed| Required |
 | Create Sprites | Finished | Required |
 | Load/Save | Finished | Required |
 <br>
