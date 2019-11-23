@@ -14,7 +14,8 @@
             <!-- <Image Source=""/> -->
         </Label>
         <Button Click="PlayButton_Click" x:Name="PlayButton" Content="Play" FontSize="50" Background="#77917e" Canvas.Left="585" Canvas.Top="625" Width="228"/>
-        <Button Click="HighScoreButton_Click" x:Name="HighScoreButton" Content="High Scores" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="725"/>
-        <Button Click="HelpButton_Click" x:Name="HelpButton" Content="Help" FontSize="26" Background="#77917e" Canvas.Left="755" Canvas.Top="725"/>
+        <Button Click="HighScoreButton_Click" x:Name="HighScoreButton" Content="High Scores" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="725" Width="228"/>
+        <Button Click="HelpButton_Click" x:Name="HelpButton" Content="Help" FontSize="26" Background="#77917e" Canvas.Left="708" Canvas.Top="781" Width="105"/>
+        <Button Click="AboutButton_Click" x:Name="AboutButton" Content="About" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="781" Height="39" Width="105"/>
     </Canvas>
 </Window>
