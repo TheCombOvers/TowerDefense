@@ -8,7 +8,7 @@
         Title="Window1" Height="900" Width="1400">
     <Canvas x:Name="GameWindowCanvas">
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="870" Margin="966,0,-0.4,0" Stroke="Black" VerticalAlignment="Top" Width="428"/>
-        <Image x:Name="MapImage" Source="Resources\path1.png" HorizontalAlignment="Left" Height="870" VerticalAlignment="Top" Width="966"/>
+        <Image x:Name="MapImage" Source="Resources\path1.png" HorizontalAlignment="Left" Height="870" VerticalAlignment="Top" Width="966" MouseDown="MapImage_MouseDown"/>
         <Image x:Name="TurretImage" HorizontalAlignment="Left" Source="Resources\turret tower.PNG" Height="126" Margin="1025,113,0,0" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <TextBlock x:Name="txtTurretName" HorizontalAlignment="Left" Height="27" Margin="1183,124,0,0" TextWrapping="Wrap" Text="Turret Tower" FontSize="20" VerticalAlignment="Top" Width="114"/>
         <TextBlock x:Name="txtTurretType" HorizontalAlignment="Left" Height="16" Margin="1183,156,0,0" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="90"/>
@@ -36,10 +36,10 @@
         <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="68" Margin="982,694,0,0" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnNextWave_Click"/>
         <TextBlock x:Name="txtLives" HorizontalAlignment="Left" Height="41" Margin="1223,819,0,0" TextWrapping="Wrap" Text="Lives: 10" FontSize="25" VerticalAlignment="Top" Width="99"/>
         <Rectangle Fill="#FFF4F4F5" Height="187" Margin="1214,683,0,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="4"/>
-        <TextBlock x:Name="txtMoney" HorizontalAlignment="Left" Height="35" Margin="1223,760,0,0" TextWrapping="Wrap" Text="$100" FontSize="25" VerticalAlignment="Top" Width="161"/>
+        <TextBlock x:Name="txtMoney" HorizontalAlignment="Left" Height="35" Margin="1223,760,0,0" TextWrapping="Wrap" Text="$" FontSize="25" VerticalAlignment="Top" Width="161"/>
         <Rectangle Fill="#FFF4F4F5" Height="3" Margin="1217,739,-0.4,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"/>
         <Rectangle Fill="#FFF4F4F5" Height="3" Margin="1217,811,-0.4,0" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"/>
         <TextBlock x:Name="txtMoney_Copy" HorizontalAlignment="Left" Height="35" Margin="1223,693,0,0" TextWrapping="Wrap" Text="Points: 0" FontSize="25" VerticalAlignment="Top" Width="161"/>
-        <Image x:Name="imageturretplace" Source="turret tower place.png" HorizontalAlignment="Left" Height="125" Margin="841,124,0,0" VerticalAlignment="Top" Width="125"/>
+        <Image x:Name="imageturretplace" HorizontalAlignment="Left" Height="125" Margin="841,124,0,0" VerticalAlignment="Top" Width="125" MouseDown="imageturretplace_MouseDown"/>
     </Canvas>
 </Window>

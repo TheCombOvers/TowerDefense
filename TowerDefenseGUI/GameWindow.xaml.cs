@@ -25,6 +25,9 @@ namespace TowerDefenseGUI
         DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
         List<Image> enemies;
+        bool loop;
+        System.Drawing.Point currentposition;
+
         public GameWindow()
         {
             InitializeComponent();
@@ -35,6 +38,7 @@ namespace TowerDefenseGUI
             //add update model events
             gameTimer.Tick += UpdateGame;
             gameTimer.Start();
+            txtMoney.Text += game.money;
 
         }
         // main method that updates the entire game... yikes
@@ -96,20 +100,24 @@ namespace TowerDefenseGUI
         //machine gun image
         private void btnTurretBuy_Click(object sender, RoutedEventArgs e)
         {
-            imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
-            bool loop = true;
-            System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
-            imageturretplace.Margin = new Thickness(p1.X - 10, p1.Y - 10, 0, 0);
-            Task.Run(() =>
+            if (game.money >= 25)
             {
-                while (loop == true)
+                imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
+                System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
+                imageturretplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                loop = true;
+                Task.Run(() =>
                 {
-                    System.Drawing.Point p = System.Windows.Forms.Cursor.Position;
-                    Dispatcher.Invoke(() => imageturretplace.Margin = new Thickness(p.X - 52, p.Y - 52, 0, 0));
-                }
-            });
-
-
+                    while (loop == true)
+                    {
+                        int posX = System.Windows.Forms.Cursor.Position.X;
+                        int posY = System.Windows.Forms.Cursor.Position.Y;
+                        currentposition.X = System.Windows.Forms.Cursor.Position.X;
+                        currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
+                        Dispatcher.Invoke(() => imageturretplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
+                    }
+                });
+            }
 
             //bool place = true;
             //Task.Run(() =>
@@ -128,6 +136,46 @@ namespace TowerDefenseGUI
             //        });
             //    }
             //});
+        }
+
+        private void imageturretplace_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (loop == true)
+            {
+                game.money -= 25;
+                txtMoney.Text = "$" + game.money;
+                loop = false;
+                imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                Image image = new Image();
+                image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                double posX = currentposition.X;
+                double posY = currentposition.Y;
+                image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                image.Width = 50;
+                image.Height = 50;
+                GameWindowCanvas.Children.Add(image);
+
+            }
+        }
+
+        private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (loop == true)
+            {
+                game.money -= 25;
+                txtMoney.Text = "$" + game.money;
+                loop = false;
+                imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                Image image = new Image();
+                image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                double posX = currentposition.X;
+                double posY = currentposition.Y;
+                image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                image.Width = 50;
+                image.Height = 50;
+                GameWindowCanvas.Children.Add(image);
+
+            }
         }
     }
 }
