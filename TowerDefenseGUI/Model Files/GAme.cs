@@ -28,8 +28,10 @@ namespace TowerDefenseGUI
         public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
         public Spawner spawner;
         public Action<Enemy> addEnemy;
+        public Action<Enemy> removeEnemy;
 
-        public Game(int mapID, Action<Enemy> e)
+
+        public Game(int mapID, Action<Enemy> add, Action<Enemy> remove)
         {
             currentWave = 0;
             isWaveOver = true;
@@ -39,7 +41,8 @@ namespace TowerDefenseGUI
             lives = 10;
             map = new Map(mapID);
             spawner = new Spawner();
-            addEnemy = e;
+            addEnemy = add;
+            removeEnemy = remove;
         }
         public void NewGame(int difficulty, int mapIndex, Map selcetedMap)
         {
@@ -49,15 +52,18 @@ namespace TowerDefenseGUI
         public void NextWave()
         {
             waveProgress++;
-            spawner.Spawn(waveProgress, addEnemy);
+            spawner.Spawn(waveProgress, addEnemy, removeEnemy);
         }
 
         public void UpdateModel()
         {
-            currentEnemies = Spawner.enemies;
-            foreach (Enemy e in currentEnemies)
+            if (Spawner.enemies.Count > 0)
             {
-                e.UpdatePos();
+                currentEnemies = Spawner.enemies;
+                for(int i=0;i<currentEnemies.Count;i++)
+                {
+                    currentEnemies[i].UpdatePos();
+                }
             }
             //foreach(Turret t in currentTurrets)
             //{
@@ -75,12 +81,12 @@ namespace TowerDefenseGUI
 
 
         // loads a game that is saved in the file named "filename" and starts that saved game
-        public static Game LoadGame(string fileName, Action<Enemy> e)
+        public static Game LoadGame(string fileName, Action<Enemy> add, Action<Enemy> remove)
         {
             using (StreamReader reader = new StreamReader(fileName))
             {
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
-                Game newGame = new Game(0, e); // needs changed later 0 = map idex
+                Game newGame = new Game(0, add, remove); // needs changed later 0 = map idex
                 if (begin == "NG")
                 {
                     // switch case here calling the different factory methods depending on which types we run into

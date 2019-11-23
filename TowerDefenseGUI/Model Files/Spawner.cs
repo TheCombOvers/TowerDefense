@@ -10,16 +10,17 @@ namespace TowerDefenseGUI
     class Spawner
     {
         public static List<Enemy> enemies = new List<Enemy>();
+        static Action<Enemy> remove;
 
-        public void Spawn(int wave, Action<Enemy> AddEnemy)
+        public void Spawn(int wave, Action<Enemy> AddEnemy, Action<Enemy> RemoveEnemy)
         {
-
+            remove = RemoveEnemy;
             Enemy e = Infantry.MakeInfantry();
             enemies.Add(e);
             AddEnemy(e);
             //int count = DetermineWave(wave);
             //GenerateWave(wave, count);
-            //foreach(Enemy en in enemies)
+            //foreach (Enemy en in enemies)
             //{
             //    AddEnemy(en);
             //}
@@ -129,6 +130,7 @@ namespace TowerDefenseGUI
 
         public static void Remove(Enemy enemy)
         {
+            remove(enemy);
             enemies.Remove(enemy);
         }
     }
