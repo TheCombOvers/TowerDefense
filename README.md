@@ -29,7 +29,7 @@ After the player has won they may continue playing in an endless mode, earning m
 | Create Sprites | Finished | Required |
 | Load/Save | Finished | Required |
 <br>
-note the Load and Save Unit tests are not working and quite buggy.
+note the Load Unit test is not working complety yet.
 
 ## Recording
 
