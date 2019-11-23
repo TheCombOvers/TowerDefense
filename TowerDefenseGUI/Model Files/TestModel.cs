@@ -91,7 +91,7 @@ namespace TowerDefenseGUI
             g.SaveGame("SavedGame1.txt");
             StreamReader reader = new StreamReader("SavedGame1.txt");
             string SerializedGame = reader.ReadToEnd();
-            Assert.AreEqual(SerializedGame, "NG\n1,5,3,700,200,20,false\nENEMIES\ninfantry,2,4,13\nvehicle,6,2,13\nTURRETS\nmortar,2,3\nstun,7,5\ntesla,3,5\nEND");
+            Assert.AreEqual(SerializedGame, "NG\r\n0,5,3,700,200,20,false\r\nENEMIES\r\ninfantry,2,4,13,3\r\nvehicle,6,2,10,2\r\nENDENEMIES\r\nTURRETS\r\nmortar,2,3\r\nstun,7,5\r\ntesla,3,5\r\nENDTURRETS\r\nEND\r\n");
             reader.Close();
         }
     }
