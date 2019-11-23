@@ -19,7 +19,7 @@ After the player has won they may continue playing in an endless mode, earning m
 ## Work Completed
 
 | Feature | Status | Type |  Team Member |
-|---|---|---|
+|---|---|---|---|
 | Main Menu | Finished | Required | Micah |
 | Help Screen | Finished | Required | Micah |
 | About Screen | Finished | Required | Micah |
