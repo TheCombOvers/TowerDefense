@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="Tower Defense" Height="900" Width="1440" Background="Gray" ResizeMode="CanMinimize">
     <Canvas Background="#20572f">
-        <Border CornerRadius="50" BorderBrush="Gray" BorderThickness="20"/>
-        <Border BorderBrush="Gray" BorderThickness="20"/>
+        <Border CornerRadius="40" BorderBrush="Gray" BorderThickness="20" Height="861" Width="1434"/>
+        <Border BorderBrush="Gray" BorderThickness="20" Height="871" Width="1434"/>
         <Label Margin="49,150,10,431" MinHeight="350" FontSize="200">Tower Defense</Label>
         <Label Margin="90,380,90,291">
             <!-- <Image Source=""/> -->
         </Label>
-        <Button Margin="550,630,550,144" Click="PlayButton_Click" x:Name="PlayButton" Content="Play" FontSize="50" Background="#77917e"/>
-        <Button Margin="550,730,720,90" Click="HighScoreButton_Click" x:Name="HighScoreButton" Content="High Scores" FontSize="26" Background="#77917e"/>
-        <Button Margin="720,730,550,90" Click="HelpButton_Click" x:Name="HelpButton" Content="Help" FontSize="26" Background="#77917e"/>
+        <Button Click="PlayButton_Click" x:Name="PlayButton" Content="Play" FontSize="50" Background="#77917e" Canvas.Left="585" Canvas.Top="625" Width="228"/>
+        <Button Click="HighScoreButton_Click" x:Name="HighScoreButton" Content="High Scores" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="725"/>
+        <Button Click="HelpButton_Click" x:Name="HelpButton" Content="Help" FontSize="26" Background="#77917e" Canvas.Left="755" Canvas.Top="725"/>
     </Canvas>
 </Window>
