@@ -13,7 +13,7 @@ namespace TowerDefenseGUI
         [Test]
         public void LoadGame_ValidInput_ValidClass()
         {
-            Game g = new Game(0, null);
+            Game g = new Game(0, null, null);
             g.currentWave = 5;
             g.waveTotal = 20;
             g.waveProgress = 3;
@@ -21,13 +21,13 @@ namespace TowerDefenseGUI
             g.score = 700;
             g.isWaveOver = false;
             Game.map = new Map(0);
-            Mortar m1 = new Mortar();
+            Mortar m1 = Mortar.MakeMortar();
             m1.xPos = 2;
             m1.yPos = 3;
-            Stun s1 = new Stun();
+            Stun s1 = Stun.MakeStun();
             s1.xPos = 7;
             s1.yPos = 5;
-            Tesla t1 = new Tesla();
+            Tesla t1 = Tesla.MakeTesla();
             t1.xPos = 3;
             t1.yPos = 5;
             g.currentTurrets = new List<Turret>();
@@ -35,24 +35,24 @@ namespace TowerDefenseGUI
             g.currentTurrets.Add(s1);
             g.currentTurrets.Add(t1);
             g.spawner = new Spawner();
-            Infantry i1 = new Infantry();
+            Infantry i1 = Infantry.MakeInfantry();
             i1.posX = 2;
             i1.posY = 4;
             i1.health = 13;
             i1.pathProgress = 3;
-            Vehicle v1 = new Vehicle();
+            Vehicle v1 = Vehicle.MakeVehicle();
             v1.posX = 6;
             v1.posY = 2;
             v1.health = 10;
             v1.pathProgress = 2;
             Spawner.enemies.Add(i1);
             Spawner.enemies.Add(v1);
-            Assert.AreEqual(Game.LoadGame("SavedGame.txt", null), g);
+            Assert.AreEqual(Game.LoadGame("SavedGame.txt", null, null), g);
         }
         [Test]
         public void SaveGame_ValidInput_ValidString()
         {
-            Game g = new Game(0, null);
+            Game g = new Game(0, null, null);
             g.currentWave = 5;
             g.waveTotal = 20;
             g.waveProgress = 3;
@@ -60,14 +60,13 @@ namespace TowerDefenseGUI
             g.score = 700;
             g.isWaveOver = false;
             Game.map = new Map(0);
-            Game.map.mapID = 1;
-            Mortar m1 = new Mortar();
+            Mortar m1 = Mortar.MakeMortar();
             m1.xPos = 2;
             m1.yPos = 3;
-            Stun s1 = new Stun();
+            Stun s1 = Stun.MakeStun();
             s1.xPos = 7;
             s1.yPos = 5;
-            Tesla t1 = new Tesla();
+            Tesla t1 = Tesla.MakeTesla();
             t1.xPos = 3;
             t1.yPos = 5;
             g.currentTurrets = new List<Turret>();
@@ -75,20 +74,22 @@ namespace TowerDefenseGUI
             g.currentTurrets.Add(s1);
             g.currentTurrets.Add(t1);
             g.spawner = new Spawner();
-            Infantry i1 = new Infantry();
+            Infantry i1 = Infantry.MakeInfantry();
             i1.posX = 2;
             i1.posY = 4;
             i1.health = 13;
             i1.pathProgress = 3;
-            Vehicle v1 = new Vehicle();
+            Vehicle v1 = Vehicle.MakeVehicle();
             v1.posX = 6;
             v1.posY = 2;
             v1.health = 10;
             v1.pathProgress = 2;
+            g.currentEnemies.Add(i1);
+            g.currentEnemies.Add(v1);
             Spawner.enemies.Add(i1);
             Spawner.enemies.Add(v1);
-            g.SaveGame("SavedGame.txt");
-            StreamReader reader = new StreamReader("SavedGame.txt");
+            g.SaveGame("SavedGame1.txt");
+            StreamReader reader = new StreamReader("SavedGame1.txt");
             string SerializedGame = reader.ReadToEnd();
             Assert.AreEqual(SerializedGame, "NG\n1,5,3,700,200,20,false\nENEMIES\ninfantry,2,4,13\nvehicle,6,2,13\nTURRETS\nmortar,2,3\nstun,7,5\ntesla,3,5\nEND");
             reader.Close();
