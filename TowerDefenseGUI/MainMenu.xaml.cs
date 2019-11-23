@@ -51,5 +51,10 @@ namespace TowerDefenseGUI
             var newMenu = new HelpWindow();
             newMenu.ShowDialog();
         }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/TheCombOvers/TowerDefense/wiki");
+        }
     }
 }

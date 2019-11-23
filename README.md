@@ -25,11 +25,11 @@ After the player has won they may continue playing in an endless mode, earning m
 | About Screen | Finished | Required |
 | Currency | Finished  | Required |
 | Enemies (initial) | Finished | Required |
-| Placing Turrets | In Progress | Required |
+| Placing Turrets | Finsihed| Required |
 | Create Sprites | Finished | Required |
 | Load/Save | Finished | Required |
 <br>
-note the Load and Save Unit tests are not working and quite buggy.
+note the Load Unit test is not working complety yet.
 
 ## Recording
 
