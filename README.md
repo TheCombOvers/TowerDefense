@@ -41,4 +41,4 @@ note the Load Unit test is not working complety yet.
 |Levi|27hr, 48min|32hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
 |Alexander|16hr, 0min|44hr, 0min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
 |Kevin|26hr, 25min|33hr, 35min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
-|Micah|19hr, 40min|40hr, 20min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
+|Micah|21hr, 0min|39hr, 0min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
