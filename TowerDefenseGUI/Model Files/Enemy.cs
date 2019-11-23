@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace TowerDefenseGUI
 {
-    public abstract class Enemy: ISerializeObject
+    public abstract class Enemy : ISerializeObject
     {
         public Image image;
         public int rewardMoney;
@@ -39,37 +39,35 @@ namespace TowerDefenseGUI
         // then the sprite will move to the left.
         public Intersection CheckCoords(List<Intersection> path)
         {
-            if (pathProgress > path.Count)
+            Console.WriteLine(pathProgress);
+            int x = path[pathProgress].x;
+            int y = path[pathProgress].y;
+            if (x == posX && y == posY)
+            {
+                pathProgress++;
+            }
+            if (pathProgress > path.Count - 1)
             {
                 Game.TakeLife();
-                Spawner.Remove(this);                
+                Spawner.Remove(this);
                 return new Intersection();
             }
-            else
+            var dir = path[pathProgress].direction;
+            if (dir == Map.Direction.RIGHT || dir == Map.Direction.DOWN)
             {
-                int x = path[pathProgress].x;
-                int y = path[pathProgress].y;
-                if (x == posX && y == posY)
+                if (speed < 0)
                 {
-                    pathProgress++;
+                    speed *= -1;
                 }
-                var dir = path[pathProgress].direction;
-                if (dir == Map.Direction.RIGHT || dir == Map.Direction.DOWN)
-                {
-                    if (speed < 0)
-                    {
-                        speed *= -1;
-                    }
-                }
-                else if (dir == Map.Direction.LEFT || dir == Map.Direction.UP)
-                {
-                    if (speed > 0)
-                    {
-                        speed *= -1;
-                    }
-                }
-                return path[pathProgress];
             }
+            else if (dir == Map.Direction.LEFT || dir == Map.Direction.UP)
+            {
+                if (speed > 0)
+                {
+                    speed *= -1;
+                }
+            }
+            return path[pathProgress];
         }
 
         public void TakeDamage(double amount)
@@ -85,6 +83,6 @@ namespace TowerDefenseGUI
         }
 
         public abstract string Serialize();
-        public abstract object Deserialize(string info);    
+        public abstract object Deserialize(string info);
     }
 }

@@ -13,7 +13,7 @@ namespace TowerDefenseGUI
         [Test]
         public void LoadGame_ValidInput_ValidClass()
         {
-            Game g = new Game(0, null);
+            Game g = new Game(0, null, null);
             g.currentWave = 5;
             g.waveTotal = 20;
             g.waveProgress = 3;
@@ -47,12 +47,12 @@ namespace TowerDefenseGUI
             v1.pathProgress = 2;
             Spawner.enemies.Add(i1);
             Spawner.enemies.Add(v1);
-            Assert.AreEqual(Game.LoadGame("SavedGame.txt", null), g);
+            Assert.AreEqual(Game.LoadGame("SavedGame.txt", null, null), g);
         }
         [Test]
         public void SaveGame_ValidInput_ValidString()
         {
-            Game g = new Game(0, null);
+            Game g = new Game(0, null, null);
             g.currentWave = 5;
             g.waveTotal = 20;
             g.waveProgress = 3;

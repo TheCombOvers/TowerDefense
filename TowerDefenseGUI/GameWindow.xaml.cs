@@ -32,7 +32,7 @@ namespace TowerDefenseGUI
         {
             InitializeComponent();
             enemies = new List<Image>();
-            game = new Game(0, AddEnemy);
+            game = new Game(0, AddEnemy, RemoveEnemy);
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
@@ -76,8 +76,14 @@ namespace TowerDefenseGUI
         public void AddEnemy(Enemy e)
         {
             enemies.Add(e.image);
-            GameWindowCanvas.Children.Add(e.image);            
+            GameWindowCanvas.Children.Add(e.image);
         }
+        public void RemoveEnemy(Enemy e)
+        {
+            enemies.Remove(e.image);
+            GameWindowCanvas.Children.Remove(e.image);
+        }
+
         public int SnapToGridY(int y)
         {
             int tempy = y % 50;

@@ -1,13 +1,6 @@
 # TowerDefense
 Source code for Kevin, Levi, Alexander, and Micah's team project.
 
-
-    Instructions: Brief instructions on how to play your game.
-    Work Completed: List work completed.
-    Known Issues: List any major issues.
-    Recording: A link to your screen recording.
-    Expenses: Provide a table showing how many hours each team member has invested to this point, how many hours they have remaining out of their individual time budget, and link to each team member’s journal.
-
 ## Instructions
 
 At the title screen, the player will choose their difficulty and what map they wish to play on.
@@ -31,10 +24,12 @@ After the player has won they may continue playing in an endless mode, earning m
 | Help Screen | Finished | Required |
 | About Screen | Finished | Required |
 | Currency | Finished  | Required |
-| Enemies (initial) | Not Started | Required |
+| Enemies (initial) | Finished | Required |
 | Placing Turrets | In Progress | Required |
-| Create Sprites | In Progress | Required |
+| Create Sprites | Finished | Required |
 | Load/Save | Finished | Required |
+<br>
+note the Load and Save Unit tests are not working and quite buggy.
 
 ## Recording
 
@@ -43,7 +38,7 @@ _Link goes here_
 ## Expenses
 | Team Member | Time Spent | Time Left | Journal Link |
 |-------------|:----------:|:---------:|-------------:|
-|Levi|??|??|??|
-|Alexander|??|??|??|
-|Kevin|??|??|??|
-|Micah|??|??|??|
+|Levi|27hr, 48min|32hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
+|Alexander|16hr, 0min|44hr, 0min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
+|Kevin|26hr, 25min|33hr, 35min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
+|Micah|19hr, 40min|40hr, 20min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
