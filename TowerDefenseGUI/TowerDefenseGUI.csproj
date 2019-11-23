@@ -173,6 +173,9 @@
   <ItemGroup>
     <Resource Include="turret tower place.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\empty.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

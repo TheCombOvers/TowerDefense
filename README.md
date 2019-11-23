@@ -24,14 +24,16 @@ After the player has won they may continue playing in an endless mode, earning m
 | Help Screen | Finished | Required |
 | About Screen | Finished | Required |
 | Currency | Finished  | Required |
-| Enemies (initial) | Not Started | Required |
+| Enemies (initial) | Finished | Required |
 | Placing Turrets | In Progress | Required |
-| Create Sprites | In Progress | Required |
+| Create Sprites | Finished | Required |
 | Load/Save | Finished | Required |
+<br>
+note the Load and Save Unit tests are not working and quite buggy.
 
 ## Recording
 
-_Link goes here_
+[Demo Video](https://bju-my.sharepoint.com/:v:/r/personal/ldoug121_students_bju_edu/Documents/IMG_0216.mov?csf=1&e=znQwWh)
 
 ## Expenses
 | Team Member | Time Spent | Time Left | Journal Link |
