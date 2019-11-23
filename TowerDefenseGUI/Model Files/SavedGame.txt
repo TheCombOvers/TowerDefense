@@ -1,0 +1,12 @@
+NG   
+    1,5,3,700,200,20,false                       
+    ENEMIES                       
+    infantry,2,4,13                       
+    vehicle,6,2,13
+    ENDENEMIES                                                       
+    TURRETS
+    mortar,2,3   
+    stun,7,5   
+    tesla,3,5
+    ENDTURRET
+END

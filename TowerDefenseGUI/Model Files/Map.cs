@@ -20,9 +20,9 @@ namespace TowerDefenseGUI
         // map 1 coords ( [0,350], [350,350], [350,150], [750,150], [750,600], [200,600], [200,800], [500,800], [500,900] )
         public Map(int id)
         {
-            var img = new Image();
-            img.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path1.png"));
-            maps.Add(img);
+            //var img = new Image();
+            //img.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path1.png"));
+            //maps.Add(img);
             var path = new List<Intersection>();
             path.Add(new Intersection(0, 320, Direction.RIGHT)); // 0,350
             path.Add(new Intersection(320, 320, Direction.RIGHT)); // 350, 350
@@ -35,7 +35,7 @@ namespace TowerDefenseGUI
             path.Add(new Intersection(470, 870, Direction.DOWN)); // 500, 900
             pathways.Add(path);
             mapID = id;
-            map = maps[mapID];
+            //map = maps[mapID];
             coords = pathways[mapID];
         }
     }
