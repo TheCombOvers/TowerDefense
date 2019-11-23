@@ -33,7 +33,7 @@ note the Load and Save Unit tests are not working and quite buggy.
 
 ## Recording
 
-_Link goes here_
+[Demo Video](https://bju-my.sharepoint.com/:v:/r/personal/ldoug121_students_bju_edu/Documents/IMG_0216.mov?csf=1&e=znQwWh)
 
 ## Expenses
 | Team Member | Time Spent | Time Left | Journal Link |
