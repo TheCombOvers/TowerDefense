@@ -122,6 +122,7 @@ namespace TowerDefenseGUI
                 System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
                 imageturretplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
                 loop = true;
+                
                 Task.Run(() =>
                 {
                     while (loop == true)
@@ -167,10 +168,13 @@ namespace TowerDefenseGUI
                 double posX = currentposition.X;
                 double posY = currentposition.Y;
                 image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                MachineGun g = MachineGun.MakeMachineGun();
+                g.xPos = Convert.ToInt32(posX * .9);
+                g.xPos = Convert.ToInt32(posY * .9);
+                game.currentTurrets.Add(g);
                 image.Width = 50;
                 image.Height = 50;
                 GameWindowCanvas.Children.Add(image);
-
             }
         }
 

@@ -34,7 +34,7 @@ namespace TowerDefenseGUI
         public Game(int mapID, Action<Enemy> add, Action<Enemy> remove)
         {
             currentWave = 0;
-            isWaveOver = true;
+            isWaveOver = false;
             waveProgress = 0;
             money = 200;
             score = 0;
@@ -204,7 +204,7 @@ namespace TowerDefenseGUI
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 writer.WriteLine("NG");
-                string waveOver = isWaveOver == true ? "false" : "true";
+                string waveOver = isWaveOver == true ? "true" : "false";
                 string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6}", map.mapID, currentWave, waveProgress, score, money, waveTotal, waveOver);
                 writer.WriteLine(gameState);
                 if (currentEnemies.Count != 0)
@@ -213,6 +213,7 @@ namespace TowerDefenseGUI
                     for (int i = 0; i < currentEnemies.Count; ++i)
                     {
                         string line = currentEnemies[i].Serialize();
+                        writer.WriteLine(line);
                     }
                     writer.WriteLine("ENDENEMIES");
                 }
@@ -223,6 +224,7 @@ namespace TowerDefenseGUI
                     for (int i = 0; i < currentTurrets.Count; ++i)
                     {
                         string line = currentTurrets[i].Serialize();
+                        writer.WriteLine(line);
                     }
                     writer.WriteLine("ENDTURRETS");
                 }

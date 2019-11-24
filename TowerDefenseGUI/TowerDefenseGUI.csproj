@@ -150,7 +150,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Model Files\SavedGame.txt" />
+    <Resource Include="Resources\SavedGame.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\path1.png" />
@@ -168,7 +168,7 @@
     <Resource Include="Resources\mortar tower.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Model Files\SavedGame1.txt" />
+    <Resource Include="Resources\SavedGame1.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="turret tower place.png" />
