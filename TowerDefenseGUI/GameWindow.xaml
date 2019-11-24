@@ -34,9 +34,9 @@
         <Button x:Name="btnFlakBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" IsEnabled="False" Canvas.Left="1319" Canvas.Top="352"/>
         <Rectangle Fill="#FFF4F4F5" Height="2" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="428" Canvas.Left="1000" Canvas.Top="680"/>
         <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnNextWave_Click" Canvas.Left="1020" Canvas.Top="700"/>
-        <TextBlock x:Name="txtLives" HorizontalAlignment="Left" Height="42" TextWrapping="Wrap" Text="Lives: 10" FontSize="25" VerticalAlignment="Top" Width="98" Canvas.Left="1258" Canvas.Top="818"/>
+        <TextBlock x:Name="txtLives" HorizontalAlignment="Left" Height="42" TextWrapping="Wrap" Text="Lives: " FontSize="25" VerticalAlignment="Top" Width="98" Canvas.Left="1258" Canvas.Top="818"/>
         <Rectangle Fill="#FFF4F4F5" Height="188" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="4" Canvas.Left="1248" Canvas.Top="682"/>
-        <TextBlock x:Name="txtMoney" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="$100" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1258" Canvas.Top="760"/>
+        <TextBlock x:Name="txtMoney" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="$" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1258" Canvas.Top="760"/>
         <Rectangle Fill="#FFF4F4F5" Height="4" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176" Canvas.Left="1252" Canvas.Top="738"/>
         <Rectangle Fill="#FFF4F4F5" Height="4" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176" Canvas.Left="1252" Canvas.Top="810"/>
         <TextBlock x:Name="txtMoney_Copy" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" Text="Points: 0" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1258" Canvas.Top="692"/>

@@ -27,6 +27,7 @@ namespace TowerDefenseGUI
         List<Image> enemies;
         bool loop;
         System.Drawing.Point currentposition;
+        int lives;
 
         public GameWindow()
         {
@@ -39,8 +40,17 @@ namespace TowerDefenseGUI
             gameTimer.Tick += UpdateGame;
             gameTimer.Start();
             txtMoney.Text += game.money;
-
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    int updatelives = game.SetLives();
+                    lives = updatelives;
+                    Dispatcher.Invoke(() => txtLives.Text = "Lives: " + lives);
+                }
+            });
         }
+        
         // main method that updates the entire game... yikes
         public void UpdateGame(object sender, object e)
         {
