@@ -171,10 +171,22 @@
     <Resource Include="Resources\SavedGame1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="turret tower place.png" />
+    <Resource Include="Resources\empty.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\empty.png" />
+    <Resource Include="Resources\mortar tower place.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\mortar tower select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tesla tower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tesla tower select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tesla tower place.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -28,6 +28,8 @@ namespace TowerDefenseGUI
         bool loop;
         System.Drawing.Point currentposition;
         int lives;
+        bool machinegun;
+        bool tesla;
 
         public GameWindow()
         {
@@ -39,6 +41,8 @@ namespace TowerDefenseGUI
             //add update model events
             gameTimer.Tick += UpdateGame;
             gameTimer.Start();
+            btnBasic.IsEnabled = false;
+            machinegun = true;
             txtMoney.Text += game.money;
             Task.Run(() =>
             {
@@ -114,26 +118,51 @@ namespace TowerDefenseGUI
         //and loads the machine gun place image into it
         //then it takes the Current cursor and changes it with the 
         //machine gun image
-        private void btnTurretBuy_Click(object sender, RoutedEventArgs e)
+        private void btnMachineGunTeslaBuy_Click(object sender, RoutedEventArgs e)
         {
-            if (game.money >= 25)
+            if (machinegun == true)
             {
-                imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
-                System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
-                imageturretplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
-                loop = true;
-                
-                Task.Run(() =>
+                if (game.money >= 50)
                 {
-                    while (loop == true)
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
+                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
+                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    loop = true;
+
+                    Task.Run(() =>
                     {
-                        int posX = System.Windows.Forms.Cursor.Position.X;
-                        int posY = System.Windows.Forms.Cursor.Position.Y;
-                        currentposition.X = System.Windows.Forms.Cursor.Position.X;
-                        currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
-                        Dispatcher.Invoke(() => imageturretplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
-                    }
-                });
+                        while (loop == true)
+                        {
+                            int posX = System.Windows.Forms.Cursor.Position.X;
+                            int posY = System.Windows.Forms.Cursor.Position.Y;
+                            currentposition.X = System.Windows.Forms.Cursor.Position.X;
+                            currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
+                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
+                        }
+                    });
+                }
+            }
+            else if (tesla == true)
+            {
+                if (game.money >= 175)
+                {
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower place.png"));
+                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
+                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    loop = true;
+
+                    Task.Run(() =>
+                    {
+                        while (loop == true)
+                        {
+                            int posX = System.Windows.Forms.Cursor.Position.X;
+                            int posY = System.Windows.Forms.Cursor.Position.Y;
+                            currentposition.X = System.Windows.Forms.Cursor.Position.X;
+                            currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
+                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
+                        }
+                    });
+                }
             }
 
             //bool place = true;
@@ -155,16 +184,30 @@ namespace TowerDefenseGUI
             //});
         }
 
-        private void imageturretplace_MouseDown(object sender, MouseEventArgs e)
+        private void imagemachinegunteslaplace_MouseDown(object sender, MouseEventArgs e)
         {
             if (loop == true)
             {
-                game.money -= 25;
+                if (machinegun == true)
+                {
+                    game.money -= 50;
+                }
+                else if (tesla == true)
+                {
+                    game.money -= 175;
+                }
                 txtMoney.Text = "$" + game.money;
                 loop = false;
-                imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
                 Image image = new Image();
-                image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                if (machinegun == true)
+                {
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                }
+                else if (tesla == true)
+                {
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.PNG"));
+                }
                 double posX = currentposition.X;
                 double posY = currentposition.Y;
                 image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
@@ -182,12 +225,26 @@ namespace TowerDefenseGUI
         {
             if (loop == true)
             {
-                game.money -= 25;
+                if (machinegun == true)
+                {
+                    game.money -= 50;
+                }
+                else if (tesla == true)
+                {
+                    game.money -= 175;
+                }
                 txtMoney.Text = "$" + game.money;
                 loop = false;
-                imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
                 Image image = new Image();
-                image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                if (machinegun == true)
+                {
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                }
+                else if (tesla == true)
+                {
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.PNG"));
+                }
                 double posX = currentposition.X;
                 double posY = currentposition.Y;
                 image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
@@ -196,6 +253,34 @@ namespace TowerDefenseGUI
                 GameWindowCanvas.Children.Add(image);
 
             }
+        }
+
+        private void btnAdvanced_Click(object sender, RoutedEventArgs e)
+        {
+            btnBasic.IsEnabled = true;
+            btnAdvanced.IsEnabled = false;
+            machinegun = false;
+            tesla = true;
+            MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.png"));
+            txtMachineGunTeslaName.Text = "Tesla Tower";
+            txtMachineGunTeslaType.Text = "Ground";
+            txtMachineGunTeslaRange.Text = "100";
+            txtMachineGunTeslaDmg.Text = "3/s";
+            txtMachineGunTeslaCost.Text = "$175";
+        }
+
+        private void btnBasic_Click(object sender, RoutedEventArgs e)
+        {
+            btnBasic.IsEnabled = false;
+            btnAdvanced.IsEnabled = true;
+            machinegun = true;
+            tesla = false;
+            MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.png"));
+            txtMachineGunTeslaName.Text = "Machine Gun Tower";
+            txtMachineGunTeslaType.Text = "Ground";
+            txtMachineGunTeslaRange.Text = "125";
+            txtMachineGunTeslaDmg.Text = "4/s";
+            txtMachineGunTeslaCost.Text = "$50";
         }
     }
 }
