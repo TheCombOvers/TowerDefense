@@ -188,6 +188,30 @@
   <ItemGroup>
     <Resource Include="Resources\tesla tower place.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\laser tower place.png" />
+    <Resource Include="Resources\laser tower select.png" />
+    <Resource Include="Resources\laser tower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stun tower place.png" />
+    <Resource Include="Resources\stun tower select.png" />
+    <Resource Include="Resources\stun tower.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flak tower place.png" />
+    <Resource Include="Resources\flak tower select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="flak tower place.png" />
+    <Resource Include="flak tower select.png" />
+    <Resource Include="flak tower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="stun tower place.png" />
+    <Resource Include="stun tower select.png" />
+    <Resource Include="stun tower.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

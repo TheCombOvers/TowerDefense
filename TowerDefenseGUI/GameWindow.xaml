@@ -17,21 +17,21 @@
         <TextBlock x:Name="txtMachineGunTeslaCost" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Cost: $50" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="204"/>
         <Button x:Name="btnBasic" Content="Basic" FontSize="30" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="190" Canvas.Left="1020" Canvas.Top="5" Click="btnBasic_Click"/>
         <Button x:Name="btnAdvanced" Content="Advanced" FontSize="30" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="190" Canvas.Left="1230" Canvas.Top="5" Click="btnAdvanced_Click"/>
-        <Image x:Name="MortarImage" HorizontalAlignment="Left" Source="Resources\mortar tower.PNG" Height="126" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1046" Canvas.Top="471"/>
+        <Image x:Name="MortarStunImage" HorizontalAlignment="Left" Source="Resources\mortar tower.PNG" Height="126" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1046" Canvas.Top="471"/>
         <Button x:Name="btnMachineGunTeslaBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" Click="btnMachineGunTeslaBuy_Click" Canvas.Left="1319" Canvas.Top="172"/>
-        <TextBlock x:Name="txtMortarName" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="Mortar Tower" FontSize="20" VerticalAlignment="Top" Width="127" Canvas.Left="1204" Canvas.Top="488"/>
-        <TextBlock x:Name="txtMortarType" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="520"/>
-        <TextBlock x:Name="txtMortarDmg" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Damage: 50/5s" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="536"/>
-        <TextBlock x:Name="txtMortarRange" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Range: 500" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="552"/>
-        <TextBlock x:Name="txtMortarCost" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Cost: $200" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="568"/>
-        <Button x:Name="btnMortarBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" IsEnabled="False" Canvas.Left="1319" Canvas.Top="536"/>
-        <Image x:Name="FlakImage" HorizontalAlignment="Left" Source="Resources\flak tower.PNG" Height="126" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1046" Canvas.Top="289"/>
-        <TextBlock x:Name="txtFlakName" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="Flak Tower" FontSize="20" VerticalAlignment="Top" Width="102" Canvas.Left="1204" Canvas.Top="306"/>
-        <TextBlock x:Name="txtFlakType" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Target: Air" VerticalAlignment="Top" Width="58" Canvas.Left="1204" Canvas.Top="338"/>
-        <TextBlock x:Name="txtFlakDmg" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Damage: 2/s" VerticalAlignment="Top" Width="72" Canvas.Left="1204" Canvas.Top="354"/>
-        <TextBlock x:Name="txtFlakRange" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Range: 250" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="370"/>
-        <TextBlock x:Name="txtFlakCost" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Cost: $75" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="386"/>
-        <Button x:Name="btnFlakBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" IsEnabled="False" Canvas.Left="1319" Canvas.Top="352"/>
+        <TextBlock x:Name="txtMortarStunName" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="Mortar Tower" FontSize="20" VerticalAlignment="Top" Width="127" Canvas.Left="1204" Canvas.Top="488"/>
+        <TextBlock x:Name="txtMortarStunType" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="520"/>
+        <TextBlock x:Name="txtMortarStunDmg" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Damage: 50/5s" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="536"/>
+        <TextBlock x:Name="txtMortarStunRange" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Range: 500" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="552"/>
+        <TextBlock x:Name="txtMortarStunCost" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Cost: $200" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="568"/>
+        <Button x:Name="btnMortarStunBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" Canvas.Left="1319" Canvas.Top="536" Click="btnMortarStunBuy_Click"/>
+        <Image x:Name="FlakLaserImage" HorizontalAlignment="Left" Source="Resources\flak tower.PNG" Height="126" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1046" Canvas.Top="289"/>
+        <TextBlock x:Name="txtFlakLaserName" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="Flak Tower" FontSize="20" VerticalAlignment="Top" Width="102" Canvas.Left="1204" Canvas.Top="306"/>
+        <TextBlock x:Name="txtFlakLaserType" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Target: Air" VerticalAlignment="Top" Width="58" Canvas.Left="1204" Canvas.Top="338"/>
+        <TextBlock x:Name="txtFlakLaserDmg" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Damage: 2/s" VerticalAlignment="Top" Width="72" Canvas.Left="1204" Canvas.Top="354"/>
+        <TextBlock x:Name="txtFlakLaserRange" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Range: 250" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="370"/>
+        <TextBlock x:Name="txtFlakLaserCost" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Cost: $75" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="386"/>
+        <Button x:Name="btnFlakLaserBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" Canvas.Left="1319" Canvas.Top="352" Click="btnFlakLaserBuy_Click"/>
         <Rectangle Fill="#FFF4F4F5" Height="2" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="428" Canvas.Left="1000" Canvas.Top="680"/>
         <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnNextWave_Click" Canvas.Left="1020" Canvas.Top="700"/>
         <TextBlock x:Name="txtLives" HorizontalAlignment="Left" Height="42" TextWrapping="Wrap" Text="Lives: " FontSize="25" VerticalAlignment="Top" Width="98" Canvas.Left="1258" Canvas.Top="818"/>
