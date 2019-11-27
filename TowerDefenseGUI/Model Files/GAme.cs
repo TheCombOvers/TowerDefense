@@ -87,7 +87,7 @@ namespace TowerDefenseGUI
             {
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
                 Game newGame = new Game(0, add, remove); // needs changed later 0 = map idex
-                if (begin == "NG")
+                if (begin == "NG\t")
                 {
                     // switch case here calling the different factory methods depending on which types we run into
                     // you gotta make the factory methods also ask schuab about this and how it relates to the intereface
@@ -99,7 +99,9 @@ namespace TowerDefenseGUI
                     newGame.score = Convert.ToInt32(gameInfo[3]);
                     newGame.money = Convert.ToInt32(gameInfo[4]);
                     newGame.waveTotal = Convert.ToInt32(gameInfo[5]);       // need to change/fix this so that it is a difficulty instead of a int
-                    newGame.isWaveOver = true ? gameInfo[6] == "false" : false;
+                    if (gameInfo[6] == "false") { newGame.isWaveOver = false; }
+                    else { newGame.isWaveOver = true; }
+                    Game.lives = Convert.ToInt32(gameInfo[7]);
 
                     while (true)
                     {
@@ -147,7 +149,7 @@ namespace TowerDefenseGUI
                             while (true)
                             {
                                 string lineT = reader.ReadLine(); // read a line
-                                if (lineT.Trim() == "ENDENEMIES") { break; } // see if we're at the end yet break if we are
+                                if (lineT.Trim() == "ENDTURRETS") { break; } // see if we're at the end yet break if we are
                                 string[] eleT = lineT.Split(',');
                                 switch (eleT[0])                 // grab the type and call methods based on it
                                 {
@@ -166,7 +168,7 @@ namespace TowerDefenseGUI
                                         m.Deserialize(lineT);
                                         newGame.currentTurrets.Add(m);
                                         break;
-                                    case "morter":
+                                    case "mortar":
                                         Mortar mo = Mortar.MakeMortar();
                                         mo.Deserialize(lineT);
                                         newGame.currentTurrets.Add(mo);
@@ -199,7 +201,7 @@ namespace TowerDefenseGUI
             {
                 writer.WriteLine("NG");
                 string waveOver = isWaveOver == true ? "true" : "false";
-                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6}", map.mapID, currentWave, waveProgress, score, money, waveTotal, waveOver);
+                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}", map.mapID, currentWave, waveProgress, score, money, waveTotal, waveOver, lives);
                 writer.WriteLine(gameState);
                 if (currentEnemies.Count != 0)
                 {

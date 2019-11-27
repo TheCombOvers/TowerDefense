@@ -34,6 +34,8 @@ namespace TowerDefenseGUI
             v1.pathProgress = 2;
             Spawner.enemies.Add(i1);
             Spawner.enemies.Add(v1);
+            g.currentEnemies.Add(i1);
+            g.currentEnemies.Add(v1);
             Mortar m1 = Mortar.MakeMortar();
             m1.xPos = 2;
             m1.yPos = 3;
@@ -48,15 +50,16 @@ namespace TowerDefenseGUI
             g.currentTurrets.Add(s1);
             g.currentTurrets.Add(t1);
             Game loadedGame = Game.LoadGame("SavedGame.txt", null, null);
-            //            Assert.AreEqual(Game.LoadGame("SavedGame.txt", null, null), g);
-            //CORRECT Assert.AreEqual(loadedGame.currentEnemies, g.currentEnemies);
-            //WRONG Assert.AreEqual(loadedGame.currentWave, g.currentWave);
-            //CORRECT Assert.AreEqual(loadedGame.money, g.money);
-            //WRONG Assert.AreEqual(loadedGame.score, g.score);
-            //WRONG Assert.AreEqual(loadedGame.waveProgress, g.waveProgress);
-            //WRONG Assert.AreEqual(loadedGame.waveTotal, g.waveTotal);
-            //WRONG Assert.AreEqual(loadedGame.isWaveOver, g.isWaveOver);
-            //WRONG Assert.AreEqual(loadedGame.currentTurrets, g.currentTurrets);
+            // all should be working
+            Assert.AreEqual(g.currentEnemies.Count, loadedGame.currentEnemies.Count);
+            Assert.AreEqual(8 , Game.lives);
+            Assert.AreEqual(g.currentWave, loadedGame.currentWave);
+            Assert.AreEqual(g.money, loadedGame.money);
+            Assert.AreEqual(g.score, loadedGame.score);
+            Assert.AreEqual(g.waveProgress, loadedGame.waveProgress);
+            Assert.AreEqual(g.waveTotal, loadedGame.waveTotal);
+            Assert.AreEqual(g.isWaveOver, loadedGame.isWaveOver);
+            Assert.AreEqual(g.currentTurrets.Count, loadedGame.currentTurrets.Count);
 
         }
         [Test]
@@ -69,6 +72,7 @@ namespace TowerDefenseGUI
             g.money = 200;
             g.score = 700;
             g.isWaveOver = false;
+            Game.lives = 8;
             Game.map = new Map(0);
             Mortar m1 = Mortar.MakeMortar();
             m1.xPos = 2;
@@ -101,7 +105,7 @@ namespace TowerDefenseGUI
             g.SaveGame("SavedGame1.txt");
             StreamReader reader = new StreamReader("SavedGame1.txt");
             string SerializedGame = reader.ReadToEnd();
-            Assert.AreEqual(SerializedGame, "NG\r\n0,5,3,700,200,20,false\r\nENEMIES\r\ninfantry,2,4,13,3\r\nvehicle,6,2,10,2\r\nENDENEMIES\r\nTURRETS\r\nmortar,2,3\r\nstun,7,5\r\ntesla,3,5\r\nENDTURRETS\r\nEND\r\n");
+            Assert.AreEqual(SerializedGame, "NG\r\n0,5,3,700,200,20,false,8\r\nENEMIES\r\ninfantry,2,4,13,3\r\nvehicle,6,2,10,2\r\nENDENEMIES\r\nTURRETS\r\nmortar,2,3\r\nstun,7,5\r\ntesla,3,5\r\nENDTURRETS\r\nEND\r\n");
             reader.Close();
         }
     }
