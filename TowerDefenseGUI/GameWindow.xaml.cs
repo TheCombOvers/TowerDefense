@@ -27,6 +27,19 @@ namespace TowerDefenseGUI
         List<Image> enemies;
         bool loop;
         System.Drawing.Point currentposition;
+        int lives;
+        bool machinegun;
+        bool tesla;
+        bool flak;
+        bool laser;
+        bool mortar;
+        bool stun;
+        bool machinegunplace;
+        bool flakplace;
+        bool mortarplace;
+        bool teslaplace;
+        bool laserplace;
+        bool stunplace;
 
         public GameWindow()
         {
@@ -38,9 +51,22 @@ namespace TowerDefenseGUI
             //add update model events
             gameTimer.Tick += UpdateGame;
             gameTimer.Start();
+            btnBasic.IsEnabled = false;
+            machinegun = true;
+            flak = true;
+            mortar = true;
             txtMoney.Text += game.money;
-
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    int updatelives = game.SetLives();
+                    lives = updatelives;
+                    Dispatcher.Invoke(() => txtLives.Text = "Lives: " + lives);
+                }
+            });
         }
+        
         // main method that updates the entire game... yikes
         public void UpdateGame(object sender, object e)
         {
@@ -104,26 +130,63 @@ namespace TowerDefenseGUI
         //and loads the machine gun place image into it
         //then it takes the Current cursor and changes it with the 
         //machine gun image
-        private void btnTurretBuy_Click(object sender, RoutedEventArgs e)
+        private void btnMachineGunTeslaBuy_Click(object sender, RoutedEventArgs e)
         {
-            if (game.money >= 25)
+            if (machinegun == true)
             {
-                imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
-                System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
-                imageturretplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
-                loop = true;
-                
-                Task.Run(() =>
+                if (game.money >= 50)
                 {
-                    while (loop == true)
+                    machinegunplace = true;
+                    flakplace = false;
+                    mortarplace = false;
+                    teslaplace = false;
+                    laserplace = false;
+                    stunplace = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
+                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
+                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    loop = true;
+
+                    Task.Run(() =>
                     {
-                        int posX = System.Windows.Forms.Cursor.Position.X;
-                        int posY = System.Windows.Forms.Cursor.Position.Y;
-                        currentposition.X = System.Windows.Forms.Cursor.Position.X;
-                        currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
-                        Dispatcher.Invoke(() => imageturretplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
-                    }
-                });
+                        while (loop == true)
+                        {
+                            int posX = System.Windows.Forms.Cursor.Position.X;
+                            int posY = System.Windows.Forms.Cursor.Position.Y;
+                            currentposition.X = System.Windows.Forms.Cursor.Position.X;
+                            currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
+                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
+                        }
+                    });
+                }
+            }
+            else if (tesla == true)
+            {
+                if (game.money >= 175)
+                {
+                    machinegunplace = false;
+                    flakplace = false;
+                    mortarplace = false;
+                    teslaplace = true;
+                    laserplace = false;
+                    stunplace = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower place.png"));
+                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
+                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    loop = true;
+
+                    Task.Run(() =>
+                    {
+                        while (loop == true)
+                        {
+                            int posX = System.Windows.Forms.Cursor.Position.X;
+                            int posY = System.Windows.Forms.Cursor.Position.Y;
+                            currentposition.X = System.Windows.Forms.Cursor.Position.X;
+                            currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
+                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
+                        }
+                    });
+                }
             }
 
             //bool place = true;
@@ -145,26 +208,124 @@ namespace TowerDefenseGUI
             //});
         }
 
-        private void imageturretplace_MouseDown(object sender, MouseEventArgs e)
+        private void imagetowerplace_MouseDown(object sender, MouseEventArgs e)
         {
             if (loop == true)
             {
-                game.money -= 25;
-                txtMoney.Text = "$" + game.money;
-                loop = false;
-                imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
-                Image image = new Image();
-                image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
-                double posX = currentposition.X;
-                double posY = currentposition.Y;
-                image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
-                MachineGun g = MachineGun.MakeMachineGun();
-                g.xPos = Convert.ToInt32(posX * .9);
-                g.xPos = Convert.ToInt32(posY * .9);
-                game.currentTurrets.Add(g);
-                image.Width = 50;
-                image.Height = 50;
-                GameWindowCanvas.Children.Add(image);
+                if (machinegunplace == true)
+                {
+                    game.money -= 50;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    MachineGun g = MachineGun.MakeMachineGun();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+                else if (flakplace == true)
+                {
+                    game.money -= 75;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    Flak g = Flak.MakeFlak();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+                else if (mortarplace == true)
+                {
+                    game.money -= 200;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    Mortar g = Mortar.MakeMortar();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+                else if (teslaplace == true)
+                {
+                    game.money -= 175;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    Tesla g = Tesla.MakeTesla();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+                else if (laserplace == true)
+                {
+                    game.money -= 125;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    Laser g = Laser.MakeLaser();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+                else if (stunplace == true)
+                {
+                    game.money -= 200;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    Stun g = Stun.MakeStun();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
             }
         }
 
@@ -172,19 +333,300 @@ namespace TowerDefenseGUI
         {
             if (loop == true)
             {
-                game.money -= 25;
-                txtMoney.Text = "$" + game.money;
-                loop = false;
-                imageturretplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
-                Image image = new Image();
-                image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
-                double posX = currentposition.X;
-                double posY = currentposition.Y;
-                image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
-                image.Width = 50;
-                image.Height = 50;
-                GameWindowCanvas.Children.Add(image);
+                if (machinegunplace == true)
+                {
+                    game.money -= 50;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    MachineGun g = MachineGun.MakeMachineGun();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+                else if (flakplace == true)
+                {
+                    game.money -= 75;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    Flak g = Flak.MakeFlak();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+                else if (mortarplace == true)
+                {
+                    game.money -= 200;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    Mortar g = Mortar.MakeMortar();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+                else if (teslaplace == true)
+                {
+                    game.money -= 175;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    Tesla g = Tesla.MakeTesla();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+                else if (laserplace == true)
+                {
+                    game.money -= 125;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    Laser g = Laser.MakeLaser();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+                else if (stunplace == true)
+                {
+                    game.money -= 200;
+                    txtMoney.Text = "$" + game.money;
+                    loop = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                    Image image = new Image();
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.PNG"));
+                    double posX = currentposition.X;
+                    double posY = currentposition.Y;
+                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    Stun g = Stun.MakeStun();
+                    g.xPos = Convert.ToInt32(posX * .9);
+                    g.xPos = Convert.ToInt32(posY * .9);
+                    game.currentTurrets.Add(g);
+                    image.Width = 50;
+                    image.Height = 50;
+                    GameWindowCanvas.Children.Add(image);
+                }
+            }
+        }
 
+        private void btnAdvanced_Click(object sender, RoutedEventArgs e)
+        {
+            btnBasic.IsEnabled = true;
+            btnAdvanced.IsEnabled = false;
+            machinegun = false;
+            tesla = true;
+            MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.png"));
+            txtMachineGunTeslaName.Text = "Tesla Tower";
+            txtMachineGunTeslaType.Text = "Ground";
+            txtMachineGunTeslaRange.Text = "100";
+            txtMachineGunTeslaDmg.Text = "3/s";
+            txtMachineGunTeslaCost.Text = "$175";
+            flak = false;
+            laser = true;
+            FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.png"));
+            txtFlakLaserName.Text = "Laser Tower";
+            txtFlakLaserType.Text = "Ground/Air";
+            txtFlakLaserRange.Text = "175";
+            txtFlakLaserDmg.Text = "10/s";
+            txtFlakLaserCost.Text = "$125";
+            mortar = false;
+            stun = true;
+            MortarStunImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.png"));
+            txtMortarStunName.Text = "Stun Tower";
+            txtMortarStunType.Text = "Ground/Air";
+            txtMortarStunRange.Text = "200";
+            txtMortarStunDmg.Text = "15/s";
+            txtMortarStunCost.Text = "$200";
+        }
+
+        private void btnBasic_Click(object sender, RoutedEventArgs e)
+        {
+            btnBasic.IsEnabled = false;
+            btnAdvanced.IsEnabled = true;
+            machinegun = true;
+            tesla = false;
+            MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.png"));
+            txtMachineGunTeslaName.Text = "Machine Gun Tower";
+            txtMachineGunTeslaType.Text = "Ground";
+            txtMachineGunTeslaRange.Text = "125";
+            txtMachineGunTeslaDmg.Text = "4/s";
+            txtMachineGunTeslaCost.Text = "$50";
+            flak = true;
+            laser = false;
+            FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.png"));
+            txtFlakLaserName.Text = "Flak Tower";
+            txtFlakLaserType.Text = "Air";
+            txtFlakLaserRange.Text = "225";
+            txtFlakLaserDmg.Text = "2/s";
+            txtFlakLaserCost.Text = "$75";
+            mortar = true;
+            stun = false;
+            MortarStunImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.png"));
+            txtMortarStunName.Text = "Mortar Tower";
+            txtMortarStunType.Text = "Ground";
+            txtMortarStunRange.Text = "275";
+            txtMortarStunDmg.Text = "50/5s";
+            txtMortarStunCost.Text = "$150";
+        }
+
+        private void btnFlakLaserBuy_Click(object sender, RoutedEventArgs e)
+        {
+            if (flak == true)
+            {
+                if (game.money >= 75)
+                {
+                    machinegunplace = false;
+                    flakplace = true;
+                    mortarplace = false;
+                    teslaplace = false;
+                    laserplace = false;
+                    stunplace = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower place.png"));
+                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
+                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    loop = true;
+
+                    Task.Run(() =>
+                    {
+                        while (loop == true)
+                        {
+                            int posX = System.Windows.Forms.Cursor.Position.X;
+                            int posY = System.Windows.Forms.Cursor.Position.Y;
+                            currentposition.X = System.Windows.Forms.Cursor.Position.X;
+                            currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
+                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
+                        }
+                    });
+                }
+            }
+            else if (laser == true)
+            {
+                if (game.money >= 125)
+                {
+                    machinegunplace = false;
+                    flakplace = false;
+                    mortarplace = false;
+                    teslaplace = false;
+                    laserplace = true;
+                    stunplace = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower place.png"));
+                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
+                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    loop = true;
+
+                    Task.Run(() =>
+                    {
+                        while (loop == true)
+                        {
+                            int posX = System.Windows.Forms.Cursor.Position.X;
+                            int posY = System.Windows.Forms.Cursor.Position.Y;
+                            currentposition.X = System.Windows.Forms.Cursor.Position.X;
+                            currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
+                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
+                        }
+                    });
+                }
+            }
+        }
+
+        private void btnMortarStunBuy_Click(object sender, RoutedEventArgs e)
+        {
+            if (mortar == true)
+            {
+                if (game.money >= 150)
+                {
+                    machinegunplace = false;
+                    flakplace = false;
+                    mortarplace = true;
+                    teslaplace = false;
+                    laserplace = false;
+                    stunplace = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower place.png"));
+                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
+                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    loop = true;
+
+                    Task.Run(() =>
+                    {
+                        while (loop == true)
+                        {
+                            int posX = System.Windows.Forms.Cursor.Position.X;
+                            int posY = System.Windows.Forms.Cursor.Position.Y;
+                            currentposition.X = System.Windows.Forms.Cursor.Position.X;
+                            currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
+                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
+                        }
+                    });
+                }
+            }
+            else if (stun == true)
+            {
+                if (game.money >= 200)
+                {
+                    machinegunplace = false;
+                    flakplace = false;
+                    mortarplace = false;
+                    teslaplace = false;
+                    laserplace = false;
+                    stunplace = true;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower place.png"));
+                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
+                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    loop = true;
+
+                    Task.Run(() =>
+                    {
+                        while (loop == true)
+                        {
+                            int posX = System.Windows.Forms.Cursor.Position.X;
+                            int posY = System.Windows.Forms.Cursor.Position.Y;
+                            currentposition.X = System.Windows.Forms.Cursor.Position.X;
+                            currentposition.Y = System.Windows.Forms.Cursor.Position.Y;
+                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
+                        }
+                    });
+                }
             }
         }
     }

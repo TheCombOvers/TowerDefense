@@ -76,7 +76,13 @@ namespace TowerDefenseGUI
             if (lives > 0)
             {
                 lives--;
+                
             }
+        }
+
+        public int SetLives()
+        {
+            return lives;
         }
 
 
