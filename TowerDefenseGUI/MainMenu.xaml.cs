@@ -54,7 +54,13 @@ namespace TowerDefenseGUI
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
+            // Bring up the wiki page in a browser
             System.Diagnostics.Process.Start("https://github.com/TheCombOvers/TowerDefense/wiki");
+        }
+
+        private void LoadButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Add code for Loading a game here
         }
     }
 }
