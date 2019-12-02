@@ -13,9 +13,10 @@
         <Label Margin="90,380,90,291">
             <!-- <Image Source=""/> -->
         </Label>
-        <Button Click="PlayButton_Click" x:Name="PlayButton" Content="Play" FontSize="50" Background="#77917e" Canvas.Left="585" Canvas.Top="625" Width="228"/>
-        <Button Click="HighScoreButton_Click" x:Name="HighScoreButton" Content="High Scores" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="725" Width="228"/>
+        <Button Click="PlayButton_Click" x:Name="PlayButton" Content="Play" FontSize="50" Background="#77917e" Canvas.Left="578" Canvas.Top="607" Width="240"/>
+        <Button Click="HighScoreButton_Click" x:Name="HighScoreButton" Content="High Scores" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="737" Width="228"/>
         <Button Click="HelpButton_Click" x:Name="HelpButton" Content="Help" FontSize="26" Background="#77917e" Canvas.Left="708" Canvas.Top="781" Width="105"/>
         <Button Click="AboutButton_Click" x:Name="AboutButton" Content="About" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="781" Height="39" Width="105"/>
+        <Button Click="LoadButton_Click" x:Name="LoadButton" Content="Load Game" FontSize="26" Background="#77917e" Canvas.Left="578" Canvas.Top="683" Width="240"/>
     </Canvas>
 </Window>
