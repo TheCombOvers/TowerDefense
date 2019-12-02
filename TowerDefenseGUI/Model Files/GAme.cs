@@ -65,10 +65,10 @@ namespace TowerDefenseGUI
                     currentEnemies[i].UpdatePos();
                 }
             }
-            //foreach(Turret t in currentTurrets)
-            //{
-            //    t.Attack(DetectEnemy(currentEnemies));
-            //}
+            foreach (Turret t in currentTurrets)
+            {
+                t.Attack(t.DetectEnemy(currentEnemies));
+            }
         }
 
         public static void TakeLife()
