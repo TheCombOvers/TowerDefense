@@ -16,8 +16,8 @@ namespace TowerDefenseGUI
         public double range;
         public string type;
         public double fireRate;
-        public int xPos;
-        public int yPos;
+        public double xPos;
+        public double yPos;
 
         public void Attack(Enemy e)
         {
@@ -48,10 +48,10 @@ namespace TowerDefenseGUI
             return target;
         }
 
-        private double CalculateDistance(int xPos, int yPos, double posX, double posY)
+        private double CalculateDistance(double xPos, double yPos, double posX, double posY)
         {
-            int x = xPos - (int)posX;
-            int y = yPos - (int)posY;
+            double x = xPos - posX;
+            double y = yPos - posY;
             double dist = Math.Sqrt((y * y) + (x * x));
             return dist;
         }

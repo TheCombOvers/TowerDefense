@@ -223,7 +223,7 @@ namespace TowerDefenseGUI
                     double posX = currentposition.X;
                     double posY = currentposition.Y;
                     image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
-                    MachineGun g = MachineGun.MakeMachineGun();
+                    MachineGun g = MachineGun.MakeMachineGun(posX, posY);
                     g.xPos = Convert.ToInt32(posX * .9);
                     g.xPos = Convert.ToInt32(posY * .9);
                     game.currentTurrets.Add(g);
@@ -344,7 +344,7 @@ namespace TowerDefenseGUI
                     double posX = currentposition.X;
                     double posY = currentposition.Y;
                     image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
-                    MachineGun g = MachineGun.MakeMachineGun();
+                    MachineGun g = MachineGun.MakeMachineGun(posX, posY);
                     g.xPos = Convert.ToInt32(posX * .9);
                     g.xPos = Convert.ToInt32(posY * .9);
                     game.currentTurrets.Add(g);

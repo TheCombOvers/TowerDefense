@@ -16,19 +16,19 @@ namespace TowerDefenseGUI
         public override object Deserialize(string info)
         {
             string[] finfo = info.Split(',');
-            MachineGun m = MakeMachineGun();
-            m.xPos = Convert.ToInt32(finfo[1]);
-            m.yPos = Convert.ToInt32(finfo[2]);
+            MachineGun m = MakeMachineGun(Convert.ToInt32(finfo[1]), Convert.ToInt32(finfo[2]));
             m.type = "machinegun";
             return m;
         }
-        public static MachineGun MakeMachineGun()
+        public static MachineGun MakeMachineGun(double x, double y)
         {
             MachineGun m = new MachineGun();
+            m.xPos = x;
+            m.yPos = y;
             m.cost = 50;
             m.damage = 4;
             m.range = 125;
-            m.type = "macchinegun";
+            m.type = "machinegun";
             return m;
         }
     }

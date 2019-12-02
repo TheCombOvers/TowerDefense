@@ -170,7 +170,7 @@ namespace TowerDefenseGUI
                                         newGame.currentTurrets.Add(l);
                                         break;
                                     case "machinegun":
-                                        MachineGun m = MachineGun.MakeMachineGun();
+                                        MachineGun m = MachineGun.MakeMachineGun(0, 0);
                                         m.Deserialize(lineT);
                                         newGame.currentTurrets.Add(m);
                                         break;
