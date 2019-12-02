@@ -36,7 +36,7 @@ namespace TowerDefenseGUI
             i.image.Height = 50;
             i.health = 20;
             i.rewardMoney = 5;
-            i.speed = 5;
+            i.speed = 2;
             i.posX = Map.coords[0].x;
             i.posY = Map.coords[0].y;
             i.pathProgress = 0;
