@@ -21,7 +21,14 @@ namespace TowerDefenseGUI
 
         public void Attack(Enemy e)
         {
-            e.health -= damage;
+            if (e == null)
+            {
+                return;
+            }
+            else
+            {
+                e.health -= damage;
+            }
         }
 
         public Enemy DetectEnemy(List<Enemy> enemies)
