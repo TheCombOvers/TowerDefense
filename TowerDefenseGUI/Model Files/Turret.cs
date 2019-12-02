@@ -27,7 +27,7 @@ namespace TowerDefenseGUI
             }
             else
             {
-                e.health -= damage;
+                e.TakeDamage(damage);
             }
         }
 
