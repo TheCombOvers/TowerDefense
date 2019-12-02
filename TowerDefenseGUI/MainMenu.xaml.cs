@@ -27,6 +27,9 @@ namespace TowerDefenseGUI
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            //DifficultyPage diffPage = new DifficultyPage();
+            //this.Content = diffPage;
+
             // Run code to open difficulty selection and map selection window
             // If page closes without finishing, return;
             // else:
