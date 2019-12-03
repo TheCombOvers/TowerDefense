@@ -163,9 +163,6 @@
     <Resource Include="Resources\path1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Basic Unit.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Resources\turret tower place.png" />
     <Resource Include="Resources\turret tower select.png" />
     <Resource Include="Resources\turret tower.PNG" />
@@ -218,6 +215,12 @@
     <Resource Include="stun tower place.png" />
     <Resource Include="stun tower select.png" />
     <Resource Include="stun tower.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Advanced Ground Unit.png" />
+    <Resource Include="Resources\Advanced Ground Vehicle.png" />
+    <Resource Include="Resources\Basic Ground Unit.png" />
+    <Resource Include="Resources\Basic Ground Vehicle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

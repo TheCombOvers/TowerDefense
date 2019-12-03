@@ -47,8 +47,7 @@ namespace TowerDefenseGUI
             InitializeComponent();
             enemies = new List<Image>();
             eImageSources = new List<string>();
-            eImageSources.Add("pack://application:,,,/Resources/Basic Unit.png");
-            eImageSources.Add("pack://application:,,,/Resources/");
+            eImageSources.Add("pack://application:,,,/Resources/Basic Ground Unit.png");
 
             game = new Game(0, AddEnemy, RemoveEnemy);
             gameTimer = new DispatcherTimer();
