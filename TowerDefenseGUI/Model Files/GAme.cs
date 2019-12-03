@@ -77,7 +77,7 @@ namespace TowerDefenseGUI
         {
             if (lives > 0 && cheatMode != true)
             {
-                lives--;          
+                lives--;
             }
         }
 
@@ -85,12 +85,12 @@ namespace TowerDefenseGUI
         public static Game LoadGame(string fileName, Action<Enemy> add, Action<Enemy> remove)
         {
             using (StreamReader reader = new StreamReader(fileName))
-            {
+            { 
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
                 Game newGame = new Game(0, true, add, remove);
                 if (begin == "NG\t")
                 {
-                    
+                  
                     string[] gameInfo = reader.ReadLine().Split(',');   // grab the game state information
                     
                     map = new Map(Convert.ToInt32(gameInfo[0]));    // create a new map based on the mapid

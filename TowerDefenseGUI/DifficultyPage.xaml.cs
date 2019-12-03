@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TowerDefenseGUI
 {
@@ -20,9 +8,38 @@ namespace TowerDefenseGUI
     /// </summary>
     public partial class DifficultyPage : Page
     {
+        public bool Cheat = false;
+
         public DifficultyPage()
         {
             InitializeComponent();
+        }
+        private void BtnMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+            Window.GetWindow(this).Close();
+        }
+        private void CheatMode_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheatMode.Content.ToString() == "Cheat Mode: On")
+            {
+                CheatMode.Content = "Cheat Mode: Off";
+                Cheat = false;
+            }
+            else
+            {
+                CheatMode.Content = "Cheat Mode: On";
+                Cheat = true;
+            }
+        }
+
+        private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
+        {
+            var gameWindow = new GameWindow(Cheat, false);
+            gameWindow.Show();
+            Window hostWindow = Window.GetWindow(this);
+            hostWindow.Close();
         }
     }
 }

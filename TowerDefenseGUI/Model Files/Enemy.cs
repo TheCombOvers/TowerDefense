@@ -40,7 +40,6 @@ namespace TowerDefenseGUI
         // then the sprite will move to the left.
         public Intersection CheckCoords(List<Intersection> path)
         {
-            Console.WriteLine(pathProgress);
             int x = path[pathProgress].x;
             int y = path[pathProgress].y;
             if (x == posX && y == posY)
@@ -73,6 +72,7 @@ namespace TowerDefenseGUI
 
         public void TakeDamage(double amount)
         {
+            Console.WriteLine(health);
             if (health > 0)
             {
                 health -= amount;

@@ -8,9 +8,28 @@
       d:DesignHeight="900" d:DesignWidth="1440"
       Title="Tower Defense" Background="#20572f">
     <Canvas>
+        <!--Borders and Main Menu-->
         <Border CornerRadius="40" BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>
         <Border BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>
-        <Button Content="Main Menu" Canvas.Left="70" Canvas.Top="45" Width="154" Height="50" FontSize="26"/>
-        <Image Source="Resources\path1.png" Height="300" Width="300" Margin="50,120,1035,397" />
+        <Button Content="Main Menu" Canvas.Left="50" Canvas.Top="45" Width="174" Height="50" FontSize="26" Click="BtnMainMenu_Click"/>
+        <Button Click="CheatMode_Click" Background="Transparent" Foreground="Red" x:Name="CheatMode" Content="Cheat Mode: Off" FontSize="26" Canvas.Left="1120" Canvas.Top="45" Width="267" Height="50"/>
+
+        <!--Easy Difficulty Map Section-->
+        <Image Source="Resources\path1.png" Height="300" Width="300" Canvas.Left="110" Canvas.Top="150" />
+        <TextBlock Text="Greenpath" FontSize="32" TextAlignment="Center" Canvas.Left="110" Canvas.Top="495" Height="50" Width="300"/>
+        <TextBlock Text="Difficulty: EASY" Foreground="LightGreen" FontSize="32" TextAlignment="Center" Canvas.Left="110" Canvas.Top="545" Height="50" Width="300"/>
+        <Button Content="Select Map" Canvas.Left="160" Canvas.Top="670" Height="75" Width="200" FontSize="26" Click="BtnSelectMapEasy_Click"/>
+
+        <!--Medium Difficulty Map Section-->
+        <Button IsEnabled="False" Background="DarkGray" Height="270" Width="300" Canvas.Left="560" Canvas.Top="165" />
+        <TextBlock Text="???" FontSize="32" TextAlignment="Center" Canvas.Left="560" Canvas.Top="495" Height="50" Width="300"/>
+        <TextBlock Text="Difficulty: MEDIUM" Foreground="Orange" FontSize="32" TextAlignment="Center" Canvas.Left="560" Canvas.Top="550" Height="50" Width="300"/>
+        <Button IsEnabled="False" Content="Select Map" Canvas.Left="610" Canvas.Top="670" Height="75" Width="200" FontSize="26"/>
+
+        <!--Hard Difficulty Map Section-->
+        <Button IsEnabled="False" Background="DarkGray" Height="270" Width="300" Canvas.Left="1000" Canvas.Top="165" />
+        <TextBlock Text="???" FontSize="32" TextAlignment="Center" Canvas.Left="1000" Canvas.Top="495" Height="50" Width="300"/>
+        <TextBlock Text="Difficulty: HARD" Foreground="Red" FontSize="32" TextAlignment="Center" Canvas.Left="1000" Canvas.Top="550" Height="50" Width="300"/>
+        <Button IsEnabled="False" Content="Select Map" Canvas.Left="1050" Canvas.Top="670" Height="75" Width="200" FontSize="26"/>
     </Canvas>
 </Page>

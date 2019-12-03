@@ -5,5 +5,5 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
-        Title="mainwindow" Height="0" Width="0">
+        Title="Tower Defense" Height="900" Width="1440" Background="Gray" ResizeMode="CanMinimize">
 </Window>
