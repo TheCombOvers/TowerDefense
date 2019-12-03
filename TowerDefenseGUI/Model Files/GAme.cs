@@ -19,6 +19,7 @@ namespace TowerDefenseGUI
         public int waveTotal; // number of waves required to win the game
         public int currentWave;
         public bool isWaveOver;
+        public bool cheatMode;
         public int waveProgress;
         public int money;
         public int score;

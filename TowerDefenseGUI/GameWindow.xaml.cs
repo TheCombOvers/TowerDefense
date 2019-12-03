@@ -26,6 +26,7 @@ namespace TowerDefenseGUI
         Timer nextWaveTimer; // for auto starting next wave
         List<Image> enemies;
         List<string> eImageSources; // 0:infantry, 1:vehicle, 2:aircraft, 3:ground boss
+        public bool cheatMode;
         bool loop;
         System.Drawing.Point currentposition;
         int lives;
