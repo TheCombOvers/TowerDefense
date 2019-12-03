@@ -61,7 +61,7 @@ namespace TowerDefenseGUI
             txtMoney.Text += game.money;
             txtLives.Text = "Lives: " + Game.lives;
         }
-        
+
         // main method that updates the entire game... yikes
         public void UpdateGame(object sender, object e)
         {
@@ -109,11 +109,11 @@ namespace TowerDefenseGUI
             e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
             enemies.Add(i);
             GameWindowCanvas.Children.Add(i);
-            
+
         }
         // removes a specified enemy from the game state and the view
         public void RemoveEnemy(Enemy e)
-        {   
+        {
             game.currentEnemies.Remove(e);
             Spawner.enemies.Remove(e);  // remove it from the game state
             GameWindowCanvas.Children.Remove(enemies[e.imageIndex]); // remove from the game window canvas
@@ -171,16 +171,17 @@ namespace TowerDefenseGUI
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
                     imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
                     loop = true;
-                    Task.Run(() =>
-                    {
-                        while (loop == true)
-                        {
-                            Dispatcher.Invoke(() => {
-                                mousePos = Mouse.GetPosition(GameWindowCanvas);
-                                imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
-                                });
-                        }
-                    });
+                    gameTimer.Tick += updateTowerPlace;
+                    //Task.Run(() =>
+                    //{
+                    //    if (loop == true)
+                    //    {
+                    //        Dispatcher.Invoke(() => {
+                    //            mousePos = Mouse.GetPosition(GameWindowCanvas);
+                    //            imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
+                    //            });
+                    //    }
+                    //});
                 }
             }
             else if (tesla == true)
@@ -213,6 +214,14 @@ namespace TowerDefenseGUI
             }
         }
 
+        private void updateTowerPlace(object sender, EventArgs e)
+        {
+            if (loop == true)
+            {
+                mousePos = Mouse.GetPosition(GameWindowCanvas);
+                imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
+            }
+        }
         private void imagetowerplace_MouseDown(object sender, MouseEventArgs e)
         {
             Point p = e.GetPosition(GameWindowCanvas);
@@ -336,14 +345,18 @@ namespace TowerDefenseGUI
         }
         public int SnapToGridX(double x)
         {
-            int tempx = (int) x % 50;
-            int newx = (tempx * 50) + 25;
+            int oldx = Convert.ToInt32(x);
+            int tempx = oldx / 50;
+            int newx = tempx * 50;
+            Console.WriteLine(tempx);
             return newx;
         }
         public int SnapToGridY(double y)
         {
-            int tempy = (int) y % 50;
-            int newy = (tempy * 50) + 25;
+            int oldy = Convert.ToInt32(y);
+            int tempy = oldy / 50;
+            int newy = tempy * 50;
+            Console.WriteLine(tempy);
             return newy;
         }
 
