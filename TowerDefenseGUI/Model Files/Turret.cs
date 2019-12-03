@@ -27,7 +27,13 @@ namespace TowerDefenseGUI
             }
             else
             {
-                e.TakeDamage(damage);
+                fireRate++;
+                Console.WriteLine("Firerate = " + fireRate);
+                if (fireRate % 60 == 0)
+                {
+                    Console.WriteLine("Attacking");
+                    e.TakeDamage(damage);
+                }
             }
         }
 
@@ -39,10 +45,9 @@ namespace TowerDefenseGUI
                 double dist = CalculateDistance(xPos, yPos, e.posX, e.posY);
                 if (range >= dist)
                 {
-                    if (target == null)
-                    {
-                        return target;
-                    }
+                    Console.WriteLine("Target in range");
+                    target = e;
+                    return target;
                 }
             }
             return target;
@@ -53,6 +58,7 @@ namespace TowerDefenseGUI
             double x = xPos - posX;
             double y = yPos - posY;
             double dist = Math.Sqrt((y * y) + (x * x));
+            Console.WriteLine(dist);
             return dist;
         }
 

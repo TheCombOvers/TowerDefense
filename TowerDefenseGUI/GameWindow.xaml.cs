@@ -25,6 +25,7 @@ namespace TowerDefenseGUI
         DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
         List<Image> enemies;
+        List<Image> turrets;
         bool loop;
         System.Drawing.Point currentposition;
         int lives;
@@ -96,6 +97,13 @@ namespace TowerDefenseGUI
                 {
                     en.Margin = new Thickness(game.currentEnemies[counter].posX, game.currentEnemies[counter].posY, 0, 0);
                     ++counter;
+                }
+            }
+            if (turrets != null)
+            {
+                foreach (Image t in turrets)
+                {
+                    //t.RenderTransform;
                 }
             }
         }
