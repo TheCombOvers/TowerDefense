@@ -134,7 +134,8 @@ namespace TowerDefenseGUI
         }
         private void btnSaveGame_Click(object sender, RoutedEventArgs e)
         {
-            // Code for saving the game state
+            game.SaveGame("..\\..\\Resources\\SavedGame3.txt");
+            MessageBox.Show("Your game has been saved on round: " + game.currentWave);
         }
         private void btnPauseGame_Click(object sender, RoutedEventArgs e)
         {

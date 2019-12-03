@@ -191,6 +191,10 @@ namespace TowerDefenseGUI
                         }
                     }
                 }
+                for (int i = 0; i < Spawner.enemies.Count; ++i)
+                {
+                    newGame.addEnemy(Spawner.enemies[i]);
+                }
                 return newGame;
             }
         }
