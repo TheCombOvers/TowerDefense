@@ -484,26 +484,26 @@ namespace TowerDefenseGUI
             tesla = true;
             MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.png"));
             txtMachineGunTeslaName.Text = "Tesla Tower";
-            txtMachineGunTeslaType.Text = "Ground";
-            txtMachineGunTeslaRange.Text = "100";
-            txtMachineGunTeslaDmg.Text = "3/s";
-            txtMachineGunTeslaCost.Text = "$175";
+            txtMachineGunTeslaType.Text = "Target: Ground";
+            txtMachineGunTeslaRange.Text = "Range: 100";
+            txtMachineGunTeslaDmg.Text = "Damage: 3/s";
+            txtMachineGunTeslaCost.Text = "Cost: $175";
             flak = false;
             laser = true;
             FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.png"));
             txtFlakLaserName.Text = "Laser Tower";
-            txtFlakLaserType.Text = "Ground/Air";
-            txtFlakLaserRange.Text = "175";
-            txtFlakLaserDmg.Text = "10/s";
-            txtFlakLaserCost.Text = "$125";
+            txtFlakLaserType.Text = "Target: Ground/Air";
+            txtFlakLaserRange.Text = "Range: 175";
+            txtFlakLaserDmg.Text = "Damage: 10/s";
+            txtFlakLaserCost.Text = "Cost: $125";
             mortar = false;
             stun = true;
             MortarStunImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.png"));
             txtMortarStunName.Text = "Stun Tower";
-            txtMortarStunType.Text = "Ground/Air";
-            txtMortarStunRange.Text = "200";
-            txtMortarStunDmg.Text = "15/s";
-            txtMortarStunCost.Text = "$200";
+            txtMortarStunType.Text = "Target: Ground/Air";
+            txtMortarStunRange.Text = "Range: 200";
+            txtMortarStunDmg.Text = "Damage: 15/s";
+            txtMortarStunCost.Text = "Cost: $200";
         }
 
         private void btnBasic_Click(object sender, RoutedEventArgs e)
@@ -514,26 +514,26 @@ namespace TowerDefenseGUI
             tesla = false;
             MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.png"));
             txtMachineGunTeslaName.Text = "Machine Gun Tower";
-            txtMachineGunTeslaType.Text = "Ground";
-            txtMachineGunTeslaRange.Text = "125";
-            txtMachineGunTeslaDmg.Text = "4/s";
-            txtMachineGunTeslaCost.Text = "$50";
+            txtMachineGunTeslaType.Text = "Target: Ground";
+            txtMachineGunTeslaRange.Text = "Rane: 125";
+            txtMachineGunTeslaDmg.Text = "Damage: 4/s";
+            txtMachineGunTeslaCost.Text = "Cost: $50";
             flak = true;
             laser = false;
             FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.png"));
             txtFlakLaserName.Text = "Flak Tower";
-            txtFlakLaserType.Text = "Air";
-            txtFlakLaserRange.Text = "225";
-            txtFlakLaserDmg.Text = "2/s";
-            txtFlakLaserCost.Text = "$75";
+            txtFlakLaserType.Text = "Target: Air";
+            txtFlakLaserRange.Text = "Range: 225";
+            txtFlakLaserDmg.Text = "Damage: 2/s";
+            txtFlakLaserCost.Text = "Cost: $75";
             mortar = true;
             stun = false;
             MortarStunImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.png"));
             txtMortarStunName.Text = "Mortar Tower";
-            txtMortarStunType.Text = "Ground";
-            txtMortarStunRange.Text = "275";
-            txtMortarStunDmg.Text = "50/5s";
-            txtMortarStunCost.Text = "$150";
+            txtMortarStunType.Text = "Target: Ground";
+            txtMortarStunRange.Text = "Range: 275";
+            txtMortarStunDmg.Text = "Damage: 50/5s";
+            txtMortarStunCost.Text = "Cost: $150";
         }
 
         private void btnFlakLaserBuy_Click(object sender, RoutedEventArgs e)
