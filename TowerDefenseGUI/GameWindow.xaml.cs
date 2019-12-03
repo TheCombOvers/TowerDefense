@@ -25,7 +25,7 @@ namespace TowerDefenseGUI
         DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
         List<Image> enemies;
-        List<Image> turrets;
+        List<string> eImageSources; // 0:infantry, 1:vehicle, 2:aircraft, 3:ground boss
         bool loop;
         System.Drawing.Point currentposition;
         int lives;
@@ -42,11 +42,14 @@ namespace TowerDefenseGUI
         bool laserplace;
         bool stunplace;
 
-        public GameWindow()
+        public GameWindow(bool cheat)
         {
             InitializeComponent();
             enemies = new List<Image>();
-            game = new Game(0, AddEnemy, RemoveEnemy);
+            eImageSources = new List<string>();
+            eImageSources.Add("pack://application:,,,/Resources/Basic Ground Unit.png");
+            // add all the image sources-levi
+            game = new Game(0, cheat, AddEnemy, RemoveEnemy);
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
@@ -61,9 +64,7 @@ namespace TowerDefenseGUI
             {
                 while (true)
                 {
-                    int updatelives = game.SetLives();
-                    lives = updatelives;
-                    Dispatcher.Invoke(() => txtLives.Text = "Lives: " + lives);
+                    Dispatcher.Invoke(() => txtLives.Text = "Lives: " + Game.lives);
                 }
             });
         }
@@ -99,23 +100,40 @@ namespace TowerDefenseGUI
                     ++counter;
                 }
             }
-            if (turrets != null)
-            {
-                foreach (Image t in turrets)
-                {
-                    //t.RenderTransform;
-                }
-            }
         }
+        // creates a new coordinationg image for the given enemy "e" and and places on the screen and adds it to
+        // the list of images of enemies in the view
         public void AddEnemy(Enemy e)
         {
-            enemies.Add(e.image);
-            GameWindowCanvas.Children.Add(e.image);
+            Image i = new Image();
+            i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
+            i.RenderTransformOrigin = new Point(0.5, 0.5);
+            if (e.imageID == 3) // if it's a boss it's bigger! :)
+            {
+                i.Width = 80;
+                i.Height = 80;
+            }
+            else
+            {
+                i.Width = 50;
+                i.Height = 50;
+            }
+            e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
+            enemies.Add(i);
+            GameWindowCanvas.Children.Add(i);
+            
         }
+        // removes a specified enemy from the game state and the view
         public void RemoveEnemy(Enemy e)
-        {
-            enemies.Remove(e.image);
-            GameWindowCanvas.Children.Remove(e.image);
+        {   
+            game.currentEnemies.Remove(e);
+            Spawner.enemies.Remove(e);  // remove it from the game state
+            GameWindowCanvas.Children.Remove(enemies[e.imageIndex]); // remove from the game window canvas
+            enemies.RemoveAt(e.imageIndex);     // remove it from the image list in the view
+            for (int i = e.imageIndex; i < enemies.Count; ++i)
+            {
+                Spawner.enemies[i].imageIndex -= 1;
+            }
         }
 
         public int SnapToGridY(int y)

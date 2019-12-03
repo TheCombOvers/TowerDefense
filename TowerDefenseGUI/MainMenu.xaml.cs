@@ -20,6 +20,7 @@ namespace TowerDefenseGUI
     /// </summary>
     public partial class MainMenu : Window
     {
+        public bool cheat = true;
         public MainMenu()
         {
             InitializeComponent();
@@ -27,6 +28,9 @@ namespace TowerDefenseGUI
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            //DifficultyPage diffPage = new DifficultyPage();
+            //this.Content = diffPage;
+
             // Run code to open difficulty selection and map selection window
             // If page closes without finishing, return;
             // else:
@@ -34,7 +38,7 @@ namespace TowerDefenseGUI
 
             // For Alpha, just launch Game Window
 
-            var gameWindow = new GameWindow();
+            var gameWindow = new GameWindow(cheat);
             gameWindow.Show();
         }
 
@@ -61,6 +65,21 @@ namespace TowerDefenseGUI
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             // Add code for Loading a game here
+        }
+
+        private void CheatMode_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheatMode.Content.ToString() == "Cheat Mode: On")
+            {
+                CheatMode.Content = "Cheat Mode: Off";
+                cheat = false;
+            }
+            else
+            {
+                CheatMode.Content = "Cheat Mode: On";
+                cheat = true;
+            }
+
         }
     }
 }

@@ -27,6 +27,7 @@ namespace TowerDefenseGUI
         public static Boss MakeBoss()
         {
             Boss b = new Boss();
+            b.imageID = 3;
             b.health = 100;
             b.rewardMoney = 50;
             b.speed = 20 / 60;

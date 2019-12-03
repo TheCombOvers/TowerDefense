@@ -9,7 +9,6 @@ namespace TowerDefenseGUI
 {
     public abstract class Enemy : ISerializeObject
     {
-        public Image image;
         public int rewardMoney;
         public int rewardScore;
         public double health;
@@ -18,6 +17,8 @@ namespace TowerDefenseGUI
         public int pathProgress;
         public double posX;
         public double posY;
+        public int imageID;
+        public int imageIndex;
 
         public void UpdatePos()
         {
@@ -48,7 +49,7 @@ namespace TowerDefenseGUI
             if (pathProgress > path.Count - 1)
             {
                 Game.TakeLife();
-                Spawner.Remove(this);
+                Spawner.RemoveEnemy(this);
                 return new Intersection();
             }
             var dir = path[pathProgress].direction;
@@ -78,7 +79,7 @@ namespace TowerDefenseGUI
             }
             else
             {
-                Spawner.Remove(this);
+                Spawner.RemoveEnemy(this);
             }
         }
 

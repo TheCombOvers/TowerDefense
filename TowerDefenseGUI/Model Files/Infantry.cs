@@ -29,11 +29,7 @@ namespace TowerDefenseGUI
         public static Infantry MakeInfantry()
         {
             Infantry i = new Infantry();
-            i.image = new Image();
-            i.image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Basic Unit.png"));
-            i.image.RenderTransformOrigin = new Point(0.5, 0.5);
-            i.image.Width = 50;
-            i.image.Height = 50;
+            i.imageID = 0;
             i.health = 20;
             i.rewardMoney = 5;
             i.speed = 2;
