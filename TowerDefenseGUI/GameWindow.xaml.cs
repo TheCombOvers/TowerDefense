@@ -26,7 +26,6 @@ namespace TowerDefenseGUI
         Timer nextWaveTimer; // for auto starting next wave
         List<Image> enemies;
         List<string> eImageSources; // 0:infantry, 1:vehicle, 2:aircraft, 3:ground boss
-        public bool cheatMode;
         bool loop;
         System.Drawing.Point currentposition;
         int lives;
@@ -43,14 +42,14 @@ namespace TowerDefenseGUI
         bool laserplace;
         bool stunplace;
 
-        public GameWindow()
+        public GameWindow(bool cheat)
         {
             InitializeComponent();
             enemies = new List<Image>();
             eImageSources = new List<string>();
             eImageSources.Add("pack://application:,,,/Resources/Basic Ground Unit.png");
-
-            game = new Game(0, AddEnemy, RemoveEnemy);
+            // add all the image sources-levi
+            game = new Game(0, cheat, AddEnemy, RemoveEnemy);
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
@@ -65,9 +64,7 @@ namespace TowerDefenseGUI
             {
                 while (true)
                 {
-                    int updatelives = game.SetLives();
-                    lives = updatelives;
-                    Dispatcher.Invoke(() => txtLives.Text = "Lives: " + lives);
+                    Dispatcher.Invoke(() => txtLives.Text = "Lives: " + Game.lives);
                 }
             });
         }

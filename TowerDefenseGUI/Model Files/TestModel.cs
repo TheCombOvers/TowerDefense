@@ -13,7 +13,7 @@ namespace TowerDefenseGUI
         [Test]
         public void LoadGame_ValidInput_ValidClass()
         {
-            Game g = new Game(0, null, null);
+            Game g = new Game(0, false, null, null);
             Game.map = new Map(0);
             g.currentWave = 5;
             g.waveProgress = 3;
@@ -60,12 +60,11 @@ namespace TowerDefenseGUI
             Assert.AreEqual(g.waveTotal, loadedGame.waveTotal);
             Assert.AreEqual(g.isWaveOver, loadedGame.isWaveOver);
             Assert.AreEqual(g.currentTurrets.Count, loadedGame.currentTurrets.Count);
-
         }
         [Test]
         public void SaveGame_ValidInput_ValidString()
         {
-            Game g = new Game(0, null, null);
+            Game g = new Game(0, false, null, null);
             g.currentWave = 5;
             g.waveTotal = 20;
             g.waveProgress = 3;

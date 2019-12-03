@@ -38,7 +38,7 @@ namespace TowerDefenseGUI
 
             // For Alpha, just launch Game Window
 
-            var gameWindow = new GameWindow();
+            var gameWindow = new GameWindow(cheat);
             gameWindow.Show();
         }
 

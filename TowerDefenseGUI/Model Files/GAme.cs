@@ -19,7 +19,7 @@ namespace TowerDefenseGUI
         public int waveTotal; // number of waves required to win the game
         public int currentWave;
         public bool isWaveOver;
-        public bool cheatMode;
+        static public bool cheatMode;
         public int waveProgress;
         public int money;
         public int score;
@@ -32,12 +32,13 @@ namespace TowerDefenseGUI
         public Action<Enemy> removeEnemy;
 
 
-        public Game(int mapID, Action<Enemy> add, Action<Enemy> remove)
+        public Game(int mapID,bool cheat, Action<Enemy> add, Action<Enemy> remove)
         {
+            cheatMode = cheat;
             currentWave = 0;
             isWaveOver = false;
-            waveProgress = 0;
-            money = 200;
+            waveProgress = 0;         
+            money = cheat == true ? 999999: 200;
             score = 0;
             lives = 10;
             map = new Map(mapID);
@@ -74,32 +75,24 @@ namespace TowerDefenseGUI
 
         public static void TakeLife()
         {
-            if (lives > 0)
+            if (lives > 0 && cheatMode != true)
             {
-                lives--;
-                
+                lives--;          
             }
         }
 
-        public int SetLives()
-        {
-            return lives;
-        }
-
-
-        // loads a game that is saved in the file named "filename" and starts that saved game
+        // loads a game that is saved in the file named "filename" and returns that game
         public static Game LoadGame(string fileName, Action<Enemy> add, Action<Enemy> remove)
         {
             using (StreamReader reader = new StreamReader(fileName))
             {
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
-                Game newGame = new Game(0, add, remove); // needs changed later 0 = map idex
+                Game newGame = new Game(0, true, add, remove);
                 if (begin == "NG\t")
                 {
-                    // switch case here calling the different factory methods depending on which types we run into
-                    // you gotta make the factory methods also ask schuab about this and how it relates to the intereface
+                    
                     string[] gameInfo = reader.ReadLine().Split(',');   // grab the game state information
-
+                    
                     map = new Map(Convert.ToInt32(gameInfo[0]));    // create a new map based on the mapid
                     newGame.currentWave = Convert.ToInt32(gameInfo[1]);
                     newGame.waveProgress = Convert.ToInt32(gameInfo[2]);
@@ -109,6 +102,7 @@ namespace TowerDefenseGUI
                     if (gameInfo[6] == "false") { newGame.isWaveOver = false; }
                     else { newGame.isWaveOver = true; }
                     Game.lives = Convert.ToInt32(gameInfo[7]);
+                    if (gameInfo[8] == "false") { cheatMode = false; } // cheatmode is static btw
 
                     while (true)
                     {
@@ -208,7 +202,7 @@ namespace TowerDefenseGUI
             {
                 writer.WriteLine("NG");
                 string waveOver = isWaveOver == true ? "true" : "false";
-                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7}", map.mapID, currentWave, waveProgress, score, money, waveTotal, waveOver, lives);
+                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", map.mapID, currentWave, waveProgress, score, money, waveTotal, waveOver, lives, cheatMode);
                 writer.WriteLine(gameState);
                 if (currentEnemies.Count != 0)
                 {
