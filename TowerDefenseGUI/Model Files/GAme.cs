@@ -111,7 +111,6 @@ namespace TowerDefenseGUI
 
                         if (section.Trim() == "ENEMIES")
                         {
-
                             while (true)
                             {
                                 string line = reader.ReadLine(); // read a line
@@ -122,22 +121,22 @@ namespace TowerDefenseGUI
                                     case "boss":
                                         Boss b = Boss.MakeBoss();
                                         b.Deserialize(line);
-                                        newGame.currentEnemies.Add(b);
+                                        Spawner.enemies.Add(b);
                                         break;
                                     case "aircraft":
                                         Aircraft a = Aircraft.MakeAircraft();
                                         a.Deserialize(line);
-                                        newGame.currentEnemies.Add(a);
+                                        Spawner.enemies.Add(a);
                                         break;
                                     case "infantry":
                                         Infantry i = Infantry.MakeInfantry();
                                         i.Deserialize(line);
-                                        newGame.currentEnemies.Add(i);
+                                        Spawner.enemies.Add(i);
                                         break;
                                     case "vehicle":
                                         Vehicle v = Vehicle.MakeVehicle();
                                         v.Deserialize(line);
-                                        newGame.currentEnemies.Add(v);
+                                        Spawner.enemies.Add(v);
                                         break;
                                     default:
                                         Debug.WriteLine("The enemy type was not correct.");
