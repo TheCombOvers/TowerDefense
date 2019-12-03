@@ -20,9 +20,20 @@ namespace TowerDefenseGUI
     /// </summary>
     public partial class DifficultyPage : Page
     {
-        public DifficultyPage()
+        public bool Cheat;
+
+        public DifficultyPage(bool cheat = false)
         {
             InitializeComponent();
+            Cheat = cheat;
+        }
+
+        private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
+        {
+            var gameWindow = new GameWindow(Cheat);
+            gameWindow.Show();
+            Window hostWindow = Window.GetWindow(this);
+            hostWindow.Close();
         }
     }
 }
