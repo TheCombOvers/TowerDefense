@@ -34,12 +34,14 @@
         <Button x:Name="btnFlakLaserBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" Canvas.Left="1319" Canvas.Top="352" Click="btnFlakLaserBuy_Click"/>
         <Rectangle Fill="#FFF4F4F5" Height="2" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="428" Canvas.Left="1000" Canvas.Top="680"/>
         <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnNextWave_Click" Canvas.Left="1020" Canvas.Top="700"/>
+        <Button x:Name="btnPauseGame" Content="Pause" FontSize="20" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnPauseGame_Click" Canvas.Left="1130" Canvas.Top="699"/>
+        <Button x:Name="btnSaveGame" Content="Save Game" FontSize="20" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnSaveGame_Click" Canvas.Left="1130" Canvas.Top="772"/>
         <TextBlock x:Name="txtLives" HorizontalAlignment="Left" Height="42" TextWrapping="Wrap" Text="Lives: " FontSize="25" VerticalAlignment="Top" Width="98" Canvas.Left="1258" Canvas.Top="818"/>
         <Rectangle Fill="#FFF4F4F5" Height="188" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="4" Canvas.Left="1248" Canvas.Top="682"/>
         <TextBlock x:Name="txtMoney" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="$" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1258" Canvas.Top="760"/>
         <Rectangle Fill="#FFF4F4F5" Height="4" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176" Canvas.Left="1252" Canvas.Top="738"/>
         <Rectangle Fill="#FFF4F4F5" Height="4" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176" Canvas.Left="1252" Canvas.Top="810"/>
         <TextBlock x:Name="txtMoney_Copy" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" Text="Points: 0" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1258" Canvas.Top="692"/>
-        <Image x:Name="imagetowerplace"  HorizontalAlignment="Left" Height="125" Margin="841,124,0,0" VerticalAlignment="Top" Width="125" MouseDown="MapImage_MouseDown"/>
+        <Image x:Name="imagetowerplace"  HorizontalAlignment="Center" Height="125" Margin="841,124,0,0" VerticalAlignment="Center" Width="125" MouseDown="MapImage_MouseDown" RenderTransformOrigin="0.5,0.5"/>
     </Canvas>
 </Window>
