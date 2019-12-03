@@ -58,7 +58,6 @@ namespace TowerDefenseGUI
             double x = xPos - posX;
             double y = yPos - posY;
             double dist = Math.Sqrt((y * y) + (x * x));
-            Console.WriteLine(dist);
             return dist;
         }
 
