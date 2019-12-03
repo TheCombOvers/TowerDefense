@@ -42,14 +42,23 @@ namespace TowerDefenseGUI
         bool laserplace;
         bool stunplace;
 
-        public GameWindow(bool cheat)
+        public GameWindow(bool cheat, bool isLoad)
         {
             InitializeComponent();
             enemies = new List<Image>();
             eImageSources = new List<string>();
             eImageSources.Add("pack://application:,,,/Resources/Basic Ground Unit.png");
             // add all the image sources-levi
-            game = new Game(0, cheat, AddEnemy, RemoveEnemy);
+            
+            // if we're loading a old save then call loadgame else just make a new game instance
+            if (isLoad)
+            {
+                game = Game.LoadGame("SavedGame3.txt", AddEnemy, RemoveEnemy);
+            }
+            else
+            {
+                game = new Game(0, cheat, AddEnemy, RemoveEnemy);
+            }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events

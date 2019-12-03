@@ -77,7 +77,6 @@ namespace TowerDefenseGUI
                 CheatMode.Content = "Cheat Mode: On";
                 cheat = true;
             }
-
         }
     }
 }
