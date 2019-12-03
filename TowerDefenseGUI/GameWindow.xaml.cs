@@ -387,9 +387,7 @@ namespace TowerDefenseGUI
                     double posX = SnapToGridX(mousePos.X);
                     double posY = SnapToGridY(mousePos.Y);
                     image.Margin = new Thickness(posX, posY, 0, 0);
-                    MachineGun g = MachineGun.MakeMachineGun(posX, posY);
-                    g.xPos = Convert.ToInt32(posX);
-                    g.yPos = Convert.ToInt32(posY);
+                    MachineGun g = MachineGun.MakeMachineGun(posX+25, posY+25);
                     game.currentTurrets.Add(g);
                     image.Width = 50;
                     image.Height = 50;
