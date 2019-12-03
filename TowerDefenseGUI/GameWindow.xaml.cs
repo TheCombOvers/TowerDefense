@@ -28,7 +28,6 @@ namespace TowerDefenseGUI
         List<string> eImageSources; // 0:infantry, 1:vehicle, 2:aircraft, 3:ground boss
         bool loop;
         Point mousePos;
-        int lives;
         bool machinegun;
         bool tesla;
         bool flak;
@@ -60,13 +59,7 @@ namespace TowerDefenseGUI
             flak = true;
             mortar = true;
             txtMoney.Text += game.money;
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    Dispatcher.Invoke(() => txtLives.Text = "Lives: " + Game.lives);
-                }
-            });
+            txtLives.Text = "Lives: " + Game.lives;
         }
         
         // main method that updates the entire game... yikes
@@ -79,6 +72,8 @@ namespace TowerDefenseGUI
             //Dispatcher.Invoke(() =>  UpdateView());
             //});    
             game.UpdateModel();
+            txtLives.Text = "Lives: " + Game.lives;
+            txtMoney.Text = "$" + game.money;
             UpdateView();
         }
         public int SnapToGridX(int x)

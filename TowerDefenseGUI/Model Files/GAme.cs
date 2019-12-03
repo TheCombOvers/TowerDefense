@@ -228,5 +228,41 @@ namespace TowerDefenseGUI
                 writer.WriteLine("END");
             }
         }
+
+        public void AddMoney(string unit)
+        {
+            if (unit == "basic infantry")
+            {
+                money += 5;
+            }
+            else if (unit == "advanced infantry")
+            {
+                money += 15;
+            }
+            else if (unit == "basic vehicle")
+            {
+                money += 10;
+            }
+            else if (unit == "advanced vehicle")
+            {
+                money += 25;
+            }
+            else if (unit == "ground boss")
+            {
+                money += 50;
+            }
+            else if (unit == "basic aircraft")
+            {
+                money += 10;
+            }
+            else if (unit == "advanced aircraft")
+            {
+                money += 20;
+            }
+            else if (unit == "air boss")
+            {
+                money += 75;
+            }
+        }
     }
 }
