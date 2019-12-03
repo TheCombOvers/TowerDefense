@@ -77,7 +77,7 @@ namespace TowerDefenseGUI
         {
             if (lives > 0 && cheatMode != true)
             {
-                lives--;          
+                lives--;
             }
         }
 

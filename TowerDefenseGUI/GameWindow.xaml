@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
+        Closing="GameWindow_Closing"
         Title="Window1" Height="900" Width="1440">
     <Canvas x:Name="GameWindowCanvas">
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="870" Margin="1000,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="428"/>
@@ -42,6 +43,6 @@
         <Rectangle Fill="#FFF4F4F5" Height="4" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176" Canvas.Left="1252" Canvas.Top="738"/>
         <Rectangle Fill="#FFF4F4F5" Height="4" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176" Canvas.Left="1252" Canvas.Top="810"/>
         <TextBlock x:Name="txtMoney_Copy" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" Text="Points: 0" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1258" Canvas.Top="692"/>
-        <Image x:Name="imagetowerplace"  HorizontalAlignment="Center" Height="125" Margin="841,124,0,0" VerticalAlignment="Center" Width="125" MouseDown="MapImage_MouseDown" RenderTransformOrigin="0.5,0.5"/>
+        <Image x:Name="imagetowerplace"  HorizontalAlignment="Center" Margin="841,124,0,0" VerticalAlignment="Center" MouseDown="MapImage_MouseDown" RenderTransformOrigin="0.5,0.5"/>
     </Canvas>
 </Window>
