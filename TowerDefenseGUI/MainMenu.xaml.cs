@@ -21,6 +21,7 @@ namespace TowerDefenseGUI
     public partial class MainMenu : Window
     {
         public bool cheat = true;
+        public bool load = false;
         public MainMenu()
         {
             InitializeComponent();
@@ -28,8 +29,18 @@ namespace TowerDefenseGUI
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            //DifficultyPage diffPage = new DifficultyPage();
+            //this.Content = diffPage;
+
+            // Run code to open difficulty selection and map selection window
+            // If page closes without finishing, return;
+            // else:
+            // Start Game with current variables and selections
+
+            // For Alpha, just launch Game Window
             DifficultyPage diffPage = new DifficultyPage();
             this.Content = diffPage;
+                            
         }
 
         private void HighScoreButton_Click(object sender, RoutedEventArgs e)
@@ -50,12 +61,7 @@ namespace TowerDefenseGUI
         {
             // Bring up the wiki page in a browser
             System.Diagnostics.Process.Start("https://github.com/TheCombOvers/TowerDefense/wiki");
-        }
-
-        private void LoadButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Add code for Loading a game here
-        }
+        }    
 
         private void CheatMode_Click(object sender, RoutedEventArgs e)
         {
@@ -69,7 +75,14 @@ namespace TowerDefenseGUI
                 CheatMode.Content = "Cheat Mode: On";
                 cheat = true;
             }
+        }
 
+        private void LoadButton_Click(object sender, RoutedEventArgs e)
+        {
+            // if we're loading a old save then pass in true for isLoad, else pass false
+            load = sender == LoadButton ? true : false;
+            var gameWindow = new GameWindow(cheat, load);
+            gameWindow.Show();
         }
     }
 }
