@@ -196,8 +196,7 @@ namespace TowerDefenseGUI
                         {
                             Dispatcher.Invoke(() => {
                                 mousePos = Mouse.GetPosition(GameWindowCanvas);
-                                Console.WriteLine(mousePos.X + " , " + mousePos.Y);
-                                imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
+                                imagetowerplace.Margin = new Thickness((int)mousePos.X, (int)mousePos.Y, 0, 0);
                                 });
                         }
                     });
@@ -367,12 +366,13 @@ namespace TowerDefenseGUI
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
                     Image image = new Image();
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                    image.RenderTransformOrigin = new Point(0.5, 0.5);
                     double posX = mousePos.X;
                     double posY = mousePos.Y;
-                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
+                    image.Margin = new Thickness(posX, posY, 0, 0);
                     MachineGun g = MachineGun.MakeMachineGun(posX, posY);
-                    g.xPos = Convert.ToInt32(posX * .9);
-                    g.xPos = Convert.ToInt32(posY * .9);
+                    g.xPos = Convert.ToInt32(posX);
+                    g.yPos = Convert.ToInt32(posY);
                     game.currentTurrets.Add(g);
                     image.Width = 50;
                     image.Height = 50;
