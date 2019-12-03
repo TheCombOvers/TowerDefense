@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
+        Closing="GameWindow_Closing"
         Title="Window1" Height="900" Width="1440">
     <Canvas x:Name="GameWindowCanvas">
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="870" Margin="1000,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="428"/>

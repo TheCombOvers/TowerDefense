@@ -650,6 +650,12 @@ namespace TowerDefenseGUI
                 }
             }
         }
+
+        private void GameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+        }
     }
 }
 
