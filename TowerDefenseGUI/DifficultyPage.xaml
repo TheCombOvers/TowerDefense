@@ -11,7 +11,7 @@
         <!--Borders and Main Menu-->
         <Border CornerRadius="40" BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>
         <Border BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>
-        <Button Content="Main Menu" Canvas.Left="50" Canvas.Top="45" Width="174" Height="50" FontSize="26"/>
+        <Button Content="Main Menu" Canvas.Left="50" Canvas.Top="45" Width="174" Height="50" FontSize="26" Click="BtnMainMenu_Click"/>
         
         <!--Easy Difficulty Map Section-->
         <Image Source="Resources\path1.png" Height="300" Width="300" Canvas.Left="110" Canvas.Top="150" />

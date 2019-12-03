@@ -28,7 +28,6 @@ namespace TowerDefenseGUI
         List<string> eImageSources; // 0:infantry, 1:vehicle, 2:aircraft, 3:ground boss
         bool loop;
         Point mousePos;
-        int lives;
         bool machinegun;
         bool tesla;
         bool flak;
@@ -69,13 +68,7 @@ namespace TowerDefenseGUI
             flak = true;
             mortar = true;
             txtMoney.Text += game.money;
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    Dispatcher.Invoke(() => txtLives.Text = "Lives: " + Game.lives);
-                }
-            });
+            txtLives.Text = "Lives: " + Game.lives;
         }
         
         // main method that updates the entire game... yikes
@@ -90,16 +83,11 @@ namespace TowerDefenseGUI
             game.UpdateModel();
             UpdateView();
         }
-        public int SnapToGridX(int x)
-        {
-            int tempx = x % 50;
-            int newx = (tempx * 50) + 25;
-            return newx;
-        }
         public void UpdateView()
         {
             // access the game properties
             // draw objects based off the properties
+            txtLives.Text = "Lives: " + Game.lives;
             int counter = 0;
             if (enemies != null)
             {
@@ -143,13 +131,6 @@ namespace TowerDefenseGUI
             {
                 Spawner.enemies[i].imageIndex -= 1;
             }
-        }
-
-        public int SnapToGridY(int y)
-        {
-            int tempy = y % 50;
-            int newy = (tempy * 50) + 25;
-            return newy;
         }
 
         private void btnNextWave_Click(object sender, RoutedEventArgs e)
@@ -205,7 +186,7 @@ namespace TowerDefenseGUI
                         {
                             Dispatcher.Invoke(() => {
                                 mousePos = Mouse.GetPosition(GameWindowCanvas);
-                                imagetowerplace.Margin = new Thickness((int)mousePos.X, (int)mousePos.Y, 0, 0);
+                                imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
                                 });
                         }
                     });
@@ -362,6 +343,19 @@ namespace TowerDefenseGUI
                 }
             }
         }
+        public int SnapToGridX(double x)
+        {
+            int tempx = (int) x % 50;
+            int newx = (tempx * 50) + 25;
+            return newx;
+        }
+        public int SnapToGridY(double y)
+        {
+            int tempy = (int) y % 50;
+            int newy = (tempy * 50) + 25;
+            return newy;
+        }
+
 
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -376,8 +370,9 @@ namespace TowerDefenseGUI
                     Image image = new Image();
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
                     image.RenderTransformOrigin = new Point(0.5, 0.5);
-                    double posX = mousePos.X;
-                    double posY = mousePos.Y;
+                    mousePos = e.GetPosition(GameWindowCanvas);
+                    double posX = SnapToGridX(mousePos.X);
+                    double posY = SnapToGridY(mousePos.Y);
                     image.Margin = new Thickness(posX, posY, 0, 0);
                     MachineGun g = MachineGun.MakeMachineGun(posX, posY);
                     g.xPos = Convert.ToInt32(posX);
