@@ -26,6 +26,7 @@ namespace TowerDefenseGUI
         public static Aircraft MakeAircraft()
         {
             Aircraft a = new Aircraft();
+            a.imageID = 2;
             a.health = 20;
             a.rewardMoney = 10;
             a.speed = 50 / 60;

@@ -27,6 +27,7 @@ namespace TowerDefenseGUI
         public static Vehicle MakeVehicle()
         {
             Vehicle v = new Vehicle();
+            v.imageID = 1;
             v.health = 30;
             v.rewardMoney = 10;
             v.speed = 80 / 60;
