@@ -8,18 +8,30 @@ namespace TowerDefenseGUI
     /// </summary>
     public partial class DifficultyPage : Page
     {
-        public bool Cheat;
+        public bool Cheat = false;
 
-        public DifficultyPage(bool cheat = false)
+        public DifficultyPage()
         {
             InitializeComponent();
-            Cheat = cheat;
         }
         private void BtnMainMenu_Click(object sender, RoutedEventArgs e)
         {
             MainMenu mainMenu = new MainMenu();
             mainMenu.Show();
             Window.GetWindow(this).Close();
+        }
+        private void CheatMode_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheatMode.Content.ToString() == "Cheat Mode: On")
+            {
+                CheatMode.Content = "Cheat Mode: Off";
+                Cheat = false;
+            }
+            else
+            {
+                CheatMode.Content = "Cheat Mode: On";
+                Cheat = true;
+            }
         }
 
         private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
