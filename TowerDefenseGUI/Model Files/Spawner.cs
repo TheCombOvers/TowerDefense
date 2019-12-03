@@ -135,6 +135,7 @@ namespace TowerDefenseGUI
         {
             Remove(enemy);
             enemies.Remove(enemy);
+
         }
     }
 }
