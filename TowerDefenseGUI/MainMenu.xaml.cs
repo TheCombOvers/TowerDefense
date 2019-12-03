@@ -38,11 +38,9 @@ namespace TowerDefenseGUI
             // Start Game with current variables and selections
 
             // For Alpha, just launch Game Window
-
-            // if we're loading a old save then pass in true for isLoad, else pass false
-            load = sender == LoadButton ? true : false;       
-            var gameWindow = new GameWindow(cheat, load);
-            gameWindow.Show();                       
+            DifficultyPage diffPage = new DifficultyPage();
+            this.Content = diffPage;
+                            
         }
 
         private void HighScoreButton_Click(object sender, RoutedEventArgs e)
@@ -77,6 +75,14 @@ namespace TowerDefenseGUI
                 CheatMode.Content = "Cheat Mode: On";
                 cheat = true;
             }
+        }
+
+        private void LoadButton_Click(object sender, RoutedEventArgs e)
+        {
+            // if we're loading a old save then pass in true for isLoad, else pass false
+            load = sender == LoadButton ? true : false;
+            var gameWindow = new GameWindow(cheat, load);
+            gameWindow.Show();
         }
     }
 }

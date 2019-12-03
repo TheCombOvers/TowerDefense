@@ -53,7 +53,7 @@ namespace TowerDefenseGUI
             // if we're loading a old save then call loadgame else just make a new game instance
             if (isLoad)
             {
-                game = Game.LoadGame("SavedGame3.txt", AddEnemy, RemoveEnemy);
+                game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", AddEnemy, RemoveEnemy);
             }
             else
             {
@@ -663,6 +663,12 @@ namespace TowerDefenseGUI
                     });
                 }
             }
+        }
+
+        private void GameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
         }
     }
 }
