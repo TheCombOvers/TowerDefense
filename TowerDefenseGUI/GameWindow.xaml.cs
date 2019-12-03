@@ -147,6 +147,24 @@ namespace TowerDefenseGUI
         {
             game.NextWave();
         }
+        private void btnSaveGame_Click(object sender, RoutedEventArgs e)
+        {
+            // Code for saving the game state
+        }
+        private void btnPauseGame_Click(object sender, RoutedEventArgs e)
+        {
+            Button pressBtn = (Button)sender;
+            pressBtn.Content = "Resume";
+            pressBtn.Click += btnResumeGame_Click;
+            Pause();
+        }
+        private void btnResumeGame_Click(object sender, RoutedEventArgs e)
+        {
+            Button pressBtn = (Button)sender;
+            pressBtn.Content = "Pause";
+            pressBtn.Click += btnPauseGame_Click;
+            gameTimer.Start();
+        }
         public void Pause()
         {
             gameTimer.Stop();
