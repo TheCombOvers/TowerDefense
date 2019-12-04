@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows.Threading;
 
 namespace TowerDefenseGUI
 {
@@ -23,10 +24,14 @@ namespace TowerDefenseGUI
             //AddEnemy(e);
             int count = DetermineWave(wave);
             GenerateWave(wave, count);
-            foreach (Enemy en in enemies)
-            {
-                AddEnemy(en);
-            }
+            //Task.Run(() =>
+            //{
+                foreach (Enemy en in enemies)
+                {
+                    AddEnemy(en);
+                    //Task.Delay(500);
+                }
+            //});
         }
 
         private void GenerateWave(int wave, int count)

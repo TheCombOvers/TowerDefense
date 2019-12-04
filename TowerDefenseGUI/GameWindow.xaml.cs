@@ -102,9 +102,14 @@ namespace TowerDefenseGUI
                 }
             }
         }
-        // creates a new coordinationg image for the given enemy "e" and and places on the screen and adds it to
-        // the list of images of enemies in the view
-        public void AddEnemy(Enemy e)
+        public void RotateTurret(Turret tur, int degrees)
+        {
+            //turrets[tur.index].RenderTransform = new RotateTransform(degrees);
+        }
+
+            // creates a new coordinationg image for the given enemy "e" and and places on the screen and adds it to
+            // the list of images of enemies in the view
+            public void AddEnemy(Enemy e)
         {
             Image i = new Image();
             i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
