@@ -18,6 +18,8 @@ namespace TowerDefenseGUI
         public double fireRate;
         public double xPos;
         public double yPos;
+        public int imageID;
+        
 
         public void Attack(Enemy e)
         {

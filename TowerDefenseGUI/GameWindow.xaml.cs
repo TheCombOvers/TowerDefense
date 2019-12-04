@@ -25,8 +25,10 @@ namespace TowerDefenseGUI
         DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
         List<Image> enemies;
+        List<Image> turrets;
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
+
         bool loop;
         Point mousePos;
         bool machinegun;
@@ -61,6 +63,7 @@ namespace TowerDefenseGUI
             if (isLoad)
             {
                 game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", AddEnemy, RemoveEnemy);
+                LoadTurretImgs();
             }
             else
             {
@@ -163,6 +166,13 @@ namespace TowerDefenseGUI
         {
             gameTimer.Stop();
         }
+        public void LoadTurretImgs()
+        {
+            for (int i = 0; i < game.currentTurrets.Count; ++i)
+            {
+
+            }
+        }
 
         //Creates a new bitmap everytime the buy button is clicked
         //and loads the machine gun place image into it
@@ -226,7 +236,6 @@ namespace TowerDefenseGUI
                 }
             }
         }
-
         private void updateTowerPlace(object sender, EventArgs e)
         {
             if (loop == true)
@@ -373,8 +382,6 @@ namespace TowerDefenseGUI
             Console.WriteLine(tempy);
             return newy;
         }
-
-
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (loop == true)
@@ -495,7 +502,6 @@ namespace TowerDefenseGUI
                 }
             }
         }
-
         private void btnAdvanced_Click(object sender, RoutedEventArgs e)
         {
             btnBasic.IsEnabled = true;
@@ -525,7 +531,6 @@ namespace TowerDefenseGUI
             txtMortarStunDmg.Text = "Damage: 15/s";
             txtMortarStunCost.Text = "Cost: $200";
         }
-
         private void btnBasic_Click(object sender, RoutedEventArgs e)
         {
             btnBasic.IsEnabled = false;
@@ -555,7 +560,6 @@ namespace TowerDefenseGUI
             txtMortarStunDmg.Text = "Damage: 50/5s";
             txtMortarStunCost.Text = "Cost: $150";
         }
-
         private void btnFlakLaserBuy_Click(object sender, RoutedEventArgs e)
         {
             if (flak == true)
@@ -615,7 +619,6 @@ namespace TowerDefenseGUI
                 }
             }
         }
-
         private void btnMortarStunBuy_Click(object sender, RoutedEventArgs e)
         {
             if (mortar == true)
@@ -675,7 +678,6 @@ namespace TowerDefenseGUI
                 }
             }
         }
-
         private void GameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MainMenu mainMenu = new MainMenu();
