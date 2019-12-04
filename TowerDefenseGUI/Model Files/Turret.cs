@@ -19,7 +19,7 @@ namespace TowerDefenseGUI
         public double xPos;
         public double yPos;
         public int imageID;
-        
+        public event EventHandler<int> RotateTurret;
 
         public void Attack(Enemy e)
         {
@@ -46,6 +46,8 @@ namespace TowerDefenseGUI
             foreach (Enemy e in enemies)
             {
                 double dist = CalculateDistance(xPos, yPos, e.posX, e.posY);
+                int deg = 90;
+                RotateTurret(this, deg);
                 if (range >= dist)
                 {
                     Console.WriteLine("Target in range");

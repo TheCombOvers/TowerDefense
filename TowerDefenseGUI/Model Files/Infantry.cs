@@ -35,7 +35,7 @@ namespace TowerDefenseGUI
                     i.imageID = 0;
                     i.health = 20;
                     i.rewardMoney = 5;
-                    i.speed = 2; // decide speed for advance type, replace 4 with desired speed 
+                    i.speed = 2.5; // decide speed for advance type, replace 4 with desired speed 
                     i.rewardScore = 2;
                     i.type = "binfantry";
                     break;
@@ -43,7 +43,7 @@ namespace TowerDefenseGUI
                     i.imageID = 4;
                     i.health = 50;
                     i.rewardMoney = 15;
-                    i.speed = 4; // decide speed for advance type, replace 4 with desired speed 
+                    i.speed = 2; // decide speed for advance type, replace 4 with desired speed 
                     i.rewardScore = 5;
                     i.type = "ainfantry";
                     break;

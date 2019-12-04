@@ -69,7 +69,6 @@ namespace TowerDefenseGUI
             var gameWindow = new GameWindow(cheat, true, 0);
             gameWindow.Show();
             Close();
-
         }
     }
 }
