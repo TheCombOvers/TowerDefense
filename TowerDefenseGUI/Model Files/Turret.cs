@@ -15,7 +15,7 @@ namespace TowerDefenseGUI
         public double damage;
         public double range;
         public string type;
-        public double fireRate;
+        public double fireRate = 60;
         public double xPos;
         public double yPos;
         public int imageID;
@@ -25,17 +25,18 @@ namespace TowerDefenseGUI
         {
             if (e == null)
             {
+                fireRate = 60;
                 return;
             }
             else
             {
-                fireRate++;
                 Console.WriteLine("Firerate = " + fireRate);
                 if (fireRate % 60 == 0)
                 {
                     Console.WriteLine("Attacking");
                     e.TakeDamage(damage);
                 }
+                fireRate++;
             }
         }
 
