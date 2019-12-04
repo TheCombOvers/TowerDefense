@@ -8,10 +8,11 @@
       d:DesignHeight="900" d:DesignWidth="1440"
       Title="Tower Defense" Background="#20572f">
     <Canvas>
-        <!--Borders and Main Menu-->
+        <!--Borders and Header Items-->
         <Border CornerRadius="40" BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>
         <Border BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>
         <Button Content="Main Menu" Canvas.Left="50" Canvas.Top="45" Width="174" Height="50" FontSize="26" Click="BtnMainMenu_Click"/>
+        <Slider Minimum="1" Maximum="3" TickFrequency="1" IsSnapToTickEnabled="True" Width="260" Canvas.Left="825" Canvas.Top="60" Height="35"/>
         <Button Click="CheatMode_Click" Background="Transparent" Foreground="Red" x:Name="CheatMode" Content="Cheat Mode: Off" FontSize="26" Canvas.Left="1120" Canvas.Top="45" Width="267" Height="50"/>
 
         <!--Easy Difficulty Map Section-->
