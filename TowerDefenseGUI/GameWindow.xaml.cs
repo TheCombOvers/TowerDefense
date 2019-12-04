@@ -232,7 +232,7 @@ namespace TowerDefenseGUI
             if (loop == true)
             {
                 mousePos = Mouse.GetPosition(GameWindowCanvas);
-                imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
+                imagetowerplace.Margin = new Thickness(mousePos.X - (imagetowerplace.ActualWidth / 2), mousePos.Y - (imagetowerplace.ActualHeight / 2), 0, 0);
             }
         }
         private void imagetowerplace_MouseDown(object sender, MouseEventArgs e)
