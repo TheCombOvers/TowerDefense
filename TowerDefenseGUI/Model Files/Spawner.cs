@@ -18,7 +18,7 @@ namespace TowerDefenseGUI
             Remove = RemoveEnemy;
             Add = AddEnemy;
 
-            Enemy e = Infantry.MakeInfantry();
+            Enemy e = Infantry.MakeInfantry("b");
             enemies.Add(e);
             AddEnemy(e);
             //int count = DetermineWave(wave);
@@ -35,28 +35,28 @@ namespace TowerDefenseGUI
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(Infantry.MakeInfantry());
+                    enemies.Add(Infantry.MakeInfantry("b"));
                 }
             }
             if (wave == 3)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(Vehicle.MakeVehicle());
+                    enemies.Add(Vehicle.MakeVehicle("b"));
                 }
             }
             if (wave == 5)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(Boss.MakeBoss());
+                    enemies.Add(Boss.MakeBoss("g"));
                 }
             }
             if (wave == 7)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(Aircraft.MakeAircraft());
+                    enemies.Add(Aircraft.MakeAircraft("b"));
                 }
             }
         }

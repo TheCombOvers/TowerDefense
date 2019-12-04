@@ -25,7 +25,8 @@ namespace TowerDefenseGUI
         DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
         List<Image> enemies;
-        List<string> eImageSources; // 0:infantry, 1:vehicle, 2:aircraft, 3:ground boss
+        List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
+        // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
         bool loop;
         Point mousePos;
         bool machinegun;
@@ -45,10 +46,17 @@ namespace TowerDefenseGUI
         {
             InitializeComponent();
             enemies = new List<Image>();
+            // do not mess with the order of these addition please :)
             eImageSources = new List<string>();
             eImageSources.Add("pack://application:,,,/Resources/Basic Ground Unit.png");
-            // add all the image sources-levi
-            
+            eImageSources.Add("pack://application:,,,/Resources/Basic Ground Vehicle.png");
+            eImageSources.Add("pack://application:,,,/Resources/PUT AIR VEHICLE HERE");
+            eImageSources.Add("pack://application:,,,/Resources/Ground Boss.png");
+            eImageSources.Add("pack://application:,,,/Resources/Advanced Ground Unit.png");
+            eImageSources.Add("pack://application:,,,/Resources/Advanced Ground Vehicle.png");
+            eImageSources.Add("pack://application:,,,/Resources/PUT ADVANCED AIRCRAFT HERE");
+            eImageSources.Add("pack://application:,,,/Resources/PUT AIR BOSS HERE");
+
             // if we're loading a old save then call loadgame else just make a new game instance
             if (isLoad)
             {
@@ -100,7 +108,7 @@ namespace TowerDefenseGUI
             Image i = new Image();
             i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
             i.RenderTransformOrigin = new Point(0.5, 0.5);
-            if (e.imageID == 3) // if it's a boss it's bigger! :)
+            if (e.imageID == 3 || e.imageID == 7) // if it's a boss it's bigger! :)
             {
                 i.Width = 80;
                 i.Height = 80;

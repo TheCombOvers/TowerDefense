@@ -22,12 +22,12 @@ namespace TowerDefenseGUI
             g.waveTotal = 20;
             g.isWaveOver = false;
             g.spawner = new Spawner();
-            Infantry i1 = Infantry.MakeInfantry();
+            Infantry i1 = Infantry.MakeInfantry("b");
             i1.posX = 2;
             i1.posY = 4;
             i1.health = 13;
             i1.pathProgress = 3;
-            Vehicle v1 = Vehicle.MakeVehicle();
+            Vehicle v1 = Vehicle.MakeVehicle("b");
             v1.posX = 6;
             v1.posY = 2;
             v1.health = 10;
@@ -87,12 +87,12 @@ namespace TowerDefenseGUI
             g.currentTurrets.Add(s1);
             g.currentTurrets.Add(t1);
             g.spawner = new Spawner();
-            Infantry i1 = Infantry.MakeInfantry();
+            Infantry i1 = Infantry.MakeInfantry("b");
             i1.posX = 2;
             i1.posY = 4;
             i1.health = 13;
             i1.pathProgress = 3;
-            Vehicle v1 = Vehicle.MakeVehicle();
+            Vehicle v1 = Vehicle.MakeVehicle("b");
             v1.posX = 6;
             v1.posY = 2;
             v1.health = 10;
@@ -104,7 +104,7 @@ namespace TowerDefenseGUI
             g.SaveGame("SavedGame1.txt");
             StreamReader reader = new StreamReader("SavedGame1.txt");
             string SerializedGame = reader.ReadToEnd();
-            Assert.AreEqual(SerializedGame, "NG\r\n0,5,3,700,200,20,false,8\r\nENEMIES\r\ninfantry,2,4,13,3\r\nvehicle,6,2,10,2\r\nENDENEMIES\r\nTURRETS\r\nmortar,2,3\r\nstun,7,5\r\ntesla,3,5\r\nENDTURRETS\r\nEND\r\n");
+            Assert.AreEqual(SerializedGame, "NG\r\n0,5,3,700,200,20,false,8\r\nENEMIES\r\nbinfantry,2,4,13,3\r\nbvehicle,6,2,10,2\r\nENDENEMIES\r\nTURRETS\r\nmortar,2,3\r\nstun,7,5\r\ntesla,3,5\r\nENDTURRETS\r\nEND\r\n");
             reader.Close();
         }
     }

@@ -118,25 +118,45 @@ namespace TowerDefenseGUI
                                 string[] ele = line.Split(',');
                                 switch (ele[0])                 // grab the type and call methods based on it
                                 {
-                                    case "boss":
-                                        Boss b = Boss.MakeBoss();
-                                        b.Deserialize(line);
-                                        Spawner.enemies.Add(b);
+                                    case "gboss":
+                                        Boss bG = Boss.MakeBoss("gboss");
+                                        bG.Deserialize(line);
+                                        Spawner.enemies.Add(bG);
                                         break;
-                                    case "aircraft":
-                                        Aircraft a = Aircraft.MakeAircraft();
+                                    case "aboss":
+                                        Boss bA = Boss.MakeBoss("aboss");
+                                        bA.Deserialize(line);
+                                        Spawner.enemies.Add(bA);
+                                        break;
+                                    case "baircraft":
+                                        Aircraft a = Aircraft.MakeAircraft("baircraft");
                                         a.Deserialize(line);
                                         Spawner.enemies.Add(a);
                                         break;
-                                    case "infantry":
-                                        Infantry i = Infantry.MakeInfantry();
+                                    case "aaircraft":
+                                        Aircraft aA = Aircraft.MakeAircraft("aaircraft");
+                                        aA.Deserialize(line);
+                                        Spawner.enemies.Add(aA);
+                                        break;
+                                    case "binfantry":
+                                        Infantry i = Infantry.MakeInfantry("binfantry");
                                         i.Deserialize(line);
                                         Spawner.enemies.Add(i);
                                         break;
-                                    case "vehicle":
-                                        Vehicle v = Vehicle.MakeVehicle();
+                                    case "ainfantry":
+                                        Infantry iA = Infantry.MakeInfantry("ainfantry");
+                                        iA.Deserialize(line);
+                                        Spawner.enemies.Add(iA);
+                                        break;
+                                    case "bvehicle":
+                                        Vehicle v = Vehicle.MakeVehicle("bvehicle");
                                         v.Deserialize(line);
                                         Spawner.enemies.Add(v);
+                                        break;
+                                    case "avehicle":
+                                        Vehicle vA = Vehicle.MakeVehicle("avehicle");
+                                        vA.Deserialize(line);
+                                        Spawner.enemies.Add(vA);
                                         break;
                                     default:
                                         Debug.WriteLine("The enemy type was not correct.");
