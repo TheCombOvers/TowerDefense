@@ -10,13 +10,13 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string boss = string.Format("{0},{1},{2},{3},{4}", "boss", posX, posY, health, pathProgress);
+            string boss = string.Format("{0},{1},{2},{3},{4}", type, posX, posY, health, pathProgress);
             return boss;
         }
         public override object Deserialize(string info)
         {
             string[] aInfo = info.Split(',');
-            Boss a = MakeBoss();
+            Boss a = MakeBoss(aInfo[0]);
             a.posX = Convert.ToDouble(aInfo[1]);
             a.posY = Convert.ToDouble(aInfo[2]);
             a.health = Convert.ToDouble(aInfo[3]);
@@ -24,18 +24,31 @@ namespace TowerDefenseGUI
             return a;
         }
 
-        public static Boss MakeBoss()
+        public static Boss MakeBoss(string type)
         {
             Boss b = new Boss();
-            b.imageID = 3;
-            b.health = 100;
-            b.rewardMoney = 50;
-            b.speed = 20 / 60;
+            switch (type)
+            {
+                case "g":
+                    b.imageID = 3;
+                    b.health = 100;
+                    b.rewardMoney = 50;
+                    b.speed = 1; // decide speed for advance type, replace 4 with desired speed 
+                    b.rewardScore = 45;
+                    b.type = "gboss";
+                    break;
+                case "a":
+                    b.imageID = 7;
+                    b.health = 150;
+                    b.rewardMoney = 75;
+                    b.speed = 2; // decide speed for advance type, replace 4 with desired speed 
+                    b.rewardScore = 60;
+                    b.type = "aboss";
+                    break;
+            }
             b.posX = Map.coords[0].x;
             b.posY = Map.coords[0].y;
             b.pathProgress = 0;
-            b.rewardScore = 45;
-            b.type = "boss";
             return b;
         }
     }

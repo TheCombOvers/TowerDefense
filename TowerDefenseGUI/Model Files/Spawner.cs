@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows.Threading;
 
 namespace TowerDefenseGUI
 {
@@ -18,15 +19,19 @@ namespace TowerDefenseGUI
             Remove = RemoveEnemy;
             Add = AddEnemy;
 
-            Enemy e = Infantry.MakeInfantry();
-            enemies.Add(e);
-            AddEnemy(e);
-            //int count = DetermineWave(wave);
-            //GenerateWave(wave, count);
-            //foreach (Enemy en in enemies)
+            //Enemy e = Infantry.MakeInfantry("b");
+            //enemies.Add(e);
+            //AddEnemy(e);
+            int count = DetermineWave(wave);
+            GenerateWave(wave, count);
+            //Task.Run(() =>
             //{
-            //    AddEnemy(en);
-            //}
+                foreach (Enemy en in enemies)
+                {
+                    AddEnemy(en);
+                    //Task.Delay(500);
+                }
+            //});
         }
 
         private void GenerateWave(int wave, int count)
@@ -35,28 +40,35 @@ namespace TowerDefenseGUI
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(Infantry.MakeInfantry());
+                    enemies.Add(Infantry.MakeInfantry("a"));
                 }
             }
-            if (wave == 3)
+            else if (wave == 3)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(Vehicle.MakeVehicle());
+                    enemies.Add(Vehicle.MakeVehicle("b"));
                 }
             }
-            if (wave == 5)
+            else if (wave == 5)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(Boss.MakeBoss());
+                    enemies.Add(Boss.MakeBoss("g"));
                 }
             }
-            if (wave == 7)
+            else if (wave == 7)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    enemies.Add(Aircraft.MakeAircraft());
+                    enemies.Add(Aircraft.MakeAircraft("b"));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    enemies.Add(Infantry.MakeInfantry("b"));
                 }
             }
         }
@@ -67,7 +79,7 @@ namespace TowerDefenseGUI
             if (wave % 9 == 0)
             {
                 count = wave / 9;
-                if(count > 1)
+                if (count > 1)
                 {
                     count = (count - 1) * 2;
                 }

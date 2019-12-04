@@ -13,11 +13,10 @@
         <Label Margin="90,380,90,291">
             <!-- <Image Source=""/> -->
         </Label>
-        <Button Click="PlayButton_Click" x:Name="PlayButton" Content="Play" FontSize="50" Background="#77917e" Canvas.Left="585" Canvas.Top="573" Width="242"/>
+        <Button Click="PlayButton_Click" x:Name="PlayButton" Content="Play" FontSize="50" Background="#77917e" Canvas.Left="585" Canvas.Top="610" Width="242"/>
         <Button Click="HighScoreButton_Click" x:Name="HighScoreButton" Content="High Scores" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="737" Width="242"/>
         <Button Click="HelpButton_Click" x:Name="HelpButton" Content="Help" FontSize="26" Background="#77917e" Canvas.Left="713" Canvas.Top="781" Width="114"/>
         <Button Click="AboutButton_Click" x:Name="AboutButton" Content="About" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="781" Height="39" Width="123" RenderTransformOrigin="0.418,0.389"/>
-        <Button Click="LoadButton_Click" x:Name="LoadButton" Content="Load Game" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="649" Width="242"/>
-        <Button Click="CheatMode_Click" x:Name="CheatMode" Content="Cheat Mode: On" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="693" Width="242"/>
+        <Button Click="LoadButton_Click" x:Name="LoadButton" Content="Load Game" FontSize="26" Background="#77917e" Canvas.Left="585" Canvas.Top="686" Width="242"/>
     </Canvas>
 </Window>

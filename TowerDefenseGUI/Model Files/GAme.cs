@@ -85,12 +85,12 @@ namespace TowerDefenseGUI
         public static Game LoadGame(string fileName, Action<Enemy> add, Action<Enemy> remove)
         {
             using (StreamReader reader = new StreamReader(fileName))
-            {
+            { 
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
                 Game newGame = new Game(0, true, add, remove);
                 if (begin == "NG\t")
                 {
-                    
+                  
                     string[] gameInfo = reader.ReadLine().Split(',');   // grab the game state information
                     
                     map = new Map(Convert.ToInt32(gameInfo[0]));    // create a new map based on the mapid
@@ -111,7 +111,6 @@ namespace TowerDefenseGUI
 
                         if (section.Trim() == "ENEMIES")
                         {
-
                             while (true)
                             {
                                 string line = reader.ReadLine(); // read a line
@@ -119,25 +118,45 @@ namespace TowerDefenseGUI
                                 string[] ele = line.Split(',');
                                 switch (ele[0])                 // grab the type and call methods based on it
                                 {
-                                    case "boss":
-                                        Boss b = Boss.MakeBoss();
-                                        b.Deserialize(line);
-                                        newGame.currentEnemies.Add(b);
+                                    case "gboss":
+                                        Boss bG = Boss.MakeBoss("gboss");
+                                        bG.Deserialize(line);
+                                        Spawner.enemies.Add(bG);
                                         break;
-                                    case "aircraft":
-                                        Aircraft a = Aircraft.MakeAircraft();
+                                    case "aboss":
+                                        Boss bA = Boss.MakeBoss("aboss");
+                                        bA.Deserialize(line);
+                                        Spawner.enemies.Add(bA);
+                                        break;
+                                    case "baircraft":
+                                        Aircraft a = Aircraft.MakeAircraft("baircraft");
                                         a.Deserialize(line);
-                                        newGame.currentEnemies.Add(a);
+                                        Spawner.enemies.Add(a);
                                         break;
-                                    case "infantry":
-                                        Infantry i = Infantry.MakeInfantry();
+                                    case "aaircraft":
+                                        Aircraft aA = Aircraft.MakeAircraft("aaircraft");
+                                        aA.Deserialize(line);
+                                        Spawner.enemies.Add(aA);
+                                        break;
+                                    case "binfantry":
+                                        Infantry i = Infantry.MakeInfantry("binfantry");
                                         i.Deserialize(line);
-                                        newGame.currentEnemies.Add(i);
+                                        Spawner.enemies.Add(i);
                                         break;
-                                    case "vehicle":
-                                        Vehicle v = Vehicle.MakeVehicle();
+                                    case "ainfantry":
+                                        Infantry iA = Infantry.MakeInfantry("ainfantry");
+                                        iA.Deserialize(line);
+                                        Spawner.enemies.Add(iA);
+                                        break;
+                                    case "bvehicle":
+                                        Vehicle v = Vehicle.MakeVehicle("bvehicle");
                                         v.Deserialize(line);
-                                        newGame.currentEnemies.Add(v);
+                                        Spawner.enemies.Add(v);
+                                        break;
+                                    case "avehicle":
+                                        Vehicle vA = Vehicle.MakeVehicle("avehicle");
+                                        vA.Deserialize(line);
+                                        Spawner.enemies.Add(vA);
                                         break;
                                     default:
                                         Debug.WriteLine("The enemy type was not correct.");
@@ -191,6 +210,10 @@ namespace TowerDefenseGUI
                             }
                         }
                     }
+                }
+                for (int i = 0; i < Spawner.enemies.Count; ++i)
+                {
+                    newGame.addEnemy(Spawner.enemies[i]);
                 }
                 return newGame;
             }

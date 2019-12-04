@@ -25,7 +25,8 @@ namespace TowerDefenseGUI
         DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
         List<Image> enemies;
-        List<string> eImageSources; // 0:infantry, 1:vehicle, 2:aircraft, 3:ground boss
+        List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
+        // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
         bool loop;
         Point mousePos;
         bool machinegun;
@@ -40,50 +41,50 @@ namespace TowerDefenseGUI
         bool teslaplace;
         bool laserplace;
         bool stunplace;
-        static bool cheat;
-        int money;
 
-        public GameWindow(bool cheat)
+        public GameWindow(bool cheat, bool isLoad)
         {
             InitializeComponent();
             enemies = new List<Image>();
+            // do not mess with the order of these addition please :)
             eImageSources = new List<string>();
             eImageSources.Add("pack://application:,,,/Resources/Basic Ground Unit.png");
-            // add all the image sources-levi
-            game = new Game(0, cheat, AddEnemy, RemoveEnemy);
+            eImageSources.Add("pack://application:,,,/Resources/Basic Ground Vehicle.png");
+            eImageSources.Add("pack://application:,,,/Resources/PUT AIR VEHICLE HERE");
+            eImageSources.Add("pack://application:,,,/Resources/Ground Boss.png");
+            eImageSources.Add("pack://application:,,,/Resources/Advanced Ground Unit.png");
+            eImageSources.Add("pack://application:,,,/Resources/Advanced Ground Vehicle.png");
+            eImageSources.Add("pack://application:,,,/Resources/PUT ADVANCED AIRCRAFT HERE");
+            eImageSources.Add("pack://application:,,,/Resources/PUT AIR BOSS HERE");
+
+            // if we're loading a old save then call loadgame else just make a new game instance
+            if (isLoad)
+            {
+                game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", AddEnemy, RemoveEnemy);
+            }
+            else
+            {
+                game = new Game(0, cheat, AddEnemy, RemoveEnemy);
+            }        
+
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
             gameTimer.Tick += UpdateGame;
+            gameTimer.Tick += updateTowerPlace;
             gameTimer.Start();
             btnBasic.IsEnabled = false;
             machinegun = true;
             flak = true;
             mortar = true;
-            if (cheat == true)
-            {
-                money = 999999;
-            }
-            else
-            {
-                money = 200;
-            }
-            txtMoney.Text += "$" + money;
+            txtMoney.Text += game.money;
             txtLives.Text = "Lives: " + Game.lives;
         }
-        
+
         // main method that updates the entire game... yikes
         public void UpdateGame(object sender, object e)
         {
-            // call all methods need to update the game
-            //Task.Run(() => {
-            //game.UpdateModel();
-            //AddEnemy();
-            //Dispatcher.Invoke(() =>  UpdateView());
-            //});    
             game.UpdateModel();
-            txtLives.Text = "Lives: " + Game.lives;
-            txtMoney.Text = "$" + game.money;
             UpdateView();
         }
         public void UpdateView()
@@ -101,14 +102,19 @@ namespace TowerDefenseGUI
                 }
             }
         }
-        // creates a new coordinationg image for the given enemy "e" and and places on the screen and adds it to
-        // the list of images of enemies in the view
-        public void AddEnemy(Enemy e)
+        public void RotateTurret(Turret tur, int degrees)
+        {
+            //turrets[tur.index].RenderTransform = new RotateTransform(degrees);
+        }
+
+            // creates a new coordinationg image for the given enemy "e" and and places on the screen and adds it to
+            // the list of images of enemies in the view
+            public void AddEnemy(Enemy e)
         {
             Image i = new Image();
             i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
             i.RenderTransformOrigin = new Point(0.5, 0.5);
-            if (e.imageID == 3) // if it's a boss it's bigger! :)
+            if (e.imageID == 3 || e.imageID == 7) // if it's a boss it's bigger! :)
             {
                 i.Width = 80;
                 i.Height = 80;
@@ -121,10 +127,11 @@ namespace TowerDefenseGUI
             e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
             enemies.Add(i);
             GameWindowCanvas.Children.Add(i);
+
         }
         // removes a specified enemy from the game state and the view
         public void RemoveEnemy(Enemy e)
-        {   
+        {
             game.currentEnemies.Remove(e);
             Spawner.enemies.Remove(e);  // remove it from the game state
             GameWindowCanvas.Children.Remove(enemies[e.imageIndex]); // remove from the game window canvas
@@ -141,7 +148,8 @@ namespace TowerDefenseGUI
         }
         private void btnSaveGame_Click(object sender, RoutedEventArgs e)
         {
-            // Code for saving the game state
+            game.SaveGame("..\\..\\Resources\\SavedGame3.txt");
+            MessageBox.Show("Your game has been saved on round: " + game.currentWave);
         }
         private void btnPauseGame_Click(object sender, RoutedEventArgs e)
         {
@@ -162,83 +170,39 @@ namespace TowerDefenseGUI
             gameTimer.Stop();
         }
 
-        public static void GetCheat(bool value)
-        {
-            if (value == true)
-            {
-                cheat = true;
-            }
-            else
-            {
-                cheat = false;
-            }
-        }
-
         //Creates a new bitmap everytime the buy button is clicked
         //and loads the machine gun place image into it
         //then it takes the Current cursor and changes it with the 
         //machine gun image
-        private void btnMachineGunTeslaBuy_Click(object sender, RoutedEventArgs e)
-        {
-            if (machinegun == true)
-            {
-                if (game.money >= 50)
-                {
-                    machinegunplace = true;
-                    flakplace = false;
-                    mortarplace = false;
-                    teslaplace = false;
-                    laserplace = false;
-                    stunplace = false;
-                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
-                    mousePos = Mouse.GetPosition(GameWindowCanvas);
-                    imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
-                    loop = true;
-                    Task.Run(() =>
-                    {
-                        while (loop == true)
-                        {
-                            Dispatcher.Invoke(() => {
-                                mousePos = Mouse.GetPosition(GameWindowCanvas);
-                                imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
-                                });
-                        }
-                    });
-                }
-            }
-            else if (tesla == true)
-            {
-                if (game.money >= 175)
-                {
-                    machinegunplace = false;
-                    flakplace = false;
-                    mortarplace = false;
-                    teslaplace = true;
-                    laserplace = false;
-                    stunplace = false;
-                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower place.png"));
-                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
-                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
-                    loop = true;
 
-                    Task.Run(() =>
-                    {
-                        while (loop == true)
-                        {
-                            int posX = System.Windows.Forms.Cursor.Position.X;
-                            int posY = System.Windows.Forms.Cursor.Position.Y;
-                            mousePos.X = System.Windows.Forms.Cursor.Position.X;
-                            mousePos.Y = System.Windows.Forms.Cursor.Position.Y;
-                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
-                        }
-                    });
-                }
+        private void updateTowerPlace(object sender, EventArgs e)
+        {
+            if (loop == true)
+            {
+                mousePos = Mouse.GetPosition(GameWindowCanvas);
+                imagetowerplace.Margin = new Thickness(mousePos.X - (imagetowerplace.ActualWidth / 2), mousePos.Y - (imagetowerplace.ActualHeight / 2), 0, 0);
             }
         }
-
+        public int SnapToGridX(double x)
+        {
+            int oldx = Convert.ToInt32(x);
+            int tempx = oldx / 50;
+            int newx = tempx * 50;
+            Console.WriteLine(tempx);
+            return newx;
+        }
+        public int SnapToGridY(double y)
+        {
+            int oldy = Convert.ToInt32(y);
+            int tempy = oldy / 50;
+            int newy = tempy * 50;
+            Console.WriteLine(tempy);
+            return newy;
+        }
         private void imagetowerplace_MouseDown(object sender, MouseEventArgs e)
         {
             Point p = e.GetPosition(GameWindowCanvas);
+
             if (loop == true)
             {
                 if (machinegunplace == true)
@@ -357,20 +321,6 @@ namespace TowerDefenseGUI
                 }
             }
         }
-        public int SnapToGridX(double x)
-        {
-            int tempx = (int) x % 50;
-            int newx = (tempx * 50) + 25;
-            return newx;
-        }
-        public int SnapToGridY(double y)
-        {
-            int tempy = (int) y % 50;
-            int newy = (tempy * 50) + 25;
-            return newy;
-        }
-
-
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (loop == true)
@@ -388,9 +338,7 @@ namespace TowerDefenseGUI
                     double posX = SnapToGridX(mousePos.X);
                     double posY = SnapToGridY(mousePos.Y);
                     image.Margin = new Thickness(posX, posY, 0, 0);
-                    MachineGun g = MachineGun.MakeMachineGun(posX, posY);
-                    g.xPos = Convert.ToInt32(posX);
-                    g.yPos = Convert.ToInt32(posY);
+                    MachineGun g = MachineGun.MakeMachineGun(posX+25, posY+25);
                     game.currentTurrets.Add(g);
                     image.Width = 50;
                     image.Height = 50;
@@ -494,6 +442,7 @@ namespace TowerDefenseGUI
             }
         }
 
+
         private void btnAdvanced_Click(object sender, RoutedEventArgs e)
         {
             btnBasic.IsEnabled = true;
@@ -523,7 +472,6 @@ namespace TowerDefenseGUI
             txtMortarStunDmg.Text = "Damage: 15/s";
             txtMortarStunCost.Text = "Cost: $200";
         }
-
         private void btnBasic_Click(object sender, RoutedEventArgs e)
         {
             btnBasic.IsEnabled = false;
@@ -554,6 +502,42 @@ namespace TowerDefenseGUI
             txtMortarStunCost.Text = "Cost: $150";
         }
 
+
+        private void btnMachineGunTeslaBuy_Click(object sender, RoutedEventArgs e)
+        {
+            if (machinegun == true)
+            {
+                if (game.money >= 50)
+                {
+                    machinegunplace = true;
+                    flakplace = false;
+                    mortarplace = false;
+                    teslaplace = false;
+                    laserplace = false;
+                    stunplace = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
+                    mousePos = Mouse.GetPosition(GameWindowCanvas);
+                    imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
+                    loop = true;
+                }
+            }
+            else if (tesla == true)
+            {
+                if (game.money >= 175)
+                {
+                    machinegunplace = false;
+                    flakplace = false;
+                    mortarplace = false;
+                    teslaplace = true;
+                    laserplace = false;
+                    stunplace = false;
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower place.png"));
+                    mousePos = Mouse.GetPosition(GameWindowCanvas);
+                    imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
+                    loop = true;
+                }
+            }
+        }
         private void btnFlakLaserBuy_Click(object sender, RoutedEventArgs e)
         {
             if (flak == true)
@@ -567,21 +551,9 @@ namespace TowerDefenseGUI
                     laserplace = false;
                     stunplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower place.png"));
-                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
-                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    mousePos = Mouse.GetPosition(GameWindowCanvas);
+                    imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
                     loop = true;
-
-                    Task.Run(() =>
-                    {
-                        while (loop == true)
-                        {
-                            int posX = System.Windows.Forms.Cursor.Position.X;
-                            int posY = System.Windows.Forms.Cursor.Position.Y;
-                            mousePos.X = System.Windows.Forms.Cursor.Position.X;
-                            mousePos.Y = System.Windows.Forms.Cursor.Position.Y;
-                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
-                        }
-                    });
                 }
             }
             else if (laser == true)
@@ -595,25 +567,12 @@ namespace TowerDefenseGUI
                     laserplace = true;
                     stunplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower place.png"));
-                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
-                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    mousePos = Mouse.GetPosition(GameWindowCanvas);
+                    imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
                     loop = true;
-
-                    Task.Run(() =>
-                    {
-                        while (loop == true)
-                        {
-                            int posX = System.Windows.Forms.Cursor.Position.X;
-                            int posY = System.Windows.Forms.Cursor.Position.Y;
-                            mousePos.X = System.Windows.Forms.Cursor.Position.X;
-                            mousePos.Y = System.Windows.Forms.Cursor.Position.Y;
-                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
-                        }
-                    });
                 }
             }
         }
-
         private void btnMortarStunBuy_Click(object sender, RoutedEventArgs e)
         {
             if (mortar == true)
@@ -627,21 +586,9 @@ namespace TowerDefenseGUI
                     laserplace = false;
                     stunplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower place.png"));
-                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
-                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    mousePos = Mouse.GetPosition(GameWindowCanvas);
+                    imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
                     loop = true;
-
-                    Task.Run(() =>
-                    {
-                        while (loop == true)
-                        {
-                            int posX = System.Windows.Forms.Cursor.Position.X;
-                            int posY = System.Windows.Forms.Cursor.Position.Y;
-                            mousePos.X = System.Windows.Forms.Cursor.Position.X;
-                            mousePos.Y = System.Windows.Forms.Cursor.Position.Y;
-                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
-                        }
-                    });
                 }
             }
             else if (stun == true)
@@ -655,21 +602,9 @@ namespace TowerDefenseGUI
                     laserplace = false;
                     stunplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower place.png"));
-                    System.Drawing.Point p1 = System.Windows.Forms.Cursor.Position;
-                    imagetowerplace.Margin = new Thickness(p1.X * .9, p1.Y * .9, 0, 0);
+                    mousePos = Mouse.GetPosition(GameWindowCanvas);
+                    imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
                     loop = true;
-
-                    Task.Run(() =>
-                    {
-                        while (loop == true)
-                        {
-                            int posX = System.Windows.Forms.Cursor.Position.X;
-                            int posY = System.Windows.Forms.Cursor.Position.Y;
-                            mousePos.X = System.Windows.Forms.Cursor.Position.X;
-                            mousePos.Y = System.Windows.Forms.Cursor.Position.Y;
-                            Dispatcher.Invoke(() => imagetowerplace.Margin = new Thickness(posX * .9, posY * .9, 0, 0));
-                        }
-                    });
                 }
             }
         }

@@ -1,0 +1,8 @@
+NG
+0,0,3,0,200,0,false,10,False
+ENEMIES
+infantry,320,282,20,2
+infantry,318,320,20,1
+infantry,278,320,20,1
+ENDENEMIES
+END

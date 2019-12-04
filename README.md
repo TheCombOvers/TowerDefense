@@ -42,4 +42,4 @@ And to let the save unit test pass, lines 23-25,37 in Map.cs and lines 32-36 in 
 |Levi|27hr, 48min|32hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
 |Alexander|23hr, 0min|37hr, 0min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
 |Kevin|32hr, 15min|28hr, 45min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
-|Micah|21hr, 0min|40hr, 20min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
+|Micah|25hr, 50min|34hr, 10min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|

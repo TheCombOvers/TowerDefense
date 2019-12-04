@@ -1,36 +1,70 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TowerDefenseGUI
 {
-    /// <summary>
-    /// Interaction logic for DifficultyPage.xaml
-    /// </summary>
+    
+    // Page Logic for DifficultyPage
+
+    // For references:
+    //  Difficulty  - int, where 1 is easy, 2 is medium, 3 is hard
+    //  Cheat       - bool, where true = cheats, and false = no cheats
+
     public partial class DifficultyPage : Page
     {
-        public bool Cheat;
+        public bool Cheat = false;
+        public int Difficulty = 1;
 
-        public DifficultyPage(bool cheat = false)
+        public DifficultyPage()
         {
             InitializeComponent();
-            Cheat = cheat;
+        }
+        private void BtnMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+            Window.GetWindow(this).Close();
+        }
+
+        private void CheatMode_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheatMode.Content.ToString() == "Cheat Mode: On")
+            {
+                CheatMode.Content = "Cheat Mode: Off";
+                Cheat = false;
+            }
+            else
+            {
+                CheatMode.Content = "Cheat Mode: On";
+                Cheat = true;
+            }
+        }
+
+        private void DifficultySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Difficulty = Convert.ToInt32(((Slider)sender).Value);
+            switch (Difficulty)
+            {
+                case 1:
+                    DifficultyDisplay.Text = "Easy";
+                    DifficultyDisplay.Foreground = Brushes.LightGreen;
+                    break;
+                case 2:
+                    DifficultyDisplay.Text = "Medium";
+                    DifficultyDisplay.Foreground = Brushes.Orange;
+                    break;
+                case 3:
+                    DifficultyDisplay.Text = "Hard";
+                    DifficultyDisplay.Foreground = Brushes.Red;
+                    break;
+            }
         }
 
         private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
         {
-            var gameWindow = new GameWindow(Cheat);
+            var gameWindow = new GameWindow(Cheat, false);
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
             hostWindow.Close();
