@@ -1,8 +1,11 @@
 NG
-0,0,3,0,200,0,false,10,False
-ENEMIES
-infantry,320,282,20,2
-infantry,318,320,20,1
-infantry,278,320,20,1
-ENDENEMIES
+0,0,0,0,999174,0,false,10,True
+TURRETS
+machinegun,25,275
+turret,149,0
+mortar,160,0
+tesla,216,0
+laser,207,0
+stun,138,0
+ENDTURRETS
 END

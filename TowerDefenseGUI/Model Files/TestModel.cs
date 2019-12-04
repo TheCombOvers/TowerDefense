@@ -13,13 +13,12 @@ namespace TowerDefenseGUI
         [Test]
         public void LoadGame_ValidInput_ValidClass()
         {
-            Game g = new Game(0, false, null, null);
+            Game g = new Game(0, false, null, null, 1);
             Game.map = new Map(0);
             g.currentWave = 5;
             g.waveProgress = 3;
             g.score = 700;
             g.money = 200;
-            g.waveTotal = 20;
             g.isWaveOver = false;
             g.spawner = new Spawner();
             Infantry i1 = Infantry.MakeInfantry("b");
@@ -57,16 +56,15 @@ namespace TowerDefenseGUI
             Assert.AreEqual(g.money, loadedGame.money);
             Assert.AreEqual(g.score, loadedGame.score);
             Assert.AreEqual(g.waveProgress, loadedGame.waveProgress);
-            Assert.AreEqual(g.waveTotal, loadedGame.waveTotal);
+            Assert.AreEqual(g.difficulty, loadedGame.difficulty);
             Assert.AreEqual(g.isWaveOver, loadedGame.isWaveOver);
             Assert.AreEqual(g.currentTurrets.Count, loadedGame.currentTurrets.Count);
         }
         [Test]
         public void SaveGame_ValidInput_ValidString()
         {
-            Game g = new Game(0, false, null, null);
+            Game g = new Game(0, false, null, null, 1);
             g.currentWave = 5;
-            g.waveTotal = 20;
             g.waveProgress = 3;
             g.money = 200;
             g.score = 700;
@@ -104,7 +102,7 @@ namespace TowerDefenseGUI
             g.SaveGame("SavedGame1.txt");
             StreamReader reader = new StreamReader("SavedGame1.txt");
             string SerializedGame = reader.ReadToEnd();
-            Assert.AreEqual(SerializedGame, "NG\r\n0,5,3,700,200,20,false,8\r\nENEMIES\r\nbinfantry,2,4,13,3\r\nbvehicle,6,2,10,2\r\nENDENEMIES\r\nTURRETS\r\nmortar,2,3\r\nstun,7,5\r\ntesla,3,5\r\nENDTURRETS\r\nEND\r\n");
+            Assert.AreEqual(SerializedGame, "NG\r\n0,5,3,700,200,20,false,1\r\nENEMIES\r\nbinfantry,2,4,13,3\r\nbvehicle,6,2,10,2\r\nENDENEMIES\r\nTURRETS\r\nmortar,2,3\r\nstun,7,5\r\ntesla,3,5\r\nENDTURRETS\r\nEND\r\n");
             reader.Close();
         }
     }

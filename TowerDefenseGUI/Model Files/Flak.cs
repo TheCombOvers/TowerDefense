@@ -16,15 +16,15 @@ namespace TowerDefenseGUI
         public override object Deserialize(string info)
         {
             string[] finfo = info.Split(',');
-            Flak f = MakeFlak();
-            f.xPos = Convert.ToInt32(finfo[1]);
-            f.yPos = Convert.ToInt32(finfo[2]);
-            f.type = "flak";           
-            return f;
+            xPos = Convert.ToInt32(finfo[1]);
+            yPos = Convert.ToInt32(finfo[2]);          
+            return this;
         }
         public static Flak MakeFlak()
         {
             Flak f = new Flak();
+            f.imageID = 1;
+            f.imageID = 0;
             f.cost = 75;
             f.damage = 2;
             f.range = 250/2;

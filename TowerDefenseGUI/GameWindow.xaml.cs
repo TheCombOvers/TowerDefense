@@ -28,7 +28,7 @@ namespace TowerDefenseGUI
         List<Image> turrets;
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
-
+        List<string> tImageSources;// 0:turret tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
         bool loop;
         Point mousePos;
         bool machinegun;
@@ -44,9 +44,10 @@ namespace TowerDefenseGUI
         bool laserplace;
         bool stunplace;
 
-        public GameWindow(bool cheat, bool isLoad)
+        public GameWindow(bool cheat, bool isLoad, int diff)
         {
             InitializeComponent();
+            turrets = new List<Image>();
             enemies = new List<Image>();
             // do not mess with the order of these addition please :)
             eImageSources = new List<string>();
@@ -58,7 +59,15 @@ namespace TowerDefenseGUI
             eImageSources.Add("pack://application:,,,/Resources/Advanced Ground Vehicle.png");
             eImageSources.Add("pack://application:,,,/Resources/PUT ADVANCED AIRCRAFT HERE");
             eImageSources.Add("pack://application:,,,/Resources/PUT AIR BOSS HERE");
-
+            // add all image sources to the turret image sources list
+            // again dont mess with the order of these lines
+            tImageSources = new List<string>();
+            tImageSources.Add("pack://application:,,,/Resources/turret tower.png");
+            tImageSources.Add("pack://application:,,,/Resources/flak tower.png");
+            tImageSources.Add("pack://application:,,,/Resources/laser tower.png");
+            tImageSources.Add("pack://application:,,,/Resources/mortar tower.png");
+            tImageSources.Add("pack://application:,,,/Resources/stun tower.png");
+            tImageSources.Add("pack://application:,,,/Resources/tesla tower.png");
             // if we're loading a old save then call loadgame else just make a new game instance
             if (isLoad)
             {
@@ -67,9 +76,9 @@ namespace TowerDefenseGUI
             }
             else
             {
-                game = new Game(0, cheat, AddEnemy, RemoveEnemy);
+                game = new Game(0, cheat, AddEnemy, RemoveEnemy, diff);
             }        
-
+            
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
@@ -170,7 +179,13 @@ namespace TowerDefenseGUI
         {
             for (int i = 0; i < game.currentTurrets.Count; ++i)
             {
-
+                Image image = new Image();
+                image.Width = 50;
+                image.Height = 50;
+                image.Margin = new Thickness(game.currentTurrets[i].xPos, game.currentTurrets[i].yPos, 0, 0);
+                image.Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
+                turrets.Add(image);
+                GameWindowCanvas.Children.Add(turrets[i]);
             }
         }
 

@@ -16,16 +16,16 @@ namespace TowerDefenseGUI
         public override object Deserialize(string info)
         {
             string[] finfo = info.Split(',');
-            Laser l = MakeLaser();
-            l.xPos = Convert.ToInt32(finfo[1]);
-            l.yPos = Convert.ToInt32(finfo[2]);
-            l.type = "laser";
-            return l;
+            xPos = Convert.ToInt32(finfo[1]);
+            yPos = Convert.ToInt32(finfo[2]);
+            type = "laser";
+            return this;
         }
 
         public static Laser MakeLaser()
         {
             Laser l = new Laser();
+            l.imageID = 2;
             l.cost = 125;
             l.damage = 10;
             l.range = 175;

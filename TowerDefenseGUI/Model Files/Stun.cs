@@ -16,14 +16,14 @@ namespace TowerDefenseGUI
         public override object Deserialize(string info)
         {
             string[] finfo = info.Split(',');
-            Stun s = MakeStun();
-            s.xPos = Convert.ToInt32(finfo[1]);
-            s.yPos = Convert.ToInt32(finfo[2]);
-            return s;
+            xPos = Convert.ToInt32(finfo[1]);
+            yPos = Convert.ToInt32(finfo[2]);
+            return this;
         }
         public static Stun MakeStun()
         {
             Stun s = new Stun();
+            s.imageID = 4;
             s.cost = 200;
             s.damage = 15;
             s.range = 200;

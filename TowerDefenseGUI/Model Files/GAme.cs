@@ -16,7 +16,7 @@ namespace TowerDefenseGUI
     }
     class Game
     {
-        public int waveTotal; // number of waves required to win the game
+        public int difficulty; // number of waves required to win the game
         public int currentWave;
         public bool isWaveOver;
         static public bool cheatMode;
@@ -32,8 +32,9 @@ namespace TowerDefenseGUI
         public Action<Enemy> removeEnemy;
 
 
-        public Game(int mapID,bool cheat, Action<Enemy> add, Action<Enemy> remove)
+        public Game(int mapID,bool cheat, Action<Enemy> add, Action<Enemy> remove, int diff)
         {
+            difficulty = diff;
             cheatMode = cheat;
             currentWave = 0;
             isWaveOver = false;
@@ -87,8 +88,8 @@ namespace TowerDefenseGUI
             using (StreamReader reader = new StreamReader(fileName))
             { 
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
-                Game newGame = new Game(0, true, add, remove);
-                if (begin == "NG\t")
+                Game newGame = new Game(0, true, add, remove, 0);
+                if (begin == "NG")
                 {
                   
                     string[] gameInfo = reader.ReadLine().Split(',');   // grab the game state information
@@ -98,7 +99,7 @@ namespace TowerDefenseGUI
                     newGame.waveProgress = Convert.ToInt32(gameInfo[2]);
                     newGame.score = Convert.ToInt32(gameInfo[3]);
                     newGame.money = Convert.ToInt32(gameInfo[4]);
-                    newGame.waveTotal = Convert.ToInt32(gameInfo[5]);       // need to change/fix this so that it is a difficulty instead of a int
+                    newGame.difficulty = Convert.ToInt32(gameInfo[5]);       // need to change/fix this so that it is a difficulty instead of a int
                     if (gameInfo[6] == "false") { newGame.isWaveOver = false; }
                     else { newGame.isWaveOver = true; }
                     Game.lives = Convert.ToInt32(gameInfo[7]);
@@ -184,7 +185,7 @@ namespace TowerDefenseGUI
                                         newGame.currentTurrets.Add(l);
                                         break;
                                     case "machinegun":
-                                        MachineGun m = MachineGun.MakeMachineGun(0, 0);
+                                        MachineGun m = new MachineGun();
                                         m.Deserialize(lineT);
                                         newGame.currentTurrets.Add(m);
                                         break;
@@ -225,7 +226,7 @@ namespace TowerDefenseGUI
             {
                 writer.WriteLine("NG");
                 string waveOver = isWaveOver == true ? "true" : "false";
-                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", map.mapID, currentWave, waveProgress, score, money, waveTotal, waveOver, lives, cheatMode);
+                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", map.mapID, currentWave, waveProgress, score, money, difficulty, waveOver, lives, cheatMode);
                 writer.WriteLine(gameState);
                 if (currentEnemies.Count != 0)
                 {

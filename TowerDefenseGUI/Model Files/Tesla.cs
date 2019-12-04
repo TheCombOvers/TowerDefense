@@ -16,14 +16,14 @@ namespace TowerDefenseGUI
         public override object Deserialize(string info)
         {
             string[] finfo = info.Split(',');
-            Tesla t = MakeTesla();
-            t.xPos = Convert.ToInt32(finfo[1]);
-            t.yPos = Convert.ToInt32(finfo[2]);
-            return t;
+            xPos = Convert.ToInt32(finfo[1]);
+            yPos = Convert.ToInt32(finfo[2]);
+            return this;
         }
         public static Tesla MakeTesla()
         {
             Tesla t = new Tesla();
+            t.imageID = 5;
             t.cost = 175;
             t.damage = 3;
             t.range = 100;
