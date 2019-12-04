@@ -40,6 +40,8 @@ namespace TowerDefenseGUI
         bool teslaplace;
         bool laserplace;
         bool stunplace;
+        static bool cheat;
+        int money;
 
         public GameWindow(bool cheat)
         {
@@ -58,7 +60,15 @@ namespace TowerDefenseGUI
             machinegun = true;
             flak = true;
             mortar = true;
-            txtMoney.Text += game.money;
+            if (cheat == true)
+            {
+                money = 999999;
+            }
+            else
+            {
+                money = 200;
+            }
+            txtMoney.Text += "$" + money;
             txtLives.Text = "Lives: " + Game.lives;
         }
         
@@ -111,7 +121,6 @@ namespace TowerDefenseGUI
             e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
             enemies.Add(i);
             GameWindowCanvas.Children.Add(i);
-            
         }
         // removes a specified enemy from the game state and the view
         public void RemoveEnemy(Enemy e)
@@ -151,6 +160,18 @@ namespace TowerDefenseGUI
         public void Pause()
         {
             gameTimer.Stop();
+        }
+
+        public static void GetCheat(bool value)
+        {
+            if (value == true)
+            {
+                cheat = true;
+            }
+            else
+            {
+                cheat = false;
+            }
         }
 
         //Creates a new bitmap everytime the buy button is clicked

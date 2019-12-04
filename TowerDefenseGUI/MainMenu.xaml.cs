@@ -63,11 +63,13 @@ namespace TowerDefenseGUI
             {
                 CheatMode.Content = "Cheat Mode: Off";
                 cheat = false;
+                GameWindow.GetCheat(false);
             }
             else
             {
                 CheatMode.Content = "Cheat Mode: On";
                 cheat = true;
+                GameWindow.GetCheat(true);
             }
 
         }
