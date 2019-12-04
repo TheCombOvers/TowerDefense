@@ -64,21 +64,6 @@ namespace TowerDefenseGUI
             System.Diagnostics.Process.Start("https://github.com/TheCombOvers/TowerDefense/wiki");
         }
 
-
-        private void CheatMode_Click(object sender, RoutedEventArgs e)
-        {
-            if (CheatMode.Content.ToString() == "Cheat Mode: On")
-            {
-                CheatMode.Content = "Cheat Mode: Off";
-                cheat = false;
-            }
-            else
-            {
-                CheatMode.Content = "Cheat Mode: On";
-                cheat = true;
-            }
-        }
-
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             // if we're loading a old save then pass in true for isLoad, else pass false
