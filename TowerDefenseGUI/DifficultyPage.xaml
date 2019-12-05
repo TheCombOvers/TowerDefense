@@ -15,7 +15,7 @@
         <TextBlock Text="Difficulty:" FontSize="32" Canvas.Left="560" Canvas.Top="37" Width="150" TextAlignment="Center"/>
         <TextBlock x:Name="DifficultyDisplay" Text="Easy" Foreground="LightGreen" FontSize="32" Canvas.Left="700" Canvas.Top="37" Width="135" TextAlignment="Center"/>
         <Slider x:Name="DifficultySlider" Minimum="1" Maximum="3" TickFrequency="1" IsSnapToTickEnabled="True" Width="260" Canvas.Left="575" Canvas.Top="85" Height="35" ValueChanged="DifficultySlider_ValueChanged"/>
-        <Button Click="CheatMode_Click" Background="Transparent" Foreground="Red" x:Name="CheatMode" Content="Cheat Mode: Off" FontSize="26" Canvas.Left="1120" Canvas.Top="45" Width="267" Height="50"/>
+        <Button Click="CheatMode_Click" Background="Transparent" Foreground="Red" x:Name="CheatMode" Content="Cheat Mode: On" FontSize="26" Canvas.Left="1120" Canvas.Top="45" Width="267" Height="50"/>
 
         <!--Easy Difficulty Map Section-->
         <Image Source="Resources\path1.png" Height="300" Width="300" Canvas.Left="110" Canvas.Top="150" />
