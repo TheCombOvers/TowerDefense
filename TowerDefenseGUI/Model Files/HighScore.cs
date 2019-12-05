@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TowerDefenseGUI.Model_Files
+namespace TowerDefenseGUI
 {
     class HighScore
     {
