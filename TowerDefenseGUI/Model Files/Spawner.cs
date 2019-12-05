@@ -22,14 +22,6 @@ namespace TowerDefenseGUI
         {
             int count = DetermineWave(wave);
             GenerateWave(wave, count);
-            //Task.Run(() =>
-            //{
-                foreach (Enemy en in enemies)
-                {
-                    Add(en);
-                    //Task.Delay(500);
-                }
-            //});
         }
 
         private void GenerateWave(int wave, int count)
@@ -68,6 +60,10 @@ namespace TowerDefenseGUI
                 {
                     enemies.Add(Infantry.MakeInfantry("b"));
                 }
+            }
+            foreach (Enemy en in enemies)
+            {
+                Add(en);
             }
         }
 
