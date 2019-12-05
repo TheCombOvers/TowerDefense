@@ -10,6 +10,7 @@
     <Canvas x:Name="GameWindowCanvas">
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="900" Margin="1000,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="440"/>
         <Image x:Name="MapImage" Source="Resources\path1.png" MaxHeight="900" MaxWidth="1000" HorizontalAlignment="Left" Height="900" VerticalAlignment="Top" Width="1000" MouseDown="MapImage_MouseDown"/>
+        <TextBlock x:Name="txtRoundDisplay" Text="Wave 0" FontSize="30" Margin="10"/>
         <Image x:Name="MachineGunTeslaImage" HorizontalAlignment="Left" Source="Resources\turret tower.PNG" Height="126" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1046" Canvas.Top="113"/>
         <TextBlock x:Name="txtMachineGunTeslaName" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="Machine Gun Tower" FontSize="20" VerticalAlignment="Top" Width="182" Canvas.Left="1204" Canvas.Top="124"/>
         <TextBlock x:Name="txtMachineGunTeslaType" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="110" Canvas.Left="1204" Canvas.Top="156"/>

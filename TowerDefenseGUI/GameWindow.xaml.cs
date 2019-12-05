@@ -93,6 +93,7 @@ namespace TowerDefenseGUI
             game.UpdateModel();
             txtMoney.Text = "$" + Game.money;
             txtLives.Text = "Lives: " + Game.lives;
+            txtRoundDisplay.Text = "Wave: " + game.currentWave;
             UpdateView();
         }
         public void UpdateView()
