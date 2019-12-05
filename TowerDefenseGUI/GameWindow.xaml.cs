@@ -67,11 +67,16 @@ namespace TowerDefenseGUI
             if (isLoad)
             {
                 game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", AddEnemy, RemoveEnemy);
+                if (game.isWaveOver == false)
+                {
+                    btnNextWave.IsEnabled = false;
+                }
                 LoadTurretImgs();
             }
             else
             {
                 game = new Game(0, cheat, AddEnemy, RemoveEnemy, diff);
+              
             }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
@@ -208,7 +213,8 @@ namespace TowerDefenseGUI
                 Image image = new Image();
                 image.Width = 50;
                 image.Height = 50;
-                image.Margin = new Thickness(game.currentTurrets[i].xPos, game.currentTurrets[i].yPos, 0, 0);
+                image.Margin = new Thickness(game.currentTurrets[i].xPos - 25, game.currentTurrets[i].yPos - 25, 0, 0);
+                image.RenderTransformOrigin = new Point(0.5, 0.5);
                 image.Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
                 
                 turrets.Add(image);
@@ -442,8 +448,18 @@ namespace TowerDefenseGUI
 
         private void GameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            gameTimer.Stop();
+
+            game.currentEnemies = new List<Enemy>();
+            Spawner.enemies = new List<Enemy>();
+            game.currentTurrets = new List<Turret>();
+            enemies = null;
+            turrets = null;
+            Turret.RotateTurret += null;
+            Enemy.RotateEnemy += null;
             MainMenu mainMenu = new MainMenu();
             mainMenu.Show();
+    
         }
     }
 }

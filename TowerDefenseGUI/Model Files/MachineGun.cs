@@ -25,6 +25,7 @@ namespace TowerDefenseGUI
         {
             MachineGun m = new MachineGun();
             m.imageID = 0;
+            m.fireRate = 60;
             m.xPos = x;
             m.yPos = y;
             m.cost = 50;
