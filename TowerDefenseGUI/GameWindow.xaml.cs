@@ -221,10 +221,10 @@ namespace TowerDefenseGUI
             }
         }
 
-        //Creates a new bitmap everytime the buy button is clicked
-        //and loads the machine gun place image into it
-        //then it takes the Current cursor and changes it with the 
-        //machine gun image
+        // Creates a new bitmap everytime the buy button is clicked
+        // and loads the machine gun place image into it
+        // then it takes the Current cursor and changes it with the 
+        // machine gun image
         // tower place methods
         private void updateTowerPlace(object sender, EventArgs e)
         {
@@ -346,7 +346,7 @@ namespace TowerDefenseGUI
             txtMachineGunTeslaName.Text = "Machine Gun Tower";
             txtMachineGunTeslaType.Text = "Target: Ground";
             txtMachineGunTeslaRange.Text = "Rane: 125";
-            txtMachineGunTeslaDmg.Text = "Damage: 4/s";
+            txtMachineGunTeslaDmg.Text = "Damage: 7.5/s";
             txtMachineGunTeslaCost.Text = "Cost: $50";
             FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.png"));
             txtFlakLaserName.Text = "Flak Tower";
