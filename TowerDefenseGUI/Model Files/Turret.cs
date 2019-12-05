@@ -54,7 +54,7 @@ namespace TowerDefenseGUI
                 }
                 else if (type == "machinegun")
                 {
-                    fireTime = 20;                              
+                    fireTime = 10;                              
                 }
                 else
                 {

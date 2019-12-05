@@ -20,10 +20,10 @@ namespace TowerDefenseGUI
             try
             {
                 currentlyLoading = "MachineGunSound.wav";
-                MachineGunSound = new SoundPlayer(@"..\..\Resources\MachineGunSound.wav");
+                MachineGunSound = new SoundPlayer(@"Resources\MachineGunSound.wav");
                 MachineGunSound.Load();
                 currentlyLoading = "FlakSound.wav";
-                FlakSound = new SoundPlayer(@"..\..\Resources\FlakSound.wav");
+                FlakSound = new SoundPlayer(@"Resources\FlakSound.wav");
                 FlakSound.Load();
                 currentlyLoading = "MortarSound.wav";
                 MortarSound = new SoundPlayer(@"..\..\Resources\MortarSound.wav");
@@ -51,7 +51,7 @@ namespace TowerDefenseGUI
                     break;
                 case "flak":
                     try { FlakSound.Play(); }
-                    catch (Exception e) { /*MessageBox.Show("FlakSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    catch { /*MessageBox.Show("FlakSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "mortar":
                     try { MortarSound.Play(); }
