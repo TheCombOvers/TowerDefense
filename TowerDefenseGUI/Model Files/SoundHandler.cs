@@ -38,7 +38,7 @@ namespace TowerDefenseGUI
                 StunSound = new SoundPlayer(@"..\..\Resources\StunSound.wav");
                 StunSound.Load();
             }
-            catch (Exception e) { MessageBox.Show("Could not locate " + currentlyLoading + "\nStack Trace: " + e.Message); }
+            catch (Exception e) { Console.WriteLine("Could not locate " + currentlyLoading + "\nStack Trace: " + e.Message); }
         }
 
         public void Play(object sender, string type)
