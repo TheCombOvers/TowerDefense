@@ -68,7 +68,7 @@ namespace TowerDefenseGUI
         private int CalculateRotation(double xPos, double yPos, double posX, double posY)
         {
             int degree = 0;
-            degree = (int) Math.Atan((xPos - posX) / (yPos-posY));
+            degree = (int) (Math.Atan2((posY- yPos), (posX- xPos)) * 180 / Math.PI)+90;
             return degree;
         }
 
