@@ -48,12 +48,12 @@ namespace TowerDefenseGUI
             eImageSources = new List<string>();
             eImageSources.Add("pack://application:,,,/Resources/Basic Ground Unit.png");
             eImageSources.Add("pack://application:,,,/Resources/Basic Ground Vehicle.png");
-            eImageSources.Add("pack://application:,,,/Resources/PUT AIR VEHICLE HERE");
+            eImageSources.Add("pack://application:,,,/Resources/Basic Aircraft");
             eImageSources.Add("pack://application:,,,/Resources/Ground Boss.png");
             eImageSources.Add("pack://application:,,,/Resources/Advanced Ground Unit.png");
             eImageSources.Add("pack://application:,,,/Resources/Advanced Ground Vehicle.png");
-            eImageSources.Add("pack://application:,,,/Resources/PUT ADVANCED AIRCRAFT HERE");
-            eImageSources.Add("pack://application:,,,/Resources/PUT AIR BOSS HERE");
+            eImageSources.Add("pack://application:,,,/Resources/Advanced Aircraft");
+            eImageSources.Add("pack://application:,,,/Resources/Aircraft Boss");
             // add all image sources to the turret image sources list
             // again dont mess with the order of these lines
             tImageSources = new List<string>();
@@ -83,7 +83,7 @@ namespace TowerDefenseGUI
             gameTimer.Start();
             btnBasic.IsEnabled = false;
             basic = true;
-            txtMoney.Text += game.money;
+            txtMoney.Text += Game.money;
             txtLives.Text = "Lives: " + Game.lives;
         }
 
@@ -91,6 +91,8 @@ namespace TowerDefenseGUI
         public void UpdateGame(object sender, object e)
         {
             game.UpdateModel();
+            txtMoney.Text = "$" + Game.money;
+            txtLives.Text = "Lives: " + Game.lives;
             UpdateView();
         }
         public void UpdateView()
@@ -245,47 +247,47 @@ namespace TowerDefenseGUI
                 GameWindowCanvas.Children.Add(image);
                 if (machinegunplace == true)
                 {
-                    game.money -= 50;
+                    Game.money -= 50;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
                     MachineGun g = MachineGun.MakeMachineGun(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
                 }
                 else if (flakplace == true)
                 {
-                    game.money -= 75;
+                    Game.money -= 75;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.PNG"));
                     Flak g = Flak.MakeFlak(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
                 }
                 else if (mortarplace == true)
                 {
-                    game.money -= 200;
+                    Game.money -= 200;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.PNG"));
                     Mortar g = Mortar.MakeMortar(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
                 }
                 else if (teslaplace == true)
                 {
-                    game.money -= 175;
+                    Game.money -= 175;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.PNG"));
                     Tesla g = Tesla.MakeTesla(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
                 }
                 else if (laserplace == true)
                 {
-                    game.money -= 125;
+                    Game.money -= 125;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.PNG"));
                     Laser g = Laser.MakeLaser(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
                 }
                 else if (stunplace == true)
                 {
-                    game.money -= 200;
+                    Game.money -= 200;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.PNG"));
                     Stun g = Stun.MakeStun(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
                 }
-                txtMoney.Text = "$" + game.money;
+                txtMoney.Text = "$" + Game.money;
             }
         }
 
@@ -344,7 +346,7 @@ namespace TowerDefenseGUI
         {
             if (basic)
             {
-                if (game.money >= 50)
+                if (Game.money >= 50)
                 {
                     machinegunplace = true;
                     flakplace = false;
@@ -360,7 +362,7 @@ namespace TowerDefenseGUI
             }
             else
             {
-                if (game.money >= 175)
+                if (Game.money >= 175)
                 {
                     machinegunplace = false;
                     flakplace = false;
@@ -379,7 +381,7 @@ namespace TowerDefenseGUI
         {
             if (basic)
             {
-                if (game.money >= 75)
+                if (Game.money >= 75)
                 {
                     machinegunplace = false;
                     flakplace = true;
@@ -395,7 +397,7 @@ namespace TowerDefenseGUI
             }
             else
             {
-                if (game.money >= 125)
+                if (Game.money >= 125)
                 {
                     machinegunplace = false;
                     flakplace = false;
@@ -414,7 +416,7 @@ namespace TowerDefenseGUI
         {
             if (basic)
             {
-                if (game.money >= 150)
+                if (Game.money >= 150)
                 {
                     machinegunplace = false;
                     flakplace = false;
@@ -430,7 +432,7 @@ namespace TowerDefenseGUI
             }
             else
             {
-                if (game.money >= 200)
+                if (Game.money >= 200)
                 {
                     machinegunplace = false;
                     flakplace = false;

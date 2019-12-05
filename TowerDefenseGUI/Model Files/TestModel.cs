@@ -18,7 +18,7 @@ namespace TowerDefenseGUI
             g.currentWave = 5;
             g.waveProgress = 3;
             g.score = 700;
-            g.money = 200;
+            Game.money = 200;
             g.isWaveOver = false;
             g.spawner = new Spawner(null, null);
             Infantry i1 = Infantry.MakeInfantry("b");
@@ -47,7 +47,7 @@ namespace TowerDefenseGUI
             Assert.AreEqual(g.currentEnemies.Count, loadedGame.currentEnemies.Count);
             Assert.AreEqual(8 , Game.lives);
             Assert.AreEqual(g.currentWave, loadedGame.currentWave);
-            Assert.AreEqual(g.money, loadedGame.money);
+            Assert.AreEqual(200, Game.money);
             Assert.AreEqual(g.score, loadedGame.score);
             Assert.AreEqual(g.waveProgress, loadedGame.waveProgress);
             Assert.AreEqual(g.difficulty, loadedGame.difficulty);
@@ -60,7 +60,7 @@ namespace TowerDefenseGUI
             Game g = new Game(0, false, null, null, 1);
             g.currentWave = 5;
             g.waveProgress = 3;
-            g.money = 200;
+            Game.money = 200;
             g.score = 700;
             g.isWaveOver = false;
             Game.lives = 8;
