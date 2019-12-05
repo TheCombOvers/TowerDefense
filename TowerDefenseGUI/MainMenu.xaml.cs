@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
+using System.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -21,8 +21,11 @@ namespace TowerDefenseGUI
     public partial class MainMenu : Window
     {
         public bool cheat = true;
+        public SoundHandler soundHandler;
+
         public MainMenu()
         {
+            soundHandler = new SoundHandler();
             InitializeComponent();
         }
 
@@ -38,7 +41,7 @@ namespace TowerDefenseGUI
 
             // For Alpha, just launch Game Window
 
-            DifficultyPage diffPage = new DifficultyPage();
+            DifficultyPage diffPage = new DifficultyPage(soundHandler);
             this.Content = diffPage;
                            
         }
@@ -66,7 +69,7 @@ namespace TowerDefenseGUI
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             // if we're loading a old save then pass in true for isLoad, else pass false
-            var gameWindow = new GameWindow(cheat, true, 0);
+            var gameWindow = new GameWindow(cheat, true, 0, soundHandler);
             gameWindow.Show();
             Close();
         }
