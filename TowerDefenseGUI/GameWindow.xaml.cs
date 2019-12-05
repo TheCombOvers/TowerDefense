@@ -99,13 +99,18 @@ namespace TowerDefenseGUI
             // draw objects based off the properties
             txtLives.Text = "Lives: " + Game.lives;
             int counter = 0;
-            if (enemies != null)
+            if (enemies.Count > 0)
             {
                 foreach (Image en in enemies)
                 {
                     en.Margin = new Thickness(game.currentEnemies[counter].posX, game.currentEnemies[counter].posY, 0, 0);
                     ++counter;
                 }
+            }
+            else // when this else is true the wave is over
+            {
+                game.currentWave += 1; 
+                btnNextWave.IsEnabled = true;
             }
         }
 
@@ -165,6 +170,8 @@ namespace TowerDefenseGUI
         private void btnNextWave_Click(object sender, RoutedEventArgs e)
         {
             game.NextWave();
+            btnNextWave.IsEnabled =  false;
+            game.isWaveOver = false;
         }
         private void btnSaveGame_Click(object sender, RoutedEventArgs e)
         {
