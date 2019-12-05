@@ -31,12 +31,7 @@ namespace TowerDefenseGUI
         List<string> tImageSources;// 0:MG tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
         bool isPlacing;
         Point mousePos;
-        bool machinegun;
-        bool tesla;
-        bool flak;
-        bool laser;
-        bool mortar;
-        bool stun;
+        bool basic;
         bool machinegunplace;
         bool flakplace;
         bool mortarplace;
@@ -77,8 +72,7 @@ namespace TowerDefenseGUI
             else
             {
                 game = new Game(0, cheat, AddEnemy, RemoveEnemy, diff);
-            }        
-            
+            }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events
@@ -88,9 +82,7 @@ namespace TowerDefenseGUI
             Enemy.RotateEnemy += RotateEnemy;
             gameTimer.Start();
             btnBasic.IsEnabled = false;
-            machinegun = true;
-            flak = true;
-            mortar = true;
+            basic = true;
             txtMoney.Text += game.money;
             txtLives.Text = "Lives: " + Game.lives;
         }
@@ -302,24 +294,19 @@ namespace TowerDefenseGUI
         {
             btnBasic.IsEnabled = true;
             btnAdvanced.IsEnabled = false;
-            machinegun = false;
-            tesla = true;
+            basic = false;
             MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.png"));
             txtMachineGunTeslaName.Text = "Tesla Tower";
             txtMachineGunTeslaType.Text = "Target: Ground";
             txtMachineGunTeslaRange.Text = "Range: 100";
             txtMachineGunTeslaDmg.Text = "Damage: 3/s";
             txtMachineGunTeslaCost.Text = "Cost: $175";
-            flak = false;
-            laser = true;
             FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.png"));
             txtFlakLaserName.Text = "Laser Tower";
             txtFlakLaserType.Text = "Target: Ground/Air";
             txtFlakLaserRange.Text = "Range: 175";
             txtFlakLaserDmg.Text = "Damage: 10/s";
             txtFlakLaserCost.Text = "Cost: $125";
-            mortar = false;
-            stun = true;
             MortarStunImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.png"));
             txtMortarStunName.Text = "Stun Tower";
             txtMortarStunType.Text = "Target: Ground/Air";
@@ -331,24 +318,19 @@ namespace TowerDefenseGUI
         {
             btnBasic.IsEnabled = false;
             btnAdvanced.IsEnabled = true;
-            machinegun = true;
-            tesla = false;
+            basic = true;
             MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.png"));
             txtMachineGunTeslaName.Text = "Machine Gun Tower";
             txtMachineGunTeslaType.Text = "Target: Ground";
             txtMachineGunTeslaRange.Text = "Rane: 125";
             txtMachineGunTeslaDmg.Text = "Damage: 4/s";
             txtMachineGunTeslaCost.Text = "Cost: $50";
-            flak = true;
-            laser = false;
             FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.png"));
             txtFlakLaserName.Text = "Flak Tower";
             txtFlakLaserType.Text = "Target: Air";
             txtFlakLaserRange.Text = "Range: 225";
             txtFlakLaserDmg.Text = "Damage: 2/s";
             txtFlakLaserCost.Text = "Cost: $75";
-            mortar = true;
-            stun = false;
             MortarStunImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.png"));
             txtMortarStunName.Text = "Mortar Tower";
             txtMortarStunType.Text = "Target: Ground";
@@ -360,7 +342,7 @@ namespace TowerDefenseGUI
         // buy turret methods
         private void btnMachineGunTeslaBuy_Click(object sender, RoutedEventArgs e)
         {
-            if (machinegun == true)
+            if (basic)
             {
                 if (game.money >= 50)
                 {
@@ -376,7 +358,7 @@ namespace TowerDefenseGUI
                     isPlacing = true;
                 }
             }
-            else if (tesla == true)
+            else
             {
                 if (game.money >= 175)
                 {
@@ -395,7 +377,7 @@ namespace TowerDefenseGUI
         }
         private void btnFlakLaserBuy_Click(object sender, RoutedEventArgs e)
         {
-            if (flak == true)
+            if (basic)
             {
                 if (game.money >= 75)
                 {
@@ -411,7 +393,7 @@ namespace TowerDefenseGUI
                     isPlacing = true;
                 }
             }
-            else if (laser == true)
+            else
             {
                 if (game.money >= 125)
                 {
@@ -430,7 +412,7 @@ namespace TowerDefenseGUI
         }
         private void btnMortarStunBuy_Click(object sender, RoutedEventArgs e)
         {
-            if (mortar == true)
+            if (basic)
             {
                 if (game.money >= 150)
                 {
@@ -446,7 +428,7 @@ namespace TowerDefenseGUI
                     isPlacing = true;
                 }
             }
-            else if (stun == true)
+            else
             {
                 if (game.money >= 200)
                 {
