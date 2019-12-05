@@ -10,7 +10,7 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string flak = string.Format("{0},{1},{2}", "turret", xPos, yPos);
+            string flak = string.Format("{0},{1},{2}", "flak", xPos, yPos);
             return flak;
         }
         public override object Deserialize(string info)
@@ -24,7 +24,6 @@ namespace TowerDefenseGUI
         {
             Flak f = new Flak();
             f.imageID = 1;
-            f.imageID = 0;
             f.cost = 75;
             f.damage = 2;
             f.range = 250/2;

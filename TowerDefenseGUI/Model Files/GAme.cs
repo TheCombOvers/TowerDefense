@@ -43,7 +43,7 @@ namespace TowerDefenseGUI
             score = 0;
             lives = 10;
             map = new Map(mapID);
-            spawner = new Spawner();
+            spawner = new Spawner(add, remove);
             addEnemy = add;
             removeEnemy = remove;
         }
@@ -120,42 +120,42 @@ namespace TowerDefenseGUI
                                 switch (ele[0])                 // grab the type and call methods based on it
                                 {
                                     case "gboss":
-                                        Boss bG = Boss.MakeBoss("gboss");
+                                        Boss bG = Boss.MakeBoss("g");
                                         bG.Deserialize(line);
                                         Spawner.enemies.Add(bG);
                                         break;
                                     case "aboss":
-                                        Boss bA = Boss.MakeBoss("aboss");
+                                        Boss bA = Boss.MakeBoss("a");
                                         bA.Deserialize(line);
                                         Spawner.enemies.Add(bA);
                                         break;
                                     case "baircraft":
-                                        Aircraft a = Aircraft.MakeAircraft("baircraft");
+                                        Aircraft a = Aircraft.MakeAircraft("b");
                                         a.Deserialize(line);
                                         Spawner.enemies.Add(a);
                                         break;
                                     case "aaircraft":
-                                        Aircraft aA = Aircraft.MakeAircraft("aaircraft");
+                                        Aircraft aA = Aircraft.MakeAircraft("a");
                                         aA.Deserialize(line);
                                         Spawner.enemies.Add(aA);
                                         break;
                                     case "binfantry":
-                                        Infantry i = Infantry.MakeInfantry("binfantry");
+                                        Infantry i = Infantry.MakeInfantry("b");
                                         i.Deserialize(line);
                                         Spawner.enemies.Add(i);
                                         break;
                                     case "ainfantry":
-                                        Infantry iA = Infantry.MakeInfantry("ainfantry");
+                                        Infantry iA = Infantry.MakeInfantry("a");
                                         iA.Deserialize(line);
                                         Spawner.enemies.Add(iA);
                                         break;
                                     case "bvehicle":
-                                        Vehicle v = Vehicle.MakeVehicle("bvehicle");
+                                        Vehicle v = Vehicle.MakeVehicle("b");
                                         v.Deserialize(line);
                                         Spawner.enemies.Add(v);
                                         break;
                                     case "avehicle":
-                                        Vehicle vA = Vehicle.MakeVehicle("avehicle");
+                                        Vehicle vA = Vehicle.MakeVehicle("a");
                                         vA.Deserialize(line);
                                         Spawner.enemies.Add(vA);
                                         break;

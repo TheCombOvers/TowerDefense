@@ -13,7 +13,11 @@ namespace TowerDefenseGUI
         public static List<Enemy> enemies = new List<Enemy>();
         static Action<Enemy> Remove;
         static Action<Enemy> Add;
-
+        public Spawner(Action<Enemy> AddEnemy, Action<Enemy> RemoveEnemy)
+        {
+            Remove = RemoveEnemy;
+            Add = AddEnemy;
+        }
         public void Spawn(int wave, Action<Enemy> AddEnemy, Action<Enemy> RemoveEnemy)
         {
             Remove = RemoveEnemy;
