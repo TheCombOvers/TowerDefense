@@ -20,6 +20,7 @@ namespace TowerDefenseGUI
         public int imageID;
         public int imageIndex;
         public static event EventHandler<int> RotateTurret;
+        public static event EventHandler<string> PlaySound;
         
         public virtual void Attack(Enemy e)
         {
@@ -63,6 +64,7 @@ namespace TowerDefenseGUI
                 {
                     Console.WriteLine("Attacking");
                     e.TakeDamage(damage);
+                    PlaySound(this, type);
                 }
                 fireRate++;
             }

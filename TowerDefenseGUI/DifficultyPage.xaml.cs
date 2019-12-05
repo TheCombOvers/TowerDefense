@@ -16,9 +16,11 @@ namespace TowerDefenseGUI
     {
         public bool Cheat = true;
         public int Difficulty = 1;
+        public SoundHandler soundHandler;
 
-        public DifficultyPage()
+        public DifficultyPage(SoundHandler sentSoundHandler)
         {
+            soundHandler = sentSoundHandler;
             InitializeComponent();
         }
         private void BtnMainMenu_Click(object sender, RoutedEventArgs e)
@@ -76,7 +78,7 @@ namespace TowerDefenseGUI
 
         private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
         {
-            var gameWindow = new GameWindow(Cheat, false, Difficulty); //put difficulty variable where the zero is 
+            var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
             hostWindow.Close();
