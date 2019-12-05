@@ -109,11 +109,6 @@ namespace TowerDefenseGUI
                     ++counter;
                 }
             }
-            else // when this else is true the wave is over
-            {
-                game.currentWave += 1; 
-                btnNextWave.IsEnabled = true;
-            }
         }
 
         public void RotateEnemy(object en, int degrees)
@@ -166,6 +161,12 @@ namespace TowerDefenseGUI
             for (int i = e.imageIndex; i < enemies.Count; ++i)
             {
                 Spawner.enemies[i].imageIndex -= 1;
+            }
+            if (enemies.Count == 0)
+            {
+                game.isWaveOver = true;
+                game.currentWave += 1;
+                btnNextWave.IsEnabled = true;
             }
         }
 

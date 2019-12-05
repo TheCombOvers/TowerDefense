@@ -36,7 +36,7 @@ namespace TowerDefenseGUI
         {
             difficulty = diff;
             cheatMode = cheat;
-            currentWave = 0;
+            currentWave = 1;
             isWaveOver = false;
             waveProgress = 0;         
             money = cheat == true ? 999999: 200;
