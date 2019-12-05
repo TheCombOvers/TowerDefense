@@ -85,6 +85,7 @@ namespace TowerDefenseGUI
             gameTimer.Tick += UpdateGame;
             gameTimer.Tick += updateTowerPlace;
             Turret.RotateTurret += RotateTurret;
+            Enemy.RotateEnemy += RotateEnemy;
             gameTimer.Start();
             btnBasic.IsEnabled = false;
             machinegun = true;
@@ -115,6 +116,13 @@ namespace TowerDefenseGUI
                 }
             }
         }
+
+        public void RotateEnemy(object en, int degrees)
+        {
+            int index = game.currentEnemies.IndexOf(en as Enemy);
+            enemies[index].RenderTransform = new RotateTransform(degrees);
+        }
+
         public void RotateTurret(object tur, int degrees)
         {
             int index = game.currentTurrets.IndexOf(tur as Turret);

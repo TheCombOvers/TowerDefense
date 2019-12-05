@@ -19,16 +19,34 @@ namespace TowerDefenseGUI
         public double posY;
         public int imageID;
         public int imageIndex;
+        public static event EventHandler<int> RotateEnemy;
+
 
         public void UpdatePos()
         {
             var intersection = CheckCoords(Map.coords);
             if (intersection.direction == Map.Direction.RIGHT || intersection.direction == Map.Direction.LEFT)
             {
+                if(intersection.direction == Map.Direction.RIGHT)
+                {
+                    RotateEnemy(this, 0);
+                }
+                else
+                {
+                    RotateEnemy(this, 180);
+                }
                 posX += speed;
             }
             if (intersection.direction == Map.Direction.DOWN || intersection.direction == Map.Direction.UP)
             {
+                if (intersection.direction == Map.Direction.DOWN)
+                {
+                    RotateEnemy(this, 90);
+                }
+                else
+                {
+                    RotateEnemy(this, -90);
+                }
                 posY += speed;
             }
         }
