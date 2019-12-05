@@ -457,6 +457,7 @@ namespace TowerDefenseGUI
             turrets = null;
             Turret.RotateTurret += null;
             Enemy.RotateEnemy += null;
+            Turret.PlaySound += null;
             MainMenu mainMenu = new MainMenu();
             mainMenu.Show();
     
