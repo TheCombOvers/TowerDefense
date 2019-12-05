@@ -10,16 +10,16 @@ namespace TowerDefenseGUI
 {
     public abstract class Turret : ISerializeObject
     {
-        public Image image;
         public int cost;
         public double damage;
         public double range;
         public string type;
-        public double fireRate = 60;
+        public double fireRate;
         public double xPos;
         public double yPos;
         public int imageID;
-        public event EventHandler<int> RotateTurret;
+        public int imageIndex;
+        public EventHandler<int> RotateTurret;
 
         public void Attack(Enemy e)
         {
@@ -30,6 +30,8 @@ namespace TowerDefenseGUI
             }
             else
             {
+                int deg = CalculateRotation(xPos, yPos, e.posX, e.posY);
+                //RotateTurret(this, deg);
                 Console.WriteLine("Firerate = " + fireRate);
                 if (fireRate % 60 == 0)
                 {
@@ -39,15 +41,13 @@ namespace TowerDefenseGUI
                 fireRate++;
             }
         }
-
+        
         public Enemy DetectEnemy(List<Enemy> enemies)
         {
             Enemy target = null;
             foreach (Enemy e in enemies)
             {
                 double dist = CalculateDistance(xPos, yPos, e.posX, e.posY);
-                int deg = 90;
-                RotateTurret(this, deg);
                 if (range >= dist)
                 {
                     Console.WriteLine("Target in range");
@@ -64,6 +64,12 @@ namespace TowerDefenseGUI
             double y = yPos - posY;
             double dist = Math.Sqrt((y * y) + (x * x));
             return dist;
+        }
+        private int CalculateRotation(double xPos, double yPos, double posX, double posY)
+        {
+            int degree = 0;
+            degree = (int) Math.Atan((xPos - posX) / (yPos-posY));
+            return degree;
         }
 
         public abstract string Serialize();
