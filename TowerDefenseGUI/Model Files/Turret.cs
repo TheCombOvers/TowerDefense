@@ -19,7 +19,7 @@ namespace TowerDefenseGUI
         public double yPos;
         public int imageID;
         public int imageIndex;
-        public EventHandler<int> RotateTurret;
+        public static event EventHandler<int> RotateTurret;
 
         public void Attack(Enemy e)
         {
@@ -31,7 +31,7 @@ namespace TowerDefenseGUI
             else
             {
                 int deg = CalculateRotation(xPos, yPos, e.posX, e.posY);
-                //RotateTurret(this, deg);
+                RotateTurret(this, deg);
                 Console.WriteLine("Firerate = " + fireRate);
                 if (fireRate % 60 == 0)
                 {

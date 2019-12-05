@@ -55,7 +55,7 @@ namespace TowerDefenseGUI
         public void NextWave()
         {
             waveProgress++;
-            spawner.Spawn(waveProgress, addEnemy, removeEnemy);
+            spawner.Spawn(waveProgress);
         }
 
         public void UpdateModel()

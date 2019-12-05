@@ -28,7 +28,7 @@ namespace TowerDefenseGUI
         List<Image> turrets;
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
-        List<string> tImageSources;// 0:turret tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
+        List<string> tImageSources;// 0:MG tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
         bool isPlacing;
         Point mousePos;
         bool machinegun;
@@ -84,6 +84,7 @@ namespace TowerDefenseGUI
             //add update model events
             gameTimer.Tick += UpdateGame;
             gameTimer.Tick += updateTowerPlace;
+            Turret.RotateTurret += RotateTurret;
             gameTimer.Start();
             btnBasic.IsEnabled = false;
             machinegun = true;
@@ -230,120 +231,61 @@ namespace TowerDefenseGUI
         {
             if (isPlacing == true)
             {
+                imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                Image image = new Image();
+                isPlacing = false;
+                image.RenderTransformOrigin = new Point(0.5, 0.5);
+                image.Width = 50;
+                image.Height = 50;
+                mousePos = e.GetPosition(GameWindowCanvas);
+                double posX = SnapToGridX(mousePos.X);
+                double posY = SnapToGridY(mousePos.Y);
+                image.Margin = new Thickness(posX, posY, 0, 0);
+                turrets.Add(image);
+                GameWindowCanvas.Children.Add(image);
                 if (machinegunplace == true)
                 {
                     game.money -= 50;
-                    txtMoney.Text = "$" + game.money;
-                    isPlacing = false;
-                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
-                    Image image = new Image();
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
-                    image.RenderTransformOrigin = new Point(0.5, 0.5);
-                    mousePos = e.GetPosition(GameWindowCanvas);
-                    double posX = SnapToGridX(mousePos.X);
-                    double posY = SnapToGridY(mousePos.Y);
-                    image.Margin = new Thickness(posX, posY, 0, 0);
                     MachineGun g = MachineGun.MakeMachineGun(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
-                    image.Width = 50;
-                    image.Height = 50;
-                    GameWindowCanvas.Children.Add(image);
                 }
                 else if (flakplace == true)
                 {
                     game.money -= 75;
-                    txtMoney.Text = "$" + game.money;
-                    isPlacing = false;
-                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
-                    Image image = new Image();
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.PNG"));
-                    double posX = mousePos.X;
-                    double posY = mousePos.Y;
-                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
-                    Flak g = Flak.MakeFlak();
-                    g.xPos = Convert.ToInt32(posX * .9);
-                    g.yPos = Convert.ToInt32(posY * .9);
+                    Flak g = Flak.MakeFlak(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
-                    image.Width = 50;
-                    image.Height = 50;
-                    GameWindowCanvas.Children.Add(image);
                 }
                 else if (mortarplace == true)
                 {
                     game.money -= 200;
-                    txtMoney.Text = "$" + game.money;
-                    isPlacing = false;
-                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
-                    Image image = new Image();
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.PNG"));
-                    double posX = mousePos.X;
-                    double posY = mousePos.Y;
-                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
-                    Mortar g = Mortar.MakeMortar();
-                    g.xPos = Convert.ToInt32(posX * .9);
-                    g.yPos = Convert.ToInt32(posY * .9);
+                    Mortar g = Mortar.MakeMortar(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
-                    image.Width = 50;
-                    image.Height = 50;
-                    GameWindowCanvas.Children.Add(image);
                 }
                 else if (teslaplace == true)
                 {
                     game.money -= 175;
-                    txtMoney.Text = "$" + game.money;
-                    isPlacing = false;
-                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
-                    Image image = new Image();
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.PNG"));
-                    double posX = mousePos.X;
-                    double posY = mousePos.Y;
-                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
-                    Tesla g = Tesla.MakeTesla();
-                    g.xPos = Convert.ToInt32(posX * .9);
-                    g.yPos = Convert.ToInt32(posY * .9);
+                    Tesla g = Tesla.MakeTesla(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
-                    image.Width = 50;
-                    image.Height = 50;
-                    GameWindowCanvas.Children.Add(image);
                 }
                 else if (laserplace == true)
                 {
                     game.money -= 125;
-                    txtMoney.Text = "$" + game.money;
-                    isPlacing = false;
-                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
-                    Image image = new Image();
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.PNG"));
-                    double posX = mousePos.X;
-                    double posY = mousePos.Y;
-                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
-                    Laser g = Laser.MakeLaser();
-                    g.xPos = Convert.ToInt32(posX * .9);
-                    g.yPos = Convert.ToInt32(posY * .9);
+                    Laser g = Laser.MakeLaser(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
-                    image.Width = 50;
-                    image.Height = 50;
-                    GameWindowCanvas.Children.Add(image);
                 }
                 else if (stunplace == true)
                 {
                     game.money -= 200;
-                    txtMoney.Text = "$" + game.money;
-                    isPlacing = false;
-                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
-                    Image image = new Image();
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.PNG"));
-                    double posX = mousePos.X;
-                    double posY = mousePos.Y;
-                    image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
-                    Stun g = Stun.MakeStun();
-                    g.xPos = Convert.ToInt32(posX * .9);
-                    g.yPos = Convert.ToInt32(posY * .9);
+                    Stun g = Stun.MakeStun(posX + 25, posY + 25);
                     game.currentTurrets.Add(g);
-                    image.Width = 50;
-                    image.Height = 50;
-                    GameWindowCanvas.Children.Add(image);
                 }
+                txtMoney.Text = "$" + game.money;
             }
         }
 
@@ -521,4 +463,3 @@ namespace TowerDefenseGUI
         }
     }
 }
-
