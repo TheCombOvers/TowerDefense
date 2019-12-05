@@ -47,7 +47,7 @@ namespace TowerDefenseGUI
             {
                 case "machinegun":
                     try { MachineGunSound.Play(); }
-                    catch(Exception e) { /*MessageBox.Show("MachineGunSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    catch { /*MessageBox.Show("MachineGunSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "flak":
                     try { FlakSound.Play(); }
@@ -55,19 +55,19 @@ namespace TowerDefenseGUI
                     break;
                 case "mortar":
                     try { MortarSound.Play(); }
-                    catch (Exception e) { /*MessageBox.Show("MortarSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    catch { /*MessageBox.Show("MortarSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "tesla":
                     try { TeslaSound.Play(); }
-                    catch (Exception e) { /*MessageBox.Show("TeslaSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    catch { /*MessageBox.Show("TeslaSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "laser":
                     try { LaserSound.Play(); }
-                    catch (Exception e) { /*MessageBox.Show("LaserSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    catch { /*MessageBox.Show("LaserSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "stun":
                     try { StunSound.Play(); }
-                    catch (Exception e) { /*MessageBox.Show("StunSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    catch { /*MessageBox.Show("StunSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
             }
         }
