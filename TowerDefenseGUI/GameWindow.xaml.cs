@@ -459,8 +459,17 @@ namespace TowerDefenseGUI
             Enemy.RotateEnemy += null;
             Turret.PlaySound += null;
             MainMenu mainMenu = new MainMenu();
-            mainMenu.Show();
-    
+            mainMenu.Show();   
+        }
+
+        private void btn_FastForward_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Sell_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
