@@ -21,7 +21,6 @@ namespace TowerDefenseGUI
     public partial class MainMenu : Window
     {
         public bool cheat = true;
-        public bool load = false;
         public MainMenu()
         {
             InitializeComponent();
@@ -67,8 +66,7 @@ namespace TowerDefenseGUI
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             // if we're loading a old save then pass in true for isLoad, else pass false
-            load = sender == LoadButton ? true : false;
-            var gameWindow = new GameWindow(cheat, load);
+            var gameWindow = new GameWindow(cheat, true, 0);
             gameWindow.Show();
             Close();
         }

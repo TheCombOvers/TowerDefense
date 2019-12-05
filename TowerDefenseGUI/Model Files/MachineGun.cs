@@ -14,15 +14,17 @@ namespace TowerDefenseGUI
             return machinegun;
         }
         public override object Deserialize(string info)
-        {
+        {// need to make all turret desearilization look like this one...
             string[] finfo = info.Split(',');
-            MachineGun m = MakeMachineGun(Convert.ToInt32(finfo[1]), Convert.ToInt32(finfo[2]));
-            m.type = "machinegun";
-            return m;
+            xPos = Convert.ToInt32(finfo[1]);
+            yPos = Convert.ToInt32(finfo[2]);    
+            type = "machinegun";
+            return this;
         }
         public static MachineGun MakeMachineGun(double x, double y)
         {
             MachineGun m = new MachineGun();
+            m.imageID = 0;
             m.xPos = x;
             m.yPos = y;
             m.cost = 50;

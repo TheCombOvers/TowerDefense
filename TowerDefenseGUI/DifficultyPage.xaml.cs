@@ -64,7 +64,7 @@ namespace TowerDefenseGUI
 
         private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
         {
-            var gameWindow = new GameWindow(Cheat, false);
+            var gameWindow = new GameWindow(Cheat, false, 0); //put difficulty variable where the zero is 
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
             hostWindow.Close();

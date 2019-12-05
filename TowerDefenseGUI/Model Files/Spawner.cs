@@ -13,22 +13,20 @@ namespace TowerDefenseGUI
         public static List<Enemy> enemies = new List<Enemy>();
         static Action<Enemy> Remove;
         static Action<Enemy> Add;
-
-        public void Spawn(int wave, Action<Enemy> AddEnemy, Action<Enemy> RemoveEnemy)
+        public Spawner(Action<Enemy> AddEnemy, Action<Enemy> RemoveEnemy)
         {
             Remove = RemoveEnemy;
             Add = AddEnemy;
-
-            //Enemy e = Infantry.MakeInfantry("b");
-            //enemies.Add(e);
-            //AddEnemy(e);
+        }
+        public void Spawn(int wave)
+        {
             int count = DetermineWave(wave);
             GenerateWave(wave, count);
             //Task.Run(() =>
             //{
                 foreach (Enemy en in enemies)
                 {
-                    AddEnemy(en);
+                    Add(en);
                     //Task.Delay(500);
                 }
             //});

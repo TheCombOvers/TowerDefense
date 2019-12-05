@@ -16,7 +16,7 @@ namespace TowerDefenseGUI
     }
     class Game
     {
-        public int waveTotal; // number of waves required to win the game
+        public int difficulty; // number of waves required to win the game
         public int currentWave;
         public bool isWaveOver;
         static public bool cheatMode;
@@ -32,8 +32,9 @@ namespace TowerDefenseGUI
         public Action<Enemy> removeEnemy;
 
 
-        public Game(int mapID,bool cheat, Action<Enemy> add, Action<Enemy> remove)
+        public Game(int mapID,bool cheat, Action<Enemy> add, Action<Enemy> remove, int diff)
         {
+            difficulty = diff;
             cheatMode = cheat;
             currentWave = 0;
             isWaveOver = false;
@@ -42,7 +43,7 @@ namespace TowerDefenseGUI
             score = 0;
             lives = 10;
             map = new Map(mapID);
-            spawner = new Spawner();
+            spawner = new Spawner(add, remove);
             addEnemy = add;
             removeEnemy = remove;
         }
@@ -54,7 +55,7 @@ namespace TowerDefenseGUI
         public void NextWave()
         {
             waveProgress++;
-            spawner.Spawn(waveProgress, addEnemy, removeEnemy);
+            spawner.Spawn(waveProgress);
         }
 
         public void UpdateModel()
@@ -87,8 +88,8 @@ namespace TowerDefenseGUI
             using (StreamReader reader = new StreamReader(fileName))
             { 
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
-                Game newGame = new Game(0, true, add, remove);
-                if (begin == "NG\t")
+                Game newGame = new Game(0, true, add, remove, 0);
+                if (begin == "NG")
                 {
                   
                     string[] gameInfo = reader.ReadLine().Split(',');   // grab the game state information
@@ -98,7 +99,7 @@ namespace TowerDefenseGUI
                     newGame.waveProgress = Convert.ToInt32(gameInfo[2]);
                     newGame.score = Convert.ToInt32(gameInfo[3]);
                     newGame.money = Convert.ToInt32(gameInfo[4]);
-                    newGame.waveTotal = Convert.ToInt32(gameInfo[5]);       // need to change/fix this so that it is a difficulty instead of a int
+                    newGame.difficulty = Convert.ToInt32(gameInfo[5]);       // need to change/fix this so that it is a difficulty instead of a int
                     if (gameInfo[6] == "false") { newGame.isWaveOver = false; }
                     else { newGame.isWaveOver = true; }
                     Game.lives = Convert.ToInt32(gameInfo[7]);
@@ -119,42 +120,42 @@ namespace TowerDefenseGUI
                                 switch (ele[0])                 // grab the type and call methods based on it
                                 {
                                     case "gboss":
-                                        Boss bG = Boss.MakeBoss("gboss");
+                                        Boss bG = Boss.MakeBoss("g");
                                         bG.Deserialize(line);
                                         Spawner.enemies.Add(bG);
                                         break;
                                     case "aboss":
-                                        Boss bA = Boss.MakeBoss("aboss");
+                                        Boss bA = Boss.MakeBoss("a");
                                         bA.Deserialize(line);
                                         Spawner.enemies.Add(bA);
                                         break;
                                     case "baircraft":
-                                        Aircraft a = Aircraft.MakeAircraft("baircraft");
+                                        Aircraft a = Aircraft.MakeAircraft("b");
                                         a.Deserialize(line);
                                         Spawner.enemies.Add(a);
                                         break;
                                     case "aaircraft":
-                                        Aircraft aA = Aircraft.MakeAircraft("aaircraft");
+                                        Aircraft aA = Aircraft.MakeAircraft("a");
                                         aA.Deserialize(line);
                                         Spawner.enemies.Add(aA);
                                         break;
                                     case "binfantry":
-                                        Infantry i = Infantry.MakeInfantry("binfantry");
+                                        Infantry i = Infantry.MakeInfantry("b");
                                         i.Deserialize(line);
                                         Spawner.enemies.Add(i);
                                         break;
                                     case "ainfantry":
-                                        Infantry iA = Infantry.MakeInfantry("ainfantry");
+                                        Infantry iA = Infantry.MakeInfantry("a");
                                         iA.Deserialize(line);
                                         Spawner.enemies.Add(iA);
                                         break;
                                     case "bvehicle":
-                                        Vehicle v = Vehicle.MakeVehicle("bvehicle");
+                                        Vehicle v = Vehicle.MakeVehicle("b");
                                         v.Deserialize(line);
                                         Spawner.enemies.Add(v);
                                         break;
                                     case "avehicle":
-                                        Vehicle vA = Vehicle.MakeVehicle("avehicle");
+                                        Vehicle vA = Vehicle.MakeVehicle("a");
                                         vA.Deserialize(line);
                                         Spawner.enemies.Add(vA);
                                         break;
@@ -174,12 +175,12 @@ namespace TowerDefenseGUI
                                 switch (eleT[0])                 // grab the type and call methods based on it
                                 {
                                     case "flak":
-                                        Flak f = Flak.MakeFlak();
+                                        Flak f = Flak.MakeFlak(0,0);
                                         f.Deserialize(lineT);
                                         newGame.currentTurrets.Add(f);
                                         break;
                                     case "laser":
-                                        Laser l = Laser.MakeLaser();
+                                        Laser l = Laser.MakeLaser(0, 0);
                                         l.Deserialize(lineT);
                                         newGame.currentTurrets.Add(l);
                                         break;
@@ -189,17 +190,17 @@ namespace TowerDefenseGUI
                                         newGame.currentTurrets.Add(m);
                                         break;
                                     case "mortar":
-                                        Mortar mo = Mortar.MakeMortar();
+                                        Mortar mo = Mortar.MakeMortar(0, 0);
                                         mo.Deserialize(lineT);
                                         newGame.currentTurrets.Add(mo);
                                         break;
                                     case "stun":
-                                        Stun s = Stun.MakeStun();
+                                        Stun s = Stun.MakeStun(0, 0);
                                         s.Deserialize(lineT);
                                         newGame.currentTurrets.Add(s);
                                         break;
                                     case "tesla":
-                                        Tesla t = Tesla.MakeTesla();
+                                        Tesla t = Tesla.MakeTesla(0, 0);
                                         t.Deserialize(lineT);
                                         newGame.currentTurrets.Add(t);
                                         break;
@@ -225,7 +226,7 @@ namespace TowerDefenseGUI
             {
                 writer.WriteLine("NG");
                 string waveOver = isWaveOver == true ? "true" : "false";
-                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", map.mapID, currentWave, waveProgress, score, money, waveTotal, waveOver, lives, cheatMode);
+                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", map.mapID, currentWave, waveProgress, score, money, difficulty, waveOver, lives, cheatMode);
                 writer.WriteLine(gameState);
                 if (currentEnemies.Count != 0)
                 {
