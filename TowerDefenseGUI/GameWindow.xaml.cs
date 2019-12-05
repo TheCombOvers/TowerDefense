@@ -48,12 +48,12 @@ namespace TowerDefenseGUI
             eImageSources = new List<string>();
             eImageSources.Add("pack://application:,,,/Resources/Basic Ground Unit.png");
             eImageSources.Add("pack://application:,,,/Resources/Basic Ground Vehicle.png");
-            eImageSources.Add("pack://application:,,,/Resources/Basic Aircraft");
+            eImageSources.Add("pack://application:,,,/Resources/Basic Aircraft.png");
             eImageSources.Add("pack://application:,,,/Resources/Ground Boss.png");
             eImageSources.Add("pack://application:,,,/Resources/Advanced Ground Unit.png");
             eImageSources.Add("pack://application:,,,/Resources/Advanced Ground Vehicle.png");
-            eImageSources.Add("pack://application:,,,/Resources/Advanced Aircraft");
-            eImageSources.Add("pack://application:,,,/Resources/Aircraft Boss");
+            eImageSources.Add("pack://application:,,,/Resources/Advanced Aircraft.png");
+            eImageSources.Add("pack://application:,,,/Resources/Aircraft Boss.png");
             // add all image sources to the turret image sources list
             // again dont mess with the order of these lines
             tImageSources = new List<string>();
