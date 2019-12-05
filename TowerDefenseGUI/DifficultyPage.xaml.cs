@@ -28,6 +28,16 @@ namespace TowerDefenseGUI
             Window.GetWindow(this).Close();
         }
 
+        private void BtnMainMenu_Hover(object sender, RoutedEventArgs e)
+        {
+            btnRect.Fill = Brushes.LightSkyBlue;
+        }
+
+        private void BtnMainMenu_UnHover(object sender, RoutedEventArgs e)
+        {
+            btnRect.Fill = Brushes.LightGray;
+        }
+
         private void CheatMode_Click(object sender, RoutedEventArgs e)
         {
             if (CheatMode.Content.ToString() == "Cheat Mode: On")
