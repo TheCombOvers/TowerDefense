@@ -14,7 +14,7 @@ namespace TowerDefenseGUI
 
     public partial class DifficultyPage : Page
     {
-        public bool Cheat = false;
+        public bool Cheat = true;
         public int Difficulty = 1;
 
         public DifficultyPage()
@@ -28,16 +28,28 @@ namespace TowerDefenseGUI
             Window.GetWindow(this).Close();
         }
 
+        private void BtnMainMenu_Hover(object sender, RoutedEventArgs e)
+        {
+            btnRect.Fill = Brushes.LightSkyBlue;
+        }
+
+        private void BtnMainMenu_UnHover(object sender, RoutedEventArgs e)
+        {
+            btnRect.Fill = Brushes.LightGray;
+        }
+
         private void CheatMode_Click(object sender, RoutedEventArgs e)
         {
             if (CheatMode.Content.ToString() == "Cheat Mode: On")
             {
                 CheatMode.Content = "Cheat Mode: Off";
+                CheatMode.Foreground = Brushes.DarkRed;
                 Cheat = false;
             }
             else
             {
                 CheatMode.Content = "Cheat Mode: On";
+                CheatMode.Foreground = Brushes.Red;
                 Cheat = true;
             }
         }
@@ -64,7 +76,7 @@ namespace TowerDefenseGUI
 
         private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
         {
-            var gameWindow = new GameWindow(Cheat, false, 0); //put difficulty variable where the zero is 
+            var gameWindow = new GameWindow(Cheat, false, Difficulty); //put difficulty variable where the zero is 
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
             hostWindow.Close();

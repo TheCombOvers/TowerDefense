@@ -20,20 +20,46 @@ namespace TowerDefenseGUI
         public int imageID;
         public int imageIndex;
         public static event EventHandler<int> RotateTurret;
-
-        public void Attack(Enemy e)
+        
+        public virtual void Attack(Enemy e)
         {
+            int fireTime = 0;
             if (e == null)
             {
-                fireRate = 60;
+
+                if (type == "mortar")
+                {
+                    fireRate = 300;
+                }
+                else if (type == "stun")
+                {
+                    fireRate = 120;
+                }
+                else
+                {
+                    fireRate = 60;
+                }
                 return;
             }
             else
             {
+                if (type == "mortar")
+                {
+                    fireTime = 300;
+                }
+                else if (type == "stun")
+                {
+                    fireTime = 120;
+                }
+                else
+                {
+                    fireTime = 60;
+                }
                 int deg = CalculateRotation(xPos, yPos, e.posX, e.posY);
                 RotateTurret(this, deg);
                 Console.WriteLine("Firerate = " + fireRate);
-                if (fireRate % 60 == 0)
+
+                if (fireRate % fireTime == 0)
                 {
                     Console.WriteLine("Attacking");
                     e.TakeDamage(damage);
@@ -65,7 +91,7 @@ namespace TowerDefenseGUI
             double dist = Math.Sqrt((y * y) + (x * x));
             return dist;
         }
-        private int CalculateRotation(double xPos, double yPos, double posX, double posY)
+        public int CalculateRotation(double xPos, double yPos, double posX, double posY)
         {
             int degree = 0;
             degree = (int) (Math.Atan2((posY- yPos), (posX- xPos)) * 180 / Math.PI)+90;

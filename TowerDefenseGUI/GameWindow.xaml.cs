@@ -80,11 +80,11 @@ namespace TowerDefenseGUI
             gameTimer.Tick += updateTowerPlace;
             Turret.RotateTurret += RotateTurret;
             Enemy.RotateEnemy += RotateEnemy;
-            gameTimer.Start();
             btnBasic.IsEnabled = false;
             basic = true;
             txtMoney.Text += Game.money;
             txtLives.Text = "Lives: " + Game.lives;
+            gameTimer.Start();
         }
 
         // main method that updates the entire game... yikes
@@ -113,14 +113,20 @@ namespace TowerDefenseGUI
 
         public void RotateEnemy(object en, int degrees)
         {
-            int index = game.currentEnemies.IndexOf(en as Enemy);
-            enemies[index].RenderTransform = new RotateTransform(degrees);
+            if (game.currentEnemies.Contains(en))
+            {
+                int index = game.currentEnemies.IndexOf(en as Enemy);
+                enemies[index].RenderTransform = new RotateTransform(degrees);
+            }
         }
 
         public void RotateTurret(object tur, int degrees)
         {
-            int index = game.currentTurrets.IndexOf(tur as Turret);
-            turrets[index].RenderTransform = new RotateTransform(degrees);
+            if (game.currentTurrets.Contains(tur))
+            {
+                int index = game.currentTurrets.IndexOf(tur as Turret);
+                turrets[index].RenderTransform = new RotateTransform(degrees);
+            }
         }
 
         // creates a new coordinationg image for the given enemy "e" and and places on the screen and adds it to
@@ -349,11 +355,7 @@ namespace TowerDefenseGUI
                 if (Game.money >= 50)
                 {
                     machinegunplace = true;
-                    flakplace = false;
-                    mortarplace = false;
-                    teslaplace = false;
-                    laserplace = false;
-                    stunplace = false;
+                    flakplace = mortarplace = teslaplace = laserplace = stunplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
                     imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
@@ -364,12 +366,8 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 175)
                 {
-                    machinegunplace = false;
-                    flakplace = false;
-                    mortarplace = false;
+                    machinegunplace = flakplace = mortarplace = laserplace = stunplace = false;
                     teslaplace = true;
-                    laserplace = false;
-                    stunplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
                     imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
@@ -383,12 +381,8 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 75)
                 {
-                    machinegunplace = false;
+                    machinegunplace = mortarplace = teslaplace = laserplace = stunplace = false;
                     flakplace = true;
-                    mortarplace = false;
-                    teslaplace = false;
-                    laserplace = false;
-                    stunplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
                     imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
@@ -399,12 +393,8 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 125)
                 {
-                    machinegunplace = false;
-                    flakplace = false;
-                    mortarplace = false;
-                    teslaplace = false;
+                    machinegunplace = flakplace = mortarplace = teslaplace = stunplace = false;
                     laserplace = true;
-                    stunplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
                     imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
@@ -418,12 +408,8 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 150)
                 {
-                    machinegunplace = false;
-                    flakplace = false;
+                    machinegunplace = flakplace = teslaplace = laserplace = stunplace = false;
                     mortarplace = true;
-                    teslaplace = false;
-                    laserplace = false;
-                    stunplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
                     imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
@@ -434,11 +420,7 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 200)
                 {
-                    machinegunplace = false;
-                    flakplace = false;
-                    mortarplace = false;
-                    teslaplace = false;
-                    laserplace = false;
+                    machinegunplace = flakplace = mortarplace = teslaplace = laserplace = false;
                     stunplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
