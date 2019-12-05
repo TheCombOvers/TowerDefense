@@ -22,9 +22,11 @@ namespace TowerDefenseGUI
             return this;
         }
 
-        public static Laser MakeLaser()
+        public static Laser MakeLaser(int x, int y)
         {
             Laser l = new Laser();
+            l.xPos = x;
+            l.yPos = y;
             l.imageID = 2;
             l.cost = 125;
             l.damage = 10;

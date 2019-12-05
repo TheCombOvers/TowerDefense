@@ -20,9 +20,11 @@ namespace TowerDefenseGUI
             yPos = Convert.ToInt32(finfo[2]);
             return this;
         }
-        public static Mortar MakeMortar()
+        public static Mortar MakeMortar(int x, int y)
         {
             Mortar m = new Mortar();
+            m.xPos = x;
+            m.yPos = y;
             m.imageID = 3;
             m.cost = 150;
             m.damage = 50;
