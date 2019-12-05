@@ -175,32 +175,32 @@ namespace TowerDefenseGUI
                                 switch (eleT[0])                 // grab the type and call methods based on it
                                 {
                                     case "flak":
-                                        Flak f = Flak.MakeFlak();
+                                        Flak f = Flak.MakeFlak(0,0);
                                         f.Deserialize(lineT);
                                         newGame.currentTurrets.Add(f);
                                         break;
                                     case "laser":
-                                        Laser l = Laser.MakeLaser();
+                                        Laser l = Laser.MakeLaser(0, 0);
                                         l.Deserialize(lineT);
                                         newGame.currentTurrets.Add(l);
                                         break;
                                     case "machinegun":
-                                        MachineGun m = new MachineGun();
+                                        MachineGun m = MachineGun.MakeMachineGun(0, 0);
                                         m.Deserialize(lineT);
                                         newGame.currentTurrets.Add(m);
                                         break;
                                     case "mortar":
-                                        Mortar mo = Mortar.MakeMortar();
+                                        Mortar mo = Mortar.MakeMortar(0, 0);
                                         mo.Deserialize(lineT);
                                         newGame.currentTurrets.Add(mo);
                                         break;
                                     case "stun":
-                                        Stun s = Stun.MakeStun();
+                                        Stun s = Stun.MakeStun(0, 0);
                                         s.Deserialize(lineT);
                                         newGame.currentTurrets.Add(s);
                                         break;
                                     case "tesla":
-                                        Tesla t = Tesla.MakeTesla();
+                                        Tesla t = Tesla.MakeTesla(0, 0);
                                         t.Deserialize(lineT);
                                         newGame.currentTurrets.Add(t);
                                         break;

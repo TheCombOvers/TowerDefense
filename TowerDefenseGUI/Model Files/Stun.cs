@@ -20,7 +20,7 @@ namespace TowerDefenseGUI
             yPos = Convert.ToInt32(finfo[2]);
             return this;
         }
-        public static Stun MakeStun(int x, int y)
+        public static Stun MakeStun(double x, double y)
         {
             Stun s = new Stun();
             s.xPos = x;

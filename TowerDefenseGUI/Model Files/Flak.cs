@@ -20,7 +20,7 @@ namespace TowerDefenseGUI
             yPos = Convert.ToInt32(finfo[2]);          
             return this;
         }
-        public static Flak MakeFlak(int x, int y)
+        public static Flak MakeFlak(double x, double y)
         {
             Flak f = new Flak();
             f.xPos = x;

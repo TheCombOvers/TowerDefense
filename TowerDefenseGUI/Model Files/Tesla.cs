@@ -20,7 +20,7 @@ namespace TowerDefenseGUI
             yPos = Convert.ToInt32(finfo[2]);
             return this;
         }
-        public static Tesla MakeTesla(int x, int y)
+        public static Tesla MakeTesla(double x, double y)
         {
             Tesla t = new Tesla();
             t.xPos = x;
