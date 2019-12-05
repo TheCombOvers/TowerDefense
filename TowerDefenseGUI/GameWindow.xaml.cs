@@ -39,7 +39,7 @@ namespace TowerDefenseGUI
         bool laserplace;
         bool stunplace;
 
-        public GameWindow(bool cheat, bool isLoad, int diff)
+        public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler soundHandler)
         {
             InitializeComponent();
             turrets = new List<Image>();
@@ -80,6 +80,7 @@ namespace TowerDefenseGUI
             gameTimer.Tick += updateTowerPlace;
             Turret.RotateTurret += RotateTurret;
             Enemy.RotateEnemy += RotateEnemy;
+            Turret.PlaySound += soundHandler.Play;
             btnBasic.IsEnabled = false;
             basic = true;
             txtMoney.Text += Game.money;
