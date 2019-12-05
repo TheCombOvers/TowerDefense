@@ -9,6 +9,6 @@
     <Grid Background="#20572f">
         <Border CornerRadius="25" BorderBrush="Gray" BorderThickness="10"/>
         <Border BorderBrush="Gray" BorderThickness="10"/>
-        <ListBox Margin="25,25,24,26" Background="Transparent"/>
+        <ListBox x:Name="scorebox" Margin="25,25,24,26" Background="Transparent"/>
     </Grid>
 </Window>
