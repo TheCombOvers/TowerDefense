@@ -240,7 +240,6 @@ namespace TowerDefenseGUI
             int oldx = Convert.ToInt32(x);
             int tempx = oldx / 50;
             int newx = tempx * 50;
-            Console.WriteLine(tempx);
             return newx;
         }
         public int SnapToGridY(double y)
@@ -248,7 +247,6 @@ namespace TowerDefenseGUI
             int oldy = Convert.ToInt32(y);
             int tempy = oldy / 50;
             int newy = tempy * 50;
-            Console.WriteLine(tempy);
             return newy;
         }
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
