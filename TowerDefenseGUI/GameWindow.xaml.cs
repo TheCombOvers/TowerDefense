@@ -80,11 +80,11 @@ namespace TowerDefenseGUI
             gameTimer.Tick += updateTowerPlace;
             Turret.RotateTurret += RotateTurret;
             Enemy.RotateEnemy += RotateEnemy;
-            gameTimer.Start();
             btnBasic.IsEnabled = false;
             basic = true;
             txtMoney.Text += game.money;
             txtLives.Text = "Lives: " + Game.lives;
+            gameTimer.Start();
         }
 
         // main method that updates the entire game... yikes
@@ -111,14 +111,20 @@ namespace TowerDefenseGUI
 
         public void RotateEnemy(object en, int degrees)
         {
-            int index = game.currentEnemies.IndexOf(en as Enemy);
-            enemies[index].RenderTransform = new RotateTransform(degrees);
+            if (game.currentEnemies.Contains(en))
+            {
+                int index = game.currentEnemies.IndexOf(en as Enemy);
+                enemies[index].RenderTransform = new RotateTransform(degrees);
+            }
         }
 
         public void RotateTurret(object tur, int degrees)
         {
-            int index = game.currentTurrets.IndexOf(tur as Turret);
-            turrets[index].RenderTransform = new RotateTransform(degrees);
+            if (game.currentTurrets.Contains(tur))
+            {
+                int index = game.currentTurrets.IndexOf(tur as Turret);
+                turrets[index].RenderTransform = new RotateTransform(degrees);
+            }
         }
 
         // creates a new coordinationg image for the given enemy "e" and and places on the screen and adds it to
