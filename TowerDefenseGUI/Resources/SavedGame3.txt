@@ -1,14 +1,7 @@
 NG
-0,0,3,0,999174,0,false,10,True
-ENEMIES
-bvehicle,155,350,-20,1
-ENDENEMIES
+0,0,5,0,-50,0,false,10,False
 TURRETS
-machinegun,75,125
-flak,125,125
-mortar,225,125
-tesla,325,125
-laser,525,125
-stun,675,125
+machinegun,425,225
+mortar,525,325
 ENDTURRETS
 END

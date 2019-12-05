@@ -113,9 +113,9 @@ namespace TowerDefenseGUI
 
         public void RotateEnemy(object en, int degrees)
         {
-            if (game.currentEnemies.Contains(en))
-            {
-                int index = game.currentEnemies.IndexOf(en as Enemy);
+            int index = game.currentEnemies.IndexOf(en as Enemy);
+            if (game.currentEnemies.Contains(en) && enemies.Count >= index + 1)
+            {           
                 enemies[index].RenderTransform = new RotateTransform(degrees);
             }
         }
