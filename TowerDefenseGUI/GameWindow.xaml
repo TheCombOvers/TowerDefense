@@ -14,7 +14,7 @@
         <Image x:Name="MachineGunTeslaImage" HorizontalAlignment="Left" Source="Resources\turret tower.PNG" Height="126" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1046" Canvas.Top="113"/>
         <TextBlock x:Name="txtMachineGunTeslaName" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="Machine Gun Tower" FontSize="20" VerticalAlignment="Top" Width="182" Canvas.Left="1204" Canvas.Top="124"/>
         <TextBlock x:Name="txtMachineGunTeslaType" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="110" Canvas.Left="1204" Canvas.Top="156"/>
-        <TextBlock x:Name="txtMachineGunTeslaDmg" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Damage: 4/s" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="172"/>
+        <TextBlock x:Name="txtMachineGunTeslaDmg" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Damage: 7.5/s" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="172"/>
         <TextBlock x:Name="txtMachineGunTeslaRange" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Range: 125" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="188"/>
         <TextBlock x:Name="txtMachineGunTeslaCost" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Cost: $50" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="204"/>
         <Button x:Name="btnBasic" Content="Basic" FontSize="30" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="190" Canvas.Left="1020" Canvas.Top="5" Click="btnBasic_Click"/>

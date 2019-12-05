@@ -22,6 +22,11 @@ namespace TowerDefenseGUI
         public HighScoresWindow()
         {
             InitializeComponent();
+            List<string> scores = Highscores.PassScores();
+            for (int i = 0; i < scores.Count; ++i)
+            {
+                scorebox.Items.Add(scores[i]);
+            }
         }
     }
 }

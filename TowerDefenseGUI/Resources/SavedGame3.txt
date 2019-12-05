@@ -1,9 +1,12 @@
 NG
-0,1,1,0,999949,1,false,10,True
+0,3,3,0,999669,1,false,10,True
 ENEMIES
-binfantry,310,350,12,1
+bvehicle,165,350,30,1
 ENDENEMIES
 TURRETS
-machinegun,75,275
+mortar,575,325
+machinegun,175,525
+machinegun,75,125
+machinegun,275,225
 ENDTURRETS
 END

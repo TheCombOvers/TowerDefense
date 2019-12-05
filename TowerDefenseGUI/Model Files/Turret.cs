@@ -46,11 +46,15 @@ namespace TowerDefenseGUI
             {
                 if (type == "mortar")
                 {
-                    fireTime = 300;
+                   fireTime = 300;
                 }
                 else if (type == "stun")
                 {
                     fireTime = 120;
+                }
+                else if (type == "machinegun")
+                {
+                    fireTime = 10;                              
                 }
                 else
                 {
@@ -63,10 +67,10 @@ namespace TowerDefenseGUI
                 if (fireRate % fireTime == 0)
                 {
                     Console.WriteLine("Attacking");
-                    e.TakeDamage(damage);
-                    PlaySound(this, type);
+                    e.TakeDamage(damage);           
+                    PlaySound(this, type);                    
                 }
-                fireRate++;
+                ++fireRate;
             }
         }
         
