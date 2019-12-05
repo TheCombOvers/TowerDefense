@@ -190,6 +190,7 @@ namespace TowerDefenseGUI
                 image.Height = 50;
                 image.Margin = new Thickness(game.currentTurrets[i].xPos, game.currentTurrets[i].yPos, 0, 0);
                 image.Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
+                
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(turrets[i]);
             }
@@ -381,7 +382,7 @@ namespace TowerDefenseGUI
                     image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
                     Flak g = Flak.MakeFlak();
                     g.xPos = Convert.ToInt32(posX * .9);
-                    g.xPos = Convert.ToInt32(posY * .9);
+                    g.yPos = Convert.ToInt32(posY * .9);
                     game.currentTurrets.Add(g);
                     image.Width = 50;
                     image.Height = 50;
@@ -400,7 +401,7 @@ namespace TowerDefenseGUI
                     image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
                     Mortar g = Mortar.MakeMortar();
                     g.xPos = Convert.ToInt32(posX * .9);
-                    g.xPos = Convert.ToInt32(posY * .9);
+                    g.yPos = Convert.ToInt32(posY * .9);
                     game.currentTurrets.Add(g);
                     image.Width = 50;
                     image.Height = 50;
@@ -419,7 +420,7 @@ namespace TowerDefenseGUI
                     image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
                     Tesla g = Tesla.MakeTesla();
                     g.xPos = Convert.ToInt32(posX * .9);
-                    g.xPos = Convert.ToInt32(posY * .9);
+                    g.yPos = Convert.ToInt32(posY * .9);
                     game.currentTurrets.Add(g);
                     image.Width = 50;
                     image.Height = 50;
@@ -438,7 +439,7 @@ namespace TowerDefenseGUI
                     image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
                     Laser g = Laser.MakeLaser();
                     g.xPos = Convert.ToInt32(posX * .9);
-                    g.xPos = Convert.ToInt32(posY * .9);
+                    g.yPos = Convert.ToInt32(posY * .9);
                     game.currentTurrets.Add(g);
                     image.Width = 50;
                     image.Height = 50;
@@ -457,7 +458,7 @@ namespace TowerDefenseGUI
                     image.Margin = new Thickness(posX * .9, posY * .9, 0, 0);
                     Stun g = Stun.MakeStun();
                     g.xPos = Convert.ToInt32(posX * .9);
-                    g.xPos = Convert.ToInt32(posY * .9);
+                    g.yPos = Convert.ToInt32(posY * .9);
                     game.currentTurrets.Add(g);
                     image.Width = 50;
                     image.Height = 50;

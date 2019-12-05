@@ -47,7 +47,7 @@ namespace TowerDefenseGUI
             {
                 double dist = CalculateDistance(xPos, yPos, e.posX, e.posY);
                 int deg = 90;
-                RotateTurret(this, deg);
+                //RotateTurret(this, deg);
                 if (range >= dist)
                 {
                     Console.WriteLine("Target in range");
