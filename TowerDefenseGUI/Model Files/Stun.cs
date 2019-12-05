@@ -20,9 +20,11 @@ namespace TowerDefenseGUI
             yPos = Convert.ToInt32(finfo[2]);
             return this;
         }
-        public static Stun MakeStun()
+        public static Stun MakeStun(int x, int y)
         {
             Stun s = new Stun();
+            s.xPos = x;
+            s.yPos = y;
             s.imageID = 4;
             s.cost = 200;
             s.damage = 15;
