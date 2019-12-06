@@ -17,19 +17,37 @@ namespace TowerDefenseGUI
         public static List<Intersection> coords;
         public int mapID;
 
-        // map 1 coords ( [0,350], [350,350], [350,150], [750,150], [750,600], [200,600], [200,800], [500,800], [500,900] )
+        
         public Map(int id)
         {
+            // map 1 coords ([200,0], [200,200], [350,200], [350,550], [150,550],[150,750],[600,750],[600,550],[900,550],[900,150],[700,150],[700,350],[550,350],[550,0])
             var path = new List<Intersection>();
-            path.Add(new Intersection(0, 325, Direction.RIGHT)); // 0,350
-            path.Add(new Intersection(325, 325, Direction.RIGHT)); // 350, 350
-            path.Add(new Intersection(325, 125, Direction.UP)); // 350, 150
-            path.Add(new Intersection(725, 125, Direction.RIGHT)); // 750, 150
-            path.Add(new Intersection(725, 575, Direction.DOWN)); // 750, 600
-            path.Add(new Intersection(175, 575, Direction.LEFT)); // 200, 600
-            path.Add(new Intersection(175, 775, Direction.DOWN)); // 200, 800
-            path.Add(new Intersection(475, 775, Direction.RIGHT)); // 500, 800
-            path.Add(new Intersection(475, 900, Direction.DOWN)); // 500, 900
+            path.Add(new Intersection(175, 0, Direction.DOWN));
+            path.Add(new Intersection(175, 175, Direction.DOWN));
+            path.Add(new Intersection(325, 175, Direction.RIGHT));
+            path.Add(new Intersection(325, 525, Direction.DOWN));
+            path.Add(new Intersection(125, 525, Direction.LEFT));
+            path.Add(new Intersection(125, 725, Direction.DOWN));
+            path.Add(new Intersection(575, 725, Direction.RIGHT));
+            path.Add(new Intersection(575, 525, Direction.UP));
+            path.Add(new Intersection(875, 525, Direction.RIGHT));
+            path.Add(new Intersection(875, 125, Direction.UP));
+            path.Add(new Intersection(675, 125, Direction.LEFT));
+            path.Add(new Intersection(675, 325, Direction.DOWN));
+            path.Add(new Intersection(525, 325, Direction.LEFT));
+            path.Add(new Intersection(525, -25, Direction.UP));
+            pathways.Add(path);
+            // map 2 coords ( [0,350], [350,350], [350,150], [750,150], [750,600], [200,600], [200,800], [500,800], [500,900] )
+            path = new List<Intersection>();
+            path.Add(new Intersection(0, 325, Direction.RIGHT));
+            path.Add(new Intersection(325, 325, Direction.RIGHT));
+            path.Add(new Intersection(325, 125, Direction.UP));
+            path.Add(new Intersection(725, 125, Direction.RIGHT));
+            path.Add(new Intersection(725, 575, Direction.DOWN));
+            path.Add(new Intersection(175, 575, Direction.LEFT));
+            path.Add(new Intersection(175, 775, Direction.DOWN));
+            path.Add(new Intersection(475, 775, Direction.RIGHT));
+            path.Add(new Intersection(475, 900, Direction.DOWN));
             pathways.Add(path);
             mapID = id;
             coords = pathways[mapID];

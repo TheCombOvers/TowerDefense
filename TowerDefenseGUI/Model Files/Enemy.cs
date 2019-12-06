@@ -60,7 +60,14 @@ namespace TowerDefenseGUI
         {
             int x = path[pathProgress].x;
             int y = path[pathProgress].y;
-            if (x == posX && y == posY)
+            if(type == "aboss"|| type == "gboss")
+            {
+                if (x-15 == posX && y-15==posY)
+                {
+                    pathProgress++;
+                }
+            }
+            else if (x == posX && y == posY)
             {
                 pathProgress++;
             }

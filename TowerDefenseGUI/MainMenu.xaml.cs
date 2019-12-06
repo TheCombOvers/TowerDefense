@@ -15,18 +15,15 @@ using System.Windows.Shapes;
 
 namespace TowerDefenseGUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainMenu : Window
     {
         public bool cheat = true;
-        //public SoundHandler soundHandler;
+        public SoundHandler soundHandler;
 
         public MainMenu()
         {
-            //soundHandler = new SoundHandler();
             InitializeComponent();
+            soundHandler = new SoundHandler();
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
@@ -41,15 +38,16 @@ namespace TowerDefenseGUI
 
             // For Alpha, just launch Game Window
 
-            DifficultyPage diffPage = new DifficultyPage(/*soundHandler*/);
+            soundHandler.Play(null, "menubutton");
+            DifficultyPage diffPage = new DifficultyPage(soundHandler);
             this.Content = diffPage;
-                           
         }
 
         private void HighScoreButton_Click(object sender, RoutedEventArgs e)
         {
             // Bring up the High Score screen
             var newMenu = new HighScoresWindow();
+            soundHandler.Play(null, "menubutton");
             newMenu.ShowDialog();
         }
 
@@ -57,11 +55,13 @@ namespace TowerDefenseGUI
         {
             // Bring up the Help Menu
             var newMenu = new HelpWindow();
+            soundHandler.Play(null, "menubutton");
             newMenu.ShowDialog();
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
+            soundHandler.Play(null, "menubutton");
             // Bring up the wiki page in a browser
             System.Diagnostics.Process.Start("https://github.com/TheCombOvers/TowerDefense/wiki");
         }
@@ -69,7 +69,7 @@ namespace TowerDefenseGUI
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             // if we're loading a old save then pass in true for isLoad, else pass false
-            var gameWindow = new GameWindow(cheat, true, 0/*, soundHandler*/);
+            var gameWindow = new GameWindow(cheat, true, 0, soundHandler);
             gameWindow.Show();
             Close();
         }

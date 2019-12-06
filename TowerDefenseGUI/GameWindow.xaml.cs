@@ -39,14 +39,15 @@ namespace TowerDefenseGUI
         bool laserplace;
         bool stunplace;
         int wave;
+        public SoundHandler soundHandler;
         public bool selling = false;
         public Turret selectedTurret;
         public Image selectedRing = new Image();
         public TextBlock selectedTurretInfo =  new TextBlock();
-        public GameWindow(bool cheat, bool isLoad, int diff)
+        public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler)
         {
             InitializeComponent();
-            SoundHandler soundHandler = new SoundHandler();
+            soundHandler = sentSoundHandler;
             //selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Put the ring image source here"));
             selectedRing.RenderTransformOrigin = new Point(0.5, 0.5);
             selectedTurretInfo.Foreground = Brushes.DarkRed;
@@ -106,14 +107,13 @@ namespace TowerDefenseGUI
         // main method that updates the entire game... yikes
         public void UpdateGame(object sender, object e)
         {
-            game.UpdateModel();
             txtMoney.Text = "$" + Game.money;
             txtLives.Text = "Lives: " + Game.lives;
-            if (Game.lives == 0)
+            if (Game.lives == 0 && game.gameOver != true)
             {
+                game.gameOver = true;
                 if (MessageBox.Show("Final Score: " + game.score, "You Lose!\n", MessageBoxButton.OK) == MessageBoxResult.OK)
                 {
-                    game.currentWave = 11;
                     rectname.Visibility = Visibility.Visible;
                     boxName.Visibility = Visibility.Visible;
                     txtName.Visibility = Visibility.Visible;
@@ -123,21 +123,18 @@ namespace TowerDefenseGUI
             txtRoundDisplay.Text = "Wave: " + game.currentWave;
             txtScore.Text = "Score: " + game.score;
             wave = game.currentWave;
-            if (wave == 10)
+            if (wave == 10 && game.isWaveOver && game.gameOver != true)
             {
-                if (MessageBox.Show("Final Score: " + game.score + "\n" + "Continue in Endless Mode?", "You Win!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                game.gameOver = true;
+                if (MessageBox.Show("Final Score: " + game.score + "\n" + "Continue in Endless Mode?", "You Win!", MessageBoxButton.YesNo) == MessageBoxResult.No)
                 {
-                    game.currentWave = 11;
-                }
-                else
-                {
-                    game.currentWave = 11;
                     rectname.Visibility = Visibility.Visible;
                     boxName.Visibility = Visibility.Visible;
                     txtName.Visibility = Visibility.Visible;
-                    btnName.Visibility = Visibility.Visible;
+                    btnName.Visibility = Visibility.Visible;                    
                 }
             }
+            game.UpdateModel();
             UpdateView();
         }
         public void UpdateView()

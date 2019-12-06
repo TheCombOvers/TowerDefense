@@ -14,16 +14,17 @@ namespace TowerDefenseGUI
         public SoundPlayer TeslaSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\TeslaSound.wav" };
         public SoundPlayer LaserSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\LaserSound.wav" };
         public SoundPlayer StunSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\StunSound.wav" };
-        //private SoundPlayer
+        public SoundPlayer MenuButton = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\ClipSound.wav" };
 
         public SoundHandler()
         {
-            MachineGunSound.Load();
-            FlakSound.Load();
-            MortarSound.Load();
-            TeslaSound.Load();
-            LaserSound.Load();
-            StunSound.Load();
+            if (!MachineGunSound.IsLoadCompleted) { MachineGunSound.Load(); }
+            if (!FlakSound.IsLoadCompleted) { FlakSound.Load(); }
+            if (!MortarSound.IsLoadCompleted) { MortarSound.Load(); }
+            if (!TeslaSound.IsLoadCompleted) { TeslaSound.Load(); }
+            if (!LaserSound.IsLoadCompleted) { LaserSound.Load(); }
+            if (!StunSound.IsLoadCompleted) { StunSound.Load(); }
+            if (!MenuButton.IsLoadCompleted) { MenuButton.Load(); }
         }
 
         public void Play(object sender, string type)
@@ -53,6 +54,9 @@ namespace TowerDefenseGUI
                 case "stun":
                     StunSound.Play();
                     //catch { /*MessageBox.Show("StunSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    break;
+                case "menubutton":
+                    MenuButton.Play();
                     break;
             }
         }
