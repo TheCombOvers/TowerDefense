@@ -29,10 +29,10 @@ namespace TowerDefenseGUI
         public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
         public Spawner spawner;
         public Action<Enemy> addEnemy;
-        public Action<Enemy> removeEnemy;
+        public Action<Enemy, bool> removeEnemy;
 
 
-        public Game(int mapID,bool cheat, Action<Enemy> add, Action<Enemy> remove, int diff)
+        public Game(int mapID,bool cheat, Action<Enemy> add, Action<Enemy, bool> remove, int diff)
         {
             difficulty = diff;
             cheatMode = cheat;
@@ -83,7 +83,7 @@ namespace TowerDefenseGUI
         }
 
         // loads a game that is saved in the file named "filename" and returns that game
-        public static Game LoadGame(string fileName, Action<Enemy> add, Action<Enemy> remove)
+        public static Game LoadGame(string fileName, Action<Enemy> add, Action<Enemy, bool> remove)
         {
             using (StreamReader reader = new StreamReader(fileName))
             { 

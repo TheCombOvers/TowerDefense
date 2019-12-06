@@ -38,7 +38,8 @@ namespace TowerDefenseGUI
         bool teslaplace;
         bool laserplace;
         bool stunplace;
-
+        public bool selling = false;
+        public Turret selectedTurret;
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler soundHandler)
         {
             InitializeComponent();
@@ -160,7 +161,7 @@ namespace TowerDefenseGUI
 
         }
         // removes a specified enemy from the game state and the view
-        public void RemoveEnemy(Enemy e)
+        public void RemoveEnemy(Enemy e, bool isKill)
         {
             game.currentEnemies.Remove(e);
             Spawner.enemies.Remove(e);  // remove it from the game state
@@ -175,6 +176,10 @@ namespace TowerDefenseGUI
                 game.isWaveOver = true;
                 game.currentWave += 1;
                 btnNextWave.IsEnabled = true;
+            }
+            if (isKill)
+            {
+                Game.money += e.rewardMoney;
             }
         }
 
@@ -264,48 +269,49 @@ namespace TowerDefenseGUI
                 double posX = SnapToGridX(mousePos.X);
                 double posY = SnapToGridY(mousePos.Y);
                 image.Margin = new Thickness(posX, posY, 0, 0);
+                image.MouseDown += SelectTurret;
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(image);
                 if (machinegunplace == true)
                 {
                     Game.money -= 50;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
-                    MachineGun g = MachineGun.MakeMachineGun(posX + 25, posY + 25);
+                    MachineGun g = MachineGun.MakeMachineGun(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 else if (flakplace == true)
                 {
                     Game.money -= 75;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.PNG"));
-                    Flak g = Flak.MakeFlak(posX + 25, posY + 25);
+                    Flak g = Flak.MakeFlak(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 else if (mortarplace == true)
                 {
                     Game.money -= 200;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.PNG"));
-                    Mortar g = Mortar.MakeMortar(posX + 25, posY + 25);
+                    Mortar g = Mortar.MakeMortar(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 else if (teslaplace == true)
                 {
                     Game.money -= 175;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.PNG"));
-                    Tesla g = Tesla.MakeTesla(posX + 25, posY + 25);
+                    Tesla g = Tesla.MakeTesla(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 else if (laserplace == true)
                 {
                     Game.money -= 125;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.PNG"));
-                    Laser g = Laser.MakeLaser(posX + 25, posY + 25);
+                    Laser g = Laser.MakeLaser(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 else if (stunplace == true)
                 {
                     Game.money -= 200;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.PNG"));
-                    Stun g = Stun.MakeStun(posX + 25, posY + 25);
+                    Stun g = Stun.MakeStun(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 txtMoney.Text = "$" + Game.money;
@@ -458,8 +464,29 @@ namespace TowerDefenseGUI
             Enemy.RotateEnemy += null;
             Turret.PlaySound += null;
             MainMenu mainMenu = new MainMenu();
-            mainMenu.Show();
-    
+            mainMenu.Show();   
+        }
+
+        private void btn_FastForward_Click(object sender, RoutedEventArgs e)
+        {
+            // for later....
+        }
+
+        private void btn_Sell_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        public void SelectTurret(object sender, object e)
+        {
+          
+            for (int i = 0; i < turrets.Count; ++i)
+            {
+                if (sender == turrets[i])
+                {
+                    selectedTurret = game.currentTurrets[i];
+                    Console.WriteLine(selectedTurret.type);
+                }
+            }
         }
     }
 }

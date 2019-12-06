@@ -64,18 +64,20 @@ namespace TowerDefenseGUI
                 case 1:
                     DifficultyDisplay.Text = "Easy";
                     DifficultyDisplay.Foreground = Brushes.LightGreen;
+                    Difficulty = 1;
                     break;
                 case 2:
                     DifficultyDisplay.Text = "Medium";
                     DifficultyDisplay.Foreground = Brushes.Orange;
+                    Difficulty = 1;
                     break;
                 case 3:
                     DifficultyDisplay.Text = "Hard";
                     DifficultyDisplay.Foreground = Brushes.Red;
+                    Difficulty = 3;
                     break;
             }
         }
-
         private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
         {
             var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
