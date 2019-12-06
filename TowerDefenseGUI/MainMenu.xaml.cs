@@ -24,6 +24,7 @@ namespace TowerDefenseGUI
         {
             InitializeComponent();
             soundHandler = new SoundHandler();
+            soundHandler.MainMenuMusic.PlayLooping();
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)

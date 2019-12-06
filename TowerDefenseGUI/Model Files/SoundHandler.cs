@@ -8,6 +8,9 @@ namespace TowerDefenseGUI
 {
     public class SoundHandler
     {
+        public SoundPlayer MainMenuMusic = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\bensound-evolution.wav" }; // Music by Bensound.com
+        public SoundPlayer DifficultyPageMusic = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\Actionable.wav" }; // Music by Bensound.com
+        public SoundPlayer GameMusic = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\bensound-epic.wav" }; // Music by Bensound.com
         public SoundPlayer MachineGunSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\MachineGunSound.wav" };
         public SoundPlayer FlakSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\FlakSound.wav" };
         public SoundPlayer MortarSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\MortarSound.wav" };
