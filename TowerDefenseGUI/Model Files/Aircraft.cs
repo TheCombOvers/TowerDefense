@@ -16,7 +16,8 @@ namespace TowerDefenseGUI
         public override object Deserialize(string info)
         {
             string[] aInfo = info.Split(',');
-            Aircraft a = MakeAircraft(aInfo[0]);
+            string s = aInfo[0] == "aaircraft" ? "a" : "b";
+            Aircraft a = MakeAircraft(s);
             a.posX = Convert.ToDouble(aInfo[1]);
             a.posY = Convert.ToDouble(aInfo[2]);
             a.health = Convert.ToDouble(aInfo[3]);
