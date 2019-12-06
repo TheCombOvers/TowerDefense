@@ -55,6 +55,7 @@ namespace TowerDefenseGUI
         public void NextWave()
         {
             waveProgress++;
+            isWaveOver = false;
             spawner.Spawn(waveProgress);
         }
 

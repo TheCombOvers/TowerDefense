@@ -40,7 +40,7 @@ namespace TowerDefenseGUI
                 a.imageID = 6;
                 a.health = 60;
                 a.rewardMoney = 30;
-                a.speed = 4; // decide speed for advance type, replace 4 with desired speed 
+                a.speed = 6.25; // decide speed for advance type, replace 4 with desired speed 
                 a.rewardScore = 20;
                 a.type = "aaircraft";
                 break;

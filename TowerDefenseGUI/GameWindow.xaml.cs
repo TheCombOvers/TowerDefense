@@ -144,6 +144,10 @@ namespace TowerDefenseGUI
                     {
                         Dispatcher.Invoke(() => AddEnemy(e));
                     }
+                    else
+                    {
+                        break;
+                    }
                     Thread.Sleep(500);
                 }
             });
