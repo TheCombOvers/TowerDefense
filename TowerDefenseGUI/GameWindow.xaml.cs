@@ -143,6 +143,7 @@ namespace TowerDefenseGUI
         {
             Image i = new Image();
             i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
+            i.Margin = new Thickness(e.posX, e.posY, 0, 0);
             i.RenderTransformOrigin = new Point(0.5, 0.5);
             if (e.imageID == 3 || e.imageID == 7) // if it's a boss it's bigger! :)
             {
@@ -183,6 +184,7 @@ namespace TowerDefenseGUI
         }
         public void RemoveTurret(Turret t)
         {
+           
             game.currentTurrets.Remove(t);
             GameWindowCanvas.Children.Remove(turrets[t.imageIndex]);
             turrets.RemoveAt(t.imageIndex);
@@ -227,10 +229,9 @@ namespace TowerDefenseGUI
                 Image image = new Image();
                 image.Width = 50;
                 image.Height = 50;
-                image.Margin = new Thickness(game.currentTurrets[i].xPos - 25, game.currentTurrets[i].yPos - 25, 0, 0);
-                image.RenderTransformOrigin = new Point(0.5, 0.5);
                 image.Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
-                
+                image.RenderTransformOrigin = new Point(0.5, 0.5);
+                image.Margin = new Thickness(game.currentTurrets[i].xPos, game.currentTurrets[i].yPos, 0, 0);                
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(turrets[i]);
             }
@@ -492,6 +493,7 @@ namespace TowerDefenseGUI
             {
                 RemoveTurret(selectedTurret);
                 Game.money += Convert.ToInt32(selectedTurret.cost * .8);
+                selectedTurret = null;
             }
         }
         public void SelectTurret(object sender, object e)
