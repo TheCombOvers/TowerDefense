@@ -40,8 +40,9 @@ namespace TowerDefenseGUI
         bool stunplace;
         public bool selling = false;
         public Turret selectedTurret;
-        public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler soundHandler)
+        public GameWindow(bool cheat, bool isLoad, int diff)
         {
+            SoundHandler soundHandler = new SoundHandler();
             InitializeComponent();
             turrets = new List<Image>();
             enemies = new List<Image>();
