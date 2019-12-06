@@ -66,11 +66,8 @@ namespace TowerDefenseGUI
                 }
                 int deg = CalculateRotation(xPos, yPos, e.posX, e.posY);
                 RotateTurret(this, deg);
-                Console.WriteLine("Firerate = " + fireRate);
-
                 if (fireRate % fireTime == 0)
                 {
-                    Console.WriteLine("Attacking");
                     e.TakeDamage(damage);           
                     PlaySound(this, type);
                 }
@@ -86,7 +83,6 @@ namespace TowerDefenseGUI
                 double dist = CalculateDistance(xPos, yPos, e.posX, e.posY);
                 if (range >= dist)
                 {
-                    Console.WriteLine("Target in range");
                     target = e;
                     return target;
                 }

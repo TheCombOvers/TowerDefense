@@ -14,7 +14,7 @@ namespace TowerDefenseGUI
         static Action<Enemy, bool> Remove;
         static Action<Enemy> Add;
         static int[] count = { 0, 0 };
-        static string[] types = { null, null };
+        static string[] types = { "", "" };
         public static event EventHandler<Enemy> DisplayWave;
 
         public Spawner(Action<Enemy> AddEnemy, Action<Enemy, bool> RemoveEnemy)
@@ -24,14 +24,17 @@ namespace TowerDefenseGUI
         }
         public void Spawn(int wave)
         {
+            count = new int[2] { 0, 0 };
+            types = new string[2] { "", "" };
             count = DetermineWaveNumbers(wave);
             types = DetermineWave(wave, count);
-            Console.WriteLine(count[0] + " " + types[0] + "," + count[1] + " " + types[1]);
+            Console.WriteLine(count[0] + " " + types[0] + ", " + count[1] + " " + types[1]);
             DisplayWave(this, null);
         }
 
         public static Enemy GenerateWave()
         {
+            Console.WriteLine("Generating enemy");
             Enemy e = null;
             if (count[0] > 0)
             {
@@ -95,6 +98,12 @@ namespace TowerDefenseGUI
                         break;
                 }
             }
+            else
+            {
+                Console.WriteLine("no enemy created");
+                return null;
+            }
+            Console.WriteLine(e.type + " was created");
             return e;
         }
 
