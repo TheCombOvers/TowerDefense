@@ -1,12 +1,3 @@
 NG
-0,3,3,0,999669,1,false,10,True
-ENEMIES
-bvehicle,165,350,30,1
-ENDENEMIES
-TURRETS
-mortar,575,325
-machinegun,175,525
-machinegun,75,125
-machinegun,275,225
-ENDTURRETS
+0,1,0,0,999884,1,true,10,True
 END

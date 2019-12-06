@@ -10,7 +10,7 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string flak = string.Format("{0},{1},{2}", "flak", xPos, yPos);
+            string flak = string.Format("{0},{1},{2},{3}", "flak", xPos, yPos, imageIndex);
             return flak;
         }
         public override object Deserialize(string info)
@@ -18,13 +18,15 @@ namespace TowerDefenseGUI
             string[] finfo = info.Split(',');
             xPos = Convert.ToInt32(finfo[1]);
             yPos = Convert.ToInt32(finfo[2]);          
+            imageIndex = Convert.ToInt32(finfo[3]);
             return this;
         }
-        public static Flak MakeFlak(double x, double y)
+        public static Flak MakeFlak(double x, double y, int index)
         {
             Flak f = new Flak();
             f.xPos = x;
             f.yPos = y;
+            f.imageIndex = index;
             f.imageID = 1;
             f.fireRate = 60;
             f.cost = 75;
