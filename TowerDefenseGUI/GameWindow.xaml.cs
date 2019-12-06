@@ -38,7 +38,8 @@ namespace TowerDefenseGUI
         bool teslaplace;
         bool laserplace;
         bool stunplace;
-
+        public bool selling = false;
+        public Turret selectedTurret;
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler soundHandler)
         {
             InitializeComponent();
@@ -159,7 +160,7 @@ namespace TowerDefenseGUI
 
         }
         // removes a specified enemy from the game state and the view
-        public void RemoveEnemy(Enemy e)
+        public void RemoveEnemy(Enemy e, bool isKill)
         {
             game.currentEnemies.Remove(e);
             Spawner.enemies.Remove(e);  // remove it from the game state
@@ -174,6 +175,10 @@ namespace TowerDefenseGUI
                 game.isWaveOver = true;
                 game.currentWave += 1;
                 btnNextWave.IsEnabled = true;
+            }
+            if (isKill)
+            {
+                Game.money += e.rewardMoney;
             }
         }
 
@@ -263,6 +268,7 @@ namespace TowerDefenseGUI
                 double posX = SnapToGridX(mousePos.X);
                 double posY = SnapToGridY(mousePos.Y);
                 image.Margin = new Thickness(posX, posY, 0, 0);
+                image.MouseDown += SelectTurret;
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(image);
                 if (machinegunplace == true)
@@ -462,12 +468,24 @@ namespace TowerDefenseGUI
 
         private void btn_FastForward_Click(object sender, RoutedEventArgs e)
         {
-
+            // for later....
         }
 
         private void btn_Sell_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        public void SelectTurret(object sender, object e)
+        {
+          
+            for (int i = 0; i < turrets.Count; ++i)
+            {
+                if (sender == turrets[i])
+                {
+                    selectedTurret = game.currentTurrets[i];
+                    Console.WriteLine(selectedTurret.type);
+                }
+            }
         }
     }
 }

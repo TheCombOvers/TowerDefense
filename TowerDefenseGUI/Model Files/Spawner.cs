@@ -11,9 +11,9 @@ namespace TowerDefenseGUI
     class Spawner
     {
         public static List<Enemy> enemies = new List<Enemy>();
-        static Action<Enemy> Remove;
+        static Action<Enemy, bool> Remove;
         static Action<Enemy> Add;
-        public Spawner(Action<Enemy> AddEnemy, Action<Enemy> RemoveEnemy)
+        public Spawner(Action<Enemy> AddEnemy, Action<Enemy, bool> RemoveEnemy)
         {
             Remove = RemoveEnemy;
             Add = AddEnemy;
@@ -223,9 +223,9 @@ namespace TowerDefenseGUI
         }
 
 
-        public static void RemoveEnemy(Enemy enemy)
+        public static void RemoveEnemy(Enemy enemy, bool isKill)
         {
-            Remove(enemy);
+            Remove(enemy, isKill);
             enemies.Remove(enemy);
         }
     }

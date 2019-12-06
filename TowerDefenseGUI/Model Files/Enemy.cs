@@ -67,7 +67,7 @@ namespace TowerDefenseGUI
             if (pathProgress > path.Count - 1)
             {
                 Game.TakeLife();
-                Spawner.RemoveEnemy(this);
+                Spawner.RemoveEnemy(this, false);
                 return new Intersection();
             }
             var dir = path[pathProgress].direction;
@@ -97,7 +97,7 @@ namespace TowerDefenseGUI
             }
             else
             {
-                Spawner.RemoveEnemy(this);
+                Spawner.RemoveEnemy(this, true);
                 Game.AddMoney(this);
             }
         }
