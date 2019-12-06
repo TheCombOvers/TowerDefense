@@ -21,6 +21,7 @@ namespace TowerDefenseGUI
     public partial class MainMenu : Window
     {
         public bool cheat = true;
+        HighScoresWindow newMenu = new HighScoresWindow();
         //public SoundHandler soundHandler;
 
         public MainMenu()
@@ -49,8 +50,7 @@ namespace TowerDefenseGUI
         private void HighScoreButton_Click(object sender, RoutedEventArgs e)
         {
             // Bring up the High Score screen
-            var newMenu = new HighScoresWindow();
-            newMenu.ShowDialog();
+            newMenu.Show();
         }
 
         private void HelpButton_Click(object sender, RoutedEventArgs e)
