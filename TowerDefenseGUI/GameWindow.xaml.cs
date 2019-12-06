@@ -104,17 +104,32 @@ namespace TowerDefenseGUI
             txtLives.Text = "Lives: " + Game.lives;
             if (Game.lives == 0)
             {
-                MessageBox.Show("You Lose!/n" + "Final Score: " + game.score);
+                if (MessageBox.Show("Final Score: " + game.score, "You Lose!\n", MessageBoxButton.OK) == MessageBoxResult.OK)
+                {
+                    game.currentWave = 11;
+                    rectname.Visibility = Visibility.Visible;
+                    boxName.Visibility = Visibility.Visible;
+                    txtName.Visibility = Visibility.Visible;
+                    btnName.Visibility = Visibility.Visible;
+                }
             }
             txtRoundDisplay.Text = "Wave: " + game.currentWave;
             txtScore.Text = "Score: " + game.score;
             wave = game.currentWave;
             if (wave == 10)
             {
-                rectGameEnd.Visibility = Visibility.Visible;
-                txtWin.Visibility = Visibility.Visible;
-                txtEndScore.Text = game.score.ToString();
-                txtEndScore.Visibility = Visibility.Visible;
+                if (MessageBox.Show("Final Score: " + game.score + "\n" + "Continue in Endless Mode?", "You Win!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    game.currentWave = 11;
+                }
+                else
+                {
+                    game.currentWave = 11;
+                    rectname.Visibility = Visibility.Visible;
+                    boxName.Visibility = Visibility.Visible;
+                    txtName.Visibility = Visibility.Visible;
+                    btnName.Visibility = Visibility.Visible;
+                }
             }
             UpdateView();
         }
@@ -519,6 +534,22 @@ namespace TowerDefenseGUI
                 {
                     selectedTurret = game.currentTurrets[i];
                 }
+            }
+        }
+
+        private void btnName_Click(object sender, RoutedEventArgs e)
+        {
+            if (btnName.Content.ToString() == "")
+            {
+                MessageBox.Show("Please enter a name or alias");
+            }
+            else
+            {
+                HighScore hs = new HighScore();
+                string name = boxName.Text.ToString();
+                int score = game.score;
+                hs.CreateScore(name, score);
+                this.Close();
             }
         }
     }

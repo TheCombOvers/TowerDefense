@@ -50,5 +50,9 @@
         <TextBlock x:Name="txtWin" Height="65" Canvas.Left="409" TextWrapping="Wrap" Text="You Win!" FontSize="50" Canvas.Top="279" Width="198" Visibility="Hidden"/>
         <TextBlock x:Name="txtLose" Height="65" Canvas.Left="409" TextWrapping="Wrap" Text="You Lose!" FontSize="50" Canvas.Top="279" Width="212" Visibility="Hidden"/>
         <TextBlock x:Name="txtEndScore" Height="61" Canvas.Left="409" TextWrapping="Wrap" Text="Score: 0" FontSize="30" Canvas.Top="351" Width="311" Visibility="Hidden"/>
+        <Rectangle x:Name="rectname" Fill="#FFF4F4F5" Height="152" Canvas.Left="293" Stroke="Black" Canvas.Top="458" Width="427" Visibility="Hidden"/>
+        <TextBox x:Name="boxName" Height="37" Canvas.Left="308" TextWrapping="Wrap" Text="" FontSize="25" Canvas.Top="541" Width="244" Visibility="Hidden"/>
+        <TextBlock x:Name="txtName" Height="52" Canvas.Left="385" TextWrapping="Wrap" Text="What is your name?" FontSize="25" Canvas.Top="483" Width="236" Visibility="Hidden"/>
+        <Button x:Name="btnName" Content="Submit Score" FontSize="20" Canvas.Left="578" Canvas.Top="541" Width="128" Height="44" Click="btnName_Click" Visibility="Hidden"/>
     </Canvas>
 </Window>
