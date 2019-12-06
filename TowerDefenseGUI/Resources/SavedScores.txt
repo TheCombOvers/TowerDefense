@@ -1,5 +1,3 @@
 Start
-MikeyJ: 206
-leel: 206
-testy: 206
+: 206
 END
