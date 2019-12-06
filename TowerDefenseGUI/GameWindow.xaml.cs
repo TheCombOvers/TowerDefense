@@ -242,10 +242,7 @@ namespace TowerDefenseGUI
                 image.RenderTransformOrigin = new Point(0.5, 0.5);
                 image.Margin = new Thickness(game.currentTurrets[i].xPos, game.currentTurrets[i].yPos, 0, 0);
                 image.MouseDown += SelectTurret;
-
                 image.Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
-
-
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(turrets[i]);
             }
