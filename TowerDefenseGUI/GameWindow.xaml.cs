@@ -102,6 +102,7 @@ namespace TowerDefenseGUI
             txtMoney.Text += Game.money;
             txtLives.Text = "Lives: " + Game.lives;
             gameTimer.Start();
+            soundHandler.GameMusic.PlayLooping();
         }
 
         // main method that updates the entire game... yikes

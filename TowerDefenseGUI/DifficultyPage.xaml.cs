@@ -20,8 +20,9 @@ namespace TowerDefenseGUI
 
         public DifficultyPage(SoundHandler sentSoundHandler)
         {
-            soundHandler = sentSoundHandler;
             InitializeComponent();
+            soundHandler = sentSoundHandler;
+            soundHandler.DifficultyPageMusic.PlayLooping();
         }
         private void BtnMainMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -83,6 +84,7 @@ namespace TowerDefenseGUI
             var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
+            soundHandler.DifficultyPageMusic.Stop();
             hostWindow.Close();
         }
 
@@ -91,6 +93,7 @@ namespace TowerDefenseGUI
             var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
+            soundHandler.DifficultyPageMusic.Stop();
             hostWindow.Close();
         }
 
@@ -99,6 +102,7 @@ namespace TowerDefenseGUI
             var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
+            soundHandler.DifficultyPageMusic.Stop();
             hostWindow.Close();
         }
     }
