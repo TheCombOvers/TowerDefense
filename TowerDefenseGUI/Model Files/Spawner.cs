@@ -32,7 +32,7 @@ namespace TowerDefenseGUI
             DisplayWave(this, null);
         }
 
-        public static Enemy GenerateWave()
+        public static Enemy GenerateEnemy()
         {
             Console.WriteLine("Generating enemy");
             Enemy e = null;

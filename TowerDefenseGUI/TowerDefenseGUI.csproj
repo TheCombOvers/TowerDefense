@@ -66,9 +66,7 @@
     <Compile Include="DifficultyPage.xaml.cs">
       <DependentUpon>DifficultyPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameWindow.xaml.cs">
-      <DependentUpon>GameWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="GameWindow.xaml.cs" />
     <Compile Include="HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
     </Compile>
@@ -210,16 +208,6 @@
     <Resource Include="Resources\flak tower select.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="flak tower place.png" />
-    <Resource Include="flak tower select.png" />
-    <Resource Include="flak tower.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="stun tower place.png" />
-    <Resource Include="stun tower select.png" />
-    <Resource Include="stun tower.PNG" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Advanced Ground Unit.png" />
     <Resource Include="Resources\Advanced Ground Vehicle.png" />
     <Resource Include="Resources\Basic Ground Unit.png" />
@@ -250,6 +238,12 @@
     <Resource Include="Resources\MortarSound.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\path2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\path3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

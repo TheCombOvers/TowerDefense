@@ -21,7 +21,7 @@ namespace TowerDefenseGUI
         public int imageIndex;
         public static event EventHandler<int> RotateTurret;
         public static event EventHandler<string> PlaySound;
-        
+
         public virtual void Attack(Enemy e)
         {
             int fireTime = 0;
@@ -56,6 +56,10 @@ namespace TowerDefenseGUI
                 {
                     fireTime = 10;                              
                 }
+                else if (type == "flak")
+                {
+                    fireTime = 65;
+                }
                 else
                 {
                     fireTime = 60;
@@ -64,8 +68,8 @@ namespace TowerDefenseGUI
                 RotateTurret(this, deg);
                 if (fireRate % fireTime == 0)
                 {
-                    e.TakeDamage(damage);           
                     PlaySound(this, type);
+                    e.TakeDamage(damage);
                 }
                 ++fireRate;
             }

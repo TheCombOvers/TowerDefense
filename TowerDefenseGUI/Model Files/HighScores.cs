@@ -18,6 +18,7 @@ namespace TowerDefenseGUI
         public void GetNewScore(string highscore)
         {
             highscoreslist.Add(highscore);
+            Save("..\\..\\Resources\\SavedScores.txt");
         }
 
         public static List<string> PassScores()
@@ -25,21 +26,22 @@ namespace TowerDefenseGUI
             return highscoreslist;
         }
 
-        public void Load(string filename)
+        public static List<string> Load(string filename)
         {
             using (StreamReader reader = new StreamReader(filename))
             {
+                List<string> highscorelist = new List<string>();
                 string begin = reader.ReadLine();
                 if (begin == "Start")
                 {
-                    List<string> highscoreslist = new List<string>();
-                    string scorestring = "";
+                    string scorestring = reader.ReadLine();
                     while (scorestring != "END")
                     {
+                        highscorelist.Add(scorestring);
                         scorestring = reader.ReadLine();
-                        highscoreslist.Add(scorestring);
                     }
                 }
+                return highscorelist;
             }
         }
 
