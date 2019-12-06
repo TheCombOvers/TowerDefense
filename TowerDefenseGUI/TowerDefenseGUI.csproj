@@ -238,6 +238,11 @@
     <Resource Include="Resources\Aircraft Boss.png" />
     <Resource Include="Resources\Basic Aircraft.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\MachineGunSound.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
