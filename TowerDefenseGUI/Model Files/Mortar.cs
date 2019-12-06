@@ -10,7 +10,7 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string mortar = string.Format("{0},{1},{2}", "mortar", xPos, yPos);
+            string mortar = string.Format("{0},{1},{2},{3}", "mortar", xPos, yPos, imageIndex);
             return mortar;
         }
         public override object Deserialize(string info)
@@ -18,13 +18,15 @@ namespace TowerDefenseGUI
             string[] finfo = info.Split(',');
             xPos = Convert.ToInt32(finfo[1]);
             yPos = Convert.ToInt32(finfo[2]);
+            imageIndex = Convert.ToInt32(finfo[3]);
             return this;
         }
-        public static Mortar MakeMortar(double x, double y)
+        public static Mortar MakeMortar(double x, double y, int index)
         {
             Mortar m = new Mortar();
             m.xPos = x;
             m.yPos = y;
+            m.imageIndex = index;
             m.imageID = 3;
             m.fireRate = 300;
             m.cost = 150;
