@@ -10,7 +10,7 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string stun = string.Format("{0},{1},{2}", "stun", xPos, yPos);
+            string stun = string.Format("{0},{1},{2},{3}", "stun", xPos, yPos, imageIndex);
             return stun;
         }
         public override object Deserialize(string info)
@@ -18,14 +18,16 @@ namespace TowerDefenseGUI
             string[] finfo = info.Split(',');
             xPos = Convert.ToInt32(finfo[1]);
             yPos = Convert.ToInt32(finfo[2]);
+            imageIndex = Convert.ToInt32(finfo[3]);
             return this;
         }
-        public static Stun MakeStun(double x, double y)
+        public static Stun MakeStun(double x, double y, int index)
         {
             Stun s = new Stun();
             s.xPos = x;
             s.yPos = y;
             s.imageID = 4;
+            s.imageIndex = index;
             s.fireRate = 120;
             s.cost = 200;
             s.damage = 15;
