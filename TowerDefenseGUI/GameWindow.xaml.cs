@@ -45,8 +45,8 @@ namespace TowerDefenseGUI
         public TextBlock selectedTurretInfo =  new TextBlock();
         public GameWindow(bool cheat, bool isLoad, int diff)
         {
-            SoundHandler soundHandler = new SoundHandler();
             InitializeComponent();
+            SoundHandler soundHandler = new SoundHandler();
             //selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Put the ring image source here"));
             selectedRing.RenderTransformOrigin = new Point(0.5, 0.5);
             selectedTurretInfo.Foreground = Brushes.DarkRed;

@@ -8,22 +8,22 @@ namespace TowerDefenseGUI
 {
     public class SoundHandler
     {
-        public SoundPlayer MachineGunSound = new SoundPlayer("..\\..\\Resources\\MachineGunSound.wav");
-        public SoundPlayer FlakSound = new SoundPlayer("..\\..\\Resources\\FlakSound.wav");
-        public SoundPlayer MortarSound = new SoundPlayer("..\\..\\Resources\\MortarSound.wav");
-        public SoundPlayer TeslaSound = new SoundPlayer("..\\..\\Resources\\TeslaSound.wav");
-        public SoundPlayer LaserSound = new SoundPlayer("..\\..\\Resources\\LaserSound.wav");
-        public SoundPlayer StunSound = new SoundPlayer("..\\..\\Resources\\StunSound.wav");
+        public SoundPlayer MachineGunSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\MachineGunSound.wav" };
+        public SoundPlayer FlakSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\FlakSound.wav" };
+        public SoundPlayer MortarSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\MortarSound.wav" };
+        public SoundPlayer TeslaSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\TeslaSound.wav" };
+        public SoundPlayer LaserSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\LaserSound.wav" };
+        public SoundPlayer StunSound = new SoundPlayer() { SoundLocation = "..\\..\\Resources\\StunSound.wav" };
         //private SoundPlayer
 
         public SoundHandler()
         {
-            if (!MachineGunSound.IsLoadCompleted) { MachineGunSound.Load(); }
-            /*if (!FlakSound.IsLoadCompleted) { FlakSound.Load(); }
-            if (!MortarSound.IsLoadCompleted) { MortarSound.Load(); }
-            if (!TeslaSound.IsLoadCompleted) { TeslaSound.Load(); }
-            if (!LaserSound.IsLoadCompleted) { LaserSound.Load(); }
-            if (!LaserSound.IsLoadCompleted) { StunSound.Load(); }*/
+            MachineGunSound.Load();
+            FlakSound.Load();
+            MortarSound.Load();
+            TeslaSound.Load();
+            LaserSound.Load();
+            StunSound.Load();
         }
 
         public void Play(object sender, string type)
@@ -35,24 +35,24 @@ namespace TowerDefenseGUI
                     //catch { MessageBox.Show("MachineGunSound failed to play.\nStack Trace: " + e.Message); }
                     break;
                 case "flak":
-                    try { FlakSound.Play(); }
-                    catch { /*MessageBox.Show("FlakSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    FlakSound.Play();
+                    //catch { /*MessageBox.Show("FlakSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "mortar":
-                    try { MortarSound.Play(); }
-                    catch { /*MessageBox.Show("MortarSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    MortarSound.Play();
+                    //catch { /*MessageBox.Show("MortarSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "tesla":
-                    try { TeslaSound.Play(); }
-                    catch { /*MessageBox.Show("TeslaSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    TeslaSound.Play();
+                    //catch { /*MessageBox.Show("TeslaSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "laser":
-                    try { LaserSound.Play(); }
-                    catch { /*MessageBox.Show("LaserSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    LaserSound.Play();
+                    //catch { /*MessageBox.Show("LaserSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "stun":
-                    try { StunSound.Play(); }
-                    catch { /*MessageBox.Show("StunSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    StunSound.Play();
+                    //catch { /*MessageBox.Show("StunSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
             }
         }
