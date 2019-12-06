@@ -83,6 +83,8 @@
     <Compile Include="Model Files\Enemy.cs" />
     <Compile Include="Model Files\Flak.cs" />
     <Compile Include="Model Files\Game.cs" />
+    <Compile Include="Model Files\HighScore.cs" />
+    <Compile Include="Model Files\HighScores.cs" />
     <Compile Include="Model Files\Infantry.cs" />
     <Compile Include="Model Files\Laser.cs" />
     <Compile Include="Model Files\MachineGun.cs" />
