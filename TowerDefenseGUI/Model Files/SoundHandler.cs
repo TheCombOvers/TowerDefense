@@ -1,53 +1,38 @@
 ﻿using System;
 using System.Media;
+using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
 
 namespace TowerDefenseGUI
 {
     public class SoundHandler
     {
-        private SoundPlayer MachineGunSound;
-        private SoundPlayer FlakSound;
-        private SoundPlayer MortarSound;
-        private SoundPlayer TeslaSound;
-        private SoundPlayer LaserSound;
-        private SoundPlayer StunSound;
+        public SoundPlayer MachineGunSound = new SoundPlayer("..\\..\\Resources\\MachineGunSound.wav");
+        public SoundPlayer FlakSound = new SoundPlayer("..\\..\\Resources\\FlakSound.wav");
+        public SoundPlayer MortarSound = new SoundPlayer("..\\..\\Resources\\MortarSound.wav");
+        public SoundPlayer TeslaSound = new SoundPlayer("..\\..\\Resources\\TeslaSound.wav");
+        public SoundPlayer LaserSound = new SoundPlayer("..\\..\\Resources\\LaserSound.wav");
+        public SoundPlayer StunSound = new SoundPlayer("..\\..\\Resources\\StunSound.wav");
         //private SoundPlayer
 
         public SoundHandler()
         {
-            string currentlyLoading = null;
-            try
-            {
-                currentlyLoading = "MachineGunSound.wav";
-                MachineGunSound = new SoundPlayer(@"Resources\MachineGunSound.wav");
-                MachineGunSound.Load();
-                currentlyLoading = "FlakSound.wav";
-                FlakSound = new SoundPlayer(@"Resources\FlakSound.wav");
-                FlakSound.Load();
-                currentlyLoading = "MortarSound.wav";
-                MortarSound = new SoundPlayer(@"..\..\Resources\MortarSound.wav");
-                MortarSound.Load();
-                currentlyLoading = "TeslaSound.wav";
-                TeslaSound = new SoundPlayer(@"..\..\Resources\TeslaSound.wav");
-                TeslaSound.Load();
-                currentlyLoading = "LaserSound.wav";
-                LaserSound = new SoundPlayer(@"..\..\Resources\LaserSound.wav");
-                LaserSound.Load();
-                currentlyLoading = "StunSound.wav";
-                StunSound = new SoundPlayer(@"..\..\Resources\StunSound.wav");
-                StunSound.Load();
-            }
-            catch (Exception e) { Console.WriteLine("Could not locate " + currentlyLoading + "\nStack Trace: " + e.Message); }
+            if (!MachineGunSound.IsLoadCompleted) { MachineGunSound.Load(); }
+            /*if (!FlakSound.IsLoadCompleted) { FlakSound.Load(); }
+            if (!MortarSound.IsLoadCompleted) { MortarSound.Load(); }
+            if (!TeslaSound.IsLoadCompleted) { TeslaSound.Load(); }
+            if (!LaserSound.IsLoadCompleted) { LaserSound.Load(); }
+            if (!LaserSound.IsLoadCompleted) { StunSound.Load(); }*/
         }
 
         public void Play(object sender, string type)
         {
-            switch(type)
+            switch (type)
             {
                 case "machinegun":
-                    try { MachineGunSound.Play(); }
-                    catch { /*MessageBox.Show("MachineGunSound failed to play.\nStack Trace: " + e.Message);*/ }
+                    MachineGunSound.Play();
+                    //catch { MessageBox.Show("MachineGunSound failed to play.\nStack Trace: " + e.Message); }
                     break;
                 case "flak":
                     try { FlakSound.Play(); }

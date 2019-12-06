@@ -41,8 +41,9 @@ namespace TowerDefenseGUI
         int wave;
         public bool selling = false;
         public Turret selectedTurret;
-        public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler soundHandler)
+        public GameWindow(bool cheat, bool isLoad, int diff)
         {
+            SoundHandler soundHandler = new SoundHandler();
             InitializeComponent();
             turrets = new List<Image>();
             enemies = new List<Image>();
@@ -157,6 +158,7 @@ namespace TowerDefenseGUI
         {
             Image i = new Image();
             i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
+            i.Margin = new Thickness(e.posX, e.posY, 0, 0);
             i.RenderTransformOrigin = new Point(0.5, 0.5);
             if (e.imageID == 3 || e.imageID == 7) // if it's a boss it's bigger! :)
             {
@@ -195,7 +197,17 @@ namespace TowerDefenseGUI
                 game.score += e.rewardScore;
             }
         }
-
+        public void RemoveTurret(Turret t)
+        {
+           
+            game.currentTurrets.Remove(t);
+            GameWindowCanvas.Children.Remove(turrets[t.imageIndex]);
+            turrets.RemoveAt(t.imageIndex);
+            for (int i = t.imageIndex; i < turrets.Count; ++i)
+            {
+                game.currentTurrets[i].imageIndex -= 1;
+            }
+        }
         private void btnNextWave_Click(object sender, RoutedEventArgs e)
         {
             game.NextWave();
@@ -232,10 +244,9 @@ namespace TowerDefenseGUI
                 Image image = new Image();
                 image.Width = 50;
                 image.Height = 50;
-                image.Margin = new Thickness(game.currentTurrets[i].xPos - 25, game.currentTurrets[i].yPos - 25, 0, 0);
-                image.RenderTransformOrigin = new Point(0.5, 0.5);
                 image.Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
-                
+                image.RenderTransformOrigin = new Point(0.5, 0.5);
+                image.Margin = new Thickness(game.currentTurrets[i].xPos, game.currentTurrets[i].yPos, 0, 0);                
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(turrets[i]);
             }
@@ -283,51 +294,57 @@ namespace TowerDefenseGUI
                 double posY = SnapToGridY(mousePos.Y);
                 image.Margin = new Thickness(posX, posY, 0, 0);
                 image.MouseDown += SelectTurret;
+                int index = turrets.Count;
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(image);
                 if (machinegunplace == true)
                 {
                     Game.money -= 50;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
-                    MachineGun g = MachineGun.MakeMachineGun(posX, posY);
+                    MachineGun g = MachineGun.MakeMachineGun(posX, posY, index);
+                   
                     game.currentTurrets.Add(g);
                 }
                 else if (flakplace == true)
                 {
                     Game.money -= 75;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.PNG"));
-                    Flak g = Flak.MakeFlak(posX, posY);
+                    Flak g = Flak.MakeFlak(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
                 else if (mortarplace == true)
                 {
                     Game.money -= 200;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.PNG"));
-                    Mortar g = Mortar.MakeMortar(posX, posY);
+                    Mortar g = Mortar.MakeMortar(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
                 else if (teslaplace == true)
                 {
                     Game.money -= 175;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.PNG"));
-                    Tesla g = Tesla.MakeTesla(posX, posY);
+                    Tesla g = Tesla.MakeTesla(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
                 else if (laserplace == true)
                 {
                     Game.money -= 125;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.PNG"));
-                    Laser g = Laser.MakeLaser(posX, posY);
+                    Laser g = Laser.MakeLaser(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
                 else if (stunplace == true)
                 {
                     Game.money -= 200;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.PNG"));
-                    Stun g = Stun.MakeStun(posX, posY);
+                    Stun g = Stun.MakeStun(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
                 txtMoney.Text = "$" + Game.money;
+            }
+            else
+            {
+                selectedTurret = null;
             }
         }
 
@@ -487,17 +504,20 @@ namespace TowerDefenseGUI
 
         private void btn_Sell_Click(object sender, RoutedEventArgs e)
         {
-
+            if(selectedTurret != null)
+            {
+                RemoveTurret(selectedTurret);
+                Game.money += Convert.ToInt32(selectedTurret.cost * .8);
+                selectedTurret = null;
+            }
         }
         public void SelectTurret(object sender, object e)
-        {
-          
+        {         
             for (int i = 0; i < turrets.Count; ++i)
             {
                 if (sender == turrets[i])
                 {
                     selectedTurret = game.currentTurrets[i];
-                    Console.WriteLine(selectedTurret.type);
                 }
             }
         }

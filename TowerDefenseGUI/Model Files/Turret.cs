@@ -68,7 +68,7 @@ namespace TowerDefenseGUI
                 {
                     Console.WriteLine("Attacking");
                     e.TakeDamage(damage);           
-                    PlaySound(this, type);                    
+                    PlaySound(this, type);
                 }
                 ++fireRate;
             }

@@ -35,9 +35,9 @@ namespace TowerDefenseGUI
             Spawner.enemies.Add(v1);
             g.currentEnemies.Add(i1);
             g.currentEnemies.Add(v1);
-            Mortar m1 = Mortar.MakeMortar(2,3);
-            Stun s1 = Stun.MakeStun(7,5);
-            Tesla t1 = Tesla.MakeTesla(3,5);
+            Mortar m1 = Mortar.MakeMortar(2,3,0);
+            Stun s1 = Stun.MakeStun(7,5,0);
+            Tesla t1 = Tesla.MakeTesla(3,5,0);
             g.currentTurrets = new List<Turret>();
             g.currentTurrets.Add(m1);
             g.currentTurrets.Add(s1);
@@ -65,9 +65,9 @@ namespace TowerDefenseGUI
             g.isWaveOver = false;
             Game.lives = 8;
             Game.map = new Map(0);
-            Mortar m1 = Mortar.MakeMortar(2,3);
-            Stun s1 = Stun.MakeStun(7,5);
-            Tesla t1 = Tesla.MakeTesla(3,5);
+            Mortar m1 = Mortar.MakeMortar(2,3,0);
+            Stun s1 = Stun.MakeStun(7,5,0);
+            Tesla t1 = Tesla.MakeTesla(3,5,0);
             g.currentTurrets = new List<Turret>();
             g.currentTurrets.Add(m1);
             g.currentTurrets.Add(s1);
