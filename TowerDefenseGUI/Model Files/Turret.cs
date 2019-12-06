@@ -56,6 +56,10 @@ namespace TowerDefenseGUI
                 {
                     fireTime = 10;                              
                 }
+                else if (type == "flak")
+                {
+                    fireTime = 65;
+                }
                 else
                 {
                     fireTime = 60;
