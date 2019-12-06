@@ -41,7 +41,7 @@ namespace TowerDefenseGUI
                     b.imageID = 7;
                     b.health = 150;
                     b.rewardMoney = 100;
-                    b.speed = 2; // decide speed for advance type, replace 4 with desired speed 
+                    b.speed = 1.25; // decide speed for advance type, replace 4 with desired speed 
                     b.rewardScore = 60;
                     b.type = "aboss";
                     break;

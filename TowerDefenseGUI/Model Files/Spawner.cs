@@ -13,6 +13,10 @@ namespace TowerDefenseGUI
         public static List<Enemy> enemies = new List<Enemy>();
         static Action<Enemy, bool> Remove;
         static Action<Enemy> Add;
+        static int[] count = { 0, 0 };
+        static string[] types = { "", "" };
+        public static event EventHandler<Enemy> DisplayWave;
+
         public Spawner(Action<Enemy> AddEnemy, Action<Enemy, bool> RemoveEnemy)
         {
             Remove = RemoveEnemy;
@@ -20,16 +24,90 @@ namespace TowerDefenseGUI
         }
         public void Spawn(int wave)
         {
-            int[] count = DetermineWave(wave);
-            GenerateWave(wave, count);
-            Console.WriteLine(enemies.Count);
-            foreach (Enemy en in enemies)
-            {
-                Add(en);
-            }
+            count = new int[2] { 0, 0 };
+            types = new string[2] { "", "" };
+            count = DetermineWaveNumbers(wave);
+            types = DetermineWave(wave, count);
+            Console.WriteLine(count[0] + " " + types[0] + ", " + count[1] + " " + types[1]);
+            DisplayWave(this, null);
         }
 
-        private int[] DetermineWave(int wave)
+        public static Enemy GenerateWave()
+        {
+            Console.WriteLine("Generating enemy");
+            Enemy e = null;
+            if (count[0] > 0)
+            {
+                switch (types[0])
+                {
+                    case "bI":
+                        enemies.Add(Infantry.MakeInfantry("b"));
+                        e = enemies[enemies.Count - 1];
+                        count[0]--;
+                        break;
+                    case "aI":
+                        enemies.Add(Infantry.MakeInfantry("a"));
+                        e = enemies[enemies.Count - 1];
+                        count[0]--;
+                        break;
+                    case "bV":
+                        enemies.Add(Vehicle.MakeVehicle("b"));
+                        e = enemies[enemies.Count - 1];
+                        count[0]--;
+                        break;
+                    case "aV":
+                        enemies.Add(Vehicle.MakeVehicle("b"));
+                        e = enemies[enemies.Count - 1];
+                        count[0]--;
+                        break;
+                    case "bA":
+                        enemies.Add(Aircraft.MakeAircraft("b"));
+                        e = enemies[enemies.Count - 1];
+                        count[0]--;
+                        break;
+                    case "gB":
+                        enemies.Add(Boss.MakeBoss("g"));
+                        e = enemies[enemies.Count - 1];
+                        count[0]--;
+                        break;
+                }
+            }
+            else if (count[1] > 0)
+            {
+                switch (types[1])
+                {
+                    case "aI":
+                        enemies.Add(Infantry.MakeInfantry("a"));
+                        e = enemies[enemies.Count - 1];
+                        count[1]--;
+                        break;
+                    case "aV":
+                        enemies.Add(Vehicle.MakeVehicle("a"));
+                        e = enemies[enemies.Count - 1];
+                        count[1]--;
+                        break;
+                    case "aA":
+                        enemies.Add(Aircraft.MakeAircraft("a"));
+                        e = enemies[enemies.Count - 1];
+                        count[1]--;
+                        break;
+                    case "aB":
+                        enemies.Add(Boss.MakeBoss("a"));
+                        e = enemies[enemies.Count - 1];
+                        count[1]--;
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("no enemy created");
+                return null;
+            }
+            Console.WriteLine(e.type + " was created");
+            return e;
+        }
+
+        private int[] DetermineWaveNumbers(int wave)
         {
             int[] num = new int[2];
             int count;
@@ -118,12 +196,12 @@ namespace TowerDefenseGUI
                 }
                 else
                 {
-                    num[0] = 1;
+                    num[0] = 2;
                 }
             }
-            else if(wave > 1)
+            else if (wave > 1)
             {
-                num = new int[2] { wave/2, wave/4 };
+                num = new int[2] { wave / 2, wave / 4 };
             }
             else
             {
@@ -132,94 +210,54 @@ namespace TowerDefenseGUI
             return num;
         }
 
-        private void GenerateWave(int wave, int[] count)
+        private string[] DetermineWave(int wave, int[] count)
         {
-            Console.WriteLine(count[0] + " " + count[1]);
+            string[] types = new string[2];
             if (wave % 7 == 0)
             {
-                for (int i = 0; i < count[0]; i++)
-                {
-                    enemies.Add(Aircraft.MakeAircraft("b"));
-                }
-                for (int i = 0; i < count[1]; i++)
-                {
-                    enemies.Add(Aircraft.MakeAircraft("a"));
-                }
+                types[0] = "bA";
+                types[1] = "aA";
             }
             else if (wave % 5 == 0)
             {
-                for (int i = 0; i < count[0]; i++)
-                {
-                    enemies.Add(Boss.MakeBoss("g"));
-                }
-                for (int i = 0; i < count[1]; i++)
-                {
-                    enemies.Add(Boss.MakeBoss("a"));
-                }
+                types[0] = "gB";
+                types[1] = "aB";
             }
             else if (wave % 3 == 0)
             {
-                for (int i = 0; i < count[0]; i++)
-                {
-                    enemies.Add(Vehicle.MakeVehicle("b"));
-                }
-                for (int i = 0; i < count[1]; i++)
-                {
-                    enemies.Add(Vehicle.MakeVehicle("a"));
-                }
+                types[0] = "bV";
+                types[1] = "aV";
             }
             else if (wave % 2 == 0)
             {
-                for (int i = 0; i < count[0]; i++)
-                {
-                    enemies.Add(Infantry.MakeInfantry("b"));
-                }
-                for (int i = 0; i < count[1]; i++)
-                {
-                    enemies.Add(Infantry.MakeInfantry("a"));
-                }
+                types[0] = "bI";
+                types[1] = "aI";
             }
             else if (wave > 1)
             {
-                int rand = new Random().Next(0,2);
+                int rand = new Random().Next(0, 2);
                 if (rand == 0)
                 {
-                    for (int i = 0; i < count[0]; i++)
-                    {
-                        enemies.Add(Infantry.MakeInfantry("a"));
-                    }
-                    for (int i = 0; i < count[1]; i++)
-                    {
-                        enemies.Add(Vehicle.MakeVehicle("a"));
-                    }
+                    types[0] = "aI";
+                    types[1] = "aV";
                 }
                 else if (rand == 1)
                 {
-                    for (int i = 0; i < count[0]; i++)
-                    {
-                        enemies.Add(Infantry.MakeInfantry("a"));
-                    }
-                    for (int i = 0; i < count[1]; i++)
-                    {
-                        enemies.Add(Aircraft.MakeAircraft("a"));
-                    }
+                    types[0] = "aI";
+                    types[1] = "aA";
                 }
                 else
                 {
-                    for (int i = 0; i < count[0]; i++)
-                    {
-                        enemies.Add(Vehicle.MakeVehicle("a"));
-                    }
-                    for (int i = 0; i < count[1]; i++)
-                    {
-                        enemies.Add(Aircraft.MakeAircraft("a"));
-                    }
+                    types[0] = "aV";
+                    types[1] = "aA";
                 }
             }
             else
             {
-                enemies.Add(Infantry.MakeInfantry("b"));
+                types[0] = "bI";
+                types[1] = "";
             }
+            return types;
         }
 
 

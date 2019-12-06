@@ -36,7 +36,7 @@ namespace TowerDefenseGUI
         {
             difficulty = diff;
             cheatMode = cheat;
-            currentWave = 1;
+            currentWave = 0;
             isWaveOver = true;
             waveProgress = 0;         
             money = cheat == true ? 999999: 200;
@@ -55,6 +55,7 @@ namespace TowerDefenseGUI
         public void NextWave()
         {
             waveProgress++;
+            isWaveOver = false;
             spawner.Spawn(waveProgress);
         }
 
@@ -251,11 +252,6 @@ namespace TowerDefenseGUI
                 }
                 writer.WriteLine("END");
             }
-        }
-
-        public static void AddMoney(Enemy unit)
-        {
-            money += unit.rewardMoney;
         }
     }
 }

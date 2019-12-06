@@ -21,15 +21,15 @@ namespace TowerDefenseGUI
         public Map(int id)
         {
             var path = new List<Intersection>();
-            path.Add(new Intersection(0, 350, Direction.RIGHT)); // 0,350
-            path.Add(new Intersection(350, 350, Direction.RIGHT)); // 350, 350
-            path.Add(new Intersection(350, 150, Direction.UP)); // 350, 150
-            path.Add(new Intersection(750, 150, Direction.RIGHT)); // 750, 150
-            path.Add(new Intersection(750, 600, Direction.DOWN)); // 750, 600
-            path.Add(new Intersection(200, 600, Direction.LEFT)); // 200, 600
-            path.Add(new Intersection(200, 800, Direction.DOWN)); // 200, 800
-            path.Add(new Intersection(500, 800, Direction.RIGHT)); // 500, 800
-            path.Add(new Intersection(500, 900, Direction.DOWN)); // 500, 900
+            path.Add(new Intersection(0, 325, Direction.RIGHT)); // 0,350
+            path.Add(new Intersection(325, 325, Direction.RIGHT)); // 350, 350
+            path.Add(new Intersection(325, 125, Direction.UP)); // 350, 150
+            path.Add(new Intersection(725, 125, Direction.RIGHT)); // 750, 150
+            path.Add(new Intersection(725, 575, Direction.DOWN)); // 750, 600
+            path.Add(new Intersection(175, 575, Direction.LEFT)); // 200, 600
+            path.Add(new Intersection(175, 775, Direction.DOWN)); // 200, 800
+            path.Add(new Intersection(475, 775, Direction.RIGHT)); // 500, 800
+            path.Add(new Intersection(475, 900, Direction.DOWN)); // 500, 900
             pathways.Add(path);
             mapID = id;
             coords = pathways[mapID];

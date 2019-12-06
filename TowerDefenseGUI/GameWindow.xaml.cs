@@ -29,6 +29,7 @@ namespace TowerDefenseGUI
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
         List<string> tImageSources;// 0:MG tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
+        List<string> tSelectedSources; // same as above 
         bool isPlacing;
         Point mousePos;
         bool basic;
@@ -41,10 +42,17 @@ namespace TowerDefenseGUI
         int wave;
         public bool selling = false;
         public Turret selectedTurret;
+        public Image selectedRing = new Image();
+        public TextBlock selectedTurretInfo =  new TextBlock();
         public GameWindow(bool cheat, bool isLoad, int diff)
         {
             SoundHandler soundHandler = new SoundHandler();
             InitializeComponent();
+            //selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Put the ring image source here"));
+            selectedRing.RenderTransformOrigin = new Point(0.5, 0.5);
+            selectedTurretInfo.Foreground = Brushes.DarkRed;
+            selectedTurretInfo.FontWeight = FontWeights.Bold;
+            selectedTurretInfo.FontSize = 13;
             turrets = new List<Image>();
             enemies = new List<Image>();
             // do not mess with the order of these addition please :)
@@ -66,6 +74,14 @@ namespace TowerDefenseGUI
             tImageSources.Add("pack://application:,,,/Resources/mortar tower.png");
             tImageSources.Add("pack://application:,,,/Resources/stun tower.png");
             tImageSources.Add("pack://application:,,,/Resources/tesla tower.png");
+            // add all image sources for selected turrets
+            tSelectedSources = new List<string>();
+            tSelectedSources.Add("pack://application:,,,/Resources/turret tower select.png");
+            tSelectedSources.Add("pack://application:,,,/Resources/flak tower select.png");
+            tSelectedSources.Add("pack://application:,,,/Resources/laser tower select.png");
+            tSelectedSources.Add("pack://application:,,,/Resources/mortar tower select.png");
+            tSelectedSources.Add("pack://application:,,,/Resources/stun tower select.png");
+            tSelectedSources.Add("pack://application:,,,/Resources/tesla tower select.png");
             // if we're loading a old save then call loadgame else just make a new game instance
             if (isLoad)
             {
@@ -79,7 +95,6 @@ namespace TowerDefenseGUI
             else
             {
                 game = new Game(0, cheat, AddEnemy, RemoveEnemy, diff);
-              
             }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
@@ -88,6 +103,7 @@ namespace TowerDefenseGUI
             gameTimer.Tick += updateTowerPlace;
             Turret.RotateTurret += RotateTurret;
             Enemy.RotateEnemy += RotateEnemy;
+            Spawner.DisplayWave += DisplayWave;
             Turret.PlaySound += soundHandler.Play;
             btnBasic.IsEnabled = false;
             basic = true;
@@ -149,11 +165,30 @@ namespace TowerDefenseGUI
             }
         }
 
+        private void DisplayWave(object sender, Enemy nul)
+        {
+            Task.Run(() =>
+            {
+                while (!game.isWaveOver) {
+                    Enemy e = Spawner.GenerateWave();
+                    if (e != null)
+                    {
+                        Dispatcher.Invoke(() => AddEnemy(e));
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    Thread.Sleep(500);
+                }
+            });
+        }
+
         public void RotateEnemy(object en, int degrees)
         {
             int index = game.currentEnemies.IndexOf(en as Enemy);
             if (game.currentEnemies.Contains(en) && enemies.Count >= index + 1)
-            {           
+            {
                 enemies[index].RenderTransform = new RotateTransform(degrees);
             }
         }
@@ -173,7 +208,6 @@ namespace TowerDefenseGUI
         {
             Image i = new Image();
             i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
-            i.Margin = new Thickness(e.posX, e.posY, 0, 0);
             i.RenderTransformOrigin = new Point(0.5, 0.5);
             if (e.imageID == 3 || e.imageID == 7) // if it's a boss it's bigger! :)
             {
@@ -188,8 +222,8 @@ namespace TowerDefenseGUI
             e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
             enemies.Add(i);
             GameWindowCanvas.Children.Add(i);
-
         }
+
         // removes a specified enemy from the game state and the view
         public void RemoveEnemy(Enemy e, bool isKill)
         {
@@ -204,7 +238,6 @@ namespace TowerDefenseGUI
             if (enemies.Count == 0)
             {
                 game.isWaveOver = true;
-                game.currentWave += 1;
                 btnNextWave.IsEnabled = true;
             }
             if (isKill)
@@ -212,22 +245,24 @@ namespace TowerDefenseGUI
                 game.score += e.rewardScore;
             }
         }
+
         public void RemoveTurret(Turret t)
         {
-           
             game.currentTurrets.Remove(t);
-            GameWindowCanvas.Children.Remove(turrets[t.imageIndex]);
-            turrets.RemoveAt(t.imageIndex);
+            GameWindowCanvas.Children.Remove(turrets[t.imageIndex]); // remove from the game window canvas
+            turrets.RemoveAt(t.imageIndex);     // remove it from the image list in the view
             for (int i = t.imageIndex; i < turrets.Count; ++i)
             {
                 game.currentTurrets[i].imageIndex -= 1;
             }
         }
+
         private void btnNextWave_Click(object sender, RoutedEventArgs e)
         {
+            game.currentWave += 1;
             game.NextWave();
-            btnNextWave.IsEnabled =  false;
-            game.isWaveOver = false;
+            btnNextWave.IsEnabled = false;
+            game.isWaveOver = false;   
         }
         private void btnSaveGame_Click(object sender, RoutedEventArgs e)
         {
@@ -259,9 +294,10 @@ namespace TowerDefenseGUI
                 Image image = new Image();
                 image.Width = 50;
                 image.Height = 50;
-                image.Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
                 image.RenderTransformOrigin = new Point(0.5, 0.5);
-                image.Margin = new Thickness(game.currentTurrets[i].xPos, game.currentTurrets[i].yPos, 0, 0);                
+                image.Margin = new Thickness(game.currentTurrets[i].xPos, game.currentTurrets[i].yPos, 0, 0);
+                image.MouseDown += SelectTurret;
+                image.Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(turrets[i]);
             }
@@ -317,7 +353,6 @@ namespace TowerDefenseGUI
                     Game.money -= 50;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
                     MachineGun g = MachineGun.MakeMachineGun(posX, posY, index);
-                   
                     game.currentTurrets.Add(g);
                 }
                 else if (flakplace == true)
@@ -359,7 +394,12 @@ namespace TowerDefenseGUI
             }
             else
             {
+                if (GameWindowCanvas.Children.Contains(selectedTurretInfo))
+                {
+                    GameWindowCanvas.Children.Remove(selectedTurretInfo);
+                }
                 selectedTurret = null;
+
             }
         }
 
@@ -509,7 +549,7 @@ namespace TowerDefenseGUI
             Enemy.RotateEnemy += null;
             Turret.PlaySound += null;
             MainMenu mainMenu = new MainMenu();
-            mainMenu.Show();   
+            mainMenu.Show();
         }
 
         private void btn_FastForward_Click(object sender, RoutedEventArgs e)
@@ -519,22 +559,35 @@ namespace TowerDefenseGUI
 
         private void btn_Sell_Click(object sender, RoutedEventArgs e)
         {
-            if(selectedTurret != null)
+            if (selectedTurret != null)
             {
                 RemoveTurret(selectedTurret);
-                Game.money += Convert.ToInt32(selectedTurret.cost * .8);
+                Game.money += Convert.ToInt32(selectedTurret.cost * .8);            
+                //GameWindowCanvas.Children.Remove(selectedRing);
+                GameWindowCanvas.Children.Remove(selectedTurretInfo);
                 selectedTurret = null;
             }
         }
         public void SelectTurret(object sender, object e)
-        {         
+        {
             for (int i = 0; i < turrets.Count; ++i)
             {
                 if (sender == turrets[i])
                 {
                     selectedTurret = game.currentTurrets[i];
+                    Console.WriteLine(selectedTurret.type);
                 }
             }
+            if (GameWindowCanvas.Children.Contains(selectedTurretInfo)) // if theres some turret info there remove it
+            {
+                GameWindowCanvas.Children.Remove(selectedTurretInfo);
+            }
+            selectedTurretInfo.Margin = new Thickness(selectedTurret.xPos - 13, selectedTurret.yPos + 50, 0, 0); // edit turret info coords and text
+            selectedTurretInfo.Text = "Sells for: $" + Convert.ToInt32(selectedTurret.cost * .80);
+            selectedRing.Margin = new Thickness(selectedTurret.xPos, selectedTurret.yPos, 0, 0);    // change coords to the selected turrets
+
+            //GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
+            GameWindowCanvas.Children.Add(selectedTurretInfo);          // add the info to the screen
         }
 
         private void btnName_Click(object sender, RoutedEventArgs e)

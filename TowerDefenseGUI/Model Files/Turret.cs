@@ -56,17 +56,18 @@ namespace TowerDefenseGUI
                 {
                     fireTime = 10;                              
                 }
+                else if (type == "flak")
+                {
+                    fireTime = 65;
+                }
                 else
                 {
                     fireTime = 60;
                 }
                 int deg = CalculateRotation(xPos, yPos, e.posX, e.posY);
                 RotateTurret(this, deg);
-                Console.WriteLine("Firerate = " + fireRate);
-
                 if (fireRate % fireTime == 0)
                 {
-                    Console.WriteLine("Attacking");
                     e.TakeDamage(damage);           
                     PlaySound(this, type);
                 }
@@ -82,7 +83,6 @@ namespace TowerDefenseGUI
                 double dist = CalculateDistance(xPos, yPos, e.posX, e.posY);
                 if (range >= dist)
                 {
-                    Console.WriteLine("Target in range");
                     target = e;
                     return target;
                 }
