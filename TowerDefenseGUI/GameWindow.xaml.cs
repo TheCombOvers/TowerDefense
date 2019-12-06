@@ -77,7 +77,7 @@ namespace TowerDefenseGUI
             else
             {
                 game = new Game(0, cheat, AddEnemy, RemoveEnemy, diff);
-              
+
             }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
@@ -86,6 +86,7 @@ namespace TowerDefenseGUI
             gameTimer.Tick += updateTowerPlace;
             Turret.RotateTurret += RotateTurret;
             Enemy.RotateEnemy += RotateEnemy;
+            Spawner.DisplayWave += DisplayWave;
             Turret.PlaySound += soundHandler.Play;
             btnBasic.IsEnabled = false;
             basic = true;
@@ -119,11 +120,26 @@ namespace TowerDefenseGUI
             }
         }
 
+        private void DisplayWave(object sender, Enemy nul)
+        {
+            Task.Run(() =>
+            {
+                while (!game.isWaveOver) {
+                    Enemy e = Spawner.GenerateWave();
+                    if (e != null)
+                    {
+                        Dispatcher.Invoke(() => AddEnemy(e));
+                    }
+                    Thread.Sleep(500);
+                }
+            });
+        }
+
         public void RotateEnemy(object en, int degrees)
         {
             int index = game.currentEnemies.IndexOf(en as Enemy);
             if (game.currentEnemies.Contains(en) && enemies.Count >= index + 1)
-            {           
+            {
                 enemies[index].RenderTransform = new RotateTransform(degrees);
             }
         }
@@ -157,8 +173,8 @@ namespace TowerDefenseGUI
             e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
             enemies.Add(i);
             GameWindowCanvas.Children.Add(i);
-
         }
+
         // removes a specified enemy from the game state and the view
         public void RemoveEnemy(Enemy e, bool isKill)
         {
@@ -185,7 +201,7 @@ namespace TowerDefenseGUI
         private void btnNextWave_Click(object sender, RoutedEventArgs e)
         {
             game.NextWave();
-            btnNextWave.IsEnabled =  false;
+            btnNextWave.IsEnabled = false;
             game.isWaveOver = false;
         }
         private void btnSaveGame_Click(object sender, RoutedEventArgs e)
@@ -221,7 +237,7 @@ namespace TowerDefenseGUI
                 image.Margin = new Thickness(game.currentTurrets[i].xPos - 25, game.currentTurrets[i].yPos - 25, 0, 0);
                 image.RenderTransformOrigin = new Point(0.5, 0.5);
                 image.Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
-                
+
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(turrets[i]);
             }
@@ -463,7 +479,7 @@ namespace TowerDefenseGUI
             Enemy.RotateEnemy += null;
             Turret.PlaySound += null;
             MainMenu mainMenu = new MainMenu();
-            mainMenu.Show();   
+            mainMenu.Show();
         }
 
         private void btn_FastForward_Click(object sender, RoutedEventArgs e)
@@ -477,7 +493,7 @@ namespace TowerDefenseGUI
         }
         public void SelectTurret(object sender, object e)
         {
-          
+
             for (int i = 0; i < turrets.Count; ++i)
             {
                 if (sender == turrets[i])
