@@ -65,7 +65,9 @@ namespace TowerDefenseGUI
             tImageSources.Add("pack://application:,,,/Resources/mortar tower.png");
             tImageSources.Add("pack://application:,,,/Resources/stun tower.png");
             tImageSources.Add("pack://application:,,,/Resources/tesla tower.png");
+            // add all image sources for selected turrets
             tSelectedSources = new List<string>();
+            tSelectedSources.Add("");
             // if we're loading a old save then call loadgame else just make a new game instance
             if (isLoad)
             {
@@ -508,7 +510,7 @@ namespace TowerDefenseGUI
                     selectedTurret = game.currentTurrets[i];
                 }
             }
-            turrets[selectedTurret.imageIndex].Source = 
+            //turrets[selectedTurret.imageIndex].Source =  
         }
     }
 }
