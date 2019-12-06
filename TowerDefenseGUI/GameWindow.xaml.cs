@@ -50,6 +50,8 @@ namespace TowerDefenseGUI
             //selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Put the ring image source here"));
             selectedRing.RenderTransformOrigin = new Point(0.5, 0.5);
             selectedTurretInfo.Foreground = Brushes.DarkRed;
+            selectedTurretInfo.FontWeight = FontWeights.Bold;
+            selectedTurretInfo.FontSize = 13;
             turrets = new List<Image>();
             enemies = new List<Image>();
             // do not mess with the order of these addition please :)
@@ -551,7 +553,7 @@ namespace TowerDefenseGUI
             {
                 GameWindowCanvas.Children.Remove(selectedTurretInfo);
             }
-            selectedTurretInfo.Margin = new Thickness(selectedTurret.xPos - 4, selectedTurret.yPos + 50, 0, 0); // edit turret info coords and text
+            selectedTurretInfo.Margin = new Thickness(selectedTurret.xPos - 13, selectedTurret.yPos + 50, 0, 0); // edit turret info coords and text
             selectedTurretInfo.Text = "Sells for: $" + Convert.ToInt32(selectedTurret.cost * .80);
             selectedRing.Margin = new Thickness(selectedTurret.xPos, selectedTurret.yPos, 0, 0);    // change coords to the selected turrets
 
