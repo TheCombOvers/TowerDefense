@@ -39,14 +39,15 @@ namespace TowerDefenseGUI
         bool laserplace;
         bool stunplace;
         int wave;
+        public SoundHandler soundHandler;
         public bool selling = false;
         public Turret selectedTurret;
         public Image selectedRing = new Image();
         public TextBlock selectedTurretInfo =  new TextBlock();
-        public GameWindow(bool cheat, bool isLoad, int diff)
+        public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler)
         {
             InitializeComponent();
-            SoundHandler soundHandler = new SoundHandler();
+            soundHandler = sentSoundHandler;
             //selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Put the ring image source here"));
             selectedRing.RenderTransformOrigin = new Point(0.5, 0.5);
             selectedTurretInfo.Foreground = Brushes.DarkRed;

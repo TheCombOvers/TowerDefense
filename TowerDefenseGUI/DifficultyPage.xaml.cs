@@ -18,9 +18,9 @@ namespace TowerDefenseGUI
         public int Difficulty = 1;
         public SoundHandler soundHandler;
 
-        public DifficultyPage(/*SoundHandler sentSoundHandler*/)
+        public DifficultyPage(SoundHandler sentSoundHandler)
         {
-            //soundHandler = sentSoundHandler;
+            soundHandler = sentSoundHandler;
             InitializeComponent();
         }
         private void BtnMainMenu_Click(object sender, RoutedEventArgs e)
@@ -80,7 +80,23 @@ namespace TowerDefenseGUI
         }
         private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
         {
-            var gameWindow = new GameWindow(Cheat, false, Difficulty/*, soundHandler*/); //put difficulty variable where the zero is 
+            var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
+            gameWindow.Show();
+            Window hostWindow = Window.GetWindow(this);
+            hostWindow.Close();
+        }
+
+        private void BtnSelectMapMedium_Click(object sender, RoutedEventArgs e)
+        {
+            var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
+            gameWindow.Show();
+            Window hostWindow = Window.GetWindow(this);
+            hostWindow.Close();
+        }
+
+        private void BtnSelectMapHard_Click(object sender, RoutedEventArgs e)
+        {
+            var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
             hostWindow.Close();

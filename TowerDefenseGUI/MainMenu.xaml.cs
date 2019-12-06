@@ -15,18 +15,15 @@ using System.Windows.Shapes;
 
 namespace TowerDefenseGUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainMenu : Window
     {
         public bool cheat = true;
-        //public SoundHandler soundHandler;
+        public SoundHandler soundHandler;
 
         public MainMenu()
         {
-            //soundHandler = new SoundHandler();
             InitializeComponent();
+            soundHandler = new SoundHandler();
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
@@ -41,7 +38,7 @@ namespace TowerDefenseGUI
 
             // For Alpha, just launch Game Window
 
-            DifficultyPage diffPage = new DifficultyPage(/*soundHandler*/);
+            DifficultyPage diffPage = new DifficultyPage(soundHandler);
             this.Content = diffPage;
                            
         }
@@ -69,7 +66,7 @@ namespace TowerDefenseGUI
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             // if we're loading a old save then pass in true for isLoad, else pass false
-            var gameWindow = new GameWindow(cheat, true, 0/*, soundHandler*/);
+            var gameWindow = new GameWindow(cheat, true, 0, soundHandler);
             gameWindow.Show();
             Close();
         }
