@@ -46,5 +46,9 @@
         <TextBlock x:Name="txtMoney_Copy" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" Text="Points: 0" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1258" Canvas.Top="692"/>
         <Image x:Name="imagetowerplace"  HorizontalAlignment="Center" Margin="841,124,0,0" VerticalAlignment="Center" MouseDown="MapImage_MouseDown" RenderTransformOrigin="0.5,0.5"/>
         <TextBlock x:Name="txtScore" Text="Score: 0" FontSize="30" Canvas.Left="10" Canvas.Top="55"/>
+        <Rectangle x:Name="rectGameEnd" Fill="#FFF4F4F5" Height="364" Canvas.Left="106" Stroke="Black" Canvas.Top="233" Width="784" Visibility="Hidden"/>
+        <TextBlock x:Name="txtWin" Height="65" Canvas.Left="409" TextWrapping="Wrap" Text="You Win!" FontSize="50" Canvas.Top="279" Width="198" Visibility="Hidden"/>
+        <TextBlock x:Name="txtLose" Height="65" Canvas.Left="409" TextWrapping="Wrap" Text="You Lose!" FontSize="50" Canvas.Top="279" Width="212" Visibility="Hidden"/>
+        <TextBlock x:Name="txtEndScore" Height="61" Canvas.Left="409" TextWrapping="Wrap" Text="Score: 0" FontSize="30" Canvas.Top="351" Width="311" Visibility="Hidden"/>
     </Canvas>
 </Window>

@@ -38,6 +38,7 @@ namespace TowerDefenseGUI
         bool teslaplace;
         bool laserplace;
         bool stunplace;
+        int wave;
         public bool selling = false;
         public Turret selectedTurret;
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler soundHandler)
@@ -100,8 +101,20 @@ namespace TowerDefenseGUI
             game.UpdateModel();
             txtMoney.Text = "$" + Game.money;
             txtLives.Text = "Lives: " + Game.lives;
+            if (Game.lives == 0)
+            {
+                MessageBox.Show("You Lose!/n" + "Final Score: " + game.score);
+            }
             txtRoundDisplay.Text = "Wave: " + game.currentWave;
             txtScore.Text = "Score: " + game.score;
+            wave = game.currentWave;
+            if (wave == 10)
+            {
+                rectGameEnd.Visibility = Visibility.Visible;
+                txtWin.Visibility = Visibility.Visible;
+                txtEndScore.Text = game.score.ToString();
+                txtEndScore.Visibility = Visibility.Visible;
+            }
             UpdateView();
         }
         public void UpdateView()
@@ -179,7 +192,7 @@ namespace TowerDefenseGUI
             }
             if (isKill)
             {
-                Game.money += e.rewardMoney;
+                game.score += e.rewardScore;
             }
         }
 
