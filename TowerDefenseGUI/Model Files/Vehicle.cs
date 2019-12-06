@@ -33,7 +33,7 @@ namespace TowerDefenseGUI
                     v.imageID = 1;
                     v.health = 30;
                     v.rewardMoney = 15;
-                    v.speed = 10; // decide speed for advance type, replace 4 with desired speed 
+                    v.speed = 6.25; // decide speed for advance type, replace 4 with desired speed 
                     v.rewardScore = 8;
                     v.type = "bvehicle";
                     break;
