@@ -24,6 +24,7 @@ namespace TowerDefenseGUI
         public static int money;
         public int score;
         public static int lives;
+        public bool gameOver;
         public static Map map;
         public List<Turret> currentTurrets = new List<Turret>(); // list of turrets  currently on the screen
         public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
@@ -42,6 +43,7 @@ namespace TowerDefenseGUI
             money = cheat == true ? 999999: 200;
             score = 0;
             lives = 10;
+            gameOver = false;
             map = new Map(mapID);
             spawner = new Spawner(add, remove);
             addEnemy = add;
@@ -105,7 +107,8 @@ namespace TowerDefenseGUI
                     else { newGame.isWaveOver = true; }
                     Game.lives = Convert.ToInt32(gameInfo[7]);
                     if (gameInfo[8] == "false") { cheatMode = false; } // cheatmode is static btw
-
+                    Spawner.count = new int[2] { Convert.ToInt32(gameInfo[9]) ,Convert.ToInt32(gameInfo[10]) };
+                    Spawner.types = new string[2] { gameInfo[11], gameInfo[12] };
                     while (true)
                     {
                         string section = reader.ReadLine(); // read the section header
@@ -122,42 +125,42 @@ namespace TowerDefenseGUI
                                 {
                                     case "gboss":
                                         Boss bG = Boss.MakeBoss("g");
-                                        bG.Deserialize(line);
+                                        bG =  bG.Deserialize(line) as Boss;
                                         Spawner.enemies.Add(bG);
                                         break;
                                     case "aboss":
                                         Boss bA = Boss.MakeBoss("a");
-                                        bA.Deserialize(line);
+                                        bA = bA.Deserialize(line) as Boss;
                                         Spawner.enemies.Add(bA);
                                         break;
                                     case "baircraft":
                                         Aircraft a = Aircraft.MakeAircraft("b");
-                                        a.Deserialize(line);
+                                        a = a.Deserialize(line) as Aircraft;
                                         Spawner.enemies.Add(a);
                                         break;
                                     case "aaircraft":
                                         Aircraft aA = Aircraft.MakeAircraft("a");
-                                        aA.Deserialize(line);
+                                        aA = aA.Deserialize(line) as Aircraft;
                                         Spawner.enemies.Add(aA);
                                         break;
                                     case "binfantry":
                                         Infantry i = Infantry.MakeInfantry("b");
-                                        i.Deserialize(line);
+                                        i = i.Deserialize(line) as Infantry;
                                         Spawner.enemies.Add(i);
                                         break;
                                     case "ainfantry":
                                         Infantry iA = Infantry.MakeInfantry("a");
-                                        iA.Deserialize(line);
+                                        iA = iA.Deserialize(line) as Infantry;
                                         Spawner.enemies.Add(iA);
                                         break;
                                     case "bvehicle":
                                         Vehicle v = Vehicle.MakeVehicle("b");
-                                        v.Deserialize(line);
+                                        v = v.Deserialize(line) as Vehicle;
                                         Spawner.enemies.Add(v);
                                         break;
                                     case "avehicle":
                                         Vehicle vA = Vehicle.MakeVehicle("a");
-                                        vA.Deserialize(line);
+                                        vA = vA.Deserialize(line) as Vehicle;
                                         Spawner.enemies.Add(vA);
                                         break;
                                     default:
@@ -227,7 +230,7 @@ namespace TowerDefenseGUI
             {
                 writer.WriteLine("NG");
                 string waveOver = isWaveOver == true ? "true" : "false";
-                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", map.mapID, currentWave, waveProgress, score, money, difficulty, waveOver, lives, cheatMode);
+                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", map.mapID, currentWave, waveProgress, score, money, difficulty, waveOver, lives, cheatMode, Spawner.count[0],Spawner.count[1], Spawner.types[0], Spawner.types[1]);
                 writer.WriteLine(gameState);
                 if (currentEnemies.Count != 0)
                 {

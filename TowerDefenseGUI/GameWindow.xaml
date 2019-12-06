@@ -35,9 +35,9 @@
         <TextBlock x:Name="txtFlakLaserCost" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Cost: $75" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="386"/>
         <Button x:Name="btnFlakLaserBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" Canvas.Left="1319" Canvas.Top="352" Click="btnFlakLaserBuy_Click"/>
         <Rectangle Fill="#FFF4F4F5" Height="2" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="428" Canvas.Left="1000" Canvas.Top="680"/>
-        <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnNextWave_Click" Canvas.Left="1020" Canvas.Top="700"/>
-        <Button x:Name="btnPauseGame" Content="Pause" FontSize="20" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnPauseGame_Click" Canvas.Left="1130" Canvas.Top="699"/>
-        <Button x:Name="btnSaveGame" Content="Save Game" FontSize="20" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnSaveGame_Click" Canvas.Left="1130" Canvas.Top="772"/>
+        <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnNextWave_Click" Canvas.Left="1012" Canvas.Top="692"/>
+        <Button x:Name="btnPauseGame" Content="Pause" FontSize="20" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnPauseGame_Click" Canvas.Left="1130" Canvas.Top="692"/>
+        <Button x:Name="btnSaveGame" Content="Save Game" FontSize="20" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnSaveGame_Click" Canvas.Left="1130" Canvas.Top="760"/>
         <TextBlock x:Name="txtLives" HorizontalAlignment="Left" Height="42" TextWrapping="Wrap" Text="Lives: " FontSize="25" VerticalAlignment="Top" Width="98" Canvas.Left="1258" Canvas.Top="818"/>
         <Rectangle Fill="#FFF4F4F5" Height="188" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="4" Canvas.Left="1248" Canvas.Top="682"/>
         <TextBlock x:Name="txtMoney" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="$" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1258" Canvas.Top="760"/>
@@ -54,5 +54,8 @@
         <TextBox x:Name="boxName" Height="37" Canvas.Left="308" TextWrapping="Wrap" Text="" FontSize="25" Canvas.Top="541" Width="244" Visibility="Hidden"/>
         <TextBlock x:Name="txtName" Height="52" Canvas.Left="385" TextWrapping="Wrap" Text="What is your name?" FontSize="25" Canvas.Top="483" Width="236" Visibility="Hidden"/>
         <Button x:Name="btnName" Content="Submit Score" FontSize="20" Canvas.Left="578" Canvas.Top="541" Width="128" Height="44" Click="btnName_Click" Visibility="Hidden"/>
+        <Button Content="Sell Turret" FontSize="20" Canvas.Left="1012" Canvas.Top="760" Width="105" Height="59" Click="btn_Sell_Click"/>
+        <Button Content=">>>" FontSize="30" Canvas.Left="1130" Canvas.Top="828" Width="105" Height="59" Click="btn_FastForward_Click"/>
+        
     </Canvas>
 </Window>
