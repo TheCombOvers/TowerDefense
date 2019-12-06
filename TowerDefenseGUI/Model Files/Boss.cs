@@ -46,8 +46,8 @@ namespace TowerDefenseGUI
                     b.type = "aboss";
                     break;
             }
-            b.posX = Map.coords[0].x;
-            b.posY = Map.coords[0].y;
+            b.posX = Map.coords[0].x-15;
+            b.posY = Map.coords[0].y-15;
             b.pathProgress = 0;
             return b;
         }

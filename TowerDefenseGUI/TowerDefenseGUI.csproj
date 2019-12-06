@@ -161,7 +161,7 @@
     <Resource Include="Resources\SavedGame.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\path1.png" />
+    <Resource Include="Resources\path2.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\turret tower place.png" />
@@ -240,7 +240,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\path2.png" />
+    <Resource Include="Resources\path1.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\path3.png" />

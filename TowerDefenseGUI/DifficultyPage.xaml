@@ -29,19 +29,19 @@
 
         <!--Easy Difficulty Map Section-->
         <Image Source="Resources\path1.png" Height="300" Width="300" Canvas.Left="110" Canvas.Top="150" />
-        <TextBlock Text="Greenpath" FontSize="32" TextAlignment="Center" Canvas.Left="110" Canvas.Top="495" Height="50" Width="300"/>
+        <TextBlock Text="Desert Canyon" FontSize="32" TextAlignment="Center" Canvas.Left="110" Canvas.Top="495" Height="50" Width="300"/>
         <TextBlock Text="Difficulty: EASY" Foreground="LightGreen" FontSize="32" TextAlignment="Center" Canvas.Left="110" Canvas.Top="545" Height="50" Width="300"/>
         <Button Content="Select Map" Canvas.Left="160" Canvas.Top="670" Height="75" Width="200" FontSize="26" Click="BtnSelectMapEasy_Click"/>
 
         <!--Medium Difficulty Map Section-->
-        <Button IsEnabled="False" Background="DarkGray" Height="270" Width="300" Canvas.Left="560" Canvas.Top="165" />
-        <TextBlock Text="???" FontSize="32" TextAlignment="Center" Canvas.Left="560" Canvas.Top="495" Height="50" Width="300"/>
+        <Image Source="Resources\path2.png" Height="270" Width="300" Canvas.Left="560" Canvas.Top="165" />
+        <TextBlock Text="Grassy Plains" FontSize="32" TextAlignment="Center" Canvas.Left="560" Canvas.Top="495" Height="50" Width="300"/>
         <TextBlock Text="Difficulty: MEDIUM" Foreground="Orange" FontSize="32" TextAlignment="Center" Canvas.Left="560" Canvas.Top="550" Height="50" Width="300"/>
         <Button IsEnabled="False" Content="Select Map" Canvas.Left="610" Canvas.Top="670" Height="75" Width="200" FontSize="26"/>
 
         <!--Hard Difficulty Map Section-->
-        <Button IsEnabled="False" Background="DarkGray" Height="270" Width="300" Canvas.Left="1000" Canvas.Top="165" />
-        <TextBlock Text="???" FontSize="32" TextAlignment="Center" Canvas.Left="1000" Canvas.Top="495" Height="50" Width="300"/>
+        <Image Source="Resources\path3.png" Height="270" Width="300" Canvas.Left="1000" Canvas.Top="165" />
+        <TextBlock Text="Straight Up" FontSize="32" TextAlignment="Center" Canvas.Left="1000" Canvas.Top="495" Height="50" Width="300"/>
         <TextBlock Text="Difficulty: HARD" Foreground="Red" FontSize="32" TextAlignment="Center" Canvas.Left="1000" Canvas.Top="550" Height="50" Width="300"/>
         <Button IsEnabled="False" Content="Select Map" Canvas.Left="1050" Canvas.Top="670" Height="75" Width="200" FontSize="26"/>
     </Canvas>
