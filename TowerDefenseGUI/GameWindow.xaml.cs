@@ -44,9 +44,22 @@ namespace TowerDefenseGUI
         public Turret selectedTurret;
         public Image selectedRing = new Image();
         public TextBlock selectedTurretInfo =  new TextBlock();
+        public int numWavesToWin;
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler)
         {
             InitializeComponent();
+            if (diff == 1)
+            {
+                numWavesToWin = 10;
+            }
+            else if (diff == 2)
+            {
+                numWavesToWin = 20;
+            }
+            else
+            {
+                numWavesToWin = 30;
+            }
             soundHandler = sentSoundHandler;
             //selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Put the ring image source here"));
             selectedRing.RenderTransformOrigin = new Point(0.5, 0.5);
@@ -123,7 +136,7 @@ namespace TowerDefenseGUI
             txtRoundDisplay.Text = "Wave: " + game.currentWave;
             txtScore.Text = "Score: " + game.score;
             wave = game.currentWave;
-            if (wave == 10 && game.isWaveOver && game.gameOver != true)
+            if (wave == numWavesToWin && game.isWaveOver && game.gameOver != true)
             {
                 game.gameOver = true;
                 if (MessageBox.Show("Final Score: " + game.score + "\n" + "Continue in Endless Mode?", "You Win!", MessageBoxButton.YesNo) == MessageBoxResult.No)
@@ -593,11 +606,6 @@ namespace TowerDefenseGUI
                 hs.CreateScore(name, score);
                 this.Close();
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

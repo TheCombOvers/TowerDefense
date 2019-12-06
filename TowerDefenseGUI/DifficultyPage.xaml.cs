@@ -69,7 +69,7 @@ namespace TowerDefenseGUI
                 case 2:
                     DifficultyDisplay.Text = "Medium";
                     DifficultyDisplay.Foreground = Brushes.Orange;
-                    Difficulty = 1;
+                    Difficulty = 2;
                     break;
                 case 3:
                     DifficultyDisplay.Text = "Hard";
