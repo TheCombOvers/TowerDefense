@@ -97,7 +97,7 @@ namespace TowerDefenseGUI
             else
             {
                 Spawner.RemoveEnemy(this, true);
-                Game.AddMoney(this);
+                Game.money += this.rewardMoney;
             }
         }
 

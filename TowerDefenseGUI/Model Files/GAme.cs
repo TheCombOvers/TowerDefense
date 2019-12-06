@@ -253,10 +253,5 @@ namespace TowerDefenseGUI
                 writer.WriteLine("END");
             }
         }
-
-        public static void AddMoney(Enemy unit)
-        {
-            money += unit.rewardMoney;
-        }
     }
 }

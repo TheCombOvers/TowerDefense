@@ -41,10 +41,15 @@ namespace TowerDefenseGUI
         bool stunplace;
         public bool selling = false;
         public Turret selectedTurret;
+        public Image selectedRing = new Image();
+        public TextBlock selectedTurretInfo =  new TextBlock();
         public GameWindow(bool cheat, bool isLoad, int diff)
         {
             SoundHandler soundHandler = new SoundHandler();
             InitializeComponent();
+            //selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Put the ring image source here"));
+            selectedRing.RenderTransformOrigin = new Point(0.5, 0.5);
+            selectedTurretInfo.Foreground = Brushes.DarkRed;
             turrets = new List<Image>();
             enemies = new List<Image>();
             // do not mess with the order of these addition please :)
@@ -68,7 +73,12 @@ namespace TowerDefenseGUI
             tImageSources.Add("pack://application:,,,/Resources/tesla tower.png");
             // add all image sources for selected turrets
             tSelectedSources = new List<string>();
-            tSelectedSources.Add("");
+            tSelectedSources.Add("pack://application:,,,/Resources/turret tower select.png");
+            tSelectedSources.Add("pack://application:,,,/Resources/flak tower select.png");
+            tSelectedSources.Add("pack://application:,,,/Resources/laser tower select.png");
+            tSelectedSources.Add("pack://application:,,,/Resources/mortar tower select.png");
+            tSelectedSources.Add("pack://application:,,,/Resources/stun tower select.png");
+            tSelectedSources.Add("pack://application:,,,/Resources/tesla tower select.png");
             // if we're loading a old save then call loadgame else just make a new game instance
             if (isLoad)
             {
@@ -82,7 +92,6 @@ namespace TowerDefenseGUI
             else
             {
                 game = new Game(0, cheat, AddEnemy, RemoveEnemy, diff);
-
             }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
@@ -198,7 +207,6 @@ namespace TowerDefenseGUI
             if (enemies.Count == 0)
             {
                 game.isWaveOver = true;
-                game.currentWave += 1;
                 btnNextWave.IsEnabled = true;
             }
             if (isKill)
@@ -207,11 +215,23 @@ namespace TowerDefenseGUI
             }
         }
 
+        public void RemoveTurret(Turret t)
+        {
+            game.currentTurrets.Remove(t);
+            GameWindowCanvas.Children.Remove(turrets[t.imageIndex]); // remove from the game window canvas
+            turrets.RemoveAt(t.imageIndex);     // remove it from the image list in the view
+            for (int i = t.imageIndex; i < turrets.Count; ++i)
+            {
+                game.currentTurrets[i].imageIndex -= 1;
+            }
+        }
+
         private void btnNextWave_Click(object sender, RoutedEventArgs e)
         {
+            game.currentWave += 1;
             game.NextWave();
             btnNextWave.IsEnabled = false;
-            game.isWaveOver = false;
+            game.isWaveOver = false;   
         }
         private void btnSaveGame_Click(object sender, RoutedEventArgs e)
         {
@@ -308,7 +328,7 @@ namespace TowerDefenseGUI
                 {
                     Game.money -= 75;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.PNG"));
-                    Flak g = Flak.MakeFlak(posX, posY,index);
+                    Flak g = Flak.MakeFlak(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
                 else if (mortarplace == true)
@@ -340,6 +360,15 @@ namespace TowerDefenseGUI
                     game.currentTurrets.Add(g);
                 }
                 txtMoney.Text = "$" + Game.money;
+            }
+            else
+            {
+                if (GameWindowCanvas.Children.Contains(selectedTurretInfo))
+                {
+                    GameWindowCanvas.Children.Remove(selectedTurretInfo);
+                }
+                selectedTurret = null;
+
             }
         }
 
@@ -499,11 +528,17 @@ namespace TowerDefenseGUI
 
         private void btn_Sell_Click(object sender, RoutedEventArgs e)
         {
-
+            if (selectedTurret != null)
+            {
+                RemoveTurret(selectedTurret);
+                Game.money += Convert.ToInt32(selectedTurret.cost * .8);            
+                //GameWindowCanvas.Children.Remove(selectedRing);
+                GameWindowCanvas.Children.Remove(selectedTurretInfo);
+                selectedTurret = null;
+            }
         }
         public void SelectTurret(object sender, object e)
         {
-
             for (int i = 0; i < turrets.Count; ++i)
             {
                 if (sender == turrets[i])
@@ -512,7 +547,16 @@ namespace TowerDefenseGUI
                     Console.WriteLine(selectedTurret.type);
                 }
             }
-            //turrets[selectedTurret.imageIndex].Source =  
+            if (GameWindowCanvas.Children.Contains(selectedTurretInfo)) // if theres some turret info there remove it
+            {
+                GameWindowCanvas.Children.Remove(selectedTurretInfo);
+            }
+            selectedTurretInfo.Margin = new Thickness(selectedTurret.xPos - 4, selectedTurret.yPos + 50, 0, 0); // edit turret info coords and text
+            selectedTurretInfo.Text = "Sells for: $" + Convert.ToInt32(selectedTurret.cost * .80);
+            selectedRing.Margin = new Thickness(selectedTurret.xPos, selectedTurret.yPos, 0, 0);    // change coords to the selected turrets
+
+            //GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
+            GameWindowCanvas.Children.Add(selectedTurretInfo);          // add the info to the screen
         }
     }
 }
