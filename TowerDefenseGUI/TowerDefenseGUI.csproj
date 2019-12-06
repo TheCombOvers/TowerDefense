@@ -208,16 +208,6 @@
     <Resource Include="Resources\flak tower select.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="flak tower place.png" />
-    <Resource Include="flak tower select.png" />
-    <Resource Include="flak tower.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="stun tower place.png" />
-    <Resource Include="stun tower select.png" />
-    <Resource Include="stun tower.PNG" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Advanced Ground Unit.png" />
     <Resource Include="Resources\Advanced Ground Vehicle.png" />
     <Resource Include="Resources\Basic Ground Unit.png" />
