@@ -24,6 +24,7 @@ namespace TowerDefenseGUI
         public static int money;
         public int score;
         public static int lives;
+        public bool gameOver;
         public static Map map;
         public List<Turret> currentTurrets = new List<Turret>(); // list of turrets  currently on the screen
         public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
@@ -42,6 +43,7 @@ namespace TowerDefenseGUI
             money = cheat == true ? 999999: 200;
             score = 0;
             lives = 10;
+            gameOver = false;
             map = new Map(mapID);
             spawner = new Spawner(add, remove);
             addEnemy = add;
