@@ -56,6 +56,6 @@
         <Button x:Name="btnName" Content="Submit Score" FontSize="20" Canvas.Left="578" Canvas.Top="541" Width="128" Height="44" Click="btnName_Click" Visibility="Hidden"/>
         <Button Content="Sell Turret" FontSize="20" Canvas.Left="1012" Canvas.Top="760" Width="105" Height="59" Click="btn_Sell_Click"/>
         <Button Content=">>>" FontSize="30" Canvas.Left="1130" Canvas.Top="828" Width="105" Height="59" Click="btn_FastForward_Click"/>
-
+        
     </Canvas>
 </Window>
