@@ -39,6 +39,7 @@ namespace TowerDefenseGUI
         bool teslaplace;
         bool laserplace;
         bool stunplace;
+        int wave;
         public bool selling = false;
         public Turret selectedTurret;
         public Image selectedRing = new Image();
@@ -117,7 +118,35 @@ namespace TowerDefenseGUI
             game.UpdateModel();
             txtMoney.Text = "$" + Game.money;
             txtLives.Text = "Lives: " + Game.lives;
+            if (Game.lives == 0)
+            {
+                if (MessageBox.Show("Final Score: " + game.score, "You Lose!\n", MessageBoxButton.OK) == MessageBoxResult.OK)
+                {
+                    game.currentWave = 11;
+                    rectname.Visibility = Visibility.Visible;
+                    boxName.Visibility = Visibility.Visible;
+                    txtName.Visibility = Visibility.Visible;
+                    btnName.Visibility = Visibility.Visible;
+                }
+            }
             txtRoundDisplay.Text = "Wave: " + game.currentWave;
+            txtScore.Text = "Score: " + game.score;
+            wave = game.currentWave;
+            if (wave == 10)
+            {
+                if (MessageBox.Show("Final Score: " + game.score + "\n" + "Continue in Endless Mode?", "You Win!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    game.currentWave = 11;
+                }
+                else
+                {
+                    game.currentWave = 11;
+                    rectname.Visibility = Visibility.Visible;
+                    boxName.Visibility = Visibility.Visible;
+                    txtName.Visibility = Visibility.Visible;
+                    btnName.Visibility = Visibility.Visible;
+                }
+            }
             UpdateView();
         }
         public void UpdateView()
@@ -213,7 +242,7 @@ namespace TowerDefenseGUI
             }
             if (isKill)
             {
-                Game.money += e.rewardMoney;
+                game.score += e.rewardScore;
             }
         }
 
@@ -559,6 +588,22 @@ namespace TowerDefenseGUI
 
             //GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
             GameWindowCanvas.Children.Add(selectedTurretInfo);          // add the info to the screen
+        }
+
+        private void btnName_Click(object sender, RoutedEventArgs e)
+        {
+            if (btnName.Content.ToString() == "")
+            {
+                MessageBox.Show("Please enter a name or alias");
+            }
+            else
+            {
+                HighScore hs = new HighScore();
+                string name = boxName.Text.ToString();
+                int score = game.score;
+                hs.CreateScore(name, score);
+                this.Close();
+            }
         }
     }
 }
