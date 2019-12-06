@@ -141,7 +141,7 @@ namespace TowerDefenseGUI
             Task.Run(() =>
             {
                 while (!game.isWaveOver) {
-                    Enemy e = Spawner.GenerateWave();
+                    Enemy e = Spawner.GenerateEnemy();
                     if (e != null)
                     {
                         Dispatcher.Invoke(() => AddEnemy(e));
