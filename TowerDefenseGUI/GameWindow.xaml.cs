@@ -100,6 +100,7 @@ namespace TowerDefenseGUI
             txtMoney.Text = "$" + Game.money;
             txtLives.Text = "Lives: " + Game.lives;
             txtRoundDisplay.Text = "Wave: " + game.currentWave;
+            txtScore.Text = "Score: " + game.score;
             UpdateView();
         }
         public void UpdateView()
