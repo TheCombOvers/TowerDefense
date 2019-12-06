@@ -13,8 +13,8 @@ namespace TowerDefenseGUI
         public static List<Enemy> enemies = new List<Enemy>();
         static Action<Enemy, bool> Remove;
         static Action<Enemy> Add;
-        static int[] count = { 0, 0 };
-        static string[] types = { "", "" };
+        public static int[] count = { 0, 0 };
+        public static string[] types = { "", "" };
         public static event EventHandler<Enemy> DisplayWave;
 
         public Spawner(Action<Enemy> AddEnemy, Action<Enemy, bool> RemoveEnemy)

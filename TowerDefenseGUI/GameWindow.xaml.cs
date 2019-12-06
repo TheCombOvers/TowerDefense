@@ -29,7 +29,6 @@ namespace TowerDefenseGUI
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
         List<string> tImageSources;// 0:MG tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
-        List<string> tSelectedSources; // same as above 
         bool isPlacing;
         Point mousePos;
         bool basic;
@@ -73,14 +72,6 @@ namespace TowerDefenseGUI
             tImageSources.Add("pack://application:,,,/Resources/mortar tower.png");
             tImageSources.Add("pack://application:,,,/Resources/stun tower.png");
             tImageSources.Add("pack://application:,,,/Resources/tesla tower.png");
-            // add all image sources for selected turrets
-            tSelectedSources = new List<string>();
-            tSelectedSources.Add("pack://application:,,,/Resources/turret tower select.png");
-            tSelectedSources.Add("pack://application:,,,/Resources/flak tower select.png");
-            tSelectedSources.Add("pack://application:,,,/Resources/laser tower select.png");
-            tSelectedSources.Add("pack://application:,,,/Resources/mortar tower select.png");
-            tSelectedSources.Add("pack://application:,,,/Resources/stun tower select.png");
-            tSelectedSources.Add("pack://application:,,,/Resources/tesla tower select.png");
             // if we're loading a old save then call loadgame else just make a new game instance
             if (isLoad)
             {
@@ -180,6 +171,7 @@ namespace TowerDefenseGUI
             Image i = new Image();
             i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
             i.RenderTransformOrigin = new Point(0.5, 0.5);
+            i.Margin = new Thickness(e.posX, e.posY, 0, 0);
             if (e.imageID == 3 || e.imageID == 7) // if it's a boss it's bigger! :)
             {
                 i.Width = 80;
@@ -206,7 +198,7 @@ namespace TowerDefenseGUI
             {
                 Spawner.enemies[i].imageIndex -= 1;
             }
-            if (enemies.Count == 0)
+            if (enemies.Count == 0 && Spawner.count[0] == 0 && Spawner.count[1] == 0)
             {
                 game.isWaveOver = true;
                 btnNextWave.IsEnabled = true;
