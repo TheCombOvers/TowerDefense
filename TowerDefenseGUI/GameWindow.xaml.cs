@@ -29,6 +29,7 @@ namespace TowerDefenseGUI
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
         List<string> tImageSources;// 0:MG tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
+        List<string> tSelectedSources; // same as above 
         bool isPlacing;
         Point mousePos;
         bool basic;
@@ -64,6 +65,7 @@ namespace TowerDefenseGUI
             tImageSources.Add("pack://application:,,,/Resources/mortar tower.png");
             tImageSources.Add("pack://application:,,,/Resources/stun tower.png");
             tImageSources.Add("pack://application:,,,/Resources/tesla tower.png");
+            tSelectedSources = new List<string>();
             // if we're loading a old save then call loadgame else just make a new game instance
             if (isLoad)
             {
@@ -231,7 +233,8 @@ namespace TowerDefenseGUI
                 image.Height = 50;
                 image.Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
                 image.RenderTransformOrigin = new Point(0.5, 0.5);
-                image.Margin = new Thickness(game.currentTurrets[i].xPos, game.currentTurrets[i].yPos, 0, 0);                
+                image.Margin = new Thickness(game.currentTurrets[i].xPos, game.currentTurrets[i].yPos, 0, 0);
+                image.MouseDown += SelectTurret;
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(turrets[i]);
             }
@@ -505,6 +508,7 @@ namespace TowerDefenseGUI
                     selectedTurret = game.currentTurrets[i];
                 }
             }
+            turrets[selectedTurret.imageIndex].Source = 
         }
     }
 }
