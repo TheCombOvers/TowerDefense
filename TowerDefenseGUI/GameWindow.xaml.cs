@@ -275,42 +275,42 @@ namespace TowerDefenseGUI
                 {
                     Game.money -= 50;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
-                    MachineGun g = MachineGun.MakeMachineGun(posX + 25, posY + 25);
+                    MachineGun g = MachineGun.MakeMachineGun(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 else if (flakplace == true)
                 {
                     Game.money -= 75;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.PNG"));
-                    Flak g = Flak.MakeFlak(posX + 25, posY + 25);
+                    Flak g = Flak.MakeFlak(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 else if (mortarplace == true)
                 {
                     Game.money -= 200;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.PNG"));
-                    Mortar g = Mortar.MakeMortar(posX + 25, posY + 25);
+                    Mortar g = Mortar.MakeMortar(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 else if (teslaplace == true)
                 {
                     Game.money -= 175;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.PNG"));
-                    Tesla g = Tesla.MakeTesla(posX + 25, posY + 25);
+                    Tesla g = Tesla.MakeTesla(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 else if (laserplace == true)
                 {
                     Game.money -= 125;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.PNG"));
-                    Laser g = Laser.MakeLaser(posX + 25, posY + 25);
+                    Laser g = Laser.MakeLaser(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 else if (stunplace == true)
                 {
                     Game.money -= 200;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.PNG"));
-                    Stun g = Stun.MakeStun(posX + 25, posY + 25);
+                    Stun g = Stun.MakeStun(posX, posY);
                     game.currentTurrets.Add(g);
                 }
                 txtMoney.Text = "$" + Game.money;

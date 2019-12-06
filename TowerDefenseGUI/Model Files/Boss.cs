@@ -32,7 +32,7 @@ namespace TowerDefenseGUI
                 case "g":
                     b.imageID = 3;
                     b.health = 100;
-                    b.rewardMoney = 50;
+                    b.rewardMoney = 75;
                     b.speed = 1; // decide speed for advance type, replace 4 with desired speed 
                     b.rewardScore = 45;
                     b.type = "gboss";
@@ -40,7 +40,7 @@ namespace TowerDefenseGUI
                 case "a":
                     b.imageID = 7;
                     b.health = 150;
-                    b.rewardMoney = 75;
+                    b.rewardMoney = 100;
                     b.speed = 2; // decide speed for advance type, replace 4 with desired speed 
                     b.rewardScore = 60;
                     b.type = "aboss";
