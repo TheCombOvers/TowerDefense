@@ -36,7 +36,7 @@ After the player has won they may continue playing in an endless mode, earning m
 | Scoring/High Scores | Finished | Required | Kevin | 
 | Difficulty lvls | Finished| Optional | Micah |
 | Adding GUI Elements | Finished| Optional | Micah | 
-| Sound Effects| Finsihed(very buggy) | Required| Micah |
+| Sound Effects| Finished(very buggy) | Required| Micah |
 <br>
 
 ## Recording
