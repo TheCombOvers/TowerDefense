@@ -99,6 +99,14 @@ namespace TowerDefenseGUI
             {
                 game = new Game(mapId, cheat, AddEnemy, RemoveEnemy, diff);
             }
+            if (Game.map.mapID == 1)
+            {
+                MapImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path2.png"));
+            }
+            else if (Game.map.mapID == 2)
+            {
+                MapImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path3.png"));
+            }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             //add update model events

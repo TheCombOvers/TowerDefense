@@ -70,7 +70,7 @@ namespace TowerDefenseGUI
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             // if we're loading a old save then pass in true for isLoad, else pass false
-            var gameWindow = new GameWindow(cheat, true, 0, soundHandler);
+            var gameWindow = new GameWindow(cheat, true, 0, soundHandler, 0);
             gameWindow.Show();
             Close();
         }
