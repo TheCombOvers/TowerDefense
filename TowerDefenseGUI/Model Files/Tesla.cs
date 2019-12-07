@@ -35,5 +35,10 @@ namespace TowerDefenseGUI
             t.type = "tesla";
             return t;
         }
+
+        public override void Attack(List<Enemy> enemies)
+        {
+            base.Attack(enemies);
+        }
     }
 }

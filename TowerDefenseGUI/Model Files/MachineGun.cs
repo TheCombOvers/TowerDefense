@@ -31,7 +31,7 @@ namespace TowerDefenseGUI
             m.xPos = x;
             m.yPos = y;
             m.cost = 50;
-            m.damage = .5;
+            m.damage = 2;
             m.range = 125;
             m.type = "machinegun";
             return m;

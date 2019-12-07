@@ -69,7 +69,7 @@ namespace TowerDefenseGUI
             }
             foreach (Turret t in currentTurrets)
             {
-                t.Attack(t.DetectEnemy(currentEnemies));
+                t.Attack(currentEnemies);
             }
         }
 

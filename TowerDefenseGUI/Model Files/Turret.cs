@@ -22,8 +22,9 @@ namespace TowerDefenseGUI
         public static event EventHandler<int> RotateTurret;
         public static event EventHandler<string> PlaySound;
 
-        public virtual void Attack(Enemy e)
+        public virtual void Attack(List<Enemy> enemies)
         {
+            Enemy e = DetectEnemy(enemies);
             int fireTime = 0;
             if (e == null)
             {
@@ -31,39 +32,32 @@ namespace TowerDefenseGUI
                 if (type == "mortar")
                 {
                     fireRate = 300;
+                    fireTime = 300;
                 }
                 else if (type == "stun")
                 {
                     fireRate = 120;
-                }
-                else
-                {
-                    fireRate = 60;
-                }
-                return;
-            }
-            else
-            {
-                if (type == "mortar")
-                {
-                   fireTime = 300;
-                }
-                else if (type == "stun")
-                {
                     fireTime = 120;
                 }
-                else if (type == "machinegun")
+                else if (type == "tesla")
                 {
-                    fireTime = 10;                              
+                    fireRate = 1;
+                    fireTime = 1;
                 }
                 else if (type == "flak")
                 {
+                    fireRate = 65;
                     fireTime = 65;
                 }
                 else
                 {
-                    fireTime = 60;
+                    fireRate = 10;
+                    fireTime = 10;
                 }
+                return;
+            }
+            else
+            { 
                 int deg = CalculateRotation(xPos, yPos, e.posX, e.posY);
                 RotateTurret(this, deg);
                 if (fireRate % fireTime == 0)
