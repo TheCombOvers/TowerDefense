@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
-        Title="Tower Defense" Height="900" Width="1440" Background="Gray" ResizeMode="CanMinimize">
-    <Canvas Background="#20572f">
+        Title="Tower Defense" Height="900" Width="1440" ResizeMode="CanMinimize">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources\soldier.jpg"/>
+    </Window.Background>
+    <Canvas>
         <Border CornerRadius="40" BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>
         <Border BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>
-        <Label Margin="49,150,10,431" MinHeight="350" FontSize="200">Tower Defense</Label>
+        <Image Source="Resources/title.jpeg" Height="205" Canvas.Left="60" Canvas.Top="40" Width="1296"/>
         <Label Margin="90,380,90,291">
             <!-- <Image Source=""/> -->
         </Label>
