@@ -28,6 +28,15 @@ After the player has won they may continue playing in an endless mode, earning m
 | Placing Turrets | Finsihed| Required | Kevin |
 | Create Sprites | Finished | Required | Kevin |
 | Load/Save | Finished | Required | Levi |
+| Cheat Mode | Finished | Required | Levi |
+| Selling Turrets | Finished | optional | Levi |
+| Turrets Firing | Finished | Required | Alex |
+| Waves | Finished| Optional | Alex |
+| Enemies | Finished | Required | Kevin |
+| Scoring/High Scores | Finished | Required | Kevin | 
+| Difficulty lvls | Finished| Optional | Micah |
+| Adding GUI Elements | Finished| Optional | Micah | 
+| Sound Effects| Finsihed(very buggy) | Required| Micah |
 <br>
 
 ## Recording
