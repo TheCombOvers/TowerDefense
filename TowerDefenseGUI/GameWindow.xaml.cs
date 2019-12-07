@@ -44,13 +44,8 @@ namespace TowerDefenseGUI
         public bool selling = false;
         public Turret selectedTurret;
         public Image selectedRing = new Image();
-<<<<<<< HEAD
         public TextBlock selectedTurretInfo = new TextBlock();
-
-=======
-        public TextBlock selectedTurretInfo =  new TextBlock();
         public int numWavesToWin;
->>>>>>> 36abdcf72ffb40a68506b83032374b9dab6a502c
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler)
         {
             InitializeComponent();
