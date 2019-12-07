@@ -49,10 +49,6 @@ namespace TowerDefenseGUI
             addEnemy = add;
             removeEnemy = remove;
         }
-        public void NewGame(int difficulty, int mapIndex, Map selcetedMap)
-        {
-
-        }
 
         public void NextWave()
         {
