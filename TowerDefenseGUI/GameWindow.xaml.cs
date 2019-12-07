@@ -16,9 +16,6 @@ using System.Windows.Threading;
 
 namespace TowerDefenseGUI
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
     public partial class GameWindow : Window
     {
         Game game;
