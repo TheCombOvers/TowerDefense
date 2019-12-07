@@ -16,7 +16,8 @@ namespace TowerDefenseGUI
         public override object Deserialize(string info)
         {
             string[] aInfo = info.Split(',');
-            Boss a = MakeBoss(aInfo[0]);
+            string s = aInfo[0] == "aboss" ? "a" : "g";
+            Boss a = MakeBoss(s);
             a.posX = Convert.ToDouble(aInfo[1]);
             a.posY = Convert.ToDouble(aInfo[2]);
             a.health = Convert.ToDouble(aInfo[3]);

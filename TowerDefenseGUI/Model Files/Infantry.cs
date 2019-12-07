@@ -19,7 +19,8 @@ namespace TowerDefenseGUI
         public override object Deserialize(string info)
         {
             string[] aInfo = info.Split(',');
-            Infantry i = MakeInfantry(aInfo[0]);
+            string s = aInfo[0] == "ainfantry" ? "a" : "b";
+            Infantry i = MakeInfantry(s);
             i.posX = Convert.ToDouble(aInfo[1]);
             i.posY = Convert.ToDouble(aInfo[2]);
             i.health = Convert.ToDouble(aInfo[3]);

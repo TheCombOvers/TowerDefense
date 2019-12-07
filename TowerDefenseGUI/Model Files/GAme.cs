@@ -121,6 +121,7 @@ namespace TowerDefenseGUI
                                 string line = reader.ReadLine(); // read a line
                                 if (line.Trim() == "ENDENEMIES") { break; } // see if we're at the end yet break if we are
                                 string[] ele = line.Split(',');
+
                                 switch (ele[0])                 // grab the type and call methods based on it
                                 {
                                     case "gboss":
