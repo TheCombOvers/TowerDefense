@@ -113,7 +113,7 @@ namespace TowerDefenseGUI
             txtMoney.Text += Game.money;
             txtLives.Text = "Lives: " + Game.lives;
             gameTimer.Start();
-            soundHandler.GameMusic.PlayLooping();
+            //soundHandler.GameMusic.PlayLooping();
         }
 
         // main method that updates the entire game... yikes
@@ -423,19 +423,19 @@ namespace TowerDefenseGUI
             txtMachineGunTeslaName.Text = "Tesla Tower";
             txtMachineGunTeslaType.Text = "Target: Ground";
             txtMachineGunTeslaRange.Text = "Range: 100";
-            txtMachineGunTeslaDmg.Text = "Damage: 3/s";
+            txtMachineGunTeslaDmg.Text = "Damage: 36/s";
             txtMachineGunTeslaCost.Text = "Cost: $175";
             FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.png"));
             txtFlakLaserName.Text = "Laser Tower";
             txtFlakLaserType.Text = "Target: Ground/Air";
             txtFlakLaserRange.Text = "Range: 175";
-            txtFlakLaserDmg.Text = "Damage: 10/s";
+            txtFlakLaserDmg.Text = "Damage: 60/s";
             txtFlakLaserCost.Text = "Cost: $125";
             MortarStunImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.png"));
             txtMortarStunName.Text = "Stun Tower";
             txtMortarStunType.Text = "Target: Ground/Air";
             txtMortarStunRange.Text = "Range: 200";
-            txtMortarStunDmg.Text = "Damage: 15/s";
+            txtMortarStunDmg.Text = "Damage: 15/2s";
             txtMortarStunCost.Text = "Cost: $200";
         }
         private void btnBasic_Click(object sender, RoutedEventArgs e)

@@ -31,7 +31,7 @@ namespace TowerDefenseGUI
             f.fireRate = 65;
             f.cost = 75;
             f.damage = 2;
-            f.range = 250/2;
+            f.range = 250;
             f.type = "flak";           
             return f;
         }

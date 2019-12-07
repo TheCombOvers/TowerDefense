@@ -28,18 +28,26 @@ After the player has won they may continue playing in an endless mode, earning m
 | Placing Turrets | Finsihed| Required | Kevin |
 | Create Sprites | Finished | Required | Kevin |
 | Load/Save | Finished | Required | Levi |
+| Cheat Mode | Finished | Required | Levi |
+| Selling Turrets | Finished | optional | Levi |
+| Turrets Firing | Finished | Required | Alex |
+| Waves | Finished| Optional | Alex |
+| Enemies | Finished | Required | Kevin |
+| Scoring/High Scores | Finished | Required | Kevin | 
+| Difficulty lvls | Finished| Optional | Micah |
+| Adding GUI Elements | Finished| Optional | Micah | 
+| Sound Effects| Finished(very buggy) | Required| Micah |
 <br>
-note the Load Unit test is not working complety yet.
-And to let the save unit test pass, lines 23-25,37 in Map.cs and lines 32-36 in Infantry.cs will need to be commented out. 
 
 ## Recording
 
-[Demo Video](https://bju-my.sharepoint.com/:v:/r/personal/ldoug121_students_bju_edu/Documents/IMG_0216.mov?csf=1&e=znQwWh)
+[Demo Video](https://bju-my.sharepoint.com/personal/mhane142_students_bju_edu/Documents/Attachments/IMG_2337.MOV)
+Once you request access, message me in teams so I can approve it. -Micah
 
 ## Expenses
 | Team Member | Time Spent | Time Left | Journal Link |
 |-------------|:----------:|:---------:|-------------:|
-|Levi|27hr, 48min|32hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
-|Alexander|23hr, 0min|37hr, 0min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
-|Kevin|32hr, 15min|28hr, 45min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
-|Micah|33hr, 50min|26hr, 10min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
+|Levi|48hr, 48min|11hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
+|Alexander|41hr|19hrs|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
+|Kevin|47hr, 15min|12hr, 45min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
+|Micah|34hr, 50min|25hr, 10min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|

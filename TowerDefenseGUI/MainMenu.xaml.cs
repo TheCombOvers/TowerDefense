@@ -39,7 +39,7 @@ namespace TowerDefenseGUI
 
             // For Alpha, just launch Game Window
 
-            soundHandler.Play(null, "menubutton");
+            //soundHandler.Play(null, "menubutton");
             DifficultyPage diffPage = new DifficultyPage(soundHandler);
             this.Content = diffPage;
         }
@@ -48,7 +48,7 @@ namespace TowerDefenseGUI
         {
             // Bring up the High Score screen
             var newMenu = new HighScoresWindow();
-            soundHandler.Play(null, "menubutton");
+            //soundHandler.Play(null, "menubutton");
             newMenu.ShowDialog();
         }
 
@@ -56,13 +56,13 @@ namespace TowerDefenseGUI
         {
             // Bring up the Help Menu
             var newMenu = new HelpWindow();
-            soundHandler.Play(null, "menubutton");
+            //soundHandler.Play(null, "menubutton");
             newMenu.ShowDialog();
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-            soundHandler.Play(null, "menubutton");
+            //soundHandler.Play(null, "menubutton");
             // Bring up the wiki page in a browser
             System.Diagnostics.Process.Start("https://github.com/TheCombOvers/TowerDefense/wiki");
         }
