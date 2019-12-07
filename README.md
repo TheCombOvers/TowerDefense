@@ -34,7 +34,8 @@ And to let the save unit test pass, lines 23-25,37 in Map.cs and lines 32-36 in 
 
 ## Recording
 
-[Demo Video](https://bju-my.sharepoint.com/:v:/r/personal/ldoug121_students_bju_edu/Documents/IMG_0216.mov?csf=1&e=znQwWh)
+[Demo Video](https://bju-my.sharepoint.com/personal/mhane142_students_bju_edu/Documents/Attachments/IMG_2337.MOV)
+Once you request access, message me in teams so I can approve it. -Micah
 
 ## Expenses
 | Team Member | Time Spent | Time Left | Journal Link |
