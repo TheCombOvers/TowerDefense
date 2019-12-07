@@ -40,7 +40,7 @@ Once you request access, message me in teams so I can approve it. -Micah
 ## Expenses
 | Team Member | Time Spent | Time Left | Journal Link |
 |-------------|:----------:|:---------:|-------------:|
-|Levi|27hr, 48min|32hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
-|Alexander|23hr, 0min|37hr, 0min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
-|Kevin|32hr, 15min|28hr, 45min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
-|Micah|33hr, 50min|26hr, 10min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
+|Levi|48hr, 48min|32hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
+|Alexander|41hr|19hrs|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
+|Kevin|47hr, 15min|12hr, 45min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
+|Micah|34hr, 50min|26hr, 10min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
