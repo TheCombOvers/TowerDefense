@@ -82,7 +82,7 @@ namespace TowerDefenseGUI
         private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
         {
             soundHandler.DifficultyPageMusic.Stop();
-            var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
+            var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler, 0);  
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
             hostWindow.Close();
@@ -90,7 +90,7 @@ namespace TowerDefenseGUI
 
         private void BtnSelectMapMedium_Click(object sender, RoutedEventArgs e)
         {
-            var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
+            var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler, 1); 
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
             soundHandler.DifficultyPageMusic.Stop();
@@ -99,7 +99,8 @@ namespace TowerDefenseGUI
 
         private void BtnSelectMapHard_Click(object sender, RoutedEventArgs e)
         {
-            var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
+            var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler, 2);  
+            
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
             soundHandler.DifficultyPageMusic.Stop();

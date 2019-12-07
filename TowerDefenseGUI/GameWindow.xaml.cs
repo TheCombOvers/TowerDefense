@@ -43,7 +43,7 @@ namespace TowerDefenseGUI
         public Image selectedRing = new Image();
         public TextBlock selectedTurretInfo = new TextBlock();
         public int numWavesToWin;
-        public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler)
+        public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler, int mapId)
         {
             InitializeComponent();
             if (diff == 1)
@@ -97,7 +97,7 @@ namespace TowerDefenseGUI
             }
             else
             {
-                game = new Game(0, cheat, AddEnemy, RemoveEnemy, diff);
+                game = new Game(mapId, cheat, AddEnemy, RemoveEnemy, diff);
             }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
