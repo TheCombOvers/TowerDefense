@@ -35,31 +35,31 @@ namespace TowerDefenseGUI
             switch (type)
             {
                 case "machinegun":
-                    MachineGunSound.Play();
+                    Task.Run(() => MachineGunSound.Play());
                     //catch { MessageBox.Show("MachineGunSound failed to play.\nStack Trace: " + e.Message); }
                     break;
                 case "flak":
-                    FlakSound.Play();
+                    Task.Run(() => FlakSound.Play());
                     //catch { /*MessageBox.Show("FlakSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "mortar":
-                    MortarSound.Play();
+                    Task.Run(() => MortarSound.Play());
                     //catch { /*MessageBox.Show("MortarSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "tesla":
-                    TeslaSound.Play();
+                    Task.Run(() => TeslaSound.Play());
                     //catch { /*MessageBox.Show("TeslaSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "laser":
-                    LaserSound.Play();
+                    Task.Run(() => LaserSound.Play());
                     //catch { /*MessageBox.Show("LaserSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "stun":
-                    StunSound.Play();
+                    Task.Run(() => StunSound.Play());
                     //catch { /*MessageBox.Show("StunSound failed to play.\nStack Trace: " + e.Message);*/ }
                     break;
                 case "menubutton":
-                    MenuButton.Play();
+                    Task.Run(() => MenuButton.Play());
                     break;
             }
         }
