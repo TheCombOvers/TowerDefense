@@ -17,7 +17,8 @@ namespace TowerDefenseGUI
         {
 
             string[] aInfo = info.Split(',');
-            Vehicle v = MakeVehicle(aInfo[0]);
+            string s = aInfo[0] == "avehicle" ? "a" : "b";
+            Vehicle v = MakeVehicle(s);
             v.posX = Convert.ToDouble(aInfo[1]);
             v.posY = Convert.ToDouble(aInfo[2]);
             v.health = Convert.ToDouble(aInfo[3]);

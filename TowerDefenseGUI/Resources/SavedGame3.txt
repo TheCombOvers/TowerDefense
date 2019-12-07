@@ -1,6 +1,9 @@
 NG
-0,1,1,0,999999,1,false,10,True,0,0,bI,
+0,1,1,0,999949,1,false,10,True,0,0,bI,
 ENEMIES
-binfantry,571.875,125,20,3
+binfantry,325,393.75,14,3
 ENDENEMIES
+TURRETS
+machinegun,250,100,0
+ENDTURRETS
 END

@@ -15,6 +15,7 @@ namespace TowerDefenseGUI
         public double range;
         public string type;
         public double fireRate;
+        public double fireTime;
         public double xPos;
         public double yPos;
         public int imageID;
@@ -22,39 +23,23 @@ namespace TowerDefenseGUI
         public static event EventHandler<int> RotateTurret;
         public static event EventHandler<string> PlaySound;
 
-        public virtual void Attack(Enemy e)
+        public virtual void Attack(List<Enemy> enemies)
         {
-            int fireTime = 0;
+            
+            Enemy e = DetectEnemy(enemies);
             if (e == null)
             {
-
                 if (type == "mortar")
                 {
-                    fireRate = 300;
-                }
-                else if (type == "stun")
-                {
-                    fireRate = 120;
-                }
-                else
-                {
-                    fireRate = 60;
-                }
-                return;
-            }
-            else
-            {
-                if (type == "mortar")
-                {
-                   fireTime = 300;
+                    fireTime = 300;
                 }
                 else if (type == "stun")
                 {
                     fireTime = 120;
                 }
-                else if (type == "machinegun")
+                else if (type == "tesla")
                 {
-                    fireTime = 10;                              
+                    fireTime = 5;
                 }
                 else if (type == "flak")
                 {
@@ -62,16 +47,20 @@ namespace TowerDefenseGUI
                 }
                 else
                 {
-                    fireTime = 60;
+                    fireTime = 10;
                 }
+                return;
+            }
+            else
+            { 
                 int deg = CalculateRotation(xPos, yPos, e.posX, e.posY);
                 RotateTurret(this, deg);
-                if (fireRate % fireTime == 0)
+                if (fireTime % fireRate == 0)
                 {
                     PlaySound(this, type);
                     e.TakeDamage(damage);
                 }
-                ++fireRate;
+                ++fireTime;
             }
         }
         
