@@ -15,6 +15,7 @@ namespace TowerDefenseGUI
         public double range;
         public string type;
         public double fireRate;
+        public double fireTime;
         public double xPos;
         public double yPos;
         public int imageID;
@@ -24,34 +25,28 @@ namespace TowerDefenseGUI
 
         public virtual void Attack(List<Enemy> enemies)
         {
+            
             Enemy e = DetectEnemy(enemies);
-            int fireTime = 0;
             if (e == null)
             {
-
                 if (type == "mortar")
                 {
-                    fireRate = 300;
                     fireTime = 300;
                 }
                 else if (type == "stun")
                 {
-                    fireRate = 120;
                     fireTime = 120;
                 }
                 else if (type == "tesla")
                 {
-                    fireRate = 1;
-                    fireTime = 1;
+                    fireTime = 5;
                 }
                 else if (type == "flak")
                 {
-                    fireRate = 65;
                     fireTime = 65;
                 }
                 else
                 {
-                    fireRate = 10;
                     fireTime = 10;
                 }
                 return;
@@ -60,12 +55,12 @@ namespace TowerDefenseGUI
             { 
                 int deg = CalculateRotation(xPos, yPos, e.posX, e.posY);
                 RotateTurret(this, deg);
-                if (fireRate % fireTime == 0)
+                if (fireTime % fireRate == 0)
                 {
                     PlaySound(this, type);
                     e.TakeDamage(damage);
                 }
-                ++fireRate;
+                ++fireTime;
             }
         }
         

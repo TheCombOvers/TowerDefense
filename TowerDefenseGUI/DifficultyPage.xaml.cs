@@ -81,10 +81,10 @@ namespace TowerDefenseGUI
         }
         private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
         {
+            soundHandler.DifficultyPageMusic.Stop();
             var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler); //put difficulty variable where the zero is 
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
-            soundHandler.DifficultyPageMusic.Stop();
             hostWindow.Close();
         }
 

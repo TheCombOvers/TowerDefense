@@ -28,7 +28,7 @@ namespace TowerDefenseGUI
             t.yPos = y;
             t.imageID = 5;
             t.imageIndex = index; 
-            t.fireRate = 60;
+            t.fireRate = 5;
             t.cost = 175;
             t.damage = 3;
             t.range = 100;
