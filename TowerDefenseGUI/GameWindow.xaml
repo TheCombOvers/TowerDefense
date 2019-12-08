@@ -44,16 +44,16 @@
         <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190" Canvas.Left="1250" Canvas.Top="750" Panel.ZIndex="1"/>
         <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190" Canvas.Left="1250" Canvas.Top="820" Panel.ZIndex="1"/>
         <TextBlock x:Name="txtMoney_Copy" HorizontalAlignment="Left" Height="40" TextWrapping="Wrap" Text="Points: 0" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1260" Canvas.Top="700" Panel.ZIndex="1"/>
-        <Image x:Name="imagetowerplace"  HorizontalAlignment="Center" Margin="841,124,0,0" VerticalAlignment="Center" MouseDown="MapImage_MouseDown" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="1"/>
+        <Image x:Name="imagetowerplace"  HorizontalAlignment="Center" Margin="840,125,0,0" VerticalAlignment="Center" MouseDown="MapImage_MouseDown" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="1"/>
         <TextBlock x:Name="txtScore" Text="Score: 0" FontSize="30" Canvas.Left="10" Canvas.Top="55" Panel.ZIndex="1"/>
-        <Rectangle x:Name="rectGameEnd" Fill="#FFF4F4F5" Height="364" Canvas.Left="106" Stroke="Black" Canvas.Top="233" Width="784" Visibility="Hidden" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtWin" Height="65" Canvas.Left="409" TextWrapping="Wrap" Text="You Win!" FontSize="50" Canvas.Top="279" Width="198" Visibility="Hidden" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtLose" Height="65" Canvas.Left="409" TextWrapping="Wrap" Text="You Lose!" FontSize="50" Canvas.Top="279" Width="212" Visibility="Hidden" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtEndScore" Height="61" Canvas.Left="409" TextWrapping="Wrap" Text="Score: 0" FontSize="30" Canvas.Top="351" Width="311" Visibility="Hidden" Panel.ZIndex="1"/>
-        <Rectangle x:Name="rectname" Fill="#FFF4F4F5" Height="152" Canvas.Left="293" Stroke="Black" Canvas.Top="458" Width="427" Visibility="Hidden" Panel.ZIndex="1"/>
-        <TextBox x:Name="boxName" Height="37" Canvas.Left="308" TextWrapping="Wrap" Text="" FontSize="25" Canvas.Top="541" Width="244" Visibility="Hidden"  Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtName" Height="52" Canvas.Left="385" TextWrapping="Wrap" Text="What is your name?" FontSize="25" Canvas.Top="483" Width="236" Visibility="Hidden" Panel.ZIndex="1"/>
-        <Button x:Name="btnName" Content="Submit Score" FontSize="20" Canvas.Left="578" Canvas.Top="541" Width="128" Height="44" Click="btnName_Click" Visibility="Hidden" Panel.ZIndex="1"/>
+        <Rectangle x:Name="rectGameEnd" Fill="#FFF4F4F5" Height="365" Canvas.Left="105" Stroke="Black" Canvas.Top="235" Width="785" Visibility="Hidden" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtWin" Height="65" Canvas.Left="410" TextWrapping="Wrap" Text="You Win!" FontSize="50" Canvas.Top="280" Width="200" Visibility="Hidden" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtLose" Height="65" Canvas.Left="410" TextWrapping="Wrap" Text="You Lose!" FontSize="50" Canvas.Top="280" Width="210" Visibility="Hidden" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtEndScore" Height="60" Canvas.Left="410" TextWrapping="Wrap" Text="Score: 0" FontSize="30" Canvas.Top="350" Width="310" Visibility="Hidden" Panel.ZIndex="1"/>
+        <Rectangle x:Name="rectname" Fill="#FFF4F4F5" Height="155" Canvas.Left="295" Stroke="Black" Canvas.Top="460" Width="430" Visibility="Hidden" Panel.ZIndex="1"/>
+        <TextBox x:Name="boxName" Height="40" Canvas.Left="310" TextWrapping="Wrap" Text="" FontSize="25" Canvas.Top="540" Width="245" Visibility="Hidden"  Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtName" Height="50" Canvas.Left="385" TextWrapping="Wrap" Text="What is your name?" FontSize="25" Canvas.Top="480" Width="235" Visibility="Hidden" Panel.ZIndex="1"/>
+        <Button x:Name="btnName" Content="Submit Score" FontSize="20" Canvas.Left="580" Canvas.Top="540" Width="130" Height="45" Click="btnName_Click" Visibility="Hidden" Panel.ZIndex="1"/>
         <Button Content="Sell Turret" FontSize="20" Canvas.Left="1130" Canvas.Top="690" Width="105" Height="60" Click="btn_Sell_Click" Panel.ZIndex="1"/>
         <Button Content=">>>" FontSize="30" Canvas.Left="1130" Canvas.Top="830" Width="105" Height="60" Click="btn_FastForward_Click" Panel.ZIndex="1"/>
         <TextBlock x:Name="txtNextWaveTimer" Text="60" Height="60" Canvas.Left="1015" TextWrapping="Wrap" Canvas.Top="830" Width="105" TextAlignment="Center" FontSize="42" Panel.ZIndex="1"/>
