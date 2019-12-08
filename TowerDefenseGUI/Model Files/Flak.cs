@@ -30,7 +30,8 @@ namespace TowerDefenseGUI
             f.imageID = 1;
             f.fireRate = 65;
             f.cost = 75;
-            f.damage = 2;
+            f.upCost = Convert.ToInt32(f.cost / 2);
+            f.damage = 7;
             f.range = 250;
             f.type = "flak";           
             return f;

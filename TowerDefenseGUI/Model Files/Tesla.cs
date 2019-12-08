@@ -30,6 +30,7 @@ namespace TowerDefenseGUI
             t.imageIndex = index; 
             t.fireRate = 5;
             t.cost = 175;
+            t.upCost = Convert.ToInt32(t.cost / 2);
             t.damage = 3;
             t.range = 100;
             t.type = "tesla";
