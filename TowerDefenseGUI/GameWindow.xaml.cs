@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
+using System.Timers;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -110,11 +110,12 @@ namespace TowerDefenseGUI
             }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
-            //nextWaveTimer = new Timer();
-            //nextWaveTimer.Interval = new TimeSpan(0,0,1);
+            nextWaveTimer = new Timer();
+            nextWaveTimer.Interval = 1000;
             //add update model events
             gameTimer.Tick += UpdateGame;
             gameTimer.Tick += updateTowerPlace;
+            nextWaveTimer.Elapsed += SetWaveTimer;
             Turret.RotateTurret += RotateTurret;
             Enemy.RotateEnemy += RotateEnemy;
             Spawner.DisplayWave += DisplayWave;
@@ -125,6 +126,30 @@ namespace TowerDefenseGUI
             txtLives.Text = "Lives: " + Game.lives;
             gameTimer.Start();
             //soundHandler.GameMusic.PlayLooping();
+        }
+
+        private void SetWaveTimer(object sender, ElapsedEventArgs e)
+        {
+            if (game.isWaveOver)
+            {
+                int time = 60;
+                Dispatcher.Invoke(()=> (time = Convert.ToInt32(txtNextWaveTimer.Text) - 1));
+                if(time == -1)
+                {
+                    Dispatcher.Invoke(() => {
+                        btnNextWave_Click(null, null);
+                        txtNextWaveTimer.Text = "60";
+                    });
+                }
+                else
+                {
+                    Dispatcher.Invoke(() => txtNextWaveTimer.Text = time.ToString());
+                }
+            }
+            else
+            {
+                Dispatcher.Invoke(() => txtNextWaveTimer.Text = "60");
+            }
         }
 
         // main method that updates the entire game... yikes
@@ -191,7 +216,7 @@ namespace TowerDefenseGUI
                     {
                         break;
                     }
-                    Thread.Sleep(500);
+                    System.Threading.Thread.Sleep(500);
                 }
             });
         }
@@ -253,6 +278,7 @@ namespace TowerDefenseGUI
             {
                 game.isWaveOver = true;
                 btnNextWave.IsEnabled = true;
+                nextWaveTimer.Start();
             }
             if (isKill)
             {
@@ -450,7 +476,7 @@ namespace TowerDefenseGUI
             MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.png"));
             txtMachineGunTeslaName.Text = "Machine Gun Tower";
             txtMachineGunTeslaType.Text = "Target: Ground";
-            txtMachineGunTeslaRange.Text = "Rane: 125";
+            txtMachineGunTeslaRange.Text = "Range: 125";
             txtMachineGunTeslaDmg.Text = "Damage: 7.5/s";
             txtMachineGunTeslaCost.Text = "Cost: $50";
             FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.png"));
