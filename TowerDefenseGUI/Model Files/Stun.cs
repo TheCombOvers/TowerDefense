@@ -35,5 +35,22 @@ namespace TowerDefenseGUI
             s.type = "stun";
             return s;
         }
+
+        public override void Attack(List<Enemy> enemies)
+        {
+            base.Attack(enemies);
+            Enemy e = DetectEnemy(enemies);
+            if (e == null)
+            {
+                return;
+            }
+            else
+            {
+                if (fireTime % fireRate == 0)
+                {
+                    e.stunned = 30;
+                }
+            }
+        }
     }
 }
