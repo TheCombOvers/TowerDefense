@@ -110,6 +110,8 @@ namespace TowerDefenseGUI
             }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
+            //nextWaveTimer = new Timer();
+            //nextWaveTimer.Interval = new TimeSpan(0,0,1);
             //add update model events
             gameTimer.Tick += UpdateGame;
             gameTimer.Tick += updateTowerPlace;
@@ -231,15 +233,7 @@ namespace TowerDefenseGUI
                 i.Width = 50;
                 i.Height = 50;
             }
-            //if (enemies == null)
-            //{
-            //    enemies = new List<Image>();
-            //    e.imageIndex = 0;
-            //}
-            //else
-            //{
             e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
-            //}
             enemies.Add(i);
             GameWindowCanvas.Children.Add(i);
         }
