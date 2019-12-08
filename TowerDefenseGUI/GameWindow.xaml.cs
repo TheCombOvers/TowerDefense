@@ -21,8 +21,8 @@ namespace TowerDefenseGUI
         Game game;
         DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
-        List<Image> enemies;
-        List<Image> turrets;
+        public List<Image> enemies;
+        public List<Image> turrets;
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
         List<string> tImageSources;// 0:MG tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
@@ -99,6 +99,7 @@ namespace TowerDefenseGUI
             {
                 game = new Game(mapId, cheat, AddEnemy, RemoveEnemy, diff);
             }
+            // map selection
             if (Game.map.mapID == 1)
             {
                 MapImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path2.png"));
@@ -219,6 +220,7 @@ namespace TowerDefenseGUI
             i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
             i.RenderTransformOrigin = new Point(0.5, 0.5);
             i.Margin = new Thickness(e.posX, e.posY, 0, 0);
+
             if (e.imageID == 3 || e.imageID == 7) // if it's a boss it's bigger! :)
             {
                 i.Width = 80;
@@ -236,7 +238,7 @@ namespace TowerDefenseGUI
             //}
             //else
             //{
-                e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
+            e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
             //}
             enemies.Add(i);
             GameWindowCanvas.Children.Add(i);
@@ -557,12 +559,21 @@ namespace TowerDefenseGUI
         private void GameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             gameTimer.Stop();
-
-            game.currentEnemies = new List<Enemy>();
-            Spawner.enemies = new List<Enemy>();
+            int count = enemies.Count();
+            try
+            {
+                for (int i = count - 1; i > -1; --i)
+                {
+                    RemoveEnemy(game.currentEnemies[i], false);
+                }
+            }
+            catch (ArgumentOutOfRangeException oops)
+            {
+                MessageBox.Show("oopsie");
+            }
+            
             game.currentTurrets = new List<Turret>();
-            enemies = null;
-            turrets = null;
+            turrets = new List<Image>();
             Turret.RotateTurret += null;
             Enemy.RotateEnemy += null;
             Turret.PlaySound += null;

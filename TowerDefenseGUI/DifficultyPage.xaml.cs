@@ -11,7 +11,7 @@ namespace TowerDefenseGUI
     // For references:
     //  Difficulty  - int, where 1 is easy, 2 is medium, 3 is hard
     //  Cheat       - bool, where true = cheats, and false = no cheats
-
+    //  
     public partial class DifficultyPage : Page
     {
         public bool Cheat = true;
