@@ -642,5 +642,10 @@ namespace TowerDefenseGUI
                 this.Close();
             }
         }
+
+        private void btn_Upgrade_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

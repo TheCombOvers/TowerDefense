@@ -56,6 +56,13 @@
         <Button x:Name="btnName" Content="Submit Score" FontSize="20" Canvas.Left="578" Canvas.Top="541" Width="128" Height="44" Click="btnName_Click" Visibility="Hidden"/>
         <Button Content="Sell Turret" FontSize="20" Canvas.Left="1012" Canvas.Top="760" Width="105" Height="59" Click="btn_Sell_Click"/>
         <Button Content=">>>" FontSize="30" Canvas.Left="1130" Canvas.Top="828" Width="105" Height="59" Click="btn_FastForward_Click"/>
-        
+        <Border x:Name="b_upgrade_border" BorderBrush="SlateGray" BorderThickness="2" Height="81" Canvas.Left="795" Canvas.Top="815" Width="200" Background="DimGray"/>
+        <Button x:Name="btn_Upgrade" Background="LightSlateGray" BorderThickness="2" BorderBrush="SlateGray" FontSize="13" Content="Upgrade" Canvas.Left="925" Canvas.Top="865" Width="65" Height="25" Click="btn_Upgrade_Click"/>
+        <Label x:Name="lb_upgraded_dps" FontSize="15" Content="Upgraded Dps: " Canvas.Left="800" Canvas.Top="860"/>
+        <Label x:Name="lb_selectedType" FontSize="15" Content="Type: " Canvas.Left="800" Canvas.Top="820"/>
+        <Label x:Name="lb_current_Dps" FontSize="15" Content="Dps: " Canvas.Left="800" Canvas.Top="840"/>
+        <Label x:Name="lb_cost_to_upgrade" FontSize="15" Content="Cost: " Canvas.Left="918" Canvas.Top="830"/>
+
+
     </Canvas>
 </Window>
