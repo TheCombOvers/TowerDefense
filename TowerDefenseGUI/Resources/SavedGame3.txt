@@ -1,8 +1,13 @@
 NG
-0,3,3,6,80,1,true,9,False,0,0,bV,aV
+1,2,2,6,999214,1,true,10,True,0,0,bI,aI
 TURRETS
-machinegun,250,100,0
-machinegun,250,50,1
-machinegun,300,100,2
+flak,500,350,0
+mortar,500,150,1
+flak,550,400,2
+machinegun,550,350,3
+machinegun,600,350,4
+machinegun,650,350,5
+machinegun,700,350,6
+machinegun,750,350,7
 ENDTURRETS
 END

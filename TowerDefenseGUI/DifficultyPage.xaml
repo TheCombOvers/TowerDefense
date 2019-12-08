@@ -37,12 +37,12 @@
         <Image Source="Resources\path2.png" Height="270" Width="300" Canvas.Left="560" Canvas.Top="165" />
         <TextBlock Text="Grassy Plains" FontSize="32" TextAlignment="Center" Canvas.Left="560" Canvas.Top="495" Height="50" Width="300"/>
         <TextBlock Text="Difficulty: MEDIUM" Foreground="Orange" FontSize="32" TextAlignment="Center" Canvas.Left="560" Canvas.Top="550" Height="50" Width="300"/>
-        <Button IsEnabled="True" Content="Select Map" Canvas.Left="610" Canvas.Top="670" Height="75" Width="200" FontSize="26"/>
+        <Button IsEnabled="True" Content="Select Map" Canvas.Left="610" Canvas.Top="670" Height="75" Width="200" FontSize="26" Click=" BtnSelectMapMedium_Click"/>
 
         <!--Hard Difficulty Map Section-->
         <Image Source="Resources\path3.png" Height="270" Width="300" Canvas.Left="1000" Canvas.Top="165" />
         <TextBlock Text="Straight Up" FontSize="32" TextAlignment="Center" Canvas.Left="1000" Canvas.Top="495" Height="50" Width="300"/>
         <TextBlock Text="Difficulty: HARD" Foreground="Red" FontSize="32" TextAlignment="Center" Canvas.Left="1000" Canvas.Top="550" Height="50" Width="300"/>
-        <Button IsEnabled="True" Content="Select Map" Canvas.Left="1050" Canvas.Top="670" Height="75" Width="200" FontSize="26"/>
+        <Button IsEnabled="True" Content="Select Map" Canvas.Left="1050" Canvas.Top="670" Height="75" Width="200" FontSize="26" Click=" BtnSelectMapHard_Click"/>
     </Canvas>
 </Page>

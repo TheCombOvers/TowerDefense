@@ -33,6 +33,7 @@ namespace TowerDefenseGUI
             l.fireRate = 10;
             l.cost = 125;
             l.damage = 10;
+            l.upCost = Convert.ToInt32(l.cost / 2);
             l.range = 175;
             l.type = "laser";
             return l;

@@ -20,6 +20,8 @@ namespace TowerDefenseGUI
         public double yPos;
         public int imageID;
         public int imageIndex;
+        public int upgradeLvl = 1;
+        public int upCost;
         public static event EventHandler<int> RotateTurret;
         public static event EventHandler<string> PlaySound;
 
@@ -95,5 +97,26 @@ namespace TowerDefenseGUI
 
         public abstract string Serialize();
         public abstract object Deserialize(string info);
+
+        public void Upgrade()
+        {
+            switch (upgradeLvl)
+            {
+                case 1:
+                    damage += (damage * .2); // increase by 20%
+                    break;
+                case 2:
+                    damage += (damage * .3); // increase by 30%                                     
+                    break;
+                case 3:
+                    damage += (damage * .4); // increase by 40%
+                    break;
+                default:
+                    return;
+            }
+            upCost += Convert.ToInt32(upCost * .3);
+            ++upgradeLvl;
+            return;
+        }
     }
 }

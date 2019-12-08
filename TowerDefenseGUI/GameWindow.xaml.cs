@@ -21,8 +21,8 @@ namespace TowerDefenseGUI
         Game game;
         DispatcherTimer gameTimer;
         Timer nextWaveTimer; // for auto starting next wave
-        List<Image> enemies;
-        List<Image> turrets;
+        public List<Image> enemies;
+        public List<Image> turrets;
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
         List<string> tImageSources;// 0:MG tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
@@ -43,7 +43,7 @@ namespace TowerDefenseGUI
         public Image selectedRing = new Image();
         public TextBlock selectedTurretInfo = new TextBlock();
         public int numWavesToWin;
-        public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler)
+        public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler, int mapId)
         {
             InitializeComponent();
             if (diff == 1)
@@ -97,10 +97,21 @@ namespace TowerDefenseGUI
             }
             else
             {
-                game = new Game(0, cheat, AddEnemy, RemoveEnemy, diff);
+                game = new Game(mapId, cheat, AddEnemy, RemoveEnemy, diff);
+            }
+            // map selection
+            if (Game.map.mapID == 1)
+            {
+                MapImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path2.png"));
+            }
+            else if (Game.map.mapID == 2)
+            {
+                MapImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path3.png"));
             }
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
+            //nextWaveTimer = new Timer();
+            //nextWaveTimer.Interval = new TimeSpan(0,0,1);
             //add update model events
             gameTimer.Tick += UpdateGame;
             gameTimer.Tick += updateTowerPlace;
@@ -113,7 +124,7 @@ namespace TowerDefenseGUI
             txtMoney.Text += Game.money;
             txtLives.Text = "Lives: " + Game.lives;
             gameTimer.Start();
-            soundHandler.GameMusic.PlayLooping();
+            //soundHandler.GameMusic.PlayLooping();
         }
 
         // main method that updates the entire game... yikes
@@ -211,6 +222,7 @@ namespace TowerDefenseGUI
             i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
             i.RenderTransformOrigin = new Point(0.5, 0.5);
             i.Margin = new Thickness(e.posX, e.posY, 0, 0);
+
             if (e.imageID == 3 || e.imageID == 7) // if it's a boss it's bigger! :)
             {
                 i.Width = 80;
@@ -221,15 +233,7 @@ namespace TowerDefenseGUI
                 i.Width = 50;
                 i.Height = 50;
             }
-            //if (enemies == null)
-            //{
-            //    enemies = new List<Image>();
-            //    e.imageIndex = 0;
-            //}
-            //else
-            //{
-                e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
-            //}
+            e.imageIndex = enemies.Count; // set the index of the enemy so we can use it to remove later
             enemies.Add(i);
             GameWindowCanvas.Children.Add(i);
         }
@@ -404,12 +408,14 @@ namespace TowerDefenseGUI
             }
             else
             {
-                if (GameWindowCanvas.Children.Contains(selectedTurretInfo))
-                {
-                    GameWindowCanvas.Children.Remove(selectedTurretInfo);
-                }
                 selectedTurret = null;
-
+                b_upgrade_border.Visibility = Visibility.Hidden;
+                btn_Upgrade.Visibility = Visibility.Hidden;
+                lb_cost_to_upgrade.Visibility = Visibility.Hidden;
+                lb_current_Dps.Visibility = Visibility.Hidden;
+                lb_selectedType.Visibility = Visibility.Hidden;
+                lb_upgraded_dps.Visibility = Visibility.Hidden;
+                lb_turret_lvl.Visibility = Visibility.Hidden;
             }
         }
 
@@ -423,19 +429,19 @@ namespace TowerDefenseGUI
             txtMachineGunTeslaName.Text = "Tesla Tower";
             txtMachineGunTeslaType.Text = "Target: Ground";
             txtMachineGunTeslaRange.Text = "Range: 100";
-            txtMachineGunTeslaDmg.Text = "Damage: 3/s";
+            txtMachineGunTeslaDmg.Text = "Damage: 36/s";
             txtMachineGunTeslaCost.Text = "Cost: $175";
             FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.png"));
             txtFlakLaserName.Text = "Laser Tower";
             txtFlakLaserType.Text = "Target: Ground/Air";
             txtFlakLaserRange.Text = "Range: 175";
-            txtFlakLaserDmg.Text = "Damage: 10/s";
+            txtFlakLaserDmg.Text = "Damage: 60/s";
             txtFlakLaserCost.Text = "Cost: $125";
             MortarStunImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.png"));
             txtMortarStunName.Text = "Stun Tower";
             txtMortarStunType.Text = "Target: Ground/Air";
             txtMortarStunRange.Text = "Range: 200";
-            txtMortarStunDmg.Text = "Damage: 15/s";
+            txtMortarStunDmg.Text = "Damage: 15/2s";
             txtMortarStunCost.Text = "Cost: $200";
         }
         private void btnBasic_Click(object sender, RoutedEventArgs e)
@@ -549,12 +555,21 @@ namespace TowerDefenseGUI
         private void GameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             gameTimer.Stop();
-
-            game.currentEnemies = new List<Enemy>();
-            Spawner.enemies = new List<Enemy>();
+            int count = enemies.Count();
+            try
+            {
+                for (int i = count - 1; i > -1; --i)
+                {
+                    RemoveEnemy(game.currentEnemies[i], false);
+                }
+            }
+            catch (ArgumentOutOfRangeException oops)
+            {
+                MessageBox.Show("oopsie");
+            }
+            
             game.currentTurrets = new List<Turret>();
-            enemies = null;
-            turrets = null;
+            turrets = new List<Image>();
             Turret.RotateTurret += null;
             Enemy.RotateEnemy += null;
             Turret.PlaySound += null;
@@ -586,8 +601,16 @@ namespace TowerDefenseGUI
                 selectedTurret = null;
             }
         }
+        // hightlights the clicked turret and displays its information in the bottomm right corner of the gui
+        // also sets selectedTurret to the clicked turret
         public void SelectTurret(object sender, object e)
         {
+            string cost = "Cost: ";
+            string type = "Type: ";
+            string dps = "Dps: ";
+            string upDps = "Upgraded Dps: ";
+            string lvl = "Level: ";
+            
             for (int i = 0; i < turrets.Count; ++i)
             {
                 if (sender == turrets[i])
@@ -596,16 +619,64 @@ namespace TowerDefenseGUI
                     Console.WriteLine(selectedTurret.type);
                 }
             }
-            if (GameWindowCanvas.Children.Contains(selectedTurretInfo)) // if theres some turret info there remove it
+            double dmg = selectedTurret.damage;
+            lb_cost_to_upgrade.Content = cost + Convert.ToInt32(selectedTurret.upCost);
+            lb_current_Dps.Content = dps + Convert.ToInt32(selectedTurret.damage);
+            lb_turret_lvl.Content = lvl + selectedTurret.upgradeLvl;
+
+            switch (selectedTurret.type)                 // grab the type and call methods based on it
             {
-                GameWindowCanvas.Children.Remove(selectedTurretInfo);
+                case "flak":
+                    lb_selectedType.Content = type + "Flak Cannon";
+                    break;
+                case "laser":
+                    lb_selectedType.Content = type + "Laser Cannon";
+                    break;
+                case "machinegun":
+                    lb_selectedType.Content = type + "Machine Gun";
+                    break;
+                case "mortar":
+                    lb_selectedType.Content = type + "Mortar";
+                    break;                   
+                case "stun":
+                    lb_selectedType.Content = type + "Stun Gun";
+                    break;
+                case "tesla":
+                    lb_selectedType.Content = type + "Telsa Tower";
+                    break;
+                default:
+                    MessageBox.Show("The type was wrong, it was: " + selectedTurret.type);
+                    break;
             }
-            selectedTurretInfo.Margin = new Thickness(selectedTurret.xPos - 13, selectedTurret.yPos + 50, 0, 0); // edit turret info coords and text
-            selectedTurretInfo.Text = "Sells for: $" + Convert.ToInt32(selectedTurret.cost * .80);
-            selectedRing.Margin = new Thickness(selectedTurret.xPos, selectedTurret.yPos, 0, 0);    // change coords to the selected turrets
+            if (selectedTurret.upgradeLvl == 1)
+            {
+                lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .2);
+            }
+            else if (selectedTurret.upgradeLvl == 2)
+            {
+                
+                lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .3);
+            }
+            else if (selectedTurret.upgradeLvl == 3)
+            {
+                lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .4);
+            }
+            else if (selectedTurret.upgradeLvl == 4)
+            {
+                lb_cost_to_upgrade.Content = "Max Lvl";
+                lb_upgraded_dps.Content = "Max Lvl";
+            }
+            // make all the stuff visable
+            b_upgrade_border.Visibility = Visibility.Visible;
+            btn_Upgrade.Visibility =  Visibility.Visible;
+            lb_cost_to_upgrade.Visibility = Visibility.Visible;
+            lb_current_Dps.Visibility = Visibility.Visible;
+            lb_selectedType.Visibility = Visibility.Visible;
+            lb_upgraded_dps.Visibility = Visibility.Visible;
+            lb_turret_lvl.Visibility = Visibility.Visible;
+            
 
             //GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
-            GameWindowCanvas.Children.Add(selectedTurretInfo);          // add the info to the screen
         }
 
         private void btnName_Click(object sender, RoutedEventArgs e)
@@ -621,6 +692,51 @@ namespace TowerDefenseGUI
                 int score = game.score;
                 hs.CreateScore(name, score);
                 this.Close();
+            }
+        }
+
+        private void btn_Upgrade_Click(object sender, RoutedEventArgs e)
+        {
+            string cost = "Cost: ";
+            string dps = "Dps: ";
+            string upDps = "Upgraded Dps: ";
+            string lvl = "Level: ";
+            if (selectedTurret == null)
+            {
+                return;
+            }
+            if (selectedTurret.upgradeLvl == 4) //if max lvl, stop
+            {
+                return;
+            }
+            if (Game.money > selectedTurret.upCost)
+            {          
+                selectedTurret.Upgrade(); // do the upgrade
+                // change gui to represent the upgrade
+                double dmg = selectedTurret.damage;
+                lb_turret_lvl.Content = lvl + selectedTurret.upgradeLvl;
+                lb_current_Dps.Content = dps + Convert.ToInt32(dmg);
+                if (selectedTurret.upgradeLvl == 2)
+                {
+                    lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .3);
+                    lb_cost_to_upgrade.Content = cost + selectedTurret.upCost;
+                }
+                else if (selectedTurret.upgradeLvl == 3)
+                {
+                    lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .4);
+                    lb_cost_to_upgrade.Content = cost + selectedTurret.upCost;
+                }
+                else if (selectedTurret.upgradeLvl == 4)
+                {
+                    lb_cost_to_upgrade.Content = "Max Lvl";
+                    lb_upgraded_dps.Content = "Max Lvl";
+                }
+
+                
+            }
+            else
+            {
+                // do stuff for when they dont have enough money
             }
         }
     }

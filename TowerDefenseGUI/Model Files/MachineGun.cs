@@ -25,12 +25,14 @@ namespace TowerDefenseGUI
         public static MachineGun MakeMachineGun(double x, double y, int index)
         {
             MachineGun m = new MachineGun();
+            
             m.imageIndex = index;
             m.imageID = 0;
             m.fireRate = 10;
             m.xPos = x;
             m.yPos = y;
             m.cost = 50;
+            m.upCost = Convert.ToInt32(m.cost / 2);
             m.damage = 2;
             m.range = 125;
             m.type = "machinegun";
