@@ -30,7 +30,8 @@ namespace TowerDefenseGUI
             m.imageID = 3;
             m.fireRate = 300;
             m.cost = 150;
-            m.damage = 50;
+            m.upCost = Convert.ToInt32(m.cost / 2);
+            m.damage = 25;
             m.range = 375;
             m.type = "mortar";
             return m;

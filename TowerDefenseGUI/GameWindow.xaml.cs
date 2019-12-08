@@ -414,12 +414,14 @@ namespace TowerDefenseGUI
             }
             else
             {
-                if (GameWindowCanvas.Children.Contains(selectedTurretInfo))
-                {
-                    GameWindowCanvas.Children.Remove(selectedTurretInfo);
-                }
                 selectedTurret = null;
-
+                b_upgrade_border.Visibility = Visibility.Hidden;
+                btn_Upgrade.Visibility = Visibility.Hidden;
+                lb_cost_to_upgrade.Visibility = Visibility.Hidden;
+                lb_current_Dps.Visibility = Visibility.Hidden;
+                lb_selectedType.Visibility = Visibility.Hidden;
+                lb_upgraded_dps.Visibility = Visibility.Hidden;
+                lb_turret_lvl.Visibility = Visibility.Hidden;
             }
         }
 
@@ -605,8 +607,16 @@ namespace TowerDefenseGUI
                 selectedTurret = null;
             }
         }
+        // hightlights the clicked turret and displays its information in the bottomm right corner of the gui
+        // also sets selectedTurret to the clicked turret
         public void SelectTurret(object sender, object e)
         {
+            string cost = "Cost: ";
+            string type = "Type: ";
+            string dps = "Dps: ";
+            string upDps = "Upgraded Dps: ";
+            string lvl = "Level: ";
+            
             for (int i = 0; i < turrets.Count; ++i)
             {
                 if (sender == turrets[i])
@@ -615,16 +625,64 @@ namespace TowerDefenseGUI
                     Console.WriteLine(selectedTurret.type);
                 }
             }
-            if (GameWindowCanvas.Children.Contains(selectedTurretInfo)) // if theres some turret info there remove it
+            double dmg = selectedTurret.damage;
+            lb_cost_to_upgrade.Content = cost + Convert.ToInt32(selectedTurret.upCost);
+            lb_current_Dps.Content = dps + Convert.ToInt32(selectedTurret.damage);
+            lb_turret_lvl.Content = lvl + selectedTurret.upgradeLvl;
+
+            switch (selectedTurret.type)                 // grab the type and call methods based on it
             {
-                GameWindowCanvas.Children.Remove(selectedTurretInfo);
+                case "flak":
+                    lb_selectedType.Content = type + "Flak Cannon";
+                    break;
+                case "laser":
+                    lb_selectedType.Content = type + "Laser Cannon";
+                    break;
+                case "machinegun":
+                    lb_selectedType.Content = type + "Machine Gun";
+                    break;
+                case "mortar":
+                    lb_selectedType.Content = type + "Mortar";
+                    break;                   
+                case "stun":
+                    lb_selectedType.Content = type + "Stun Gun";
+                    break;
+                case "tesla":
+                    lb_selectedType.Content = type + "Telsa Tower";
+                    break;
+                default:
+                    MessageBox.Show("The type was wrong, it was: " + selectedTurret.type);
+                    break;
             }
-            selectedTurretInfo.Margin = new Thickness(selectedTurret.xPos - 13, selectedTurret.yPos + 50, 0, 0); // edit turret info coords and text
-            selectedTurretInfo.Text = "Sells for: $" + Convert.ToInt32(selectedTurret.cost * .80);
-            selectedRing.Margin = new Thickness(selectedTurret.xPos, selectedTurret.yPos, 0, 0);    // change coords to the selected turrets
+            if (selectedTurret.upgradeLvl == 1)
+            {
+                lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .2);
+            }
+            else if (selectedTurret.upgradeLvl == 2)
+            {
+                
+                lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .3);
+            }
+            else if (selectedTurret.upgradeLvl == 3)
+            {
+                lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .4);
+            }
+            else if (selectedTurret.upgradeLvl == 4)
+            {
+                lb_cost_to_upgrade.Content = "Max Lvl";
+                lb_upgraded_dps.Content = "Max Lvl";
+            }
+            // make all the stuff visable
+            b_upgrade_border.Visibility = Visibility.Visible;
+            btn_Upgrade.Visibility =  Visibility.Visible;
+            lb_cost_to_upgrade.Visibility = Visibility.Visible;
+            lb_current_Dps.Visibility = Visibility.Visible;
+            lb_selectedType.Visibility = Visibility.Visible;
+            lb_upgraded_dps.Visibility = Visibility.Visible;
+            lb_turret_lvl.Visibility = Visibility.Visible;
+            
 
             //GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
-            GameWindowCanvas.Children.Add(selectedTurretInfo);          // add the info to the screen
         }
 
         private void btnName_Click(object sender, RoutedEventArgs e)
@@ -645,7 +703,47 @@ namespace TowerDefenseGUI
 
         private void btn_Upgrade_Click(object sender, RoutedEventArgs e)
         {
+            string cost = "Cost: ";
+            string dps = "Dps: ";
+            string upDps = "Upgraded Dps: ";
+            string lvl = "Level: ";
+            if (selectedTurret == null)
+            {
+                return;
+            }
+            if (selectedTurret.upgradeLvl == 4) //if max lvl, stop
+            {
+                return;
+            }
+            if (Game.money > selectedTurret.upCost)
+            {          
+                selectedTurret.Upgrade(); // do the upgrade
+                // change gui to represent the upgrade
+                double dmg = selectedTurret.damage;
+                lb_turret_lvl.Content = lvl + selectedTurret.upgradeLvl;
+                lb_current_Dps.Content = dps + Convert.ToInt32(dmg);
+                if (selectedTurret.upgradeLvl == 2)
+                {
+                    lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .3);
+                    lb_cost_to_upgrade.Content = cost + selectedTurret.upCost;
+                }
+                else if (selectedTurret.upgradeLvl == 3)
+                {
+                    lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .4);
+                    lb_cost_to_upgrade.Content = cost + selectedTurret.upCost;
+                }
+                else if (selectedTurret.upgradeLvl == 4)
+                {
+                    lb_cost_to_upgrade.Content = "Max Lvl";
+                    lb_upgraded_dps.Content = "Max Lvl";
+                }
 
+                
+            }
+            else
+            {
+                // do stuff for when they dont have enough money
+            }
         }
     }
 }
