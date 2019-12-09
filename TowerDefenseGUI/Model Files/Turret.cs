@@ -24,10 +24,11 @@ namespace TowerDefenseGUI
         public int upCost;
         public static event EventHandler<int> RotateTurret;
         public static event EventHandler<string> PlaySound;
+        public static Action<string, int, bool> ChangeImage;
 
         public virtual void Attack(List<Enemy> enemies)
         {
-            
+            bool value;
             Enemy e = DetectEnemy(enemies);
             if (e == null)
             {
@@ -51,6 +52,7 @@ namespace TowerDefenseGUI
                 {
                     fireTime = 10;
                 }
+                ChangeImage(type, imageIndex, false);
                 return;
             }
             else
@@ -59,8 +61,15 @@ namespace TowerDefenseGUI
                 RotateTurret(this, deg);
                 if (fireTime % fireRate == 0)
                 {
+                    value = true;
                     PlaySound(this, type);
                     e.TakeDamage(damage);
+                    ChangeImage(type, imageIndex, value);
+                }
+                else
+                {
+                    value = false;
+                    ChangeImage(type, imageIndex, value);
                 }
                 ++fireTime;
             }
