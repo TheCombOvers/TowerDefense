@@ -36,7 +36,6 @@ namespace TowerDefenseGUI
         bool laserplace;
         bool stunplace;
         bool isFastForward = false;
-        int wave;
         public SoundHandler soundHandler;
         public bool selling = false;
         public Turret selectedTurret;
@@ -155,9 +154,14 @@ namespace TowerDefenseGUI
         // main method that updates the entire game... yikes
         public void UpdateGame(object sender, object e)
         {
-            txtMoney.Text = "$" + Game.money;
-            txtLives.Text = "Lives: " + Game.lives;
-            if (Game.lives == 0 && game.gameOver != true)
+            IsGameOver();
+            game.UpdateModel();
+            UpdateView();
+        }
+
+        private void IsGameOver()
+        {
+            if (Game.lives == 0 && !game.gameOver)
             {
                 game.gameOver = true;
                 if (MessageBox.Show("Final Score: " + game.score, "You Lose!\n", MessageBoxButton.OK) == MessageBoxResult.OK)
@@ -168,10 +172,7 @@ namespace TowerDefenseGUI
                     btnName.Visibility = Visibility.Visible;
                 }
             }
-            txtRoundDisplay.Text = "Wave: " + game.currentWave;
-            txtScore.Text = "Score: " + game.score;
-            wave = game.currentWave;
-            if (wave == numWavesToWin && game.isWaveOver && game.gameOver != true)
+            if (game.currentWave == numWavesToWin && game.isWaveOver && !game.gameOver)
             {
                 game.gameOver = true;
                 if (MessageBox.Show("Final Score: " + game.score + "\n" + "Continue in Endless Mode?", "You Win!", MessageBoxButton.YesNo) == MessageBoxResult.No)
@@ -182,14 +183,16 @@ namespace TowerDefenseGUI
                     btnName.Visibility = Visibility.Visible;
                 }
             }
-            game.UpdateModel();
-            UpdateView();
         }
+
         public void UpdateView()
         {
             // access the game properties
             // draw objects based off the properties
+            txtMoney.Text = "$" + Game.money;
             txtLives.Text = "Lives: " + Game.lives;
+            txtRoundDisplay.Text = "Wave: " + game.currentWave;
+            txtScore.Text = "Score: " + game.score;
             int counter = 0;
             if (enemies.Count > 0)
             {
@@ -229,7 +232,6 @@ namespace TowerDefenseGUI
                 enemies[index].RenderTransform = new RotateTransform(degrees);
             }
         }
-
         public void RotateTurret(object tur, int degrees)
         {
             if (game.currentTurrets.Contains(tur))
@@ -247,7 +249,6 @@ namespace TowerDefenseGUI
             i.Source = new BitmapImage(new Uri(eImageSources[e.imageID]));
             i.RenderTransformOrigin = new Point(0.5, 0.5);
             i.Margin = new Thickness(e.posX, e.posY, 0, 0);
-
             if (e.imageID == 3 || e.imageID == 7) // if it's a boss it's bigger! :)
             {
                 i.Width = 80;
@@ -262,7 +263,6 @@ namespace TowerDefenseGUI
             enemies.Add(i);
             GameWindowCanvas.Children.Add(i);
         }
-
         // removes a specified enemy from the game state and the view
         public void RemoveEnemy(Enemy e, bool isKill)
         {
@@ -285,7 +285,6 @@ namespace TowerDefenseGUI
                 game.score += e.rewardScore;
             }
         }
-
         public void RemoveTurret(Turret t)
         {
             game.currentTurrets.Remove(t);
