@@ -10,7 +10,7 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string laser = string.Format("{0},{1},{2},{3}", "laser", xPos, yPos, imageIndex);
+            string laser = string.Format("{0},{1},{2},{3},{4}", "laser", xPos, yPos, imageIndex, upgradeLvl);
             return laser;
         }
         public override object Deserialize(string info)

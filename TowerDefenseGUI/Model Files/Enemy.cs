@@ -13,6 +13,7 @@ namespace TowerDefenseGUI
         public int rewardScore;
         public double health;
         public double speed;
+        public int stunned = 0;
         public string type;
         public int pathProgress;
         public double posX;
@@ -25,30 +26,38 @@ namespace TowerDefenseGUI
         public void UpdatePos()
         {
             var intersection = CheckCoords(Map.coords);
-            if (intersection.direction == Map.Direction.RIGHT || intersection.direction == Map.Direction.LEFT)
+            if (stunned > 0)
             {
-                if(intersection.direction == Map.Direction.RIGHT)
-                {
-                    RotateEnemy(this, 0);
-                }
-                else
-                {
-                    RotateEnemy(this, 180);
-                }
-                posX += speed;
+                stunned--;
             }
-            if (intersection.direction == Map.Direction.DOWN || intersection.direction == Map.Direction.UP)
+            else
             {
-                if (intersection.direction == Map.Direction.DOWN)
+                if (intersection.direction == Map.Direction.RIGHT || intersection.direction == Map.Direction.LEFT)
                 {
-                    RotateEnemy(this, 90);
+                    if (intersection.direction == Map.Direction.RIGHT)
+                    {
+                        RotateEnemy(this, 0);
+                    }
+                    else
+                    {
+                        RotateEnemy(this, 180);
+                    }
+                    posX += speed;
                 }
-                else
+                if (intersection.direction == Map.Direction.DOWN || intersection.direction == Map.Direction.UP)
                 {
-                    RotateEnemy(this, -90);
+                    if (intersection.direction == Map.Direction.DOWN)
+                    {
+                        RotateEnemy(this, 90);
+                    }
+                    else
+                    {
+                        RotateEnemy(this, -90);
+                    }
+                    posY += speed;
                 }
-                posY += speed;
             }
+
         }
 
         // check the enemy position compared to path direction change.
@@ -60,9 +69,9 @@ namespace TowerDefenseGUI
         {
             int x = path[pathProgress].x;
             int y = path[pathProgress].y;
-            if(type == "aboss"|| type == "gboss")
+            if (type == "aboss" || type == "gboss")
             {
-                if (x-15 == posX && y-15==posY)
+                if (x - 15 == posX && y - 15 == posY)
                 {
                     pathProgress++;
                 }

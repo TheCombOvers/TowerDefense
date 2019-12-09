@@ -10,7 +10,7 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string stun = string.Format("{0},{1},{2},{3}", "stun", xPos, yPos, imageIndex);
+            string stun = string.Format("{0},{1},{2},{3},{4}", "stun", xPos, yPos, imageIndex, upgradeLvl);
             return stun;
         }
         public override object Deserialize(string info)
@@ -35,6 +35,23 @@ namespace TowerDefenseGUI
             s.range = 200;
             s.type = "stun";
             return s;
+        }
+
+        public override void Attack(List<Enemy> enemies)
+        {
+            base.Attack(enemies);
+            Enemy e = DetectEnemy(enemies);
+            if (e == null)
+            {
+                return;
+            }
+            else
+            {
+                if (fireTime % fireRate == 0)
+                {
+                    e.stunned = 30;
+                }
+            }
         }
     }
 }
