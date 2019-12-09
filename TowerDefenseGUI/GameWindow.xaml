@@ -6,63 +6,66 @@
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
         Closing="GameWindow_Closing"
-        Title="Window1" Height="939" Width="1440">
+        Title="Window1" Height="930" Width="1440">
     <Canvas x:Name="GameWindowCanvas">
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="900" Margin="1000,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="440" Panel.ZIndex="1"/>
         <Image x:Name="MapImage" Source="Resources\path1.png" MaxHeight="900" MaxWidth="1000" HorizontalAlignment="Left" Height="900" VerticalAlignment="Top" Width="1000" MouseDown="MapImage_MouseDown"/>
         <TextBlock x:Name="txtRoundDisplay" Text="Wave: 0" FontSize="30" Margin="10" Panel.ZIndex="1"/>
-        <Image x:Name="MachineGunTeslaImage" HorizontalAlignment="Left" Source="Resources\turret tower.PNG" Height="126" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1046" Canvas.Top="113" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMachineGunTeslaName" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="Machine Gun Tower" FontSize="20" VerticalAlignment="Top" Width="182" Canvas.Left="1204" Canvas.Top="124" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMachineGunTeslaType" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="110" Canvas.Left="1204" Canvas.Top="156" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMachineGunTeslaDmg" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Damage: 12/s" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="172" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMachineGunTeslaRange" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Range: 125" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="188" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMachineGunTeslaCost" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Cost: $50" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="204" Panel.ZIndex="1"/>
-        <Button x:Name="btnBasic" Content="Basic" FontSize="30" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="190" Canvas.Left="1020" Canvas.Top="5" Click="btnBasic_Click" Panel.ZIndex="1"/>
-        <Button x:Name="btnAdvanced" Content="Advanced" FontSize="30" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="190" Canvas.Left="1230" Canvas.Top="5" Click="btnAdvanced_Click" Panel.ZIndex="1"/>
-        <Image x:Name="MortarStunImage" HorizontalAlignment="Left" Source="Resources\mortar tower.PNG" Height="126" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1046" Canvas.Top="471" Panel.ZIndex="1"/>
-        <Button x:Name="btnMachineGunTeslaBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" Click="btnMachineGunTeslaBuy_Click" Canvas.Left="1319" Canvas.Top="172" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMortarStunName" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="Mortar Tower" FontSize="20" VerticalAlignment="Top" Width="127" Canvas.Left="1204" Canvas.Top="488" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMortarStunType" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="110" Canvas.Left="1204" Canvas.Top="520" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMortarStunDmg" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Damage: 50/5s" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="536" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMortarStunRange" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Range: 375" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="552" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMortarStunCost" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Cost: $200" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="568" Panel.ZIndex="1"/>
-        <Button x:Name="btnMortarStunBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" Canvas.Left="1319" Canvas.Top="536" Click="btnMortarStunBuy_Click" Panel.ZIndex="1"/>
-        <Image x:Name="FlakLaserImage" HorizontalAlignment="Left" Source="Resources\flak tower.PNG" Height="126" VerticalAlignment="Top" Width="127" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1046" Canvas.Top="289" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtFlakLaserName" HorizontalAlignment="Left" Height="27" TextWrapping="Wrap" Text="Flak Tower" FontSize="20" VerticalAlignment="Top" Width="102" Canvas.Left="1204" Canvas.Top="306" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtFlakLaserType" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Target: Air" VerticalAlignment="Top" Width="115" Canvas.Left="1204" Canvas.Top="338" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtFlakLaserDmg" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Damage: 2/s" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="354" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtFlakLaserRange" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Range: 250" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="370" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtFlakLaserCost" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Cost: $75" VerticalAlignment="Top" Width="90" Canvas.Left="1204" Canvas.Top="386" Panel.ZIndex="1"/>
-        <Button x:Name="btnFlakLaserBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="39" VerticalAlignment="Top" Width="54" Canvas.Left="1319" Canvas.Top="352" Click="btnFlakLaserBuy_Click" Panel.ZIndex="1"/>
-        <Rectangle Fill="#FFF4F4F5" Height="2" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="428" Canvas.Left="1000" Canvas.Top="680" Panel.ZIndex="1"/>
-        <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnNextWave_Click" Canvas.Left="1012" Canvas.Top="692" Panel.ZIndex="1"/>
-        <Button x:Name="btnPauseGame" Content="Pause" FontSize="20" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnPauseGame_Click" Canvas.Left="1130" Canvas.Top="692" Panel.ZIndex="1"/>
-        <Button x:Name="btnSaveGame" Content="Save Game" FontSize="20" HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnSaveGame_Click" Canvas.Left="1130" Canvas.Top="760" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtLives" HorizontalAlignment="Left" Height="42" TextWrapping="Wrap" Text="Lives: " FontSize="25" VerticalAlignment="Top" Width="98" Canvas.Left="1258" Canvas.Top="818" Panel.ZIndex="1"/>
-        <Rectangle Fill="#FFF4F4F5" Height="188" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="4" Canvas.Left="1248" Canvas.Top="682" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMoney" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="$" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1258" Canvas.Top="760" Panel.ZIndex="1"/>
-        <Rectangle Fill="#FFF4F4F5" Height="4" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176" Canvas.Left="1252" Canvas.Top="738" Panel.ZIndex="1"/>
-        <Rectangle Fill="#FFF4F4F5" Height="4" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176" Canvas.Left="1252" Canvas.Top="810" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtMoney_Copy" HorizontalAlignment="Left" Height="36" TextWrapping="Wrap" Text="Points: 0" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1258" Canvas.Top="692" Panel.ZIndex="1"/>
-        <Image x:Name="imagetowerplace"  HorizontalAlignment="Center" Margin="841,124,0,0" VerticalAlignment="Center" MouseDown="MapImage_MouseDown" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="1"/>
+        <Image x:Name="MachineGunTeslaImage" HorizontalAlignment="Left" Source="Resources\turret tower.PNG" Height="125" VerticalAlignment="Top" Width="125" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1045" Canvas.Top="150" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMachineGunTeslaName" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Machine Gun Tower" FontSize="20" VerticalAlignment="Top" Width="180" Canvas.Left="1200" Canvas.Top="160" Panel.ZIndex="2"/>
+        <TextBlock x:Name="txtMachineGunTeslaType" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="110" Canvas.Left="1200" Canvas.Top="190" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMachineGunTeslaDmg" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Damage: 12/s" VerticalAlignment="Top" Width="90" Canvas.Left="1200" Canvas.Top="205" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMachineGunTeslaRange" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Range: 125" VerticalAlignment="Top" Width="90" Canvas.Left="1200" Canvas.Top="220" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMachineGunTeslaCost" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Cost: $50" VerticalAlignment="Top" Width="90" Canvas.Left="1200" Canvas.Top="235" Panel.ZIndex="1"/>
+        <Button x:Name="btnBasic" Content="Basic" FontSize="30" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="190" Canvas.Left="1020" Canvas.Top="20" Click="btnBasic_Click" Panel.ZIndex="1"/>
+        <Button x:Name="btnAdvanced" Content="Advanced" FontSize="30" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="190" Canvas.Left="1230" Canvas.Top="20" Click="btnAdvanced_Click" Panel.ZIndex="1"/>
+        <Image x:Name="MortarStunImage" HorizontalAlignment="Left" Source="Resources\mortar tower.PNG" Height="125" VerticalAlignment="Top" Width="125" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1045" Canvas.Top="500" Panel.ZIndex="1"/>
+        <Button x:Name="btnMachineGunTeslaBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="55" Click="btnMachineGunTeslaBuy_Click" Canvas.Left="1310" Canvas.Top="205" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMortarStunName" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Mortar Tower" FontSize="20" VerticalAlignment="Top" Width="125" Canvas.Left="1200" Canvas.Top="510" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMortarStunType" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="110" Canvas.Left="1200" Canvas.Top="540" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMortarStunDmg" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Damage: 50/5s" VerticalAlignment="Top" Width="90" Canvas.Left="1200" Canvas.Top="555" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMortarStunRange" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Range: 375" VerticalAlignment="Top" Width="90" Canvas.Left="1200" Canvas.Top="570" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMortarStunCost" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Cost: $200" VerticalAlignment="Top" Width="90" Canvas.Left="1200" Canvas.Top="585" Panel.ZIndex="1"/>
+        <Button x:Name="btnMortarStunBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="55" Canvas.Left="1310" Canvas.Top="555" Click="btnMortarStunBuy_Click" Panel.ZIndex="1"/>
+        <Image x:Name="FlakLaserImage" HorizontalAlignment="Left" Source="Resources\flak tower.PNG" Height="125" VerticalAlignment="Top" Width="125" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1045" Canvas.Top="325" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtFlakLaserName" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Flak Tower" FontSize="20" VerticalAlignment="Top" Width="100" Canvas.Left="1200" Canvas.Top="335" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtFlakLaserType" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Target: Air" VerticalAlignment="Top" Width="115" Canvas.Left="1200" Canvas.Top="365" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtFlakLaserDmg" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Damage: 2/s" VerticalAlignment="Top" Width="90" Canvas.Left="1200" Canvas.Top="380" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtFlakLaserRange" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Range: 250" VerticalAlignment="Top" Width="90" Canvas.Left="1200" Canvas.Top="395" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtFlakLaserCost" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Cost: $75" VerticalAlignment="Top" Width="90" Canvas.Left="1200" Canvas.Top="410" Panel.ZIndex="1"/>
+        <Button x:Name="btnFlakLaserBuy" Content="Buy" FontSize="20" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="55" Canvas.Left="1310" Canvas.Top="380" Click="btnFlakLaserBuy_Click" Panel.ZIndex="1"/>
+        <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="440" Canvas.Left="1000" Canvas.Top="675" Panel.ZIndex="1"/>
+        <Button x:Name="btnNextWave" Content="Next Wave" FontSize="20" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnNextWave_Click" Canvas.Left="1015" Canvas.Top="690" Panel.ZIndex="1"/>
+        <Button x:Name="btnPauseGame" Content="Pause" FontSize="20" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnPauseGame_Click" Canvas.Left="1015" Canvas.Top="760" Panel.ZIndex="1"/>
+        <Button x:Name="btnSaveGame" Content="Save Game" FontSize="20" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="105" IsEnabled="True" Click="btnSaveGame_Click" Canvas.Left="1130" Canvas.Top="760" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtLives" HorizontalAlignment="Left" Height="45" TextWrapping="Wrap" Text="Lives: " FontSize="25" VerticalAlignment="Top" Width="100" Canvas.Left="1260" Canvas.Top="845" Panel.ZIndex="1"/>
+        <Rectangle Fill="#FFF4F4F5" Height="220" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="5" Canvas.Left="1250" Canvas.Top="680" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMoney" HorizontalAlignment="Left" Height="35" TextWrapping="Wrap" Text="$" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1260" Canvas.Top="770" Panel.ZIndex="1"/>
+        <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190" Canvas.Left="1250" Canvas.Top="750" Panel.ZIndex="1"/>
+        <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190" Canvas.Left="1250" Canvas.Top="820" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtMoney_Copy" HorizontalAlignment="Left" Height="40" TextWrapping="Wrap" Text="Points: 0" FontSize="25" VerticalAlignment="Top" Width="160" Canvas.Left="1260" Canvas.Top="700" Panel.ZIndex="1"/>
+        <Image x:Name="imagetowerplace"  HorizontalAlignment="Center" Margin="840,125,0,0" VerticalAlignment="Center" MouseDown="MapImage_MouseDown" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="1"/>
         <TextBlock x:Name="txtScore" Text="Score: 0" FontSize="30" Canvas.Left="10" Canvas.Top="55" Panel.ZIndex="1"/>
-        <Rectangle x:Name="rectGameEnd" Fill="#FFF4F4F5" Height="364" Canvas.Left="106" Stroke="Black" Canvas.Top="233" Width="784" Visibility="Hidden" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtWin" Height="65" Canvas.Left="409" TextWrapping="Wrap" Text="You Win!" FontSize="50" Canvas.Top="279" Width="198" Visibility="Hidden" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtLose" Height="65" Canvas.Left="409" TextWrapping="Wrap" Text="You Lose!" FontSize="50" Canvas.Top="279" Width="212" Visibility="Hidden" Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtEndScore" Height="61" Canvas.Left="409" TextWrapping="Wrap" Text="Score: 0" FontSize="30" Canvas.Top="351" Width="311" Visibility="Hidden" Panel.ZIndex="1"/>
-        <Rectangle x:Name="rectname" Fill="#FFF4F4F5" Height="152" Canvas.Left="293" Stroke="Black" Canvas.Top="458" Width="427" Visibility="Hidden" Panel.ZIndex="1"/>
-        <TextBox x:Name="boxName" Height="37" Canvas.Left="308" TextWrapping="Wrap" Text="" FontSize="25" Canvas.Top="541" Width="244" Visibility="Hidden"  Panel.ZIndex="1"/>
-        <TextBlock x:Name="txtName" Height="52" Canvas.Left="385" TextWrapping="Wrap" Text="What is your name?" FontSize="25" Canvas.Top="483" Width="236" Visibility="Hidden" Panel.ZIndex="1"/>
-        <Button x:Name="btnName" Content="Submit Score" FontSize="20" Canvas.Left="578" Canvas.Top="541" Width="128" Height="44" Click="btnName_Click" Visibility="Hidden" Panel.ZIndex="1"/>
-        <Button Content="Sell Turret" FontSize="20" Canvas.Left="1012" Canvas.Top="760" Width="105" Height="59" Click="btn_Sell_Click" Panel.ZIndex="1"/>
-        <Button Content=">>>" FontSize="30" Canvas.Left="1130" Canvas.Top="828" Width="105" Height="59" Click="btn_FastForward_Click" Panel.ZIndex="1"/>
-        <Border x:Name="b_upgrade_border" BorderBrush="SlateGray" BorderThickness="2" Height="78" Canvas.Left="785" Canvas.Top="818" Width="210" Background="DimGray">
-        </Border>
-        <Button x:Name="btn_Upgrade" Background="LightSlateGray" BorderThickness="2" BorderBrush="SlateGray" FontSize="13" Content="Upgrade" Canvas.Left="924" Canvas.Top="865" Width="66" Height="25" Click="btn_Upgrade_Click"/>
+        <Rectangle x:Name="rectGameEnd" Fill="#FFF4F4F5" Height="365" Canvas.Left="105" Stroke="Black" Canvas.Top="235" Width="785" Visibility="Hidden" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtWin" Height="65" Canvas.Left="410" TextWrapping="Wrap" Text="You Win!" FontSize="50" Canvas.Top="280" Width="200" Visibility="Hidden" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtLose" Height="65" Canvas.Left="410" TextWrapping="Wrap" Text="You Lose!" FontSize="50" Canvas.Top="280" Width="210" Visibility="Hidden" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtEndScore" Height="60" Canvas.Left="410" TextWrapping="Wrap" Text="Score: 0" FontSize="30" Canvas.Top="350" Width="310" Visibility="Hidden" Panel.ZIndex="1"/>
+        <Rectangle x:Name="rectname" Fill="#FFF4F4F5" Height="155" Canvas.Left="295" Stroke="Black" Canvas.Top="460" Width="430" Visibility="Hidden" Panel.ZIndex="1"/>
+        <TextBox x:Name="boxName" Height="40" Canvas.Left="310" TextWrapping="Wrap" Text="" FontSize="25" Canvas.Top="540" Width="245" Visibility="Hidden"  Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtName" Height="50" Canvas.Left="385" TextWrapping="Wrap" Text="What is your name?" FontSize="25" Canvas.Top="480" Width="235" Visibility="Hidden" Panel.ZIndex="1"/>
+        <Button x:Name="btnName" Content="Submit Score" FontSize="20" Canvas.Left="580" Canvas.Top="540" Width="130" Height="45" Click="btnName_Click" Visibility="Hidden" Panel.ZIndex="1"/>
+        <Button Content="Sell Turret" FontSize="20" Canvas.Left="1130" Canvas.Top="690" Width="105" Height="60" Click="btn_Sell_Click" Panel.ZIndex="1"/>
+        <Button Content=">>>" FontSize="30" Canvas.Left="1130" Canvas.Top="830" Width="105" Height="60" Click="btn_FastForward_Click" Panel.ZIndex="1"/>
+        <TextBlock x:Name="txtNextWaveTimer" Text="60" Height="60" Canvas.Left="1015" TextWrapping="Wrap" Canvas.Top="830" Width="105" TextAlignment="Center" FontSize="42" Panel.ZIndex="1"/>
+        <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="440" Canvas.Left="1000" Canvas.Top="100" Panel.ZIndex="1"/>
+        <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="440" Canvas.Left="1000" Canvas.Top="300" Panel.ZIndex="1"/>
+        <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="440" Canvas.Left="1000" Canvas.Top="475" Panel.ZIndex="1"/>
+        <Border x:Name="b_upgrade_border" BorderBrush="SlateGray" BorderThickness="2" Height="80" Canvas.Left="785" Canvas.Top="820" Width="210" Background="DimGray"/>
+        <Button x:Name="btn_Upgrade" Background="LightSlateGray" BorderThickness="2" BorderBrush="SlateGray" FontSize="12" Content="Upgrade" Canvas.Left="925" Canvas.Top="865" Width="65" Height="25" Click="btn_Upgrade_Click"/>
         <Label x:Name="lb_upgraded_dps" FontSize="15" Content="Upgraded Dps: " Canvas.Left="785" Canvas.Top="860"/>
-        <Label x:Name="lb_selectedType" FontSize="15" Content="Type: " Canvas.Left="785" Canvas.Top="818"/>
-        <Label x:Name="lb_current_Dps" FontSize="15" Content="Dps: " Canvas.Left="785" Canvas.Top="839"/>
-        <Label x:Name="lb_cost_to_upgrade" FontSize="15" Content="Cost: " Canvas.Left="924" Canvas.Top="818"/>
-            <Label x:Name="lb_turret_lvl" FontSize="15" Content="Level: " Canvas.Left="924" Canvas.Top="839"/>
+        <Label x:Name="lb_selectedType" FontSize="15" Content="Type: " Canvas.Left="785" Canvas.Top="820"/>
+        <Label x:Name="lb_current_Dps" FontSize="15" Content="Dps: " Canvas.Left="785" Canvas.Top="840"/>
+        <Label x:Name="lb_cost_to_upgrade" FontSize="15" Content="Cost: " Canvas.Left="925" Canvas.Top="820"/>
+        <Label x:Name="lb_turret_lvl" FontSize="15" Content="Level: " Canvas.Left="925" Canvas.Top="840"/>
     </Canvas>
 </Window>
