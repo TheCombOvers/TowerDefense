@@ -11,7 +11,7 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="900" Margin="1000,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="440" Panel.ZIndex="1"/>
         <Image x:Name="MapImage" Source="Resources\path1.png" MaxHeight="900" MaxWidth="1000" HorizontalAlignment="Left" Height="900" VerticalAlignment="Top" Width="1000" MouseDown="MapImage_MouseDown" Panel.ZIndex="-1"/>
         <TextBlock x:Name="txtRoundDisplay" Text="Wave: 0" FontSize="30" Margin="10" Panel.ZIndex="1"/>
-        <Image x:Name="MachineGunTeslaImage" HorizontalAlignment="Left" Source="Resources\turret tower.PNG" Height="125" VerticalAlignment="Top" Width="125" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1045" Canvas.Top="150" Panel.ZIndex="1"/>
+        <Image x:Name="MachineGunTeslaImage" HorizontalAlignment="Left" Source="Resources\machine gun tower.PNG" Height="125" VerticalAlignment="Top" Width="125" RenderOptions.BitmapScalingMode="NearestNeighbor" Canvas.Left="1045" Canvas.Top="150" Panel.ZIndex="1"/>
         <TextBlock x:Name="txtMachineGunTeslaName" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Machine Gun Tower" FontSize="20" VerticalAlignment="Top" Width="180" Canvas.Left="1200" Canvas.Top="160" Panel.ZIndex="2"/>
         <TextBlock x:Name="txtMachineGunTeslaType" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Target: Ground" VerticalAlignment="Top" Width="110" Canvas.Left="1200" Canvas.Top="190" Panel.ZIndex="1"/>
         <TextBlock x:Name="txtMachineGunTeslaDmg" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Damage: 12/s" VerticalAlignment="Top" Width="90" Canvas.Left="1200" Canvas.Top="205" Panel.ZIndex="1"/>
