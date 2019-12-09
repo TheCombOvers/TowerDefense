@@ -79,7 +79,7 @@ namespace TowerDefenseGUI
             // add all image sources to the turret image sources list
             // again dont mess with the order of these lines
             tImageSources = new List<string>();
-            tImageSources.Add("pack://application:,,,/Resources/turret tower.png");
+            tImageSources.Add("pack://application:,,,/Resources/machine gun tower.png");
             tImageSources.Add("pack://application:,,,/Resources/flak tower.png");
             tImageSources.Add("pack://application:,,,/Resources/laser tower.png");
             tImageSources.Add("pack://application:,,,/Resources/mortar tower.png");
@@ -391,7 +391,7 @@ namespace TowerDefenseGUI
                 if (machinegunplace == true)
                 {
                     Game.money -= 50;
-                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower.png"));
                     MachineGun g = MachineGun.MakeMachineGun(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
@@ -475,7 +475,7 @@ namespace TowerDefenseGUI
             btnBasic.IsEnabled = false;
             btnAdvanced.IsEnabled = true;
             basic = true;
-            MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.png"));
+            MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower.png"));
             txtMachineGunTeslaName.Text = "Machine Gun Tower";
             txtMachineGunTeslaType.Text = "Target: Ground";
             txtMachineGunTeslaRange.Text = "Range: 125";
@@ -504,7 +504,7 @@ namespace TowerDefenseGUI
                 {
                     machinegunplace = true;
                     flakplace = mortarplace = teslaplace = laserplace = stunplace = false;
-                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
                     imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
                     isPlacing = true;
