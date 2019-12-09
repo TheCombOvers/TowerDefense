@@ -10,7 +10,7 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string stun = string.Format("{0},{1},{2},{3}", "stun", xPos, yPos, imageIndex);
+            string stun = string.Format("{0},{1},{2},{3},{4}", "stun", xPos, yPos, imageIndex, upgradeLvl);
             return stun;
         }
         public override object Deserialize(string info)

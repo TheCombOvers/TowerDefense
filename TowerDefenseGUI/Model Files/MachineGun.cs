@@ -10,11 +10,12 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string machinegun = string.Format("{0},{1},{2},{3}", "machinegun", xPos, yPos, imageIndex);
+            string machinegun = string.Format("{0},{1},{2},{3},{4}", "machinegun", xPos, yPos, imageIndex, upgradeLvl);
             return machinegun;
         }
         public override object Deserialize(string info)
-        {// need to make all turret desearilization look like this one...
+        {
+            // call the upgrade method for the number of upgraded levels...
             string[] finfo = info.Split(',');
             xPos = Convert.ToInt32(finfo[1]);
             yPos = Convert.ToInt32(finfo[2]);   

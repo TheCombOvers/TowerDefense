@@ -10,7 +10,7 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string mortar = string.Format("{0},{1},{2},{3}", "mortar", xPos, yPos, imageIndex);
+            string mortar = string.Format("{0},{1},{2},{3},{4}", "mortar", xPos, yPos, imageIndex, upgradeLvl);
             return mortar;
         }
         public override object Deserialize(string info)
