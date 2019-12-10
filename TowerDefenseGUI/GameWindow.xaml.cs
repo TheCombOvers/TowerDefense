@@ -41,11 +41,10 @@ namespace TowerDefenseGUI
         public Turret selectedTurret;
         public Image selectedRing = new Image();
         public int numWavesToWin;
-        public bool isOverMenu; 
+        public bool isOverMenu;
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler, int mapId)
         {
             InitializeComponent();
-            Turret.ChangeImage = ChangeTowerImage;
             if (diff == 1)
             {
                 numWavesToWin = 10;
@@ -70,7 +69,7 @@ namespace TowerDefenseGUI
             btnSaveGame.Click += Deselect;
             btn_Sell_Turret.Click += Deselect;
             side_menu.MouseDown += Deselect;
-            btn_fast_fowrard.Click += Deselect;
+            btn_fast_forward.Click += Deselect;
             MapImage.MouseDown += Deselect;
             turrets = new List<Image>();
             enemies = new List<Image>();
@@ -128,6 +127,7 @@ namespace TowerDefenseGUI
             Enemy.RotateEnemy += RotateEnemy;
             Spawner.DisplayWave += DisplayWave;
             Turret.PlaySound += soundHandler.Play;
+            Turret.ChangeImage += ChangeTowerImage;
             btnBasic.IsEnabled = false;
             basic = true;
             txtMoney.Text += Game.money;
@@ -140,19 +140,21 @@ namespace TowerDefenseGUI
         {
             if (game.isWaveOver)
             {
-                int time = 60;
-                Dispatcher.Invoke(()=> (time = Convert.ToInt32(txtNextWaveTimer.Text) - 1));
-                if(time == -1)
+                Dispatcher.Invoke(() =>
                 {
-                    Dispatcher.Invoke(() => {
+                    int time = Convert.ToInt32(txtNextWaveTimer.Text) - 1;
+                    if (time == -1)
+                    {
+
                         btnNextWave_Click(null, null);
                         txtNextWaveTimer.Text = "60";
-                    });
-                }
-                else
-                {
-                    Dispatcher.Invoke(() => txtNextWaveTimer.Text = time.ToString());
-                }
+
+                    }
+                    else
+                    {
+                        txtNextWaveTimer.Text = time.ToString();
+                    }
+                });
             }
             else
             {
@@ -197,15 +199,15 @@ namespace TowerDefenseGUI
             }
             else if (tower == "stun")
             {
-                
+
             }
             else if (tower == "laser")
             {
-                
+
             }
             else if (tower == "tesla")
             {
-                
+
             }
         }
 
@@ -222,6 +224,8 @@ namespace TowerDefenseGUI
             if (Game.lives == 0 && !game.gameOver)
             {
                 game.gameOver = true;
+                gameTimer.Stop();
+                nextWaveTimer.Stop();
                 if (MessageBox.Show("Final Score: " + game.score, "You Lose!\n", MessageBoxButton.OK) == MessageBoxResult.OK)
                 {
                     rectname.Visibility = Visibility.Visible;
@@ -233,12 +237,19 @@ namespace TowerDefenseGUI
             if (game.currentWave == numWavesToWin && game.isWaveOver && !game.gameOver)
             {
                 game.gameOver = true;
+                gameTimer.Stop();
+                nextWaveTimer.Stop();
                 if (MessageBox.Show("Final Score: " + game.score + "\n" + "Continue in Endless Mode?", "You Win!", MessageBoxButton.YesNo) == MessageBoxResult.No)
                 {
                     rectname.Visibility = Visibility.Visible;
                     boxName.Visibility = Visibility.Visible;
                     txtName.Visibility = Visibility.Visible;
                     btnName.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    gameTimer.Start();
+                    nextWaveTimer.Start();
                 }
             }
         }
@@ -439,13 +450,13 @@ namespace TowerDefenseGUI
             if (isPlacing == true)
             {
                 imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
-                     
+
                 Image image = new Image();
                 isPlacing = false;
                 image.RenderTransformOrigin = new Point(0.5, 0.5);
                 image.Width = 50;
                 image.Height = 50;
-                
+
                 double posX = SnapToGridX(mousePos.X);
                 double posY = SnapToGridY(mousePos.Y);
                 image.Margin = new Thickness(posX, posY, 0, 0);
@@ -507,13 +518,13 @@ namespace TowerDefenseGUI
                 lb_current_Dps.Visibility = Visibility.Hidden;
                 lb_selectedType.Visibility = Visibility.Hidden;
                 lb_upgraded_dps.Visibility = Visibility.Hidden;
-                lb_turret_lvl.Visibility = Visibility.Hidden;              
+                lb_turret_lvl.Visibility = Visibility.Hidden;
             }
             if (GameWindowCanvas.Children.Contains(selectedRing))
             {
                 GameWindowCanvas.Children.Remove(selectedRing);
             }
-            
+
         }
 
         // button methods
@@ -664,7 +675,7 @@ namespace TowerDefenseGUI
             {
                 MessageBox.Show("oopsie");
             }
-            
+
             game.currentTurrets = new List<Turret>();
             turrets = new List<Image>();
             Turret.RotateTurret += null;
@@ -676,14 +687,17 @@ namespace TowerDefenseGUI
 
         private void btn_FastForward_Click(object sender, RoutedEventArgs e)
         {
+            var obj = sender as Button;
             isFastForward = !isFastForward;
             if (isFastForward)
             {
-                gameTimer.Tick += UpdateGame;
+                gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 8);
+                obj.FontWeight = FontWeights.Bold;
             }
             else
             {
-                gameTimer.Tick -= UpdateGame;
+                gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
+                obj.FontWeight = FontWeights.Normal;
             }
         }
 
@@ -706,7 +720,7 @@ namespace TowerDefenseGUI
             string dps = "Dps: ";
             string upDps = "Upgraded Dps: ";
             string lvl = "Level: ";
-            
+
             for (int i = 0; i < turrets.Count; ++i)
             {
                 if (sender == turrets[i])
@@ -733,7 +747,7 @@ namespace TowerDefenseGUI
                     break;
                 case "mortar":
                     lb_selectedType.Content = type + "Mortar";
-                    break;                   
+                    break;
                 case "stun":
                     lb_selectedType.Content = type + "Stun Gun";
                     break;
@@ -749,7 +763,7 @@ namespace TowerDefenseGUI
                 lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .2, 1);
             }
             else if (selectedTurret.upgradeLvl == 2)
-            {              
+            {
                 lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .3, 1);
             }
             else if (selectedTurret.upgradeLvl == 3)
@@ -763,21 +777,21 @@ namespace TowerDefenseGUI
             }
             // make all the stuff visable
             b_upgrade_border.Visibility = Visibility.Visible;
-            btn_Upgrade.Visibility =  Visibility.Visible;
+            btn_Upgrade.Visibility = Visibility.Visible;
             lb_cost_to_upgrade.Visibility = Visibility.Visible;
             lb_current_Dps.Visibility = Visibility.Visible;
             lb_selectedType.Visibility = Visibility.Visible;
             lb_upgraded_dps.Visibility = Visibility.Visible;
             lb_turret_lvl.Visibility = Visibility.Visible;
 
-            selectedRing.Margin = new Thickness(selectedTurret.xPos- selectedTurret.range + 25, selectedTurret.yPos - selectedTurret.range + 25, 0, 0);
+            selectedRing.Margin = new Thickness(selectedTurret.xPos - selectedTurret.range + 25, selectedTurret.yPos - selectedTurret.range + 25, 0, 0);
             selectedRing.Width = selectedTurret.range * 2;
             selectedRing.Height = selectedTurret.range * 2;
             if (!GameWindowCanvas.Children.Contains(selectedRing))
             {
                 GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret  
             }
-                  
+
         }
 
         private void btnName_Click(object sender, RoutedEventArgs e)
@@ -811,7 +825,7 @@ namespace TowerDefenseGUI
                 return;
             }
             if (Game.money > selectedTurret.upCost)
-            {          
+            {
                 selectedTurret.Upgrade(); // do the upgrade
                 // change gui to represent the upgrade
                 double dmg = selectedTurret.damage;
@@ -831,7 +845,7 @@ namespace TowerDefenseGUI
                 {
                     lb_cost_to_upgrade.Content = "Max Lvl";
                     lb_upgraded_dps.Content = "Max Lvl";
-                }                
+                }
             }
             else
             {
@@ -848,7 +862,7 @@ namespace TowerDefenseGUI
             lb_selectedType.Visibility = Visibility.Hidden;
             lb_upgraded_dps.Visibility = Visibility.Hidden;
             lb_turret_lvl.Visibility = Visibility.Hidden;
-        
+
             if (GameWindowCanvas.Children.Contains(selectedRing))
             {
                 GameWindowCanvas.Children.Remove(selectedRing);

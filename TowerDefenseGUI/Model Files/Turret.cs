@@ -33,7 +33,6 @@ namespace TowerDefenseGUI
             if (e == null)
             {
                 ChangeImage(type, imageIndex, false);
-                return;
             }
             else
             {
