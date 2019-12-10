@@ -46,13 +46,17 @@ namespace TowerDefenseGUI
             {
                 return;
             }
-            else
+            if (firstShot)
             {
-                if (fireTime % fireRate == 0)
-                {
-                    e.stunned = 30;
-                }
+                fireTime = 90;
+                firstShot = false;
             }
+            if (fireTime % fireRate == 0)
+            {
+                e.stunned = 30;
+                e.TakeDamage(damage);
+            }
+            ++fireTime;
         }
     }
 }

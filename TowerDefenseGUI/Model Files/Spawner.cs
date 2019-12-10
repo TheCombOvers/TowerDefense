@@ -117,10 +117,10 @@ namespace TowerDefenseGUI
                 if (count > 1)
                 {
                     num[0] = (count - 1) * 2;
-                    if (count / 2 > 1)
+                    if (Convert.ToDouble(count) / 2 > 1)
                     {
 
-                        num[1] = (count - 1) * 2;
+                        num[1] = (count - 2) * 2;
                     }
                     else
                     {
@@ -139,10 +139,9 @@ namespace TowerDefenseGUI
                 if (count > 1)
                 {
                     num[0] = (count - 1) * 2;
-                    if (count / 2 > 1)
+                    if (Convert.ToDouble(count) / 2 > 1)
                     {
-
-                        num[1] = (count - 1) * 2;
+                        num[1] = (count - 2) * 2;
                     }
                     else
                     {
@@ -161,10 +160,9 @@ namespace TowerDefenseGUI
                 if (count > 1)
                 {
                     num[0] = (count - 1) * 2;
-                    if (count / 2 > 1)
+                    if (Convert.ToDouble(count) / 2 > 1)
                     {
-
-                        num[1] = (count - 1) * 2;
+                        num[1] = (count - 2) * 2;
                     }
                     else
                     {
@@ -183,10 +181,9 @@ namespace TowerDefenseGUI
                 if (count > 1)
                 {
                     num[0] = (count - 1) * 2;
-                    if (count / 2 > 1)
+                    if (Convert.ToDouble(count) / 2 > 1)
                     {
-
-                        num[1] = (count - 1) * 2;
+                        num[1] = (count - 2) * 2;
                     }
                     else
                     {
@@ -235,7 +232,17 @@ namespace TowerDefenseGUI
             }
             else if (wave > 1)
             {
-                int rand = new Random().Next(0, 2);
+                int rand;
+                if(wave == 13)
+                {
+                    rand = 0;
+
+                }
+                else
+                {
+                    rand = new Random().Next(0, 2);
+
+                }
                 if (rand == 0)
                 {
                     types[0] = "aI";
@@ -264,7 +271,6 @@ namespace TowerDefenseGUI
         public static void RemoveEnemy(Enemy enemy, bool isKill)
         {
             Remove(enemy, isKill);
-            enemies.Remove(enemy);
         }
     }
 }

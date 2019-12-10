@@ -28,7 +28,7 @@ namespace TowerDefenseGUI
             t.xPos = x;
             t.yPos = y;
             t.imageID = 5;
-            t.imageIndex = index; 
+            t.imageIndex = index;
             t.fireRate = 5;
             t.cost = 175;
             t.upCost = Convert.ToInt32(t.cost / 2);
@@ -40,7 +40,42 @@ namespace TowerDefenseGUI
 
         public override void Attack(List<Enemy> enemies)
         {
+            var targets = DetectEnemies(enemies);
             base.Attack(enemies);
+            if (targets.Count == 0)
+            {
+                return;
+            }
+            if (firstShot)
+            {
+                firstShot = false;
+                fireTime = 5;
+            }
+            if (fireTime % fireRate == 0)
+            {
+                foreach (Enemy e in targets)
+                {
+                    e.TakeDamage(damage);
+                }
+            }
+            ++fireTime;
+        }
+
+        public List<Enemy> DetectEnemies(List<Enemy> enemies)
+        {
+            List<Enemy> targets = new List<Enemy>();
+            foreach (Enemy e in enemies)
+            {
+                double dist = CalculateDistance(xPos, yPos, e.posX, e.posY);
+                if (range >= dist)
+                {
+                    if (!e.type.Contains("aircraft") && e.type != "aboss")
+                    {
+                        targets.Add(e);
+                    }
+                }
+            }
+            return targets;
         }
     }
 }

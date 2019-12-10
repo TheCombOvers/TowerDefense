@@ -37,5 +37,41 @@ namespace TowerDefenseGUI
             m.type = "mortar";
             return m;
         }
+
+        public override void Attack(List<Enemy> enemies)
+        {
+            var target = DetectEnemy(enemies);
+            if (target != null)
+            {
+                if (target.type.Contains("aircraft") || target.type == "aboss")
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+            base.Attack(enemies);
+            if (firstShot)
+            {
+                firstShot = false;
+                fireTime = 300;
+            }
+            if (fireTime % fireRate == 0)
+            {
+                target.TakeDamage(damage);
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    Enemy e = enemies[i];
+                    var dist = CalculateDistance(target.posX, target.posY, e.posX, e.posY);
+                    if (dist <= 100)
+                    {
+                        e.TakeDamage(10);
+                    }
+                }
+            }
+            ++fireTime;
+        }
     }
 }

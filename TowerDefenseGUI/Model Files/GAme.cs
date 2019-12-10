@@ -54,6 +54,10 @@ namespace TowerDefenseGUI
         {
             waveProgress++;
             isWaveOver = false;
+            foreach(Turret t in currentTurrets)
+            {
+                t.firstShot = true;
+            }
             spawner.Spawn(waveProgress);
         }
 

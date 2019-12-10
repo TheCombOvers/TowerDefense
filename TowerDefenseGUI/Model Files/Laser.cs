@@ -39,5 +39,24 @@ namespace TowerDefenseGUI
             l.type = "laser";
             return l;
         }
+        public override void Attack(List<Enemy> enemies)
+        {
+            base.Attack(enemies);
+            var target = DetectEnemy(enemies);
+            if (target == null)
+            {
+                return;
+            }
+            if (firstShot)
+            {
+                firstShot = false;
+                fireTime = 10;
+            }
+            if (fireTime % fireRate == 0)
+            {
+                target.TakeDamage(damage);
+            }
+            ++fireTime;
+        }
     }
 }
