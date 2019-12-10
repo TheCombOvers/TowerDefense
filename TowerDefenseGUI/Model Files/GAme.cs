@@ -223,9 +223,9 @@ namespace TowerDefenseGUI
                 }
                 for (int i = 0; i < newGame.currentTurrets.Count; ++i)
                 {
-                    for (int i2 = 0;  i < newGame.currentTurrets[i].upgradeLvl - 1; ++i)
+                    for (int i2 = 0;  i2 < newGame.currentTurrets[i].upgradeLvl - 1; ++i2)
                     {
-                        newGame.currentTurrets[i].Upgrade();
+                        newGame.currentTurrets[i2].Upgrade();
                     }
                 }
                 return newGame;
