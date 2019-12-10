@@ -25,25 +25,32 @@ namespace TowerDefenseGUI
         public int upCost;
         public static event EventHandler<int> RotateTurret;
         public static event EventHandler<string> PlaySound;
+        public static Action<string, int, bool> ChangeImage;
 
         public virtual void Attack(List<Enemy> enemies)
         {
             Enemy e = DetectEnemy(enemies);
             if (e == null)
             {
+                ChangeImage(type, imageIndex, false);
                 return;
             }
             else
-            { 
+            {
                 int deg = CalculateRotation(xPos, yPos, e.posX, e.posY);
                 RotateTurret(this, deg);
                 if (fireTime % fireRate == 0)
                 {
                     PlaySound(this, type);
+                    ChangeImage(type, imageIndex, true);
+                }
+                else
+                {
+                    ChangeImage(type, imageIndex, false);
                 }
             }
         }
-        
+
         public virtual Enemy DetectEnemy(List<Enemy> enemies)
         {
             Enemy target = null;

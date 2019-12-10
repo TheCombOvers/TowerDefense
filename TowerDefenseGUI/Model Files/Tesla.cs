@@ -10,7 +10,7 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string tesla = string.Format("{0},{1},{2},{3}", "tesla", xPos, yPos, imageIndex);
+            string tesla = string.Format("{0},{1},{2},{3},{4}", "tesla", xPos, yPos, imageIndex, upgradeLvl);
             return tesla;
         }
         public override object Deserialize(string info)
@@ -31,7 +31,7 @@ namespace TowerDefenseGUI
             t.fireRate = 5;
             t.cost = 175;
             t.upCost = Convert.ToInt32(t.cost / 2);
-            t.damage = 3;
+            t.damage = 1;
             t.range = 100;
             t.type = "tesla";
             return t;

@@ -10,7 +10,7 @@ namespace TowerDefenseGUI
     {
         public override string Serialize()
         {
-            string laser = string.Format("{0},{1},{2},{3}", "laser", xPos, yPos, imageIndex);
+            string laser = string.Format("{0},{1},{2},{3},{4}", "laser", xPos, yPos, imageIndex, upgradeLvl);
             return laser;
         }
         public override object Deserialize(string info)
@@ -31,8 +31,8 @@ namespace TowerDefenseGUI
             l.imageIndex = index;
             l.imageID = 2;
             l.fireRate = 10;
-            l.cost = 125;
-            l.damage = 10;
+            l.cost = 200;
+            l.damage = 5;
             l.upCost = Convert.ToInt32(l.cost / 2);
             l.range = 175;
             l.type = "laser";
