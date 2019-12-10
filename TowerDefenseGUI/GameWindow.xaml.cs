@@ -42,6 +42,7 @@ namespace TowerDefenseGUI
         public Image selectedRing = new Image();
         public int numWavesToWin;
         public bool isOverMenu;
+
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler, int mapId)
         {
             InitializeComponent();
@@ -133,7 +134,6 @@ namespace TowerDefenseGUI
             txtMoney.Text += Game.money;
             txtLives.Text = "Lives: " + Game.lives;
             gameTimer.Start();
-
             soundHandler.PlayMusic(SoundHandler.MusicType.Game);
         }
 
@@ -167,7 +167,7 @@ namespace TowerDefenseGUI
         {
             if (tower == "machinegun")
             {
-                if (value == true)
+                if (value)
                 {
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower fire.png"));
                 }
@@ -178,7 +178,7 @@ namespace TowerDefenseGUI
             }
             else if (tower == "flak")
             {
-                if (value == true)
+                if (value)
                 {
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower fire.png"));
                 }
@@ -189,7 +189,7 @@ namespace TowerDefenseGUI
             }
             else if (tower == "mortar")
             {
-                if (value == true)
+                if (value)
                 {
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower fire.png"));
                 }
@@ -200,15 +200,36 @@ namespace TowerDefenseGUI
             }
             else if (tower == "stun")
             {
-
+                if (value)
+                {
+                    //turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower fire.png"));
+                }
+                else
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.png"));
+                }
             }
             else if (tower == "laser")
             {
-
+                if (value)
+                {
+                    //turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower fire.png"));
+                }
+                else
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.png"));
+                }
             }
-            else if (tower == "tesla")
+            else
             {
-
+                if (value)
+                {
+                    //turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower fire.png"));
+                }
+                else
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.png"));
+                }
             }
         }
 
@@ -341,7 +362,7 @@ namespace TowerDefenseGUI
             if (GameWindowCanvas.Children.Contains(enemies[e.imageIndex]))
             {
                 GameWindowCanvas.Children.Remove(enemies[e.imageIndex]); // remove from the game window canvas
-            }            
+            }
             enemies.RemoveAt(e.imageIndex);     // remove it from the image list in the view
             for (int i = e.imageIndex; i < enemies.Count; ++i)
             {
@@ -386,7 +407,8 @@ namespace TowerDefenseGUI
             Button pressBtn = (Button)sender;
             pressBtn.Content = "Resume";
             pressBtn.Click += btnResumeGame_Click;
-            Pause();
+            gameTimer.Stop();
+            nextWaveTimer.Stop();
         }
         private void btnResumeGame_Click(object sender, RoutedEventArgs e)
         {
@@ -396,11 +418,7 @@ namespace TowerDefenseGUI
             gameTimer.Start();
             nextWaveTimer.Start();
         }
-        public void Pause()
-        {
-            gameTimer.Stop();
-            nextWaveTimer.Stop();
-        }
+
         public void LoadTurretImgs()
         {
             for (int i = 0; i < game.currentTurrets.Count; ++i)
@@ -424,7 +442,7 @@ namespace TowerDefenseGUI
         // tower place methods
         private void updateTowerPlace(object sender, EventArgs e)
         {
-            if (isPlacing == true)
+            if (isPlacing)
             {
                 mousePos = Mouse.GetPosition(GameWindowCanvas);
                 imagetowerplace.Margin = new Thickness(mousePos.X - (imagetowerplace.ActualWidth / 2), mousePos.Y - (imagetowerplace.ActualHeight / 2), 0, 0);
@@ -608,6 +626,7 @@ namespace TowerDefenseGUI
                     isPlacing = true;
                 }
             }
+            if (isPlacing) btn_Sell_Turret.Content = "Cancel";
         }
         private void btnFlakLaserBuy_Click(object sender, RoutedEventArgs e)
         {
@@ -635,7 +654,9 @@ namespace TowerDefenseGUI
                     isPlacing = true;
                 }
             }
+            if (isPlacing) btn_Sell_Turret.Content = "Cancel";
         }
+
         private void btnMortarStunBuy_Click(object sender, RoutedEventArgs e)
         {
             if (basic)
@@ -662,24 +683,22 @@ namespace TowerDefenseGUI
                     isPlacing = true;
                 }
             }
+            if (isPlacing) btn_Sell_Turret.Content = "Cancel";
+        }
+        private void CancelPlace()
+        {
+            // refund money spent
+            // remove image following mouse
         }
 
         private void GameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             gameTimer.Stop();
             int count = enemies.Count();
-            try
+            for (int i = count - 1; i > -1; --i)
             {
-                for (int i = count - 1; i > -1; --i)
-                {
-                    RemoveEnemy(game.currentEnemies[i], false);
-                }
+                RemoveEnemy(game.currentEnemies[i], false);
             }
-            catch (ArgumentOutOfRangeException oops)
-            {
-                MessageBox.Show("oopsie");
-            }
-
             game.currentTurrets = new List<Turret>();
             turrets = new List<Image>();
             Turret.RotateTurret += null;
@@ -707,6 +726,12 @@ namespace TowerDefenseGUI
 
         private void btn_Sell_Click(object sender, RoutedEventArgs e)
         {
+            if (isPlacing)
+            {
+                // cancel placing turret
+                CancelPlace();
+                isPlacing = false;
+            }
             if (selectedTurret != null)
             {
                 RemoveTurret(selectedTurret);
@@ -809,7 +834,7 @@ namespace TowerDefenseGUI
                 string name = boxName.Text.ToString();
                 int score = game.score;
                 hs.CreateScore(name, score);
-                this.Close();
+                Close();
             }
         }
 
