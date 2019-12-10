@@ -316,18 +316,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\tesla tower select.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\flak tower select.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\laser tower select.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\machine gun tower select.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\machine gun tower fire.png" />
   </ItemGroup>
   <ItemGroup>
@@ -337,10 +325,13 @@
     <Resource Include="Resources\machine gun tower place.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\mortar tower select.png" />
+    <Resource Include="Resources\mortar tower fire.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\stun tower select.png" />
+    <Resource Include="Resources\flak tower fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tower select.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

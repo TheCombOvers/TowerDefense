@@ -45,6 +45,7 @@ namespace TowerDefenseGUI
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler, int mapId)
         {
             InitializeComponent();
+            Turret.ChangeImage = ChangeTowerImage;
             if (diff == 1)
             {
                 numWavesToWin = 10;
@@ -145,6 +146,55 @@ namespace TowerDefenseGUI
             else
             {
                 Dispatcher.Invoke(() => txtNextWaveTimer.Text = "60");
+            }
+        }
+
+        public void ChangeTowerImage(string tower, int index, bool value)
+        {
+            if (tower == "machinegun")
+            {
+                if (value == true)
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower fire.png"));
+                }
+                else
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower.png"));
+                }
+            }
+            else if (tower == "flak")
+            {
+                if (value == true)
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower fire.png"));
+                }
+                else
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.png"));
+                }
+            }
+            else if (tower == "mortar")
+            {
+                if (value == true)
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower fire.png"));
+                }
+                else
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.png"));
+                }
+            }
+            else if (tower == "stun")
+            {
+                
+            }
+            else if (tower == "laser")
+            {
+                
+            }
+            else if (tower == "tesla")
+            {
+                
             }
         }
 
