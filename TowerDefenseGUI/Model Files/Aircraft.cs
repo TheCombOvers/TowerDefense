@@ -30,21 +30,21 @@ namespace TowerDefenseGUI
             switch (type)
             {
                 case "b":
-                a.imageID = 2;
-                a.health = 20;
-                a.rewardMoney = 10;
-                a.speed = 6.25; // decide speed for advance type, replace 4 with desired speed 
-                a.rewardScore = 10;
-                a.type = "baircraft";
-                break;
+                    a.imageID = 2;
+                    a.health = 30;
+                    a.rewardMoney = 10;
+                    a.speed = 6.25; // decide speed for advance type, replace 4 with desired speed 
+                    a.rewardScore = 10;
+                    a.type = "baircraft";
+                    break;
                 case "a":
-                a.imageID = 6;
-                a.health = 60;
-                a.rewardMoney = 30;
-                a.speed = 3.125; // decide speed for advance type, replace 4 with desired speed 
-                a.rewardScore = 20;
-                a.type = "aaircraft";
-                break;
+                    a.imageID = 6;
+                    a.health = 90;
+                    a.rewardMoney = 30;
+                    a.speed = 3.125; // decide speed for advance type, replace 4 with desired speed 
+                    a.rewardScore = 20;
+                    a.type = "aaircraft";
+                    break;
             }
             a.posX = Map.coords[0].x;
             a.posY = Map.coords[0].y;

@@ -748,8 +748,7 @@ namespace TowerDefenseGUI
                 lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .2, 1);
             }
             else if (selectedTurret.upgradeLvl == 2)
-            {
-                
+            {                
                 lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .3, 1);
             }
             else if (selectedTurret.upgradeLvl == 3)

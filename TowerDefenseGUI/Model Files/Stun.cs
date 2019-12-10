@@ -28,7 +28,7 @@ namespace TowerDefenseGUI
             s.yPos = y;
             s.imageID = 4;
             s.imageIndex = index;
-            s.fireRate = 120;
+            s.fireRate = 90;
             s.cost = 200;
             s.upCost = Convert.ToInt32(s.cost / 2);
             s.damage = 15;
