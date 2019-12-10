@@ -45,7 +45,7 @@ After the player has won they may continue playing in an endless mode, earning m
 
 ## Recording
 
-[Demo Video](https://bju-my.sharepoint.com/personal/mhane142_students_bju_edu/Documents/Attachments/IMG_2337.MOV)
+[Demo Video](https://bju-my.sharepoint.com/:v:/g/personal/ayerk481_students_bju_edu/EZZHPuJodz9NvLVBSmXnBpgBUZjlpVCHwhpOAHfycdIBGg?email=ayerk481%40students.bju.edu&e=DNKoLB)
 Once you request access, message me in teams so I can approve it. -Micah
 
 ## Expenses
