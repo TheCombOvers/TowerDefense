@@ -326,7 +326,10 @@ namespace TowerDefenseGUI
         {
             game.currentEnemies.Remove(e);
             Spawner.enemies.Remove(e);  // remove it from the game state
-            GameWindowCanvas.Children.Remove(enemies[e.imageIndex]); // remove from the game window canvas
+            if (GameWindowCanvas.Children.Contains(enemies[e.imageIndex]))
+            {
+                GameWindowCanvas.Children.Remove(enemies[e.imageIndex]); // remove from the game window canvas
+            }            
             enemies.RemoveAt(e.imageIndex);     // remove it from the image list in the view
             for (int i = e.imageIndex; i < enemies.Count; ++i)
             {
@@ -703,7 +706,7 @@ namespace TowerDefenseGUI
         {
             string cost = "Cost: ";
             string type = "Type: ";
-            string dps = "Dps: ";
+            string dps = "Damge: ";
             string upDps = "Upgraded Dps: ";
             string lvl = "Level: ";
             
@@ -798,7 +801,7 @@ namespace TowerDefenseGUI
         private void btn_Upgrade_Click(object sender, RoutedEventArgs e)
         {
             string cost = "Cost: ";
-            string dps = "Dps: ";
+            string dps = "Damage: ";
             string upDps = "Upgraded Dps: ";
             string lvl = "Level: ";
             if (selectedTurret == null)
