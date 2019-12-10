@@ -54,6 +54,10 @@ namespace TowerDefenseGUI
         {
             waveProgress++;
             isWaveOver = false;
+            foreach(Turret t in currentTurrets)
+            {
+                t.firstShot = true;
+            }
             spawner.Spawn(waveProgress);
         }
 
@@ -216,6 +220,13 @@ namespace TowerDefenseGUI
                 for (int i = 0; i < Spawner.enemies.Count; ++i)
                 {
                     newGame.addEnemy(Spawner.enemies[i]);
+                }
+                for (int i = 0; i < newGame.currentTurrets.Count; ++i)
+                {
+                    for (int i2 = 0;  i < newGame.currentTurrets[i].upgradeLvl - 1; ++i)
+                    {
+                        newGame.currentTurrets[i].Upgrade();
+                    }
                 }
                 return newGame;
             }

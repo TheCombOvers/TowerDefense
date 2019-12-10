@@ -106,14 +106,11 @@ namespace TowerDefenseGUI
 
         public void TakeDamage(double amount)
         {
-            if (health > 0)
-            {
-                health -= amount;
-            }
-            else
+            health -= amount;
+            if (health <= 0)
             {
                 Spawner.RemoveEnemy(this, true);
-                Game.money += this.rewardMoney;
+                Game.money += rewardMoney;
             }
         }
 

@@ -19,6 +19,7 @@ namespace TowerDefenseGUI
             xPos = Convert.ToInt32(finfo[1]);
             yPos = Convert.ToInt32(finfo[2]);
             imageIndex = Convert.ToInt32(finfo[3]);
+            upgradeLvl = Convert.ToInt32(finfo[4]);
             type = "laser";
             return this;
         }
@@ -31,12 +32,31 @@ namespace TowerDefenseGUI
             l.imageIndex = index;
             l.imageID = 2;
             l.fireRate = 10;
-            l.cost = 125;
-            l.damage = 10;
+            l.cost = 200;
+            l.damage = 5;
             l.upCost = Convert.ToInt32(l.cost / 2);
             l.range = 175;
             l.type = "laser";
             return l;
+        }
+        public override void Attack(List<Enemy> enemies)
+        {
+            base.Attack(enemies);
+            var target = DetectEnemy(enemies);
+            if (target == null)
+            {
+                return;
+            }
+            if (firstShot)
+            {
+                firstShot = false;
+                fireTime = 10;
+            }
+            if (fireTime % fireRate == 0)
+            {
+                target.TakeDamage(damage);
+            }
+            ++fireTime;
         }
     }
 }

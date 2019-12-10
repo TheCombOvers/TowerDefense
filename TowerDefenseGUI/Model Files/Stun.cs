@@ -19,6 +19,7 @@ namespace TowerDefenseGUI
             xPos = Convert.ToInt32(finfo[1]);
             yPos = Convert.ToInt32(finfo[2]);
             imageIndex = Convert.ToInt32(finfo[3]);
+            upgradeLvl = Convert.ToInt32(finfo[4]);
             return this;
         }
         public static Stun MakeStun(double x, double y, int index)
@@ -28,7 +29,7 @@ namespace TowerDefenseGUI
             s.yPos = y;
             s.imageID = 4;
             s.imageIndex = index;
-            s.fireRate = 120;
+            s.fireRate = 90;
             s.cost = 200;
             s.upCost = Convert.ToInt32(s.cost / 2);
             s.damage = 15;
@@ -45,13 +46,17 @@ namespace TowerDefenseGUI
             {
                 return;
             }
-            else
+            if (firstShot)
             {
-                if (fireTime % fireRate == 0)
-                {
-                    e.stunned = 30;
-                }
+                fireTime = 90;
+                firstShot = false;
             }
+            if (fireTime % fireRate == 0)
+            {
+                e.stunned = 30;
+                e.TakeDamage(damage);
+            }
+            ++fireTime;
         }
     }
 }

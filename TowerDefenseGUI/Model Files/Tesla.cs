@@ -19,6 +19,7 @@ namespace TowerDefenseGUI
             xPos = Convert.ToInt32(finfo[1]);
             yPos = Convert.ToInt32(finfo[2]);
             imageIndex = Convert.ToInt32(finfo[3]);
+            upgradeLvl = Convert.ToInt32(finfo[4]);
             return this;
         }
         public static Tesla MakeTesla(double x, double y, int index)
@@ -27,11 +28,11 @@ namespace TowerDefenseGUI
             t.xPos = x;
             t.yPos = y;
             t.imageID = 5;
-            t.imageIndex = index; 
+            t.imageIndex = index;
             t.fireRate = 5;
             t.cost = 175;
             t.upCost = Convert.ToInt32(t.cost / 2);
-            t.damage = 3;
+            t.damage = 1;
             t.range = 100;
             t.type = "tesla";
             return t;
@@ -39,7 +40,42 @@ namespace TowerDefenseGUI
 
         public override void Attack(List<Enemy> enemies)
         {
+            var targets = DetectEnemies(enemies);
             base.Attack(enemies);
+            if (targets.Count == 0)
+            {
+                return;
+            }
+            if (firstShot)
+            {
+                firstShot = false;
+                fireTime = 5;
+            }
+            if (fireTime % fireRate == 0)
+            {
+                foreach (Enemy e in targets)
+                {
+                    e.TakeDamage(damage);
+                }
+            }
+            ++fireTime;
+        }
+
+        public List<Enemy> DetectEnemies(List<Enemy> enemies)
+        {
+            List<Enemy> targets = new List<Enemy>();
+            foreach (Enemy e in enemies)
+            {
+                double dist = CalculateDistance(xPos, yPos, e.posX, e.posY);
+                if (range >= dist)
+                {
+                    if (!e.type.Contains("aircraft") && e.type != "aboss")
+                    {
+                        targets.Add(e);
+                    }
+                }
+            }
+            return targets;
         }
     }
 }
