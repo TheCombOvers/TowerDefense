@@ -217,6 +217,13 @@ namespace TowerDefenseGUI
                 {
                     newGame.addEnemy(Spawner.enemies[i]);
                 }
+                for (int i = 0; i < newGame.currentTurrets.Count; ++i)
+                {
+                    for (int i2 = 0;  i < newGame.currentTurrets[i].upgradeLvl - 1; ++i)
+                    {
+                        newGame.currentTurrets[i].Upgrade();
+                    }
+                }
                 return newGame;
             }
         }

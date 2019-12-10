@@ -20,6 +20,7 @@ namespace TowerDefenseGUI
             xPos = Convert.ToInt32(finfo[1]);
             yPos = Convert.ToInt32(finfo[2]);   
             imageIndex = Convert.ToInt32(finfo[3]);
+            upgradeLvl = Convert.ToInt32(finfo[4]);
             type = "machinegun";
             return this;
         }

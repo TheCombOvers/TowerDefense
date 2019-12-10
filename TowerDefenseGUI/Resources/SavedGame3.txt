@@ -1,6 +1,12 @@
 NG
-1,0,0,0,999924,1,true,10,True,0,0,,
+0,1,1,0,999624,1,false,10,True,0,0,bI,
+ENEMIES
+binfantry,325,259.375,20,3
+ENDENEMIES
 TURRETS
-flak,750,300,0,1
+flak,550,400,0,4
+mortar,550,650,1,4
+machinegun,300,500,2,2
+machinegun,700,200,3,3
 ENDTURRETS
 END

@@ -772,7 +772,11 @@ namespace TowerDefenseGUI
             selectedRing.Margin = new Thickness(selectedTurret.xPos- selectedTurret.range + 25, selectedTurret.yPos - selectedTurret.range + 25, 0, 0);
             selectedRing.Width = selectedTurret.range * 2;
             selectedRing.Height = selectedTurret.range * 2;
-            GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
+            if (!GameWindowCanvas.Children.Contains(selectedRing))
+            {
+                GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret  
+            }
+                  
         }
 
         private void btnName_Click(object sender, RoutedEventArgs e)
