@@ -647,7 +647,7 @@ namespace TowerDefenseGUI
             }
             double dmg = selectedTurret.damage;
             lb_cost_to_upgrade.Content = cost + Convert.ToInt32(selectedTurret.upCost);
-            lb_current_Dps.Content = dps + Convert.ToInt32(selectedTurret.damage);
+            lb_current_Dps.Content = dps + Math.Round(selectedTurret.damage, 1);
             lb_turret_lvl.Content = lvl + selectedTurret.upgradeLvl;
 
             switch (selectedTurret.type)                 // grab the type and call methods based on it
@@ -676,16 +676,16 @@ namespace TowerDefenseGUI
             }
             if (selectedTurret.upgradeLvl == 1)
             {
-                lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .2);
+                lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .2, 1);
             }
             else if (selectedTurret.upgradeLvl == 2)
             {
                 
-                lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .3);
+                lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .3, 1);
             }
             else if (selectedTurret.upgradeLvl == 3)
             {
-                lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .4);
+                lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .4, 1);
             }
             else if (selectedTurret.upgradeLvl == 4)
             {
@@ -741,24 +741,22 @@ namespace TowerDefenseGUI
                 // change gui to represent the upgrade
                 double dmg = selectedTurret.damage;
                 lb_turret_lvl.Content = lvl + selectedTurret.upgradeLvl;
-                lb_current_Dps.Content = dps + Convert.ToInt32(dmg);
+                lb_current_Dps.Content = dps + Math.Round(dmg, 1);
                 if (selectedTurret.upgradeLvl == 2)
                 {
-                    lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .3);
+                    lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .3, 1);
                     lb_cost_to_upgrade.Content = cost + selectedTurret.upCost;
                 }
                 else if (selectedTurret.upgradeLvl == 3)
                 {
-                    lb_upgraded_dps.Content = upDps + Convert.ToInt32(dmg += dmg * .4);
+                    lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .4, 1);
                     lb_cost_to_upgrade.Content = cost + selectedTurret.upCost;
                 }
                 else if (selectedTurret.upgradeLvl == 4)
                 {
                     lb_cost_to_upgrade.Content = "Max Lvl";
                     lb_upgraded_dps.Content = "Max Lvl";
-                }
-
-                
+                }                
             }
             else
             {
