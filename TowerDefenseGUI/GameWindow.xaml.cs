@@ -34,7 +34,6 @@ namespace TowerDefenseGUI
         bool mortarplace;
         bool teslaplace;
         bool laserplace;
-        bool stunplace;
         bool isFastForward = false;
         public SoundHandler soundHandler;
         public bool selling = false;
@@ -473,7 +472,7 @@ namespace TowerDefenseGUI
             {
                 return;
             }
-            if (isPlacing == true)
+            if (isPlacing)
             {
                 imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
 
@@ -486,46 +485,67 @@ namespace TowerDefenseGUI
                 double posX = SnapToGridX(mousePos.X);
                 double posY = SnapToGridY(mousePos.Y);
                 image.Margin = new Thickness(posX, posY, 0, 0);
+                // check for turrets already there
+                foreach(Image tI in turrets)
+                {
+                    if(tI.Margin == image.Margin)
+                    {
+                        // play eehh sound
+                        return;
+                    }
+                }
+                // check for path
+                for(int i=0; i<Map.coords.Count-2; i++)
+                {
+                    var pt1 = Map.coords[i];
+                    var pt2 = Map.coords[i+1];
+                    // chech if image is between to pts in path
+                    if (!IsOnPath(image.Margin, pt1, pt2))
+                    {
+                        // play eehh sound
+                        return;
+                    }
+                }
                 image.MouseDown += SelectTurret;
                 int index = turrets.Count;
                 turrets.Add(image);
                 GameWindowCanvas.Children.Add(image);
-                if (machinegunplace == true)
+                if (machinegunplace)
                 {
                     Game.money -= 50;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower.png"));
                     MachineGun g = MachineGun.MakeMachineGun(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
-                else if (flakplace == true)
+                else if (flakplace)
                 {
                     Game.money -= 75;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.PNG"));
                     Flak g = Flak.MakeFlak(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
-                else if (mortarplace == true)
+                else if (mortarplace)
                 {
                     Game.money -= 200;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.PNG"));
                     Mortar g = Mortar.MakeMortar(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
-                else if (teslaplace == true)
+                else if (teslaplace)
                 {
                     Game.money -= 175;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.PNG"));
                     Tesla g = Tesla.MakeTesla(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
-                else if (laserplace == true)
+                else if (laserplace)
                 {
                     Game.money -= 125;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.PNG"));
                     Laser g = Laser.MakeLaser(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
-                else if (stunplace == true)
+                else
                 {
                     Game.money -= 200;
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.PNG"));
@@ -551,6 +571,51 @@ namespace TowerDefenseGUI
                 GameWindowCanvas.Children.Remove(selectedRing);
             }
 
+        }
+
+        private bool IsOnPath(Thickness margin, Intersection pt1, Intersection pt2)
+        {
+            if (pt1.x == pt2.x)
+            {
+                if (margin.Left == pt1.x+25 || margin.Left == pt1.x - 25)
+                {
+                    if (margin.Top > pt1.y)
+                    {
+                        if (margin.Top < pt2.y)
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        if (margin.Top > pt2.y)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (margin.Top == pt1.y +25 || margin.Top == pt1.y - 25)
+                {
+                    if (margin.Left > pt1.x)
+                    {
+                        if (margin.Left < pt2.x)
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        if (margin.Left > pt2.x)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         // button methods
@@ -611,7 +676,7 @@ namespace TowerDefenseGUI
                 if (Game.money >= 50)
                 {
                     machinegunplace = true;
-                    flakplace = mortarplace = teslaplace = laserplace = stunplace = false;
+                    flakplace = mortarplace = teslaplace = laserplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
                     imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
@@ -622,7 +687,7 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 175)
                 {
-                    machinegunplace = flakplace = mortarplace = laserplace = stunplace = false;
+                    machinegunplace = flakplace = mortarplace = laserplace = false;
                     teslaplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
@@ -630,7 +695,6 @@ namespace TowerDefenseGUI
                     isPlacing = true;
                 }
             }
-            if (isPlacing) btn_Sell_Turret.Content = "Cancel";
         }
         private void btnFlakLaserBuy_Click(object sender, RoutedEventArgs e)
         {
@@ -638,7 +702,7 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 75)
                 {
-                    machinegunplace = mortarplace = teslaplace = laserplace = stunplace = false;
+                    machinegunplace = mortarplace = teslaplace = laserplace = false;
                     flakplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
@@ -650,7 +714,7 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 125)
                 {
-                    machinegunplace = flakplace = mortarplace = teslaplace = stunplace = false;
+                    machinegunplace = flakplace = mortarplace = teslaplace = false;
                     laserplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
@@ -658,7 +722,6 @@ namespace TowerDefenseGUI
                     isPlacing = true;
                 }
             }
-            if (isPlacing) btn_Sell_Turret.Content = "Cancel";
         }
 
         private void btnMortarStunBuy_Click(object sender, RoutedEventArgs e)
@@ -667,7 +730,7 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 150)
                 {
-                    machinegunplace = flakplace = teslaplace = laserplace = stunplace = false;
+                    machinegunplace = flakplace = teslaplace = laserplace = false;
                     mortarplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
@@ -680,19 +743,12 @@ namespace TowerDefenseGUI
                 if (Game.money >= 200)
                 {
                     machinegunplace = flakplace = mortarplace = teslaplace = laserplace = false;
-                    stunplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
                     imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
                     isPlacing = true;
                 }
             }
-            if (isPlacing) btn_Sell_Turret.Content = "Cancel";
-        }
-        private void CancelPlace()
-        {
-            // refund money spent
-            // remove image following mouse
         }
 
         private void GameWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -730,12 +786,6 @@ namespace TowerDefenseGUI
 
         private void btn_Sell_Click(object sender, RoutedEventArgs e)
         {
-            if (isPlacing)
-            {
-                // cancel placing turret
-                CancelPlace();
-                isPlacing = false;
-            }
             if (selectedTurret != null)
             {
                 RemoveTurret(selectedTurret);
