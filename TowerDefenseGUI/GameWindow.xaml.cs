@@ -41,11 +41,12 @@ namespace TowerDefenseGUI
         public bool selling = false;
         public Turret selectedTurret;
         public Image selectedRing = new Image();
-        public TextBlock selectedTurretInfo = new TextBlock();
         public int numWavesToWin;
+        public bool isOverMenu; 
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler, int mapId)
         {
             InitializeComponent();
+            Turret.ChangeImage = ChangeTowerImage;
             if (diff == 1)
             {
                 numWavesToWin = 10;
@@ -59,11 +60,19 @@ namespace TowerDefenseGUI
                 numWavesToWin = 30;
             }
             soundHandler = sentSoundHandler;
-            //selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Put the ring image source here"));
+            selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tower select.png"));
             selectedRing.RenderTransformOrigin = new Point(0.5, 0.5);
-            selectedTurretInfo.Foreground = Brushes.DarkRed;
-            selectedTurretInfo.FontWeight = FontWeights.Bold;
-            selectedTurretInfo.FontSize = 13;
+            selectedRing.MouseDown += Deselect;
+            btnFlakLaserBuy.Click += Deselect;
+            btnFlakLaserBuy.Click += Deselect;
+            btnMachineGunTeslaBuy.Click += Deselect;
+            btnNextWave.Click += Deselect;
+            btnPauseGame.Click += Deselect;
+            btnSaveGame.Click += Deselect;
+            btn_Sell_Turret.Click += Deselect;
+            side_menu.MouseDown += Deselect;
+            btn_fast_fowrard.Click += Deselect;
+            MapImage.MouseDown += Deselect;
             turrets = new List<Image>();
             enemies = new List<Image>();
             // do not mess with the order of these addition please :)
@@ -79,7 +88,7 @@ namespace TowerDefenseGUI
             // add all image sources to the turret image sources list
             // again dont mess with the order of these lines
             tImageSources = new List<string>();
-            tImageSources.Add("pack://application:,,,/Resources/turret tower.png");
+            tImageSources.Add("pack://application:,,,/Resources/machine gun tower.png");
             tImageSources.Add("pack://application:,,,/Resources/flak tower.png");
             tImageSources.Add("pack://application:,,,/Resources/laser tower.png");
             tImageSources.Add("pack://application:,,,/Resources/mortar tower.png");
@@ -149,6 +158,55 @@ namespace TowerDefenseGUI
             else
             {
                 Dispatcher.Invoke(() => txtNextWaveTimer.Text = "60");
+            }
+        }
+
+        public void ChangeTowerImage(string tower, int index, bool value)
+        {
+            if (tower == "machinegun")
+            {
+                if (value == true)
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower fire.png"));
+                }
+                else
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower.png"));
+                }
+            }
+            else if (tower == "flak")
+            {
+                if (value == true)
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower fire.png"));
+                }
+                else
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.png"));
+                }
+            }
+            else if (tower == "mortar")
+            {
+                if (value == true)
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower fire.png"));
+                }
+                else
+                {
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.png"));
+                }
+            }
+            else if (tower == "stun")
+            {
+                
+            }
+            else if (tower == "laser")
+            {
+                
+            }
+            else if (tower == "tesla")
+            {
+                
             }
         }
 
@@ -372,15 +430,21 @@ namespace TowerDefenseGUI
         }
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            mousePos = e.GetPosition(GameWindowCanvas);
+            if (mousePos.X > 1000)
+            {
+                return;
+            }
             if (isPlacing == true)
             {
                 imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                     
                 Image image = new Image();
                 isPlacing = false;
                 image.RenderTransformOrigin = new Point(0.5, 0.5);
                 image.Width = 50;
                 image.Height = 50;
-                mousePos = e.GetPosition(GameWindowCanvas);
+                
                 double posX = SnapToGridX(mousePos.X);
                 double posY = SnapToGridY(mousePos.Y);
                 image.Margin = new Thickness(posX, posY, 0, 0);
@@ -391,7 +455,7 @@ namespace TowerDefenseGUI
                 if (machinegunplace == true)
                 {
                     Game.money -= 50;
-                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.PNG"));
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower.png"));
                     MachineGun g = MachineGun.MakeMachineGun(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
@@ -431,6 +495,7 @@ namespace TowerDefenseGUI
                     game.currentTurrets.Add(g);
                 }
                 txtMoney.Text = "$" + Game.money;
+                imagetowerplace.Margin = new Thickness(0, 0, 0, 0);
             }
             else
             {
@@ -441,8 +506,13 @@ namespace TowerDefenseGUI
                 lb_current_Dps.Visibility = Visibility.Hidden;
                 lb_selectedType.Visibility = Visibility.Hidden;
                 lb_upgraded_dps.Visibility = Visibility.Hidden;
-                lb_turret_lvl.Visibility = Visibility.Hidden;
+                lb_turret_lvl.Visibility = Visibility.Hidden;              
             }
+            if (GameWindowCanvas.Children.Contains(selectedRing))
+            {
+                GameWindowCanvas.Children.Remove(selectedRing);
+            }
+            
         }
 
         // button methods
@@ -475,7 +545,7 @@ namespace TowerDefenseGUI
             btnBasic.IsEnabled = false;
             btnAdvanced.IsEnabled = true;
             basic = true;
-            MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower.png"));
+            MachineGunTeslaImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower.png"));
             txtMachineGunTeslaName.Text = "Machine Gun Tower";
             txtMachineGunTeslaType.Text = "Target: Ground";
             txtMachineGunTeslaRange.Text = "Range: 125";
@@ -504,7 +574,7 @@ namespace TowerDefenseGUI
                 {
                     machinegunplace = true;
                     flakplace = mortarplace = teslaplace = laserplace = stunplace = false;
-                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/turret tower place.png"));
+                    imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
                     imagetowerplace.Margin = new Thickness(mousePos.X, mousePos.Y, 0, 0);
                     isPlacing = true;
@@ -622,8 +692,7 @@ namespace TowerDefenseGUI
             {
                 RemoveTurret(selectedTurret);
                 Game.money += Convert.ToInt32(selectedTurret.cost * .8);
-                //GameWindowCanvas.Children.Remove(selectedRing);
-                GameWindowCanvas.Children.Remove(selectedTurretInfo);
+                GameWindowCanvas.Children.Remove(selectedRing);
                 selectedTurret = null;
             }
         }
@@ -679,8 +748,7 @@ namespace TowerDefenseGUI
                 lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .2, 1);
             }
             else if (selectedTurret.upgradeLvl == 2)
-            {
-                
+            {              
                 lb_upgraded_dps.Content = upDps + Math.Round(dmg += dmg * .3, 1);
             }
             else if (selectedTurret.upgradeLvl == 3)
@@ -700,9 +768,11 @@ namespace TowerDefenseGUI
             lb_selectedType.Visibility = Visibility.Visible;
             lb_upgraded_dps.Visibility = Visibility.Visible;
             lb_turret_lvl.Visibility = Visibility.Visible;
-            
 
-            //GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
+            selectedRing.Margin = new Thickness(selectedTurret.xPos- selectedTurret.range + 25, selectedTurret.yPos - selectedTurret.range + 25, 0, 0);
+            selectedRing.Width = selectedTurret.range * 2;
+            selectedRing.Height = selectedTurret.range * 2;
+            GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
         }
 
         private void btnName_Click(object sender, RoutedEventArgs e)
@@ -762,6 +832,29 @@ namespace TowerDefenseGUI
             {
                 // do stuff for when they dont have enough money
             }
+        }
+        public void Deselect(object sender, object e)
+        {
+            selectedTurret = null;
+            b_upgrade_border.Visibility = Visibility.Hidden;
+            btn_Upgrade.Visibility = Visibility.Hidden;
+            lb_cost_to_upgrade.Visibility = Visibility.Hidden;
+            lb_current_Dps.Visibility = Visibility.Hidden;
+            lb_selectedType.Visibility = Visibility.Hidden;
+            lb_upgraded_dps.Visibility = Visibility.Hidden;
+            lb_turret_lvl.Visibility = Visibility.Hidden;
+        
+            if (GameWindowCanvas.Children.Contains(selectedRing))
+            {
+                GameWindowCanvas.Children.Remove(selectedRing);
+            }
+        }
+
+        private void MapImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            isPlacing = false;
+            imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+            imagetowerplace.Margin = new Thickness(0, 0, 0, 0);
         }
     }
 }
