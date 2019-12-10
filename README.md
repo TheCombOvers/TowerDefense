@@ -52,6 +52,6 @@ Once you request access, message me in teams so I can approve it. -Micah
 | Team Member | Time Spent | Time Left | Journal Link |
 |-------------|:----------:|:---------:|-------------:|
 |Levi|53hr, 48min|6hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
-|Alexander|41hr|19hrs|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
+|Alexander|50hr, 15min|9hrs, 45min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
 |Kevin|47hr, 15min|12hr, 45min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
 |Micah|46hr, 45min|13hr, 15min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
