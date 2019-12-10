@@ -337,12 +337,16 @@ namespace TowerDefenseGUI
         // removes a specified enemy from the game state and the view
         public void RemoveEnemy(Enemy e, bool isKill)
         {
-            game.currentEnemies.Remove(e);
-            Spawner.enemies.Remove(e);  // remove it from the game state
             if (GameWindowCanvas.Children.Contains(enemies[e.imageIndex]))
             {
                 GameWindowCanvas.Children.Remove(enemies[e.imageIndex]); // remove from the game window canvas
-            }            
+            }
+            else
+            {
+                return;
+            }
+            game.currentEnemies.Remove(e);
+            Spawner.enemies.Remove(e);  // remove it from the game state           
             enemies.RemoveAt(e.imageIndex);     // remove it from the image list in the view
             for (int i = e.imageIndex; i < enemies.Count; ++i)
             {
@@ -720,6 +724,9 @@ namespace TowerDefenseGUI
         // also sets selectedTurret to the clicked turret
         public void SelectTurret(object sender, object e)
         {
+            btn_Sell_Turret.IsEnabled = true;
+        
+            
             string cost = "Cost: ";
             string type = "Type: ";
             string dps = "Damge: ";
@@ -731,8 +738,15 @@ namespace TowerDefenseGUI
                 if (sender == turrets[i])
                 {
                     selectedTurret = game.currentTurrets[i];
-                    Console.WriteLine(selectedTurret.type);
                 }
+            }
+            if (selectedTurret.upgradeLvl >= 4)
+            {
+                btn_Upgrade.IsEnabled = false;
+            }
+            else
+            {
+                btn_Upgrade.IsEnabled = true;
             }
             double dmg = selectedTurret.damage;
             lb_cost_to_upgrade.Content = cost + Convert.ToInt32(selectedTurret.upCost);
@@ -823,10 +837,6 @@ namespace TowerDefenseGUI
             {
                 return;
             }
-            if (selectedTurret.upgradeLvl == 4) //if max lvl, stop
-            {
-                return;
-            }
             if (Game.money > selectedTurret.upCost)
             {
                 selectedTurret.Upgrade(); // do the upgrade
@@ -848,7 +858,9 @@ namespace TowerDefenseGUI
                 {
                     lb_cost_to_upgrade.Content = "Max Lvl";
                     lb_upgraded_dps.Content = "Max Lvl";
-                }
+                    btn_Upgrade.IsEnabled = false;
+                }                
+
             }
             else
             {
