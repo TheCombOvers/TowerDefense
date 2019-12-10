@@ -42,6 +42,7 @@ namespace TowerDefenseGUI
         public Image selectedRing = new Image();
         public int numWavesToWin;
         public bool isOverMenu;
+        HighScore hs = new HighScore();
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler, int mapId)
         {
             InitializeComponent();
@@ -805,7 +806,6 @@ namespace TowerDefenseGUI
             }
             else
             {
-                HighScore hs = new HighScore();
                 string name = boxName.Text.ToString();
                 int score = game.score;
                 hs.CreateScore(name, score);
