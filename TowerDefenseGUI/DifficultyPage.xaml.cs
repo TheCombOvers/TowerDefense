@@ -22,11 +22,12 @@ namespace TowerDefenseGUI
         {
             InitializeComponent();
             soundHandler = sentSoundHandler;
-            soundHandler.DifficultyPageMusic.PlayLooping();
+            soundHandler.PlayMusic(SoundHandler.MusicType.DifficultyMenu);
         }
         private void BtnMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            MainMenu mainMenu = new MainMenu();
+            //soundHandler.
+            MainMenu mainMenu = new MainMenu(soundHandler);
             mainMenu.Show();
             Window.GetWindow(this).Close();
         }
@@ -81,7 +82,7 @@ namespace TowerDefenseGUI
         }
         private void BtnSelectMapEasy_Click(object sender, RoutedEventArgs e)
         {
-            soundHandler.DifficultyPageMusic.Stop();
+            //soundHandler.DifficultyPageMusic.Stop();
             var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler, 0);  
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
@@ -93,7 +94,7 @@ namespace TowerDefenseGUI
             var gameWindow = new GameWindow(Cheat, false, Difficulty, soundHandler, 1); 
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
-            soundHandler.DifficultyPageMusic.Stop();
+            //soundHandler.DifficultyPageMusic.Stop();
             hostWindow.Close();
         }
 
@@ -103,7 +104,7 @@ namespace TowerDefenseGUI
             
             gameWindow.Show();
             Window hostWindow = Window.GetWindow(this);
-            soundHandler.DifficultyPageMusic.Stop();
+            //soundHandler.DifficultyPageMusic.Stop();
             hostWindow.Close();
         }
     }
