@@ -27,11 +27,6 @@ namespace TowerDefenseGUI
             {
                 scorebox.Items.Add(highscorestring[i]);
             }
-            List<string> scores = Highscores.PassScores();
-            for (int i = 0; i < scores.Count; ++i)
-            {
-                        scorebox.Items.Add(scores[i]);
-            }
         }
     }
 }
