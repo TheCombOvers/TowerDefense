@@ -41,7 +41,6 @@ namespace TowerDefenseGUI
         public bool selling = false;
         public Turret selectedTurret;
         public Image selectedRing = new Image();
-        public TextBlock selectedTurretInfo = new TextBlock();
         public int numWavesToWin;
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler, int mapId)
         {
@@ -59,11 +58,8 @@ namespace TowerDefenseGUI
                 numWavesToWin = 30;
             }
             soundHandler = sentSoundHandler;
-            //selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/Put the ring image source here"));
+            selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower select.png"));
             selectedRing.RenderTransformOrigin = new Point(0.5, 0.5);
-            selectedTurretInfo.Foreground = Brushes.DarkRed;
-            selectedTurretInfo.FontWeight = FontWeights.Bold;
-            selectedTurretInfo.FontSize = 13;
             turrets = new List<Image>();
             enemies = new List<Image>();
             // do not mess with the order of these addition please :)
@@ -375,6 +371,7 @@ namespace TowerDefenseGUI
             if (isPlacing == true)
             {
                 imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+                     
                 Image image = new Image();
                 isPlacing = false;
                 image.RenderTransformOrigin = new Point(0.5, 0.5);
@@ -431,6 +428,7 @@ namespace TowerDefenseGUI
                     game.currentTurrets.Add(g);
                 }
                 txtMoney.Text = "$" + Game.money;
+                imagetowerplace.Margin = new Thickness(0, 0, 0, 0);
             }
             else
             {
@@ -441,8 +439,13 @@ namespace TowerDefenseGUI
                 lb_current_Dps.Visibility = Visibility.Hidden;
                 lb_selectedType.Visibility = Visibility.Hidden;
                 lb_upgraded_dps.Visibility = Visibility.Hidden;
-                lb_turret_lvl.Visibility = Visibility.Hidden;
+                lb_turret_lvl.Visibility = Visibility.Hidden;              
             }
+            if (GameWindowCanvas.Children.Contains(selectedRing))
+            {
+                GameWindowCanvas.Children.Remove(selectedRing);
+            }
+            
         }
 
         // button methods
@@ -622,8 +625,7 @@ namespace TowerDefenseGUI
             {
                 RemoveTurret(selectedTurret);
                 Game.money += Convert.ToInt32(selectedTurret.cost * .8);
-                //GameWindowCanvas.Children.Remove(selectedRing);
-                GameWindowCanvas.Children.Remove(selectedTurretInfo);
+                GameWindowCanvas.Children.Remove(selectedRing);
                 selectedTurret = null;
             }
         }
@@ -700,9 +702,11 @@ namespace TowerDefenseGUI
             lb_selectedType.Visibility = Visibility.Visible;
             lb_upgraded_dps.Visibility = Visibility.Visible;
             lb_turret_lvl.Visibility = Visibility.Visible;
-            
 
-            //GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
+            selectedRing.Margin = new Thickness(selectedTurret.xPos- selectedTurret.range, selectedTurret.yPos - selectedTurret.range, 0, 0);
+            selectedRing.Width = selectedTurret.range * 2;
+            selectedRing.Height = selectedTurret.range * 2;
+            GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
         }
 
         private void btnName_Click(object sender, RoutedEventArgs e)
@@ -762,6 +766,10 @@ namespace TowerDefenseGUI
             {
                 // do stuff for when they dont have enough money
             }
+        }
+        public void Deselect(object sender, object e)
+        {
+            // to do levi
         }
     }
 }

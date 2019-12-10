@@ -60,12 +60,12 @@
         <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="440" Canvas.Left="1000" Canvas.Top="100" Panel.ZIndex="1"/>
         <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="440" Canvas.Left="1000" Canvas.Top="300" Panel.ZIndex="1"/>
         <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="440" Canvas.Left="1000" Canvas.Top="475" Panel.ZIndex="1"/>
-        <Border x:Name="b_upgrade_border" BorderBrush="SlateGray" BorderThickness="2" Height="80" Canvas.Left="785" Canvas.Top="820" Width="210" Background="DimGray"/>
-        <Button x:Name="btn_Upgrade" Background="LightSlateGray" BorderThickness="2" BorderBrush="SlateGray" FontSize="12" Content="Upgrade" Canvas.Left="925" Canvas.Top="865" Width="65" Height="25" Click="btn_Upgrade_Click"/>
-        <Label x:Name="lb_upgraded_dps" FontSize="15" Content="Upgraded Dps: " Canvas.Left="785" Canvas.Top="860"/>
-        <Label x:Name="lb_selectedType" FontSize="15" Content="Type: " Canvas.Left="785" Canvas.Top="820"/>
-        <Label x:Name="lb_current_Dps" FontSize="15" Content="Dps: " Canvas.Left="785" Canvas.Top="840"/>
-        <Label x:Name="lb_cost_to_upgrade" FontSize="15" Content="Cost: " Canvas.Left="925" Canvas.Top="820"/>
-        <Label x:Name="lb_turret_lvl" FontSize="15" Content="Level: " Canvas.Left="925" Canvas.Top="840"/>
+        <Border x:Name="b_upgrade_border" Visibility="Hidden" BorderBrush="SlateGray" BorderThickness="2" Height="80" Canvas.Left="785" Canvas.Top="820" Width="210" Background="DimGray"/>
+        <Button x:Name="btn_Upgrade" Visibility="Hidden" Background="LightSlateGray" BorderThickness="2" BorderBrush="SlateGray" FontSize="12" Content="Upgrade" Canvas.Left="925" Canvas.Top="865" Width="65" Height="25" Click="btn_Upgrade_Click"/>
+        <Label x:Name="lb_upgraded_dps" Visibility="Hidden" FontSize="15" Content="Upgraded Dps: " Canvas.Left="785" Canvas.Top="860"/>
+        <Label x:Name="lb_selectedType" Visibility="Hidden" FontSize="15" Content="Type: " Canvas.Left="785" Canvas.Top="820"/>
+        <Label x:Name="lb_current_Dps" Visibility="Hidden" FontSize="15" Content="Dps: " Canvas.Left="785" Canvas.Top="840"/>
+        <Label x:Name="lb_cost_to_upgrade" Visibility="Hidden" FontSize="15" Content="Cost: " Canvas.Left="925" Canvas.Top="820"/>
+        <Label x:Name="lb_turret_lvl" Visibility="Hidden" FontSize="15" Content="Level: " Canvas.Left="925" Canvas.Top="840"/>
     </Canvas>
 </Window>
