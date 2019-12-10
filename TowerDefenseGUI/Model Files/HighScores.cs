@@ -52,18 +52,17 @@ namespace TowerDefenseGUI
                 string start = reader.ReadLine();
                 if (start == "Start")
                 {
-                    string readline = "";
+                    string readline = reader.ReadLine();
                     while (readline != "END")
                     {
-                        readline = reader.ReadLine();
                         line.Add(readline);
+                        readline = reader.ReadLine();
                     }
                 }
-                line.Add(highscore);
             }
             using (StreamWriter writer = new StreamWriter(filename))
             {
-                
+                line.Add(highscore);
                 writer.WriteLine("Start");
                 writer.Flush();
                 for (int i = 0; i < line.Count; ++i)
