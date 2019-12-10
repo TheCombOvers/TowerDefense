@@ -30,7 +30,7 @@ namespace TowerDefenseGUI
             List<string> scores = Highscores.PassScores();
             for (int i = 0; i < scores.Count; ++i)
             {
-                scorebox.Items.Add(scores[i]);
+                        scorebox.Items.Add(scores[i]);
             }
         }
     }

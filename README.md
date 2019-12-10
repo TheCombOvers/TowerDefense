@@ -45,13 +45,13 @@ After the player has won they may continue playing in an endless mode, earning m
 
 ## Recording
 
-[Demo Video](https://bju-my.sharepoint.com/personal/mhane142_students_bju_edu/Documents/Attachments/IMG_2337.MOV)
+[Demo Video](https://bju-my.sharepoint.com/:v:/g/personal/ayerk481_students_bju_edu/EZZHPuJodz9NvLVBSmXnBpgBUZjlpVCHwhpOAHfycdIBGg?email=ayerk481%40students.bju.edu&e=DNKoLB)
 Once you request access, message me in teams so I can approve it. -Micah
 
 ## Expenses
 | Team Member | Time Spent | Time Left | Journal Link |
 |-------------|:----------:|:---------:|-------------:|
 |Levi|53hr, 48min|6hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
-|Alexander|41hr|19hrs|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
-|Kevin|47hr, 15min|12hr, 45min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
-|Micah|46hr, 45min|13hr, 15min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
+|Alexander|50hr, 15min|9hrs, 45min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
+|Kevin|49hr, 45min|10hr, 15min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
+|Micah|46hr, 45min|12hr, 15min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
