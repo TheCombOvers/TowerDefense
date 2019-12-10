@@ -133,7 +133,8 @@ namespace TowerDefenseGUI
             txtMoney.Text += Game.money;
             txtLives.Text = "Lives: " + Game.lives;
             gameTimer.Start();
-            //soundHandler.GameMusic.PlayLooping();
+
+            soundHandler.PlayMusic(SoundHandler.MusicType.Game);
         }
 
         private void SetWaveTimer(object sender, ElapsedEventArgs e)
@@ -337,7 +338,10 @@ namespace TowerDefenseGUI
         {
             game.currentEnemies.Remove(e);
             Spawner.enemies.Remove(e);  // remove it from the game state
-            GameWindowCanvas.Children.Remove(enemies[e.imageIndex]); // remove from the game window canvas
+            if (GameWindowCanvas.Children.Contains(enemies[e.imageIndex]))
+            {
+                GameWindowCanvas.Children.Remove(enemies[e.imageIndex]); // remove from the game window canvas
+            }            
             enemies.RemoveAt(e.imageIndex);     // remove it from the image list in the view
             for (int i = e.imageIndex; i < enemies.Count; ++i)
             {
@@ -681,7 +685,7 @@ namespace TowerDefenseGUI
             Turret.RotateTurret += null;
             Enemy.RotateEnemy += null;
             Turret.PlaySound += null;
-            MainMenu mainMenu = new MainMenu();
+            MainMenu mainMenu = new MainMenu(soundHandler);
             mainMenu.Show();
         }
 
@@ -717,7 +721,7 @@ namespace TowerDefenseGUI
         {
             string cost = "Cost: ";
             string type = "Type: ";
-            string dps = "Dps: ";
+            string dps = "Damge: ";
             string upDps = "Upgraded Dps: ";
             string lvl = "Level: ";
 
@@ -791,7 +795,6 @@ namespace TowerDefenseGUI
             {
                 GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret  
             }
-
         }
 
         private void btnName_Click(object sender, RoutedEventArgs e)
@@ -813,7 +816,7 @@ namespace TowerDefenseGUI
         private void btn_Upgrade_Click(object sender, RoutedEventArgs e)
         {
             string cost = "Cost: ";
-            string dps = "Dps: ";
+            string dps = "Damage: ";
             string upDps = "Upgraded Dps: ";
             string lvl = "Level: ";
             if (selectedTurret == null)
