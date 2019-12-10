@@ -133,7 +133,8 @@ namespace TowerDefenseGUI
             txtMoney.Text += Game.money;
             txtLives.Text = "Lives: " + Game.lives;
             gameTimer.Start();
-            //soundHandler.GameMusic.PlayLooping();
+
+            soundHandler.PlayMusic(SoundHandler.MusicType.Game);
         }
 
         private void SetWaveTimer(object sender, ElapsedEventArgs e)
@@ -670,7 +671,7 @@ namespace TowerDefenseGUI
             Turret.RotateTurret += null;
             Enemy.RotateEnemy += null;
             Turret.PlaySound += null;
-            MainMenu mainMenu = new MainMenu();
+            MainMenu mainMenu = new MainMenu(soundHandler);
             mainMenu.Show();
         }
 

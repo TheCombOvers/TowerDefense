@@ -5,5 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
-        Title="Tower Defense" Height="900" Width="1440" Background="Gray" ResizeMode="CanMinimize">
+        Title="Tower Defense" Height="900" Width="1440" Background="#dcbeb6" ResizeMode="CanMinimize">
+    <Grid Margin="0,68,283,143">
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources\comboversLogo.jpg"/>
+        </Grid.Background>
+    </Grid>
 </Window>
