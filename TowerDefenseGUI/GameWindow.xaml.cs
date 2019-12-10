@@ -776,8 +776,7 @@ namespace TowerDefenseGUI
             if (!GameWindowCanvas.Children.Contains(selectedRing))
             {
                 GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret  
-            }
-                  
+            }                 
         }
 
         private void btnName_Click(object sender, RoutedEventArgs e)
