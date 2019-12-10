@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
         Closing="GameWindow_Closing"
-        Title="Window1" Height="930" Width="1440">
+        Title="Window1" Height="930" Width="1440" ResizeMode="NoResize">
     <Canvas x:Name="GameWindowCanvas">
         <Rectangle x:Name="side_menu" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="900" Margin="1000,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="440" Panel.ZIndex="1"/>
         <Image x:Name="MapImage" Source="Resources\path1.png" MaxHeight="900" MaxWidth="1000" HorizontalAlignment="Left" Height="900" VerticalAlignment="Top" Width="1000" MouseDown="MapImage_MouseDown" Panel.ZIndex="-1"/>
