@@ -42,6 +42,7 @@ namespace TowerDefenseGUI
         public Turret selectedTurret;
         public Image selectedRing = new Image();
         public int numWavesToWin;
+        public bool isOverMenu; 
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler, int mapId)
         {
             InitializeComponent();
@@ -59,8 +60,19 @@ namespace TowerDefenseGUI
                 numWavesToWin = 30;
             }
             soundHandler = sentSoundHandler;
-            selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower select.png"));
+            selectedRing.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tower select.png"));
             selectedRing.RenderTransformOrigin = new Point(0.5, 0.5);
+            selectedRing.MouseDown += Deselect;
+            btnFlakLaserBuy.Click += Deselect;
+            btnFlakLaserBuy.Click += Deselect;
+            btnMachineGunTeslaBuy.Click += Deselect;
+            btnNextWave.Click += Deselect;
+            btnPauseGame.Click += Deselect;
+            btnSaveGame.Click += Deselect;
+            btn_Sell_Turret.Click += Deselect;
+            side_menu.MouseDown += Deselect;
+            btn_fast_fowrard.Click += Deselect;
+            MapImage.MouseDown += Deselect;
             turrets = new List<Image>();
             enemies = new List<Image>();
             // do not mess with the order of these addition please :)
@@ -418,6 +430,11 @@ namespace TowerDefenseGUI
         }
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            mousePos = e.GetPosition(GameWindowCanvas);
+            if (mousePos.X > 1000)
+            {
+                return;
+            }
             if (isPlacing == true)
             {
                 imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
@@ -427,7 +444,7 @@ namespace TowerDefenseGUI
                 image.RenderTransformOrigin = new Point(0.5, 0.5);
                 image.Width = 50;
                 image.Height = 50;
-                mousePos = e.GetPosition(GameWindowCanvas);
+                
                 double posX = SnapToGridX(mousePos.X);
                 double posY = SnapToGridY(mousePos.Y);
                 image.Margin = new Thickness(posX, posY, 0, 0);
@@ -753,7 +770,7 @@ namespace TowerDefenseGUI
             lb_upgraded_dps.Visibility = Visibility.Visible;
             lb_turret_lvl.Visibility = Visibility.Visible;
 
-            selectedRing.Margin = new Thickness(selectedTurret.xPos- selectedTurret.range, selectedTurret.yPos - selectedTurret.range, 0, 0);
+            selectedRing.Margin = new Thickness(selectedTurret.xPos- selectedTurret.range + 25, selectedTurret.yPos - selectedTurret.range + 25, 0, 0);
             selectedRing.Width = selectedTurret.range * 2;
             selectedRing.Height = selectedTurret.range * 2;
             GameWindowCanvas.Children.Add(selectedRing);          // add the ring around the turret         
@@ -819,7 +836,26 @@ namespace TowerDefenseGUI
         }
         public void Deselect(object sender, object e)
         {
-            // to do levi
+            selectedTurret = null;
+            b_upgrade_border.Visibility = Visibility.Hidden;
+            btn_Upgrade.Visibility = Visibility.Hidden;
+            lb_cost_to_upgrade.Visibility = Visibility.Hidden;
+            lb_current_Dps.Visibility = Visibility.Hidden;
+            lb_selectedType.Visibility = Visibility.Hidden;
+            lb_upgraded_dps.Visibility = Visibility.Hidden;
+            lb_turret_lvl.Visibility = Visibility.Hidden;
+        
+            if (GameWindowCanvas.Children.Contains(selectedRing))
+            {
+                GameWindowCanvas.Children.Remove(selectedRing);
+            }
+        }
+
+        private void MapImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            isPlacing = false;
+            imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
+            imagetowerplace.Margin = new Thickness(0, 0, 0, 0);
         }
     }
 }
