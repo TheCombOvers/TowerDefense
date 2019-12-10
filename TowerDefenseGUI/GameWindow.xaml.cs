@@ -321,10 +321,12 @@ namespace TowerDefenseGUI
             pressBtn.Content = "Pause";
             pressBtn.Click += btnPauseGame_Click;
             gameTimer.Start();
+            nextWaveTimer.Start();
         }
         public void Pause()
         {
             gameTimer.Stop();
+            nextWaveTimer.Stop();
         }
         public void LoadTurretImgs()
         {

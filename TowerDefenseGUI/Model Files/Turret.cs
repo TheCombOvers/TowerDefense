@@ -16,6 +16,7 @@ namespace TowerDefenseGUI
         public string type;
         public double fireRate;
         public double fireTime;
+        public bool firstShot = true;
         public double xPos;
         public double yPos;
         public int imageID;
@@ -27,30 +28,9 @@ namespace TowerDefenseGUI
 
         public virtual void Attack(List<Enemy> enemies)
         {
-            
             Enemy e = DetectEnemy(enemies);
             if (e == null)
             {
-                if (type == "mortar")
-                {
-                    fireTime = 300;
-                }
-                else if (type == "stun")
-                {
-                    fireTime = 120;
-                }
-                else if (type == "tesla")
-                {
-                    fireTime = 5;
-                }
-                else if (type == "flak")
-                {
-                    fireTime = 65;
-                }
-                else
-                {
-                    fireTime = 10;
-                }
                 return;
             }
             else
@@ -60,13 +40,11 @@ namespace TowerDefenseGUI
                 if (fireTime % fireRate == 0)
                 {
                     PlaySound(this, type);
-                    e.TakeDamage(damage);
                 }
-                ++fireTime;
             }
         }
         
-        public Enemy DetectEnemy(List<Enemy> enemies)
+        public virtual Enemy DetectEnemy(List<Enemy> enemies)
         {
             Enemy target = null;
             foreach (Enemy e in enemies)
@@ -74,14 +52,23 @@ namespace TowerDefenseGUI
                 double dist = CalculateDistance(xPos, yPos, e.posX, e.posY);
                 if (range >= dist)
                 {
-                    target = e;
-                    return target;
+                    if (target == null)
+                    {
+                        target = e;
+                    }
+                    else
+                    {
+                        if(e.pathProgress > target.pathProgress)
+                        {
+                            target = e;
+                        }
+                    }
                 }
             }
             return target;
         }
 
-        private double CalculateDistance(double xPos, double yPos, double posX, double posY)
+        public double CalculateDistance(double xPos, double yPos, double posX, double posY)
         {
             double x = xPos - posX;
             double y = yPos - posY;

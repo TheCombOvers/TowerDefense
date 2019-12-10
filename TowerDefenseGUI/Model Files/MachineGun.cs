@@ -17,7 +17,7 @@ namespace TowerDefenseGUI
         {// need to make all turret desearilization look like this one...
             string[] finfo = info.Split(',');
             xPos = Convert.ToInt32(finfo[1]);
-            yPos = Convert.ToInt32(finfo[2]);   
+            yPos = Convert.ToInt32(finfo[2]);
             imageIndex = Convert.ToInt32(finfo[3]);
             type = "machinegun";
             return this;
@@ -25,7 +25,7 @@ namespace TowerDefenseGUI
         public static MachineGun MakeMachineGun(double x, double y, int index)
         {
             MachineGun m = new MachineGun();
-            
+
             m.imageIndex = index;
             m.imageID = 0;
             m.fireRate = 10;
@@ -37,6 +37,32 @@ namespace TowerDefenseGUI
             m.range = 125;
             m.type = "machinegun";
             return m;
+        }
+        public override void Attack(List<Enemy> enemies)
+        {
+            var target = DetectEnemy(enemies);
+            if (target != null)
+            {
+                if (target.type.Contains("aircraft") || target.type == "aboss")
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+            base.Attack(enemies);
+            if (firstShot)
+            {
+                firstShot = false;
+                fireTime = 10;
+            }
+            if (fireTime % fireRate == 0)
+            {
+                target.TakeDamage(damage);
+            }
+            ++fireTime;
         }
     }
 }

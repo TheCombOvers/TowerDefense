@@ -17,7 +17,7 @@ namespace TowerDefenseGUI
         {
             string[] finfo = info.Split(',');
             xPos = Convert.ToInt32(finfo[1]);
-            yPos = Convert.ToInt32(finfo[2]);          
+            yPos = Convert.ToInt32(finfo[2]);
             imageIndex = Convert.ToInt32(finfo[3]);
             return this;
         }
@@ -33,8 +33,35 @@ namespace TowerDefenseGUI
             f.upCost = Convert.ToInt32(f.cost / 2);
             f.damage = 7;
             f.range = 250;
-            f.type = "flak";           
+            f.type = "flak";
             return f;
+        }
+
+        public override void Attack(List<Enemy> enemies)
+        {
+            var target = DetectEnemy(enemies);
+            if (target != null)
+            {
+                if (target.type.Contains("infantry") || target.type.Contains("vehicle") || target.type == "gboss")
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+            base.Attack(enemies);
+            if (firstShot)
+            {
+                firstShot = false;
+                fireTime = 60;
+            }
+            if (fireTime % fireRate == 0)
+            {
+                target.TakeDamage(damage);
+            }
+            ++fireTime;
         }
     }
 }
