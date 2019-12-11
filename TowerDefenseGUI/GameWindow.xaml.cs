@@ -95,7 +95,7 @@ namespace TowerDefenseGUI
 
             if (isLoad)
             {
-                game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", AddEnemy, RemoveEnemy);
+                game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", RemoveEnemy);
                 if (game.isWaveOver == false)
                 {
                     btnNextWave.IsEnabled = false;
@@ -104,7 +104,7 @@ namespace TowerDefenseGUI
             }
             else
             {
-                game = new Game(mapId, cheat, AddEnemy, RemoveEnemy, diff);
+                game = new Game(mapId, cheat, RemoveEnemy, diff);
             }
             if (Game.map.mapID == 1)
             {
@@ -351,6 +351,7 @@ namespace TowerDefenseGUI
             enemies.Add(i);
             GameWindowCanvas.Children.Add(i);
         }
+
         // removes a specified enemy from the game state and the view
         public void RemoveEnemy(Enemy e, bool isKill)
         {
