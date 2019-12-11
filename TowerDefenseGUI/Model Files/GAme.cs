@@ -1,4 +1,6 @@
-﻿using System;
+﻿// This is the Game file. 
+// It contains the serialize interface and game class.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,38 +11,43 @@ using System.IO;
 
 namespace TowerDefenseGUI
 {
+    // This is the serialize interface.
     public interface ISerializeObject
     {
         string Serialize();
         object Deserialize(string info);
     }
+
+    // This is the main model class.
+    // It contains all the variables and methods necessary for managing the game logic
+    // Contains the master game serialization methods.
     class Game
     {
         public int difficulty; // number of waves required to win the game
-        public int currentWave;
-        public bool isWaveOver;
-        static public bool cheatMode;
-        public int waveProgress;
-        public static int money;
-        public int score;
-        public static int lives;
-        public bool gameOver;
-        public static Map map;
+        public int currentWave; // the wave the player is currently on. used for game gui.
+        public bool isWaveOver; // boolean to see if the wave is finished
+        static public bool cheatMode; // boolean to determine if the player loses lives and starting money amount
+        public int waveProgress; // the wave the player is on. used for game logic.
+        public static int money; // player's money
+        public int score; // player's score
+        public static int lives; // player's lives
+        public bool gameOver; // boolean to determine if game is over.
+        public static Map map; // Map object used to determine the gui map and virtual path
         public List<Turret> currentTurrets = new List<Turret>(); // list of turrets  currently on the screen
         public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
-        public Spawner spawner;
-        public Action<Enemy> addEnemy;
-        public Action<Enemy, bool> removeEnemy;
+        public Spawner spawner; // spawner object used to create enemy instances.
+        public Action<Enemy> addEnemy; // delegate used by spawner to add an enemy virtually and to gui
+        public Action<Enemy, bool> removeEnemy; // delegate used by spawner to remove an enemy virtually and from gui
 
-
-        public Game(int mapID,bool cheat, Action<Enemy> add, Action<Enemy, bool> remove, int diff)
+        // Game constructor that initializes the default values for the game.
+        public Game(int mapID, bool cheat, Action<Enemy> add, Action<Enemy, bool> remove, int diff)
         {
             difficulty = diff;
             cheatMode = cheat;
             currentWave = 0;
             isWaveOver = true;
-            waveProgress = 0;         
-            money = cheat == true ? 999999: 200;
+            waveProgress = 0;
+            money = cheat == true ? 999999 : 200;
             score = 0;
             lives = 10;
             gameOver = false;
@@ -50,23 +57,26 @@ namespace TowerDefenseGUI
             removeEnemy = remove;
         }
 
+        // updates the wave values, turrets' firstshot booleans, and calls the spawn method
         public void NextWave()
         {
             waveProgress++;
             isWaveOver = false;
-            foreach(Turret t in currentTurrets)
+            foreach (Turret t in currentTurrets)
             {
                 t.firstShot = true;
             }
             spawner.Spawn(waveProgress);
         }
 
+        //goes through the list of enemies and updates their virtual position.
+        //goes through the list of turrets and calls the attack method.
         public void UpdateModel()
         {
             if (Spawner.enemies.Count > 0)
             {
                 currentEnemies = Spawner.enemies;
-                for(int i=0;i<currentEnemies.Count;i++)
+                for (int i = 0; i < currentEnemies.Count; i++)
                 {
                     currentEnemies[i].UpdatePos();
                 }
@@ -77,9 +87,10 @@ namespace TowerDefenseGUI
             }
         }
 
+        // decrements the life value if it is > 0 and cheat mode is false
         public static void TakeLife()
         {
-            if (lives > 0 && cheatMode != true)
+            if (lives > 0 && !cheatMode)
             {
                 lives--;
             }
@@ -89,14 +100,14 @@ namespace TowerDefenseGUI
         public static Game LoadGame(string fileName, Action<Enemy> add, Action<Enemy, bool> remove)
         {
             using (StreamReader reader = new StreamReader(fileName))
-            { 
+            {
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
                 Game newGame = new Game(0, true, add, remove, 0);
                 if (begin == "NG")
                 {
-                  
+
                     string[] gameInfo = reader.ReadLine().Split(',');   // grab the game state information
-                    
+
                     map = new Map(Convert.ToInt32(gameInfo[0]));    // create a new map based on the mapid
                     newGame.currentWave = Convert.ToInt32(gameInfo[1]);
                     newGame.waveProgress = Convert.ToInt32(gameInfo[2]);
@@ -107,7 +118,7 @@ namespace TowerDefenseGUI
                     else { newGame.isWaveOver = true; }
                     Game.lives = Convert.ToInt32(gameInfo[7]);
                     if (gameInfo[8] == "false") { cheatMode = false; } // cheatmode is static btw
-                    Spawner.count = new int[2] { Convert.ToInt32(gameInfo[9]) ,Convert.ToInt32(gameInfo[10]) };
+                    Spawner.count = new int[2] { Convert.ToInt32(gameInfo[9]), Convert.ToInt32(gameInfo[10]) };
                     Spawner.types = new string[2] { gameInfo[11], gameInfo[12] };
                     while (true)
                     {
@@ -126,7 +137,7 @@ namespace TowerDefenseGUI
                                 {
                                     case "gboss":
                                         Boss bG = Boss.MakeBoss("g");
-                                        bG =  bG.Deserialize(line) as Boss;
+                                        bG = bG.Deserialize(line) as Boss;
                                         Spawner.enemies.Add(bG);
                                         break;
                                     case "aboss":
@@ -180,12 +191,12 @@ namespace TowerDefenseGUI
                                 switch (eleT[0])                 // grab the type and call methods based on it
                                 {
                                     case "flak":
-                                        Flak f = Flak.MakeFlak(0,0,0);
+                                        Flak f = Flak.MakeFlak(0, 0, 0);
                                         f.Deserialize(lineT);
                                         newGame.currentTurrets.Add(f);
                                         break;
                                     case "laser":
-                                        Laser l = Laser.MakeLaser(0, 0,0);
+                                        Laser l = Laser.MakeLaser(0, 0, 0);
                                         l.Deserialize(lineT);
                                         newGame.currentTurrets.Add(l);
                                         break;
@@ -223,7 +234,7 @@ namespace TowerDefenseGUI
                 }
                 for (int i = 0; i < newGame.currentTurrets.Count; ++i)
                 {
-                    for (int i2 = 0;  i2 < newGame.currentTurrets[i].upgradeLvl - 1; ++i2)
+                    for (int i2 = 0; i2 < newGame.currentTurrets[i].upgradeLvl - 1; ++i2)
                     {
                         newGame.currentTurrets[i2].Upgrade();
                     }
@@ -238,7 +249,7 @@ namespace TowerDefenseGUI
             {
                 writer.WriteLine("NG");
                 string waveOver = isWaveOver == true ? "true" : "false";
-                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", map.mapID, currentWave, waveProgress, score, money, difficulty, waveOver, lives, cheatMode, Spawner.count[0],Spawner.count[1], Spawner.types[0], Spawner.types[1]);
+                string gameState = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}", map.mapID, currentWave, waveProgress, score, money, difficulty, waveOver, lives, cheatMode, Spawner.count[0], Spawner.count[1], Spawner.types[0], Spawner.types[1]);
                 writer.WriteLine(gameState);
                 if (currentEnemies.Count != 0)
                 {
