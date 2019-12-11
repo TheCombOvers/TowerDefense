@@ -8,14 +8,14 @@ namespace TowerDefenseGUI
 {
     class HighScore
     {
-        public string player;
-        public int score;
+        public string player;   // variable for player name
+        public int score;       // variable for player score
         Highscores hs = new Highscores();
 
         public HighScore()
         {
-            Player = player;
-            Score = score;
+            Player = player; // string for player name
+            Score = score;   // int for player score
         }
         public int Score
         {
