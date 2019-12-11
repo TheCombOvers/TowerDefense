@@ -1,4 +1,5 @@
-﻿using System;
+﻿// This file contains the Enemy class
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,22 +8,25 @@ using System.Windows.Controls;
 
 namespace TowerDefenseGUI
 {
+    // The enemy class contains the values for the enemy subclasses and the path AI methods.
+    // It also contains abstract serialization methods.
     public abstract class Enemy : ISerializeObject
     {
-        public int rewardMoney;
-        public int rewardScore;
-        public double health;
-        public double speed;
-        public int stunned = 0;
-        public string type;
-        public int pathProgress;
-        public double posX;
-        public double posY;
-        public int imageID;
-        public int imageIndex;
-        public static event EventHandler<int> RotateEnemy;
+        public int rewardMoney; // amount of money given upon death
+        public int rewardScore; // amount of score given upon death
+        public double health; // the health of the enemy
+        public double speed; // the speed of the enemy
+        public int stunned = 0; // the stun value on the enemy. defaults to 0
+        public string type; // the type of enemy
+        public int pathProgress; // the position within the map path
+        public double posX; // the x position of the enemy
+        public double posY; // the y position of the enemy
+        public int imageID; // the reference used to determine what image file to use
+        public int imageIndex; // the reference for the gui enemy list
+        public static event EventHandler<int> RotateEnemy; // gui event to rotate the enemy
 
-
+        // changes the x or y position of the enemy based off the CheckCoords direction.
+        // doesn't move if stun value is > 0.
         public void UpdatePos()
         {
             var intersection = CheckCoords(Map.coords);
@@ -60,11 +64,12 @@ namespace TowerDefenseGUI
 
         }
 
-        // check the enemy position compared to path direction change.
+        // checks the enemy position compared to pathProgress direction in the map path.
         // tells the updatePos whether to modify the x or y coord of the enemy.
         // when the enemy position is close to the path change, it sets the speed to + or - and 
         // returns a string that says x or y. For example, if speed is negative and it returns 'x',
-        // then the sprite will move to the left.
+        // then the sprite will move to the left. Calls game takelife method and spawner remove method
+        // if the enemy gets to the end of the path.
         public Intersection CheckCoords(List<Intersection> path)
         {
             int x = path[pathProgress].x;
@@ -104,6 +109,7 @@ namespace TowerDefenseGUI
             return path[pathProgress];
         }
 
+        // decrements enemy health by an amount
         public void TakeDamage(double amount)
         {
             health -= amount;
@@ -114,7 +120,10 @@ namespace TowerDefenseGUI
             }
         }
 
+        // method definition of parent serialize
         public abstract string Serialize();
+
+        // method definition of parent deserialize
         public abstract object Deserialize(string info);
     }
 }
