@@ -1,12 +1,13 @@
-﻿<Page x:Class="TowerDefenseGUI.DifficultyPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TowerDefenseGUI"
-      mc:Ignorable="d" 
-      d:DesignHeight="900" d:DesignWidth="1440"
-      Title="Tower Defense" Background="#20572f">
+﻿<!---->
+<Page x:Class="TowerDefenseGUI.DifficultyPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:TowerDefenseGUI"
+    mc:Ignorable="d" 
+    d:DesignHeight="900" d:DesignWidth="1440"
+    Title="Tower Defense" Background="#77917e">
     <Canvas>
         <!--Borders and Header Items-->
         <Border CornerRadius="40" BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>

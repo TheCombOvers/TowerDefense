@@ -26,7 +26,7 @@ namespace TowerDefenseGUI
         }
         private void BtnMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            //soundHandler.
+            soundHandler.Play(null, "backbutton");
             MainMenu mainMenu = new MainMenu(soundHandler);
             mainMenu.Show();
             Window.GetWindow(this).Close();
