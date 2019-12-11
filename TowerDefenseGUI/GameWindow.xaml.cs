@@ -162,14 +162,17 @@ namespace TowerDefenseGUI
 
         public void ChangeTowerImage(string tower, int index, bool value)
         {
+            // switches between tower firing images and non-firing images to animate firing visuals
             if (tower == "machinegun")
             {
                 if (value)
                 {
+                    // changes machine gun tower image to firing if enemy is within range
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower fire.png"));
                 }
                 else
                 {
+                    // changes machine gun tower image to non-firing
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower.png"));
                 }
             }
@@ -290,6 +293,8 @@ namespace TowerDefenseGUI
                     ++counter;
                 }
             }
+            // tells if turret is placed on map
+            // if wave is over, changes all images of towers back to non-firing image
             if (game.isWaveOver == true)
             {
                 for (int i = 0; i < game.currentTurrets.Count; ++i)
@@ -458,6 +463,7 @@ namespace TowerDefenseGUI
         }
         public int SnapToGridX(double x)
         {
+            // gets X coordinate for tower placement
             int oldx = Convert.ToInt32(x);
             int tempx = oldx / 50;
             int newx = tempx * 50;
@@ -465,6 +471,7 @@ namespace TowerDefenseGUI
         }
         public int SnapToGridY(double y)
         {
+            // gets Y coordinate for tower placement
             int oldy = Convert.ToInt32(y);
             int tempy = oldy / 50;
             int newy = tempy * 50;
@@ -472,6 +479,7 @@ namespace TowerDefenseGUI
         }
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            //places selected tower on map
             mousePos = e.GetPosition(GameWindowCanvas);
             if (mousePos.X > 1000)
             {

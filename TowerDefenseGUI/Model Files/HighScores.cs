@@ -17,6 +17,7 @@ namespace TowerDefenseGUI
 
         public void GetNewScore(string highscore)
         {
+            // adds new high score to the list of high scores
             Save("..\\..\\Resources\\SavedScores.txt", highscore);
         }
 
@@ -27,6 +28,7 @@ namespace TowerDefenseGUI
 
         public static List<string> Load(string filename)
         {
+            // loads high scores from file
             using (StreamReader reader = new StreamReader(filename))
             {
                 List<string> highscorelist = new List<string>();
@@ -46,6 +48,7 @@ namespace TowerDefenseGUI
 
         public void Save(string filename, string highscore)
         {
+            // saves high scores to file
             List<string> line = new List<string>();
             using (StreamReader reader = new StreamReader(filename))
             {
@@ -73,19 +76,6 @@ namespace TowerDefenseGUI
                 writer.WriteLine("END");
                 writer.Flush();
             }
-
         }
-
-        //public void GetObjectData(SerializationInfo info, StreamingContext context)
-        //{
-        //    info.AddValue("Player", Player);
-        //    info.AddValue("Score", Score);
-        //}
-
-        //public Highscores(SerializationInfo info, StreamingContext context)
-        //{
-        //    Player = (string)info.GetValue("Player", typeof(string));
-        //    Score = (int)info.GetValue("Score", typeof(int));
-        //}
     }
 }
