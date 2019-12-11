@@ -8,11 +8,14 @@ namespace TowerDefenseGUI
 {
     class Tesla : Turret
     {
+        // serializes the object into a string of values and returns it.
         public override string Serialize()
         {
             string tesla = string.Format("{0},{1},{2},{3},{4}", "tesla", xPos, yPos, imageIndex, upgradeLvl);
             return tesla;
         }
+
+        // deserializes a string and converts it into an object with the specified values within that string.v
         public override object Deserialize(string info)
         {
             string[] finfo = info.Split(',');
@@ -22,6 +25,9 @@ namespace TowerDefenseGUI
             upgradeLvl = Convert.ToInt32(finfo[4]);
             return this;
         }
+
+        // takes the x and y coordinates of its gui counterpart as well as
+        // the gui's list index and returns a default tesla object.
         public static Tesla MakeTesla(double x, double y, int index)
         {
             Tesla t = new Tesla();
@@ -38,6 +44,9 @@ namespace TowerDefenseGUI
             return t;
         }
 
+        // takes a list of enemy objects, checks to see if any are in range,
+        // checks to see if they are ground or air units, and then deals damage
+        // to all of them at a set interval. Calls parent attack method.
         public override void Attack(List<Enemy> enemies)
         {
             var targets = DetectEnemies(enemies);
@@ -61,6 +70,9 @@ namespace TowerDefenseGUI
             ++fireTime;
         }
 
+        // calculates the distance between the turret and the enemies.
+        // if the enemy is within range, then it adds the enemy to a list
+        // and returns the list.
         public List<Enemy> DetectEnemies(List<Enemy> enemies)
         {
             List<Enemy> targets = new List<Enemy>();
