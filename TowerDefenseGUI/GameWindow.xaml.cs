@@ -106,7 +106,7 @@ namespace TowerDefenseGUI
 
             if (isLoad)
             {
-                game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", RemoveEnemy);
+                game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", AddEnemy, RemoveEnemy);
                 if (game.isWaveOver == false)
                 {
                     btnNextWave.IsEnabled = false;
@@ -115,7 +115,7 @@ namespace TowerDefenseGUI
             }
             else
             {
-                game = new Game(mapId, cheat, RemoveEnemy, diff);
+                game = new Game(mapId, cheat, AddEnemy, RemoveEnemy, diff);
             }
             if (Game.map.mapID == 1)
             {
@@ -572,7 +572,7 @@ namespace TowerDefenseGUI
                 {
                     if(tI.Margin == image.Margin)
                     {
-                        // play eehh sound
+                        imagetowerplace.Margin = new Thickness(-50, -50, 0, 0);
                         return;
                     }
                 }
@@ -582,7 +582,7 @@ namespace TowerDefenseGUI
                     var pt2 = Map.coords[i+1];
                     if (!IsOnPath(image.Margin, pt1, pt2))
                     {
-                        // play eehh sound
+                        imagetowerplace.Margin = new Thickness(-50, -50, 0, 0);
                         return;
                     }
                 }

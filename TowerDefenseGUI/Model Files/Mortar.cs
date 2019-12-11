@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 namespace TowerDefenseGUI
 {
     class Mortar : Turret
-    {
+    {        
+        // serializes the object into a string of values and returns it.
         public override string Serialize()
         {
             string mortar = string.Format("{0},{1},{2},{3},{4}", "mortar", xPos, yPos, imageIndex, upgradeLvl);
             return mortar;
         }
+
+        // deserializes a string and converts it into an object with the specified values within that string.
         public override object Deserialize(string info)
         {
             string[] finfo = info.Split(',');
@@ -22,6 +25,9 @@ namespace TowerDefenseGUI
             upgradeLvl = Convert.ToInt32(finfo[4]);
             return this;
         }
+
+        // takes the x and y coordinates of its gui counterpart as well as
+        // the gui's list index and returns a default mortar object.
         public static Mortar MakeMortar(double x, double y, int index)
         {
             Mortar m = new Mortar();
@@ -38,6 +44,9 @@ namespace TowerDefenseGUI
             return m;
         }
 
+        // takes a list of enemy objects, checks to see if it is in range,
+        // checks to see if it is a ground or air unit, and then deals damage
+        // to enemies within a small range at a set interval. Calls parent attack method.
         public override void Attack(List<Enemy> enemies)
         {
             var target = DetectEnemy(enemies);

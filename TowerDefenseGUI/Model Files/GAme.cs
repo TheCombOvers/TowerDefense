@@ -40,7 +40,7 @@ namespace TowerDefenseGUI
         public Action<Enemy, bool> removeEnemy; // delegate used by spawner to remove an enemy virtually and from gui
 
         // Game constructor that initializes the default values for the game.
-        public Game(int mapID, bool cheat, Action<Enemy, bool> remove, int diff)
+        public Game(int mapID, bool cheat, Action<Enemy> add, Action<Enemy, bool> remove, int diff)
         {
             currentTurrets = new List<Turret>();
             currentEnemies = new List<Enemy>();
@@ -56,6 +56,7 @@ namespace TowerDefenseGUI
             map = new Map(mapID);
             spawner = new Spawner(remove);
             removeEnemy = remove;
+            addEnemy = add;
         }
 
         // updates the wave values, turrets' firstshot booleans, and calls the spawn method
@@ -98,12 +99,12 @@ namespace TowerDefenseGUI
         }
 
         // loads a game that is saved in the file named "filename" and returns that game
-        public static Game LoadGame(string fileName, Action<Enemy, bool> remove)
+        public static Game LoadGame(string fileName, Action<Enemy> add, Action<Enemy, bool> remove)
         {
             using (StreamReader reader = new StreamReader(fileName))
             {
                 string begin = reader.ReadLine(); // read the first line and check for a New Game or NG
-                Game newGame = new Game(0, true, remove, 0);
+                Game newGame = new Game(0, true, add, remove, 0);
                 if (begin == "NG")
                 {
 

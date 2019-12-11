@@ -8,11 +8,14 @@ namespace TowerDefenseGUI
 {
     class Stun : Turret
     {
+        // serializes the object into a string of values and returns it.
         public override string Serialize()
         {
             string stun = string.Format("{0},{1},{2},{3},{4}", "stun", xPos, yPos, imageIndex, upgradeLvl);
             return stun;
         }
+
+        // deserializes a string and converts it into an object with the specified values within that string.
         public override object Deserialize(string info)
         {
             string[] finfo = info.Split(',');
@@ -22,6 +25,9 @@ namespace TowerDefenseGUI
             upgradeLvl = Convert.ToInt32(finfo[4]);
             return this;
         }
+
+        // takes the x and y coordinates of its gui counterpart as well as
+        // the gui's list index and returns a default stun object.
         public static Stun MakeStun(double x, double y, int index)
         {
             Stun s = new Stun();
@@ -38,6 +44,10 @@ namespace TowerDefenseGUI
             return s;
         }
 
+        // takes a list of enemy objects, checks to see if it is in range,
+        // checks to see if it is a ground or air unit, and then deals damage to it
+        // as well as sets the enemy's stun value at a set interval.
+        // Calls parent attack method.
         public override void Attack(List<Enemy> enemies)
         {
             base.Attack(enemies);

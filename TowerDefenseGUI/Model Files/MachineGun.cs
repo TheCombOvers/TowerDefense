@@ -1,4 +1,5 @@
-﻿using System;
+﻿// This file contains the Machine gun class
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,20 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
+    // The Machinegun class contains the override method
+    // for Attack enemy. Also implements serialization methods.
     class MachineGun : Turret
     {
+        // serializes the object into a string of values and returns it.
         public override string Serialize()
         {
             string machinegun = string.Format("{0},{1},{2},{3},{4}", "machinegun", xPos, yPos, imageIndex, upgradeLvl);
             return machinegun;
         }
+
+        // deserializes a string and converts it into an object with the specified values within that string.
         public override object Deserialize(string info)
         {
-            // call the upgrade method for the number of upgraded levels...
             string[] finfo = info.Split(',');
             xPos = Convert.ToInt32(finfo[1]);
             yPos = Convert.ToInt32(finfo[2]);
@@ -24,6 +29,9 @@ namespace TowerDefenseGUI
             type = "machinegun";
             return this;
         }
+
+        // takes the x and y coordinates of its gui counterpart as well as
+        // the gui's list index and returns a default machinegun object.
         public static MachineGun MakeMachineGun(double x, double y, int index)
         {
             MachineGun m = new MachineGun();
@@ -40,6 +48,10 @@ namespace TowerDefenseGUI
             m.type = "machinegun";
             return m;
         }
+
+        // takes a list of enemy objects, checks to see if it is in range,
+        // checks to see if it is a ground or air unit, and then deals damage
+        // to it at a set interval. Calls parent attack method.
         public override void Attack(List<Enemy> enemies)
         {
             var target = DetectEnemy(enemies);

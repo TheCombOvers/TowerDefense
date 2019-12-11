@@ -20,7 +20,7 @@ namespace TowerDefenseGUI
             g.score = 700;
             Game.money = 200;
             g.isWaveOver = false;
-            g.spawner = new Spawner(null, null);
+            g.spawner = new Spawner(null);
             Infantry i1 = Infantry.MakeInfantry("b");
             i1.posX = 2;
             i1.posY = 4;
@@ -72,7 +72,7 @@ namespace TowerDefenseGUI
             g.currentTurrets.Add(m1);
             g.currentTurrets.Add(s1);
             g.currentTurrets.Add(t1);
-            g.spawner = new Spawner(null, null);
+            g.spawner = new Spawner(null);
             Infantry i1 = Infantry.MakeInfantry("b");
             i1.posX = 2;
             i1.posY = 4;
