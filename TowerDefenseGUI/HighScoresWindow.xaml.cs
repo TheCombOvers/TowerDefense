@@ -21,12 +21,34 @@ namespace TowerDefenseGUI
     {
         public HighScoresWindow()
         {
+            List<int> scores = new List<int>();
             InitializeComponent();
             List<string> highscorestring = Highscores.Load("..\\..\\Resources\\SavedScores.txt");
             for (int i = 0; i < highscorestring.Count; ++i)
             {
-                scorebox.Items.Add(highscorestring[i]);
+                string[] scorestr = highscorestring[i].Split(':');
+                int score = Convert.ToInt32(scorestr[1].Trim());
+                scores.Add(score);
             }
+            List<int> sorted = GetHighestScore(scores);
+            for (int i = 0; i < sorted.Count; ++i)
+            {
+                for (int j = 0; j < highscorestring.Count; ++j)
+                {
+                    if (highscorestring[j].Contains(sorted[i].ToString()))
+                    {
+                        scorebox.Items.Add(highscorestring[j]);
+                    }
+                }
+            }
+        }
+
+
+        public List<int> GetHighestScore(List<int> list)
+        {
+            list.Sort();
+            list.Reverse();
+            return list;
         }
     }
 }

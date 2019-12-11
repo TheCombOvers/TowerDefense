@@ -1,6 +1,7 @@
 Start
 Bob: 243
 Obi-wan: 105
-Big Chungus: 243
-Mikeyj: 243
+Big Chungus: 480
+Mikeyj: 220
+Jeebus: 999999999
 END
