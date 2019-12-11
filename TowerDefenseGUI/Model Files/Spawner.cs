@@ -1,4 +1,5 @@
-﻿using System;
+﻿// This file contains the Spawner class.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +9,22 @@ using System.Windows.Threading;
 
 namespace TowerDefenseGUI
 {
+    // The spawner class handles the creation of waves, generating of enemies, and removing of enemies
     class Spawner
     {
-        public static List<Enemy> enemies = new List<Enemy>();
-        static Action<Enemy, bool> Remove;
-        static Action<Enemy> Add;
-        public static int[] count = { 0, 0 };
-        public static string[] types = { "", "" };
-        public static event EventHandler<Enemy> DisplayWave;
+        public static List<Enemy> enemies = new List<Enemy>(); // list of the spawned enemies
+        static Action<Enemy, bool> Remove; // the gui delegate to remove enemies
+        public static int[] count = { 0, 0 }; // the number of units to spawn separated into two types
+        public static string[] types = { "", "" }; // the two types of units to spawn
+        public static event EventHandler<Enemy> DisplayWave; // gui event to spawn enemies
 
-        public Spawner(Action<Enemy> AddEnemy, Action<Enemy, bool> RemoveEnemy)
+        // initializes the gui remove method
+        public Spawner(Action<Enemy, bool> RemoveEnemy)
         {
             Remove = RemoveEnemy;
-            Add = AddEnemy;
         }
+
+        // sets count values and types values and calls the gui event to spawn the wave
         public void Spawn(int wave)
         {
             count = new int[2] { 0, 0 };
@@ -32,6 +35,7 @@ namespace TowerDefenseGUI
             DisplayWave(this, null);
         }
 
+        // creates an enemy object and decrements the count
         public static Enemy GenerateEnemy()
         {
             Console.WriteLine("Generating enemy");
@@ -107,6 +111,7 @@ namespace TowerDefenseGUI
             return e;
         }
 
+        // evaluates the count values based off the wave.
         private int[] DetermineWaveNumbers(int wave)
         {
             int[] num = new int[2];
@@ -207,6 +212,7 @@ namespace TowerDefenseGUI
             return num;
         }
 
+        // evaluates the types values based off the wave.
         private string[] DetermineWave(int wave, int[] count)
         {
             string[] types = new string[2];
@@ -267,7 +273,7 @@ namespace TowerDefenseGUI
             return types;
         }
 
-
+        // calls the gui remove delegate
         public static void RemoveEnemy(Enemy enemy, bool isKill)
         {
             Remove(enemy, isKill);
