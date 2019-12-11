@@ -1,4 +1,6 @@
-﻿using System;
+﻿/* This contains the game window class which contians all the methods that
+ * update the view of the game and display it's functionality. */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,29 +15,35 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace TowerDefenseGUI
 {
+    // This class initalizes the game window and provideds the view for the game.
+    // it calls all the method neccassary to run the game and keeps track of all the view level variables for the game.
+    
     public partial class GameWindow : Window
     {
-        Game game;
-        DispatcherTimer gameTimer;
-        Timer nextWaveTimer; // for auto starting next wave
-        public List<Image> enemies;
-        public List<Image> turrets;
+        Game game; // our instance of the model class for the game
+        DispatcherTimer gameTimer;  // timer that tick 60/s to update the game
+        Timer nextWaveTimer; // timer to auto start the next wave at the end of a wave
+        public List<Image> enemies; // images for all the enemies currently on the field
+        public List<Image> turrets; // images for allt the turrets currently on the field 
+        // the master list of image sources for enemies
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
+        // the master list of image sources for turrets
         List<string> tImageSources;// 0:MG tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
-        bool isPlacing; // checks if player is currently placing a tower
-        Point mousePos;
-        bool basic;  // checks if basic tab is active
-        bool machinegunplace;  // checks if machine gun tower is being placed
-        bool flakplace;  // checks if flak tower is being placed
-        bool mortarplace;  // checks if mortar tower is being placed
-        bool teslaplace;  // checks if tesla tower is being placed
-        bool laserplace;  // checks if laser tower is being placed
-        bool isFastForward = false;
-        public SoundHandler soundHandler;
+        bool isPlacing; // true if the player is placing a turret else false
+        Point mousePos; // the current position of the mouse
+        bool basic; // true if placing a basic turret
+        bool machinegunplace;   // true if placing a machine gun
+        bool flakplace;     // true if placing a flak cannon    
+        bool mortarplace;   // true if placing a mortar
+        bool teslaplace;    // true if placing a tesla      
+        bool laserplace;    // true if placing a laser
+        bool isFastForward = false; // true if the game is in fast forward
+        public SoundHandler soundHandler;   // The  
         public bool selling = false;
         public Turret selectedTurret;
         public Image selectedRing = new Image();
@@ -146,7 +154,6 @@ namespace TowerDefenseGUI
 
                         btnNextWave_Click(null, null);
                         txtNextWaveTimer.Text = "60";
-
                     }
                     else
                     {
@@ -414,6 +421,7 @@ namespace TowerDefenseGUI
             {
                 game.currentTurrets[i].imageIndex -= 1;
             }
+            Debug.WriteLine("Number of Turrets " + turrets.Count());
         }
 
         private void btnNextWave_Click(object sender, RoutedEventArgs e)
@@ -522,7 +530,7 @@ namespace TowerDefenseGUI
                 {
                     if(tI.Margin == image.Margin)
                     {
-                        // play eehh sound
+                        imagetowerplace.Margin = new Thickness(-50, -50, 0, 0);
                         return;
                     }
                 }
@@ -532,14 +540,13 @@ namespace TowerDefenseGUI
                     var pt2 = Map.coords[i+1];
                     if (!IsOnPath(image.Margin, pt1, pt2))
                     {
-                        // play eehh sound
+                        imagetowerplace.Margin = new Thickness(-50, -50, 0, 0);
                         return;
                     }
                 }
                 image.MouseDown += SelectTurret;
                 int index = turrets.Count;
-                turrets.Add(image);
-                GameWindowCanvas.Children.Add(image);
+           
                 if (machinegunplace)
                 {
                     Game.money -= 50;
@@ -582,6 +589,8 @@ namespace TowerDefenseGUI
                     Stun g = Stun.MakeStun(posX, posY, index);
                     game.currentTurrets.Add(g);
                 }
+                turrets.Add(image);
+                GameWindowCanvas.Children.Add(image);
                 txtMoney.Text = "$" + Game.money;
                 imagetowerplace.Margin = new Thickness(0, 0, 0, 0);
             }
@@ -600,7 +609,6 @@ namespace TowerDefenseGUI
             {
                 GameWindowCanvas.Children.Remove(selectedRing);
             }
-
         }
 
         private bool IsOnPath(Thickness margin, Intersection pt1, Intersection pt2)
@@ -809,11 +817,16 @@ namespace TowerDefenseGUI
             {
                 RemoveEnemy(game.currentEnemies[i], false);
             }
-            game.currentTurrets = new List<Turret>();
-            turrets = new List<Image>();
-            Turret.RotateTurret += null;
-            Enemy.RotateEnemy += null;
-            Turret.PlaySound += null;
+            int count2 = turrets.Count();
+            for (int i = count2 - 1; i > -1; --i)
+            {
+                RemoveTurret(game.currentTurrets[i]);
+            }
+            Turret.RotateTurret -= RotateTurret;
+            Enemy.RotateEnemy -= RotateEnemy;
+            Spawner.DisplayWave -= DisplayWave;
+            Turret.PlaySound -= soundHandler.Play;
+            Turret.ChangeImage -= ChangeTowerImage;
             MainMenu mainMenu = new MainMenu(soundHandler);
             mainMenu.Show();
         }
@@ -987,11 +1000,6 @@ namespace TowerDefenseGUI
                     lb_upgraded_dps.Content = "Max Lvl";
                     btn_Upgrade.IsEnabled = false;
                 }                
-
-            }
-            else
-            {
-                // do stuff for when they dont have enough money
             }
         }
         public void Deselect(object sender, object e)

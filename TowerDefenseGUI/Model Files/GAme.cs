@@ -42,6 +42,8 @@ namespace TowerDefenseGUI
         // Game constructor that initializes the default values for the game.
         public Game(int mapID, bool cheat, Action<Enemy, bool> remove, int diff)
         {
+            currentTurrets = new List<Turret>();
+            currentEnemies = new List<Enemy>();
             difficulty = diff;
             cheatMode = cheat;
             currentWave = 0;
