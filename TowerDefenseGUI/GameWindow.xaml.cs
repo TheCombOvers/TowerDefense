@@ -26,14 +26,14 @@ namespace TowerDefenseGUI
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
         List<string> tImageSources;// 0:MG tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
-        bool isPlacing;
+        bool isPlacing; // checks if player is currently placing a tower
         Point mousePos;
-        bool basic;
-        bool machinegunplace;
-        bool flakplace;
-        bool mortarplace;
-        bool teslaplace;
-        bool laserplace;
+        bool basic;  // checks if basic tab is active
+        bool machinegunplace;  // checks if machine gun tower is being placed
+        bool flakplace;  // checks if flak tower is being placed
+        bool mortarplace;  // checks if mortar tower is being placed
+        bool teslaplace;  // checks if tesla tower is being placed
+        bool laserplace;  // checks if laser tower is being placed
         bool isFastForward = false;
         public SoundHandler soundHandler;
         public bool selling = false;
@@ -162,14 +162,17 @@ namespace TowerDefenseGUI
 
         public void ChangeTowerImage(string tower, int index, bool value)
         {
+            // switches between tower firing images and non-firing images to animate firing visuals
             if (tower == "machinegun")
             {
                 if (value)
                 {
+                    // changes machine gun tower image to firing if enemy is within range
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower fire.png"));
                 }
                 else
                 {
+                    // changes machine gun tower image to non-firing
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower.png"));
                 }
             }
@@ -177,10 +180,12 @@ namespace TowerDefenseGUI
             {
                 if (value)
                 {
+                    // changes flak tower image to firing
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower fire.png"));
                 }
                 else
                 {
+                    // changes flak tower image to non-firing
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.png"));
                 }
             }
@@ -188,10 +193,12 @@ namespace TowerDefenseGUI
             {
                 if (value)
                 {
+                    // changes mortar image to firing
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower fire.png"));
                 }
                 else
                 {
+                    // changes mortar image to non-firing
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.png"));
                 }
             }
@@ -199,10 +206,12 @@ namespace TowerDefenseGUI
             {
                 if (value)
                 {
-                    //turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower fire.png"));
+                    // changes stun tower image to firing
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower fire.png"));
                 }
                 else
                 {
+                    // changes stun tower image to non-firing
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.png"));
                 }
             }
@@ -210,10 +219,12 @@ namespace TowerDefenseGUI
             {
                 if (value)
                 {
-                    //turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower fire.png"));
+                    // changes laser tower image to firing
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower fire.png"));
                 }
                 else
                 {
+                    // changes laser tower image to non-firing
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.png"));
                 }
             }
@@ -221,10 +232,12 @@ namespace TowerDefenseGUI
             {
                 if (value)
                 {
-                    //turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower fire.png"));
+                    // changes tesla tower image to firing
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower fire.png"));
                 }
                 else
                 {
+                    // changes tesla tower image to non-firing
                     turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower.png"));
                 }
             }
@@ -290,6 +303,15 @@ namespace TowerDefenseGUI
                     ++counter;
                 }
             }
+            // tells if turret is placed on map
+            // if wave is over, changes all images of towers back to non-firing image
+            if (game.isWaveOver == true)
+            {
+                for (int i = 0; i < game.currentTurrets.Count; ++i)
+                {
+                    turrets[i].Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
+                }
+            }
         }
 
         private void DisplayWave(object sender, Enemy nul)
@@ -314,6 +336,7 @@ namespace TowerDefenseGUI
 
         public void RotateEnemy(object en, int degrees)
         {
+            // rotates enemy images to simulate turning on path
             int index = game.currentEnemies.IndexOf(en as Enemy);
             if (game.currentEnemies.Contains(en) && enemies.Count >= index + 1)
             {
@@ -322,6 +345,7 @@ namespace TowerDefenseGUI
         }
         public void RotateTurret(object tur, int degrees)
         {
+            // rotates turret images to simulate visuals of turret firing at enemy in range
             if (game.currentTurrets.Contains(tur))
             {
                 int index = game.currentTurrets.IndexOf(tur as Turret);
@@ -394,18 +418,22 @@ namespace TowerDefenseGUI
 
         private void btnNextWave_Click(object sender, RoutedEventArgs e)
         {
+            // advanced to the next wave
             game.currentWave += 1;
             game.NextWave();
-            btnNextWave.IsEnabled = false;
+            btnNextWave.IsEnabled = false; // disables next wave button
             game.isWaveOver = false;
         }
         private void btnSaveGame_Click(object sender, RoutedEventArgs e)
         {
+            // saves the current game state
             game.SaveGame("..\\..\\Resources\\SavedGame3.txt");
             MessageBox.Show("Your game has been saved on round: " + game.currentWave);
         }
         private void btnPauseGame_Click(object sender, RoutedEventArgs e)
         {
+            // stops the timer
+            // freezes all objects on the screen
             Button pressBtn = (Button)sender;
             pressBtn.Content = "Resume";
             pressBtn.Click += btnResumeGame_Click;
@@ -414,6 +442,8 @@ namespace TowerDefenseGUI
         }
         private void btnResumeGame_Click(object sender, RoutedEventArgs e)
         {
+            // resumes the timer to resume game
+            // all objects on screen unfreeze
             Button pressBtn = (Button)sender;
             pressBtn.Content = "Pause";
             pressBtn.Click += btnPauseGame_Click;
@@ -452,6 +482,7 @@ namespace TowerDefenseGUI
         }
         public int SnapToGridX(double x)
         {
+            // gets X coordinate for tower placement
             int oldx = Convert.ToInt32(x);
             int tempx = oldx / 50;
             int newx = tempx * 50;
@@ -459,6 +490,7 @@ namespace TowerDefenseGUI
         }
         public int SnapToGridY(double y)
         {
+            // gets Y coordinate for tower placement
             int oldy = Convert.ToInt32(y);
             int tempy = oldy / 50;
             int newy = tempy * 50;
@@ -466,6 +498,7 @@ namespace TowerDefenseGUI
         }
         private void MapImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            //places selected tower on map
             mousePos = e.GetPosition(GameWindowCanvas);
             if (mousePos.X > 1000)
             {
@@ -475,6 +508,7 @@ namespace TowerDefenseGUI
             {
                 imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/empty.png"));
 
+                // adds tower image to map
                 Image image = new Image();
                 isPlacing = false;
                 image.RenderTransformOrigin = new Point(0.5, 0.5);
@@ -617,6 +651,10 @@ namespace TowerDefenseGUI
         // button methods
         private void btnAdvanced_Click(object sender, RoutedEventArgs e)
         {
+            // switches to advanced tab
+            // changes available towers
+            // makes advanced tab button disabled
+            // makes basic tab button enabled
             btnBasic.IsEnabled = true;
             btnAdvanced.IsEnabled = false;
             basic = false;
@@ -641,6 +679,10 @@ namespace TowerDefenseGUI
         }
         private void btnBasic_Click(object sender, RoutedEventArgs e)
         {
+            // switches to basic tab
+            // changes available towers
+            // makes basic tab button disabled
+            // makes advanced tab button enabled
             btnBasic.IsEnabled = false;
             btnAdvanced.IsEnabled = true;
             basic = true;
@@ -667,10 +709,13 @@ namespace TowerDefenseGUI
         // buy turret methods
         private void btnMachineGunTeslaBuy_Click(object sender, RoutedEventArgs e)
         {
+            // button to buy machine gun tower or tesla tower
             if (basic)
             {
+                // checks if basic tab or advanced tab is selected
                 if (Game.money >= 50)
                 {
+                    // checks if player has enough money for machine gun tower if basic tab is selected
                     machinegunplace = true;
                     flakplace = mortarplace = teslaplace = laserplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/machine gun tower place.png"));
@@ -683,6 +728,7 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 175)
                 {
+                    // checks if player has enough money for machine gun tower if basic tab is selected
                     machinegunplace = flakplace = mortarplace = laserplace = false;
                     teslaplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower place.png"));
@@ -694,10 +740,13 @@ namespace TowerDefenseGUI
         }
         private void btnFlakLaserBuy_Click(object sender, RoutedEventArgs e)
         {
+            // button to buy flak tower or laser tower
             if (basic)
             {
+                // checks if basic or advanced tab is selected
                 if (Game.money >= 75)
                 {
+                    // checks if player has enough money for flak tower if basic tower is selected
                     machinegunplace = mortarplace = teslaplace = laserplace = false;
                     flakplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower place.png"));
@@ -710,6 +759,7 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 125)
                 {
+                    // checks if player has enough money for laser tower if advanced tab is selected
                     machinegunplace = flakplace = mortarplace = teslaplace = false;
                     laserplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower place.png"));
@@ -722,10 +772,13 @@ namespace TowerDefenseGUI
 
         private void btnMortarStunBuy_Click(object sender, RoutedEventArgs e)
         {
+            // button to buy Mortar tower or stun tower
             if (basic)
             {
+                // checks if basic or advanced tab is selected
                 if (Game.money >= 150)
                 {
+                    // check if player has enough money for mortar tower if basic tab is selected
                     machinegunplace = flakplace = teslaplace = laserplace = false;
                     mortarplace = true;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower place.png"));
@@ -738,6 +791,7 @@ namespace TowerDefenseGUI
             {
                 if (Game.money >= 200)
                 {
+                    // checks if player has enough money for stun tower if advanced tab is selected
                     machinegunplace = flakplace = mortarplace = teslaplace = laserplace = false;
                     imagetowerplace.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower place.png"));
                     mousePos = Mouse.GetPosition(GameWindowCanvas);
@@ -884,12 +938,15 @@ namespace TowerDefenseGUI
 
         private void btnName_Click(object sender, RoutedEventArgs e)
         {
+            // button for submitting new high score at the end of the match
             if (btnName.Content.ToString() == "")
             {
+                // message box appears if no name has been entered
                 MessageBox.Show("Please enter a name or alias");
             }
             else
             {
+                // sends name and score to HighScore class
                 string name = boxName.Text.ToString();
                 int score = game.score;
                 hs.CreateScore(name, score);

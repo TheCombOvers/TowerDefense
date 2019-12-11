@@ -26,11 +26,13 @@ namespace TowerDefenseGUI
             List<string> highscorestring = Highscores.Load("..\\..\\Resources\\SavedScores.txt");
             for (int i = 0; i < highscorestring.Count; ++i)
             {
+                // splits names and scores in order to sort
                 string[] scorestr = highscorestring[i].Split(':');
                 int score = Convert.ToInt32(scorestr[1].Trim());
                 scores.Add(score);
             }
             List<int> sorted = GetHighestScore(scores);
+            // prints high scores to screen
             for (int i = 0; i < sorted.Count; ++i)
             {
                 for (int j = 0; j < highscorestring.Count; ++j)
@@ -46,6 +48,7 @@ namespace TowerDefenseGUI
 
         public List<int> GetHighestScore(List<int> list)
         {
+            // sorts scores from highest to lowest
             list.Sort();
             list.Reverse();
             return list;

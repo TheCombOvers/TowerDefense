@@ -346,6 +346,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\laser tower fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stun tower fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tesla tower fire.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
