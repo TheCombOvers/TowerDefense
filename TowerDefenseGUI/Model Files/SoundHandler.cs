@@ -25,6 +25,9 @@ namespace TowerDefenseGUI
         // Static variable determining how many of the same sound can be played simultaneously
         public static int AllowedSoundInstances { get; set; } = 5;
 
+        // Static variable for whether sounds are muted or not
+        public static bool Muted { get; set; } = false;
+
         private int[] CurrentSoundCounts;
 
         /*
@@ -86,48 +89,56 @@ namespace TowerDefenseGUI
                 MachineGunPlayers[i].Open(new Uri("..\\..\\Resources\\MachineGunSound.wav", UriKind.Relative));
                 MachineGunPlayers[i].Pause();
                 MachineGunPlayers[i].Position = new TimeSpan(0);
+                MachineGunPlayers[i].Volume = 0.35;
 
                 // Initialize Flak Media Players
                 FlakPlayers[i] = new MediaPlayer() { IsMuted = true };
                 FlakPlayers[i].Open(new Uri("..\\..\\Resources\\FlakSound.wav", UriKind.Relative));
                 FlakPlayers[i].Pause();
                 FlakPlayers[i].Position = new TimeSpan(0);
+                FlakPlayers[i].Volume = 0.4;
 
                 // Initialize Mortar Media Players
                 MortarPlayers[i] = new MediaPlayer() { IsMuted = true };
                 MortarPlayers[i].Open(new Uri("..\\..\\Resources\\MortarSound.wav", UriKind.Relative));
                 MortarPlayers[i].Pause();
                 MortarPlayers[i].Position = new TimeSpan(0);
+                MortarPlayers[i].Volume = 0.5;
 
                 // Initialize Tesla Media Players
                 TeslaPlayers[i] = new MediaPlayer() { IsMuted = true };
                 TeslaPlayers[i].Open(new Uri("..\\..\\Resources\\TeslaSound.wav", UriKind.Relative));
                 TeslaPlayers[i].Pause();
                 TeslaPlayers[i].Position = new TimeSpan(0);
+                TeslaPlayers[i].Volume = 0.3;
 
                 // Initialize Laser Media Players
                 LaserPlayers[i] = new MediaPlayer() { IsMuted = true };
                 LaserPlayers[i].Open(new Uri("..\\..\\Resources\\LaserSound.wav", UriKind.Relative));
                 LaserPlayers[i].Pause();
                 LaserPlayers[i].Position = new TimeSpan(0);
+                LaserPlayers[i].Volume = 0.45;
 
                 // Initialize Stun Media Players
                 StunPlayers[i] = new MediaPlayer() { IsMuted = true };
                 StunPlayers[i].Open(new Uri("..\\..\\Resources\\StunSound.wav", UriKind.Relative));
                 StunPlayers[i].Pause();
                 StunPlayers[i].Position = new TimeSpan(0);
+                StunPlayers[i].Volume = 0.5;
 
                 // Initialize Menu Button Media Players
                 ButtonPlayers[i] = new MediaPlayer() { IsMuted = true };
                 ButtonPlayers[i].Open(new Uri("..\\..\\Resources\\ShotgunSound.wav", UriKind.Relative));
                 ButtonPlayers[i].Pause();
                 ButtonPlayers[i].Position = new TimeSpan(0);
+                ButtonPlayers[i].Volume = 0.4;
 
                 // Initialize Back Button Media Players
                 BackButtonPlayers[i] = new MediaPlayer() { IsMuted = true };
                 BackButtonPlayers[i].Open(new Uri("..\\..\\Resources\\ClipSound.wav", UriKind.Relative));
                 BackButtonPlayers[i].Pause();
                 BackButtonPlayers[i].Position = new TimeSpan(0);
+                BackButtonPlayers[i].Volume = 0.5;
             }
 
             MusicPlayer.MediaEnded += MusicPlayer_Loop;
@@ -146,7 +157,7 @@ namespace TowerDefenseGUI
             {
                 // Handles machinegun code
                 case "machinegun":
-                    MachineGunPlayers[CurrentSoundCounts[0]].IsMuted = false;
+                    MachineGunPlayers[CurrentSoundCounts[0]].IsMuted = Muted;
                     MachineGunPlayers[CurrentSoundCounts[0]].Play();
                     if (CurrentSoundCounts[0] < AllowedSoundInstances - 1) 
                     {
@@ -157,7 +168,7 @@ namespace TowerDefenseGUI
                     break;
 
                 case "flak":
-                    FlakPlayers[CurrentSoundCounts[1]].IsMuted = false;
+                    FlakPlayers[CurrentSoundCounts[1]].IsMuted = Muted;
                     FlakPlayers[CurrentSoundCounts[1]].Play();
                     if (CurrentSoundCounts[1] < AllowedSoundInstances - 1) 
                     {
@@ -168,7 +179,7 @@ namespace TowerDefenseGUI
                     break;
 
                 case "mortar":
-                    MortarPlayers[CurrentSoundCounts[2]].IsMuted = false;
+                    MortarPlayers[CurrentSoundCounts[2]].IsMuted = Muted;
                     MortarPlayers[CurrentSoundCounts[2]].Play();
                     if (CurrentSoundCounts[2] < AllowedSoundInstances - 1) 
                     {
@@ -179,7 +190,7 @@ namespace TowerDefenseGUI
                     break;
 
                 case "tesla":
-                    TeslaPlayers[CurrentSoundCounts[3]].IsMuted = false;
+                    TeslaPlayers[CurrentSoundCounts[3]].IsMuted = Muted;
                     TeslaPlayers[CurrentSoundCounts[3]].Play();
                     if (CurrentSoundCounts[3] < AllowedSoundInstances - 1) 
                     {
@@ -190,7 +201,7 @@ namespace TowerDefenseGUI
                     break;
 
                 case "laser":
-                    LaserPlayers[CurrentSoundCounts[4]].IsMuted = false;
+                    LaserPlayers[CurrentSoundCounts[4]].IsMuted = Muted;
                     LaserPlayers[CurrentSoundCounts[4]].Play();
                     if (CurrentSoundCounts[4] < AllowedSoundInstances - 1) 
                     {
@@ -201,7 +212,7 @@ namespace TowerDefenseGUI
                     break;
 
                 case "stun":
-                    StunPlayers[CurrentSoundCounts[5]].IsMuted = false;
+                    StunPlayers[CurrentSoundCounts[5]].IsMuted = Muted;
                     StunPlayers[CurrentSoundCounts[5]].Play();
                     if (CurrentSoundCounts[5] < AllowedSoundInstances - 1) 
                     {
@@ -212,7 +223,7 @@ namespace TowerDefenseGUI
                     break;
 
                 case "menubutton":
-                    ButtonPlayers[CurrentSoundCounts[6]].IsMuted = false;
+                    ButtonPlayers[CurrentSoundCounts[6]].IsMuted = Muted;
                     ButtonPlayers[CurrentSoundCounts[6]].Play();
                     if (CurrentSoundCounts[6] < AllowedSoundInstances - 1) 
                     {
@@ -223,7 +234,7 @@ namespace TowerDefenseGUI
                     break;
 
                 case "backbutton":
-                    BackButtonPlayers[CurrentSoundCounts[7]].IsMuted = false;
+                    BackButtonPlayers[CurrentSoundCounts[7]].IsMuted = Muted;
                     BackButtonPlayers[CurrentSoundCounts[7]].Play();
                     if (CurrentSoundCounts[7] < AllowedSoundInstances - 1)
                     {
@@ -252,7 +263,8 @@ namespace TowerDefenseGUI
                     break;
             }
             MusicPlayer.Pause();
-            MusicPlayer.IsMuted = false;
+            MusicPlayer.Volume = 0.18;
+            MusicPlayer.IsMuted = Muted;
             MusicPlayer.Position = new TimeSpan(0);
             MusicPlayer.Play();
         }

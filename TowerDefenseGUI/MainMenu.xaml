@@ -12,6 +12,9 @@
     <Canvas>
         <Border CornerRadius="40" BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>
         <Border BorderBrush="Gray" BorderThickness="20" Height="861" Width="1425"/>
+        <Button x:Name="AudioBtn" Width="100" Height="75" Canvas.Left="50" Canvas.Top="745" Click="MuteAudio">
+            <Image Source="Resources/audioBtnUnmuted.png"/>
+        </Button>
         <Image Source="Resources/title.jpeg" Height="205" Canvas.Left="60" Canvas.Top="40" Width="1296"/>
         <Label Margin="90,380,90,291">
             <!-- <Image Source=""/> -->
