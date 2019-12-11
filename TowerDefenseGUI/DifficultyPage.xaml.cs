@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * DifficultyPage.xaml's cs file
+ * 
+ * Handles buttons and methods
+ * for the DifficultyPage
+ */
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -11,21 +17,41 @@ namespace TowerDefenseGUI
     // For references:
     //  Difficulty  - int, where 1 is easy, 2 is medium, 3 is hard
     //  Cheat       - bool, where true = cheats, and false = no cheats
-    //  
+    
     public partial class DifficultyPage : Page
     {
+        // Stores whether cheat mode is on or off
         public bool Cheat = true;
+
+        // Stores the difficulty selected. 1 - easy, 2 - medium, 3 - hard
         public int Difficulty = 1;
+
+        // Stores a reference to the SoundHandler passed in
         public SoundHandler soundHandler;
 
         public DifficultyPage(SoundHandler sentSoundHandler)
         {
+            // Class Initializer
+            // Returns: nothing
+            // Params:
+            // - SoundHandler sentSoundHandler : a reference to our already prepared SoundHandler from the splash screen
+
             InitializeComponent();
             soundHandler = sentSoundHandler;
+
+            // Start the difficulty page music
             soundHandler.PlayMusic(SoundHandler.MusicType.DifficultyMenu);
         }
         private void BtnMainMenu_Click(object sender, RoutedEventArgs e)
         {
+            // Event Handler for pressing the "Main Menu" btn
+            // Returns: nothing
+            // Params:
+            // - object sender : not used. Only for enabling method as an Event Handler
+            // - RoutedEventArgs e  : not used. Only for enabling method as an Event Handler
+
+            // Plays the sound, opens a new main menu and closes the current window.
+
             soundHandler.Play(null, "backbutton");
             MainMenu mainMenu = new MainMenu(soundHandler);
             mainMenu.Show();
@@ -34,16 +60,37 @@ namespace TowerDefenseGUI
 
         private void BtnMainMenu_Hover(object sender, RoutedEventArgs e)
         {
+            // Event Handler for hovering over the "Main Menu" btn
+            // Returns: nothing
+            // Params:
+            // - object sender : not used. Only for enabling method as an Event Handler
+            // - RoutedEventArgs e  : not used. Only for enabling method as an Event Handler
+
             btnRect.Fill = Brushes.LightSkyBlue;
         }
 
         private void BtnMainMenu_UnHover(object sender, RoutedEventArgs e)
         {
+            // Event Handler for no longer hovering over the "Main Menu" btn.
+            //  Changes the color of the button to the normal color
+            // Returns: nothing
+            // Params:
+            // - object sender : not used. Only for enabling method as an Event Handler
+            // - RoutedEventArgs e  : not used. Only for enabling method as an Event Handler
+
             btnRect.Fill = Brushes.LightGray;
         }
 
         private void CheatMode_Click(object sender, RoutedEventArgs e)
         {
+            // Event Handler for clicking the Cheat Mode btn; swaps between
+            //  "Cheat Mode: On" and "Cheat Mode: Off" and changes variable
+            //  appropriately
+            // Returns: nothing
+            // Params:
+            // - object sender : not used. Only for enabling method as an Event Handler
+            // - RoutedEventArgs e  : not used. Only for enabling method as an Event Handler
+
             if (CheatMode.Content.ToString() == "Cheat Mode: On")
             {
                 CheatMode.Content = "Cheat Mode: Off";

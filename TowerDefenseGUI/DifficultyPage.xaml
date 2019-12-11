@@ -1,4 +1,4 @@
-﻿<!---->
+﻿<!--The Difficulty Selection for the game. Contains Play, Load, High Score, About, and Help buttons-->
 <Page x:Class="TowerDefenseGUI.DifficultyPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

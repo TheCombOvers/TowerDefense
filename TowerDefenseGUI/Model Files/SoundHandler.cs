@@ -22,6 +22,7 @@ namespace TowerDefenseGUI
 {
     public class SoundHandler
     {
+        // For providing which music should be played to the PlayMusic() method
         public enum MusicType { MainMenu, DifficultyMenu, Game }
 
         // Static variable determining how many of the same sound can be played simultaneously
@@ -46,6 +47,11 @@ namespace TowerDefenseGUI
 
         public SoundHandler()
         {
+            // Class initializer
+            // Returns: nothing
+            // Params:
+            //  None
+
             // Stores the current index of Media Player being used for each sound
             CurrentSoundCounts = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
 
@@ -137,6 +143,7 @@ namespace TowerDefenseGUI
         private void MusicPlayer_Loop(object sender, EventArgs e)
         {
             // Loops the music when it hits the end of the file.
+            // Returns: nothing
             MusicPlayer.Position = new TimeSpan(0);
             MusicPlayer.Play();
         }
@@ -144,6 +151,11 @@ namespace TowerDefenseGUI
         public void Play(object sender, string type)
         {
             // Play a sound depending on the sound type
+            // Returns: nothing
+            // Params:
+            //  - Object sender : not used. Simply to allow for linking to an Event Handler
+            //  - String type   : used to identify what sound needs to be played; is a string to simplify reading from turret
+
             switch (type)
             {
                 // Handles machinegun sound playing
@@ -260,6 +272,9 @@ namespace TowerDefenseGUI
         public void PlayMusic(MusicType type)
         {
             // Handles the playing of Music for pages & windows
+            // Returns: nothing
+            // Params:
+            //  - MusicType type : provides which music should be played
             switch (type)
             {
                 // Handles music playing for Main Menu
