@@ -42,6 +42,7 @@ namespace TowerDefenseGUI
         public int numWavesToWin;
         public bool isOverMenu;
         HighScore hs = new HighScore();
+
         public GameWindow(bool cheat, bool isLoad, int diff, SoundHandler sentSoundHandler, int mapId)
         {
             InitializeComponent();
@@ -73,7 +74,7 @@ namespace TowerDefenseGUI
             MapImage.MouseDown += Deselect;
             turrets = new List<Image>();
             enemies = new List<Image>();
-            // do not mess with the order of these addition please :)
+
             eImageSources = new List<string>();
             eImageSources.Add("pack://application:,,,/Resources/Basic Ground Unit.png");
             eImageSources.Add("pack://application:,,,/Resources/Basic Ground Vehicle.png");
@@ -83,8 +84,7 @@ namespace TowerDefenseGUI
             eImageSources.Add("pack://application:,,,/Resources/Advanced Ground Vehicle.png");
             eImageSources.Add("pack://application:,,,/Resources/Advanced Aircraft.png");
             eImageSources.Add("pack://application:,,,/Resources/Aircraft Boss.png");
-            // add all image sources to the turret image sources list
-            // again dont mess with the order of these lines
+
             tImageSources = new List<string>();
             tImageSources.Add("pack://application:,,,/Resources/machine gun tower.png");
             tImageSources.Add("pack://application:,,,/Resources/flak tower.png");
@@ -92,7 +92,7 @@ namespace TowerDefenseGUI
             tImageSources.Add("pack://application:,,,/Resources/mortar tower.png");
             tImageSources.Add("pack://application:,,,/Resources/stun tower.png");
             tImageSources.Add("pack://application:,,,/Resources/tesla tower.png");
-            // if we're loading a old save then call loadgame else just make a new game instance
+
             if (isLoad)
             {
                 game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", AddEnemy, RemoveEnemy);
@@ -106,7 +106,6 @@ namespace TowerDefenseGUI
             {
                 game = new Game(mapId, cheat, AddEnemy, RemoveEnemy, diff);
             }
-            // map selection
             if (Game.map.mapID == 1)
             {
                 MapImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path2.png"));
@@ -119,7 +118,6 @@ namespace TowerDefenseGUI
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
             nextWaveTimer = new Timer();
             nextWaveTimer.Interval = 1000;
-            //add update model events
             gameTimer.Tick += UpdateGame;
             gameTimer.Tick += updateTowerPlace;
             nextWaveTimer.Elapsed += SetWaveTimer;
@@ -485,7 +483,6 @@ namespace TowerDefenseGUI
                 double posX = SnapToGridX(mousePos.X);
                 double posY = SnapToGridY(mousePos.Y);
                 image.Margin = new Thickness(posX, posY, 0, 0);
-                // check for turrets already there
                 foreach(Image tI in turrets)
                 {
                     if(tI.Margin == image.Margin)
@@ -494,12 +491,10 @@ namespace TowerDefenseGUI
                         return;
                     }
                 }
-                // check for path
                 for(int i=0; i<Map.coords.Count-2; i++)
                 {
                     var pt1 = Map.coords[i];
                     var pt2 = Map.coords[i+1];
-                    // chech if image is between to pts in path
                     if (!IsOnPath(image.Margin, pt1, pt2))
                     {
                         // play eehh sound
