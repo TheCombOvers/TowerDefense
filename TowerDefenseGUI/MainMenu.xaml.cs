@@ -75,18 +75,5 @@ namespace TowerDefenseGUI
             gameWindow.Show();
             Close();
         }
-
-        private void MuteAudio(object sender, RoutedEventArgs e)
-        {
-            SoundHandler.Muted = true;
-            soundHandler.MusicPlayer.IsMuted = true;
-            AudioBtn.Content = new Uri("..//..//Resources//audioBtnMuted.png", UriKind.Relative);
-        }
-
-        private void UnMuteAudio(object sender, RoutedEventArgs e)
-        {
-            SoundHandler.Muted = false;
-            soundHandler.MusicPlayer.IsMuted = false;
-        }
     }
 }
