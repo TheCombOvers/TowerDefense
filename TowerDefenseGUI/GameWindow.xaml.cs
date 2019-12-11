@@ -521,7 +521,7 @@ namespace TowerDefenseGUI
                 {
                     if(tI.Margin == image.Margin)
                     {
-                        // play eehh sound
+                        imagetowerplace.Margin = new Thickness(-50, -50, 0, 0);
                         return;
                     }
                 }
@@ -531,7 +531,7 @@ namespace TowerDefenseGUI
                     var pt2 = Map.coords[i+1];
                     if (!IsOnPath(image.Margin, pt1, pt2))
                     {
-                        // play eehh sound
+                        imagetowerplace.Margin = new Thickness(-50, -50, 0, 0);
                         return;
                     }
                 }
