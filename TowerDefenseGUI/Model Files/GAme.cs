@@ -26,8 +26,8 @@ namespace TowerDefenseGUI
         public static int lives;
         public bool gameOver;
         public static Map map;
-        public List<Turret> currentTurrets = new List<Turret>(); // list of turrets  currently on the screen
-        public List<Enemy> currentEnemies = new List<Enemy>();  // list of enemies currently on the field
+        public List<Turret> currentTurrets; // list of turrets  currently on the screen
+        public List<Enemy> currentEnemies;  // list of enemies currently on the field
         public Spawner spawner;
         public Action<Enemy> addEnemy;
         public Action<Enemy, bool> removeEnemy;
@@ -35,6 +35,8 @@ namespace TowerDefenseGUI
 
         public Game(int mapID,bool cheat, Action<Enemy> add, Action<Enemy, bool> remove, int diff)
         {
+            currentTurrets = new List<Turret>();
+            currentEnemies = new List<Enemy>();
             difficulty = diff;
             cheatMode = cheat;
             currentWave = 0;
