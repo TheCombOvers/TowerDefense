@@ -26,14 +26,14 @@ namespace TowerDefenseGUI
         List<string> eImageSources; // 0:infantry, 1:vehicle basic, 2:aircraft basic, 3:ground boss
         // 4:advance ground unit, 5:advanced ground vehicle, 6:aircraft advanced, 7: air boss
         List<string> tImageSources;// 0:MG tower, 1:flak tower, 2:laser tower, 3:mortar, 4:stun, 5:tesla
-        bool isPlacing;
+        bool isPlacing; // checks if player is currently placing a tower
         Point mousePos;
-        bool basic;
-        bool machinegunplace;
-        bool flakplace;
-        bool mortarplace;
-        bool teslaplace;
-        bool laserplace;
+        bool basic;  // checks if basic tab is active
+        bool machinegunplace;  // checks if machine gun tower is being placed
+        bool flakplace;  // checks if flak tower is being placed
+        bool mortarplace;  // checks if mortar tower is being placed
+        bool teslaplace;  // checks if tesla tower is being placed
+        bool laserplace;  // checks if laser tower is being placed
         bool isFastForward = false;
         public SoundHandler soundHandler;
         public bool selling = false;
