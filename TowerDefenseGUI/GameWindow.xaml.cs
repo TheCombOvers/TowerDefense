@@ -292,6 +292,13 @@ namespace TowerDefenseGUI
                     ++counter;
                 }
             }
+            if (game.isWaveOver == true)
+            {
+                for (int i = 0; i < game.currentTurrets.Count; ++i)
+                {
+                    turrets[i].Source = new BitmapImage(new Uri(tImageSources[game.currentTurrets[i].imageID]));
+                }
+            }
         }
 
         private void DisplayWave(object sender, Enemy nul)
