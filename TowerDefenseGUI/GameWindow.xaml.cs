@@ -103,7 +103,7 @@ namespace TowerDefenseGUI
 
             if (isLoad)
             {
-                game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", RemoveEnemy);
+                game = Game.LoadGame("..\\..\\Resources\\SavedGame3.txt", AddEnemy, RemoveEnemy);
                 if (game.isWaveOver == false)
                 {
                     btnNextWave.IsEnabled = false;
@@ -112,7 +112,7 @@ namespace TowerDefenseGUI
             }
             else
             {
-                game = new Game(mapId, cheat, RemoveEnemy, diff);
+                game = new Game(mapId, cheat, AddEnemy, RemoveEnemy, diff);
             }
             if (Game.map.mapID == 1)
             {
