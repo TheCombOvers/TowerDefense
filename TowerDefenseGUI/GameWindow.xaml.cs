@@ -202,7 +202,7 @@ namespace TowerDefenseGUI
             {
                 if (value)
                 {
-                    //turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower fire.png"));
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower fire.png"));
                 }
                 else
                 {
@@ -213,7 +213,7 @@ namespace TowerDefenseGUI
             {
                 if (value)
                 {
-                    //turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower fire.png"));
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower fire.png"));
                 }
                 else
                 {
@@ -224,7 +224,7 @@ namespace TowerDefenseGUI
             {
                 if (value)
                 {
-                    //turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower fire.png"));
+                    turrets[index].Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tesla tower fire.png"));
                 }
                 else
                 {

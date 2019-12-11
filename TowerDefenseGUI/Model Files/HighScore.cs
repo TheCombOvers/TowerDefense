@@ -42,6 +42,7 @@ namespace TowerDefenseGUI
         }
         public void CreateScore(string name, int score)
         {
+            // creates a new high score submitted by player and passes it to HighScores class
             string scorestring = name + ": " + score.ToString();
             hs.GetNewScore(scorestring);
         }
