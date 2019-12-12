@@ -35,7 +35,7 @@ namespace TowerDefenseGUI
             DisplayWave(this, null);
         }
 
-        // creates an enemy object and decrements the count
+        // returns an enemy object and decrements the count
         public static Enemy GenerateEnemy()
         {
             Console.WriteLine("Generating enemy");
@@ -111,7 +111,7 @@ namespace TowerDefenseGUI
             return e;
         }
 
-        // evaluates the count values based off the wave.
+        // evaluates the count values based off the wave and returns an array with the count
         private int[] DetermineWaveNumbers(int wave)
         {
             int[] num = new int[2];
@@ -212,7 +212,7 @@ namespace TowerDefenseGUI
             return num;
         }
 
-        // evaluates the types values based off the wave.
+        // evaluates the types values based off the wave and returns an array with the types
         private string[] DetermineWave(int wave, int[] count)
         {
             string[] types = new string[2];

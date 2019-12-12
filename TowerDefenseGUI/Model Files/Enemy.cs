@@ -64,12 +64,13 @@ namespace TowerDefenseGUI
 
         }
 
-        // checks the enemy position compared to pathProgress direction in the map path.
+        // checks the enemy position compared to the given map path.
         // tells the updatePos whether to modify the x or y coord of the enemy.
         // when the enemy position is close to the path change, it sets the speed to + or - and 
         // returns a string that says x or y. For example, if speed is negative and it returns 'x',
         // then the sprite will move to the left. Calls game takelife method and spawner remove method
         // if the enemy gets to the end of the path.
+        // returns a point on the path.
         public Intersection CheckCoords(List<Intersection> path)
         {
             int x = path[pathProgress].x;
