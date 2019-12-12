@@ -54,7 +54,7 @@ namespace TowerDefenseGUI
         public override void Attack(List<Enemy> enemies)
         {
             var targets = DetectEnemies(enemies);
-            base.Attack(enemies);
+            base.Attack(targets);
             if (targets.Count == 0)
             {
                 return;

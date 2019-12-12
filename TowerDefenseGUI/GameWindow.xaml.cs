@@ -117,6 +117,18 @@ namespace TowerDefenseGUI
             {
                 game = new Game(mapId, cheat, AddEnemy, RemoveEnemy, diff);
             }
+            if (game.difficulty == 1)
+            {
+                numWavesToWin = 10;
+            }
+            else if (game.difficulty == 2)
+            {
+                numWavesToWin = 20;
+            }
+            else
+            {
+                numWavesToWin = 30;
+            }
             if (Game.map.mapID == 1)
             {
                 MapImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/path2.png"));
@@ -405,6 +417,10 @@ namespace TowerDefenseGUI
         // returns nothing
         public void RemoveEnemy(Enemy e, bool isKill)
         {
+            if (enemies.Count() == 0)
+            {
+                return;
+            }
             if (GameWindowCanvas.Children.Contains(enemies[e.imageIndex]))
             {
                 GameWindowCanvas.Children.Remove(enemies[e.imageIndex]); // remove from the game window canvas
