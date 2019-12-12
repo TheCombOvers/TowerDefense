@@ -57,4 +57,4 @@ Once you request access, message me in teams so I can approve it. -Micah
 |Levi|53hr, 48min|6hr, 12min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/LeviJournal)|
 |Alexander|50hr, 15min|9hrs, 45min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/YerkesJournal)|
 |Kevin|55hr|5hr|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/HansenJournal)|
-|Micah|46hr, 45min|12hr, 15min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
+|Micah|57hr, 45min|2hr, 15min|[Journal Link](https://github.com/TheCombOvers/TowerDefense/wiki/Micah-Journal)|
