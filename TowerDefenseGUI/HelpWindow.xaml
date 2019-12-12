@@ -1,4 +1,5 @@
-﻿<Window x:Class="TowerDefenseGUI.HelpWindow"
+﻿<!--Displays information about how to play the game-->
+<Window x:Class="TowerDefenseGUI.HelpWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,10 +7,10 @@
         xmlns:local="clr-namespace:TowerDefenseGUI"
         mc:Ignorable="d"
         Title="HelpWindow" Height="600" Width="300" ResizeMode="NoResize">
-    <Grid Background="#20572f">
+    <Grid Background="#77917e">
         <Border CornerRadius="25" BorderBrush="Gray" BorderThickness="10"/>
         <Border BorderBrush="Gray" BorderThickness="10"/>
-        <TextBlock Margin="14,25,14,14" TextWrapping="Wrap" FontSize="15" TextAlignment="Center" Foreground="LightGray">
+        <TextBlock Margin="14,25,14,14" TextWrapping="Wrap" FontSize="15" TextAlignment="Center">
             At the start of the game, the player will have 10 lives and an amount of money based off the difficulty.
 After the player is satisfied with their placement they can start the first wave of enemies.
 The player will earn points and cash upon destroying enemies.

@@ -1,4 +1,4 @@
-﻿<!---->
+﻿<!--The Main Menu for the game. Contains Play, Load, High Score, About, and Help buttons-->
 <Window x:Class="TowerDefenseGUI.MainMenu"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

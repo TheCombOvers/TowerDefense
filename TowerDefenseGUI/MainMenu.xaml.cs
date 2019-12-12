@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * #MainMenu.xaml cs file#
+ * 
+ * This is the .cs file for the
+ * Main Menu. It handles button
+ * presses and different extra
+ * menu displaying.
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +25,10 @@ namespace TowerDefenseGUI
 {
     public partial class MainMenu : Window
     {
+        // Stores whether cheats are enabled or disabled
         public bool cheat = true;
+
+        // Stores a reference to our already-created instance
         public SoundHandler soundHandler;
 
         public MainMenu(SoundHandler sentSoundHandler)
