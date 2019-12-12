@@ -48,8 +48,7 @@ After the player has won they may continue playing in an endless mode, earning m
 
 ## Recording
 
-[Demo Video](https://bju-my.sharepoint.com/:v:/g/personal/ayerk481_students_bju_edu/EZZHPuJodz9NvLVBSmXnBpgBUZjlpVCHwhpOAHfycdIBGg?email=ayerk481%40students.bju.edu&e=DNKoLB)
-Once you request access, message me in teams so I can approve it. -Micah
+[Demo Video](https://bju-my.sharepoint.com/:v:/g/personal/ayerk481_students_bju_edu/EbE4hqDWbIJOm2wF4i1aTOQBdLTEMq7LnUYyR9EzuT8YfA?email=Sschaub%40bju.edu&e=g83zL4)
 
 ## Expenses
 | Team Member | Time Spent | Time Left | Journal Link |
