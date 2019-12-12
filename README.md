@@ -1,4 +1,4 @@
-!()[mainMenu.png]
+!()[https://github.com/TheCombOvers/TowerDefense/blob/master/mainMenu.png]
 
 # TowerDefense
 Source code for Kevin, Levi, Alexander, and Micah's team project.
