@@ -1,4 +1,4 @@
-!()[mortar tower.PNG]
+!()[mainMenu.png]
 
 # TowerDefense
 Source code for Kevin, Levi, Alexander, and Micah's team project.
