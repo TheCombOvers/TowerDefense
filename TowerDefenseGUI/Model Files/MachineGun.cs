@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
-    // The Machinegun class contains the override method
-    // for Attack enemy. Also implements serialization methods.
+    // The Machinegun class contains an override method
+    // for Attack and a factory method.
+    // Also implements serialization methods.
     class MachineGun : Turret
     {
         // serializes the object into a string of values and returns it.

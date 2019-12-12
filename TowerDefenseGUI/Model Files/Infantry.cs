@@ -1,21 +1,23 @@
-﻿using System;
+﻿// This file contains the Infantry class.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Media;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.Windows;
+
 namespace TowerDefenseGUI
-{
+{   
+    // The Infantry class contains a factory method and implements serialization methods.
     class Infantry : Enemy
     {
+        // serializes the object into a string of values and returns it.
         public override string Serialize()
         {
             string infantry = string.Format("{0},{1},{2},{3},{4}", type, posX, posY, health, pathProgress);
             return infantry;
         }
+
+        // deserializes a string and converts it into an object with the specified values within that string.
         public override object Deserialize(string info)
         {
             string[] aInfo = info.Split(',');
@@ -27,6 +29,8 @@ namespace TowerDefenseGUI
             i.pathProgress = Convert.ToInt32(aInfo[4]);
             return i;
         }
+
+        // receives a string and returns a default infantry object based off the string
         public static Infantry MakeInfantry(string type)
         {
             Infantry i = new Infantry();

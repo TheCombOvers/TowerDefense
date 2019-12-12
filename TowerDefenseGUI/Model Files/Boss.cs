@@ -1,4 +1,5 @@
-﻿using System;
+﻿// This file contains the Boss class.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,17 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
+    // The Boss class contains a factory method and implements serialization methods.
     class Boss : Enemy
     {
+        // serializes the object into a string of values and returns it.
         public override string Serialize()
         {
             string boss = string.Format("{0},{1},{2},{3},{4}", type, posX, posY, health, pathProgress);
             return boss;
         }
+
+        // deserializes a string and converts it into an object with the specified values within that string.
         public override object Deserialize(string info)
         {
             string[] aInfo = info.Split(',');
@@ -25,6 +30,7 @@ namespace TowerDefenseGUI
             return a;
         }
 
+        // receives a string and returns a default boss object based off the string
         public static Boss MakeBoss(string type)
         {
             Boss b = new Boss();

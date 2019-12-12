@@ -1,4 +1,5 @@
-﻿using System;
+﻿// This file contains the Flak class
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
+    // The Flak class contains an override method
+    // for Attack and a factory method.
+    // Also implements serialization methods.
     class Flak : Turret
     {
         // serializes the object into a string of values and returns it.

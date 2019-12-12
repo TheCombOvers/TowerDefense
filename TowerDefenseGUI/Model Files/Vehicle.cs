@@ -1,4 +1,5 @@
-﻿using System;
+﻿// This file contains the Vehicle class.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,17 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
+    // The Vehicle class contains a factory method and implements serialization methods.
     class Vehicle : Enemy
     {
+        // serializes the object into a string of values and returns it.
         public override string Serialize()
         {
             string vehicle = string.Format("{0},{1},{2},{3},{4}", type, posX, posY, health, pathProgress);
             return vehicle;
         }
+
+        // deserializes a string and converts it into an object with the specified values within that string.
         public override object Deserialize(string info)
         {
 
@@ -25,6 +30,8 @@ namespace TowerDefenseGUI
             v.pathProgress = Convert.ToInt32(aInfo[4]);
             return v;
         }
+
+        // receives a string and returns a default vehicle object based off the string
         public static Vehicle MakeVehicle(string type)
         {
             Vehicle v = new Vehicle();

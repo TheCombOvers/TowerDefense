@@ -1,4 +1,5 @@
-﻿using System;
+﻿// This file contains the Tesla class
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
+    // The Tesla class contains an override method
+    // for Attack, DetectEnemy, and a factory method.
+    // Also implements serialization methods.
     class Tesla : Turret
     {
         // serializes the object into a string of values and returns it.
@@ -15,7 +19,7 @@ namespace TowerDefenseGUI
             return tesla;
         }
 
-        // deserializes a string and converts it into an object with the specified values within that string.v
+        // deserializes a string and converts it into an object with the specified values within that string.
         public override object Deserialize(string info)
         {
             string[] finfo = info.Split(',');

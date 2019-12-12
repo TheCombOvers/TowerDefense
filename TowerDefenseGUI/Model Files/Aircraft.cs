@@ -1,4 +1,5 @@
-﻿using System;
+﻿// This file contains the Aircraft class.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,17 @@ using System.Threading.Tasks;
 
 namespace TowerDefenseGUI
 {
+    // The Aircraft class contains a factory method and implements serialization methods.
     class Aircraft : Enemy
     {
+        // serializes the object into a string of values and returns it.
         public override string Serialize()
         {
             string aircraft = string.Format("{0},{1},{2},{3},{4}", type, posX, posY, health, pathProgress);
             return aircraft;
         }
+
+        // deserializes a string and converts it into an object with the specified values within that string.
         public override object Deserialize(string info)
         {
             string[] aInfo = info.Split(',');
@@ -24,6 +29,8 @@ namespace TowerDefenseGUI
             a.pathProgress = Convert.ToInt32(aInfo[4]);
             return a;
         }
+
+        // receives a string and returns a default aircraft object based off the string
         public static Aircraft MakeAircraft(string type)
         {
             Aircraft a = new Aircraft();
