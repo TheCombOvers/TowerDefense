@@ -61,7 +61,7 @@
         <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="440" Canvas.Left="1000" Canvas.Top="300" Panel.ZIndex="1"/>
         <Rectangle Fill="#FFF4F4F5" Height="5" Stroke="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Width="440" Canvas.Left="1000" Canvas.Top="475" Panel.ZIndex="1"/>
         <Border x:Name="b_upgrade_border" Visibility="Hidden" BorderBrush="SlateGray" BorderThickness="2" Height="80" Canvas.Left="785" Canvas.Top="820" Width="210" Background="DimGray"/>
-        <Button x:Name="btn_Upgrade" Visibility="Hidden" Background="LightSlateGray" BorderThickness="2" BorderBrush="SlateGray" FontSize="12" Content="Upgrade" Canvas.Left="925" Canvas.Top="865" Width="65" Height="25" Click="btn_Upgrade_Click"/>
+        <Button x:Name="btn_Upgrade" Visibility="Hidden" Background="LightSlateGray" BorderThickness="2" BorderBrush="SlateGray" FontSize="12" Content="Upgrade" Canvas.Left="925" Canvas.Top="865" Width="65" Height="25" Click="btn_Upgrade_Click" Panel.ZIndex="1"/>
         <Label x:Name="lb_upgraded_dps" Visibility="Hidden" FontSize="15" Content="Upgraded Dps: " Canvas.Left="785" Canvas.Top="860"/>
         <Label x:Name="lb_selectedType" Visibility="Hidden" FontSize="15" Content="Type: " Canvas.Left="785" Canvas.Top="820"/>
         <Label x:Name="lb_current_Dps" Visibility="Hidden" FontSize="15" Content="Dps: " Canvas.Left="785" Canvas.Top="840"/>
