@@ -36,13 +36,15 @@ After the player has won they may continue playing in an endless mode, earning m
 | Waves | Finished| Optional | Alex |
 | Enemies | Finished | Required | Kevin |
 | Scoring/High Scores | Finished | Required | Kevin | 
-| Difficulty lvls | Finished| Optional | Micah |
+| Difficulty lvls(gui) | Finished| Optional | Micah |
+| Difficulty lvls(model) | Finished| Optional | Kevin |
 | Adding GUI Elements | Finished| Optional | Micah | 
-| Sound Effects| Finished(very buggy) | Required| Micah |
+| Sound Effects| Finished | Required| Micah |
 | Time Speed Up | Finished | Required | Alex |  
 | Tower Upgrades | Finished | Optional | Levi |
 | Turret Selection | Finished | Optional | Levi | 
 | Tower Special Firing | Finished | Optional| Alex |
+| Muzzle Flash | Finished | Optional | Kevin |
 <br>
 
 ## Recording
