@@ -714,14 +714,14 @@ namespace TowerDefenseGUI
             txtMachineGunTeslaName.Text = "Tesla Tower";
             txtMachineGunTeslaType.Text = "Target: Ground";
             txtMachineGunTeslaRange.Text = "Range: 100";
-            txtMachineGunTeslaDmg.Text = "Damage: 36/s";
+            txtMachineGunTeslaDmg.Text = "Damage: 12/s";
             txtMachineGunTeslaCost.Text = "Cost: $175";
             FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/laser tower.png"));
             txtFlakLaserName.Text = "Laser Tower";
             txtFlakLaserType.Text = "Target: Ground/Air";
             txtFlakLaserRange.Text = "Range: 175";
-            txtFlakLaserDmg.Text = "Damage: 60/s";
-            txtFlakLaserCost.Text = "Cost: $125";
+            txtFlakLaserDmg.Text = "Damage: 30/s";
+            txtFlakLaserCost.Text = "Cost: $200";
             MortarStunImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/stun tower.png"));
             txtMortarStunName.Text = "Stun Tower";
             txtMortarStunType.Text = "Target: Ground/Air";
@@ -744,19 +744,19 @@ namespace TowerDefenseGUI
             txtMachineGunTeslaName.Text = "Machine Gun Tower";
             txtMachineGunTeslaType.Text = "Target: Ground";
             txtMachineGunTeslaRange.Text = "Range: 125";
-            txtMachineGunTeslaDmg.Text = "Damage: 7.5/s";
+            txtMachineGunTeslaDmg.Text = "Damage: 12/s";
             txtMachineGunTeslaCost.Text = "Cost: $50";
             FlakLaserImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/flak tower.png"));
             txtFlakLaserName.Text = "Flak Tower";
             txtFlakLaserType.Text = "Target: Air";
-            txtFlakLaserRange.Text = "Range: 225";
-            txtFlakLaserDmg.Text = "Damage: 2/s";
+            txtFlakLaserRange.Text = "Range: 250";
+            txtFlakLaserDmg.Text = "Damage: 7/s";
             txtFlakLaserCost.Text = "Cost: $75";
             MortarStunImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mortar tower.png"));
             txtMortarStunName.Text = "Mortar Tower";
             txtMortarStunType.Text = "Target: Ground";
-            txtMortarStunRange.Text = "Range: 275";
-            txtMortarStunDmg.Text = "Damage: 50/5s";
+            txtMortarStunRange.Text = "Range: 375";
+            txtMortarStunDmg.Text = "Damage: 25/5s";
             txtMortarStunCost.Text = "Cost: $150";
         }
 
